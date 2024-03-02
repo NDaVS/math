@@ -60,14 +60,14 @@ def main():
     l1 = L1(x_asterX, x_i, x_i1)
 
     value = function(x_asterX)  # y(x*)
-    R_1 = l1 - value
+    R_1 = value - l1
     R1_min = ddf.subs(x, x_i) * w2(x_asterX, x_i, x_i1) / 2
     R1_max = ddf.subs(x, x_i1) * w2(x_asterX, x_i, x_i1) / 2
 
     if R1_max < R1_min:
         R1_max, R1_min = R1_min, R1_max
 
-    if R1_min < - R_1 < R1_max:
+    if R1_min < R_1 < R1_max:
         print("Greate! First inequality is correct")
     else:
         print(f"Bad news about first inequality, it`s wrong: {R1_min}, {R_1}, {R1_max}")
@@ -78,8 +78,8 @@ def main():
     R2_min = dddf.subs(x, x_i) * w3(x_asterX, x_im1, x_i, x_i1) / 6
     R2_max = dddf.subs(x, x_i1) * w3(x_asterX, x_im1, x_i, x_i1) / 6
 
-    R_2 = l2 - function(x_asterX)
-    if R2_min < -R_2 < R2_max:
+    R_2 = function(x_asterX) - l2
+    if R2_min < R_2 < R2_max:
         print("Greate! Second inequality is correct")
     else:
         print(f"Bad news about second inequality, it`s wrong: {R2_min}, {R_2}, {R2_max}")
