@@ -18,12 +18,18 @@ def L1(x, x_i, x_i1):
     return function(x_i) * (x - x_i1) / (x_i - x_i1) + function(x_i1) * (x - x_i) / (x_i1 - x_i)
 
 
-def w(x, x_i, x_i1):
+def L2(x, x_im1, x_i, x_i1):
+    return function(x_im1) * (x - x_i) * (x - x_i1) / ((x_im1 - x_i) * (x_im1 - x_i1)) + function(x_i) * (
+                x - x_im1) * (x - x_i1) / ((x_i - x_im1) * (x_i - x_i1)) + function(x_i1) * (
+                x - x_im1) * (x - x_i) / ((x_i1 - x_im1) * (x_i1 - x_i))
+
+
+def w2(x, x_i, x_i1):
     return (x - x_i) * (x - x_i1)
 
 
-def R(ddf, w):
-    return ddf * w/2
+def w3(x, x_im1, x_i, x_i1):
+    return (x - x_im1) * (x - x_i) * (x - x_i1)
 
 
 def main():
@@ -41,22 +47,41 @@ def main():
 
     index1 = index + 1
 
+    x_i = table[index][0]
+    x_i1 = table[index1][0]
+    x_im1 = a - step
+
     x = symbols('x')
     f = x ** 2 + log(x) - 4
     df = diff(f, x)  # Первая производная
     ddf = diff(df, x)  # Вторая производная
     dddf = diff(ddf, x)  # Третья производная
 
-    l1 = L1(x_asterX, table[index][0], table[index1][0])
+    print(df)
+    print(ddf)
+    print(dddf)
+    l1 = L1(x_asterX, x_i, x_i1)
 
     value = function(x_asterX)  # y(x*)
     R_1 = l1 - value
-    R_min = ddf(table[index][0]) * w(x_asterX, table[index][0], table[index1][0])/ 2
-    R_max = R(ddf(table[index1][0]), w(x_asterX, table[index][0], table[index1][0]))
-    print(R_min)
-    print(R_max)
-    # print(R_1)
-    # print(*table, sep='\n')
+    R1_min = ddf.subs(x, x_i) * w2(x_asterX, x_i, x_i1) / 2
+    R1_max = ddf.subs(x, x_i1) * w2(x_asterX, x_i, x_i1) / 2
+    if R1_min < R_1 < R1_max:
+        print("Greate! First inequality is correct")
+    else:
+        print(f"Bad news about first inequality, it`s wrong: {R1_min}, {R_1}, {R1_max}")
+    print("Round 2. Fight!")
+
+    l2 = L2(x_asterX, x_im1, x_i, x_i1)
+
+    R2_min = dddf.subs(x, x_i) * w3(x_asterX, x_im1, x_i, x_i1) / 6
+    R2_max = dddf.subs(x, x_i1) * w3(x_asterX, x_im1, x_i, x_i1) / 6
+
+    R_2 = l2 - function(x_asterX)
+    if abs(R2_min) < R_2 < abs(R2_max):
+        print("Greate! Second inequality is correct")
+    else:
+        print(f"Bad news about second inequality, it`s wrong: {R2_min}, {R_2}, {R2_max}")
 
 
 if __name__ == '__main__':
