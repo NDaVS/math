@@ -20,8 +20,8 @@ def L1(x, x_i, x_i1):
 
 def L2(x, x_im1, x_i, x_i1):
     return function(x_im1) * (x - x_i) * (x - x_i1) / ((x_im1 - x_i) * (x_im1 - x_i1)) + function(x_i) * (
-                x - x_im1) * (x - x_i1) / ((x_i - x_im1) * (x_i - x_i1)) + function(x_i1) * (
-                x - x_im1) * (x - x_i) / ((x_i1 - x_im1) * (x_i1 - x_i))
+            x - x_im1) * (x - x_i1) / ((x_i - x_im1) * (x_i - x_i1)) + function(x_i1) * (
+            x - x_im1) * (x - x_i) / ((x_i1 - x_im1) * (x_i1 - x_i))
 
 
 def w2(x, x_i, x_i1):
@@ -57,16 +57,17 @@ def main():
     ddf = diff(df, x)  # Вторая производная
     dddf = diff(ddf, x)  # Третья производная
 
-    print(df)
-    print(ddf)
-    print(dddf)
     l1 = L1(x_asterX, x_i, x_i1)
 
     value = function(x_asterX)  # y(x*)
     R_1 = l1 - value
     R1_min = ddf.subs(x, x_i) * w2(x_asterX, x_i, x_i1) / 2
     R1_max = ddf.subs(x, x_i1) * w2(x_asterX, x_i, x_i1) / 2
-    if R1_min < R_1 < R1_max:
+
+    if R1_max < R1_min:
+        R1_max, R1_min = R1_min, R1_max
+
+    if R1_min < - R_1 < R1_max:
         print("Greate! First inequality is correct")
     else:
         print(f"Bad news about first inequality, it`s wrong: {R1_min}, {R_1}, {R1_max}")
@@ -78,7 +79,7 @@ def main():
     R2_max = dddf.subs(x, x_i1) * w3(x_asterX, x_im1, x_i, x_i1) / 6
 
     R_2 = l2 - function(x_asterX)
-    if abs(R2_min) < R_2 < abs(R2_max):
+    if R2_min < -R_2 < R2_max:
         print("Greate! Second inequality is correct")
     else:
         print(f"Bad news about second inequality, it`s wrong: {R2_min}, {R_2}, {R2_max}")
