@@ -1,0 +1,155 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc} % Кодировка шрифта
+\usepackage[utf8]{inputenc} % Кодировка ввода
+\usepackage[english,russian]{babel} % Языковые настройки
+\usepackage{graphicx} % Для вставки изображений
+\usepackage{amsmath} % Для использования математических формул
+\usepackage{amssymb}
+\usepackage{amsfonts} % Для использования математических символов и шрифтов
+\usepackage{titlesec} % Для настройки заголовков разделов
+\usepackage{titling} % Для настройки титульной страницы
+\usepackage{geometry} % Для настройки размеров страницы
+
+% Настройка заголовков разделов
+\titleformat{\section}
+{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+% Настройка титульной страницы
+\setlength{\droptitle}{-3em} % Отступ заголовка
+\title{\vspace{-1cm}ИДЗ №6}
+\author{Вершинин Данил Алексеевич}
+\date{\today}
+
+% Настройка размеров страницы
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+	\maketitle
+	
+	
+	
+	
+	
+	\section{Исследовать на равномерную сходимость параметризованное семейство функций $f(x,y)$ на множестве $X$ при $y \rightarrow y_0$.}
+	\[f(x,y) = \frac{y\text{arctg}(xy)}{y+1}, \ X = (0, +\infty), \ y \rightarrow +\infty\]
+	По определению: $f_n(x)\underset{n\rightarrow\infty}{\overset{E}{\rightrightarrows}} f(x)$, есть $\underset{x \in X}{\sup}|f_n(x)-f(x)| \underset{n\rightarrow\infty}{\rightarrow}0$.
+	Найдём предельную функцию:
+	\[\underset{y\rightarrow+\infty}{\lim}f(x,y)=\underset{y\rightarrow+\infty}{\lim}\frac{y\text{arctg}(xy)}{y+1}=\frac{\pi}{2}\]
+	\[f(x,y)\underset{n\rightarrow\infty}{\overset{X}{\rightrightarrows}} f(x) \Leftrightarrow \underset{x \in X}{\sup}|f(x,y)-f(x)| \underset{y\rightarrow\infty}{\rightarrow}0\]
+	\[\underset{x>0}{\sup}\left| \frac{y\text{arctg}(xy)}{y+1} - \frac{\pi}{2} \right| = (*)\]
+	Найдём производную, для дальнейшего выбора $x$:
+	\[\left(\frac{y\text{arctg}(xy)}{y+1}\right)'_x = \frac{y^2}{(y+1)(1+x^2y^2)} \underset{y\rightarrow+\infty}{>}0\]
+	\[(*)=\left|\underset{x\rightarrow+\infty}{\lim}\frac{y\text{arctg}(xy)}{y+1}-\frac{\pi}{2}\right| = \left|\frac{y}{y+1}\cdot\frac{\pi}{2} - \frac{\pi}{2}\right| = \frac{\pi}{2}\left|\frac{-1}{y+1}\right|\underset{y\rightarrow\infty}{\rightarrow} 0 - \text{Следовательно, сходится равномерно.}\]
+	
+	
+	\section{Исследовать на равномерную сходимость параметризованное семейство функций $f(x,y)$ на множестве $X$ при $y \rightarrow y_0$.}
+	\[f(x,y) = \frac{\ln(x+y)}{\ln(x^2 + y^2)}, \ X = (1,2), \ y \rightarrow +\infty \]
+	По определению: $f_n(x)\underset{n\rightarrow\infty}{\overset{E}{\rightrightarrows}} f(x)$, есть $\underset{x \in X}{\sup}|f_n(x)-f(x)| \underset{n\rightarrow\infty}{\rightarrow}0$.
+	Найдём предельную функцию:
+	\[\underset{y\rightarrow+\infty}{\lim}f(x,y)=\underset{y\rightarrow+\infty}{\lim}\frac{\ln(x+y)}{\ln(x^2+y^2)} =\underset{y\rightarrow+\infty}{\lim}\frac{\ln(y)+\ln\left(\frac{x}{y} + 1\right)}{2\ln(y)+\ln\left(1+\frac{x^2}{y^2}\right)} = \frac{1}{2}\]
+	\[\underset{1<x<2}{\sup}\left|\frac{\ln(x+y)}{\ln(x^2+y^2)} - \frac{1}{2}\right| = \underset{1<x<2}{\sup}\left|\frac{2\ln(x+y) - \ln(x^2+y^2)}{2\ln(x^2+y^2)}\right| = \underset{1<x<2}{\sup}\frac{\ln\left(\frac{x^2+y^2+2xy}{x^2+y^2}\right)}{2\ln(x^2+y^2)} = \underset{1<x<2}{\sup}\frac{\ln\left(1+\frac{2xy}{x^2+y^2}\right)}{2\ln(x^2+y^2)}\]
+	Независимо от выбора $x\in X$ получим, что:
+	\[\underset{1<x<2}{\sup}\frac{\ln\left(1+\frac{2xy}{x^2+y^2}\right)}{2\ln(x^2+y^2)}\underset{y\rightarrow\infty}{\rightarrow} 0- \text{Следовательно, сходится равномерно.}\]
+	
+	\section{Вычислить с помощью дифференцирования  по параметру собственный интеграл}
+	\[\int\limits_{0}^{\frac{\pi}{2}}\frac{\text{arctg}(a\text{tg}(x))}{\text{tg}(x)}dx\]
+	Введём функцию, которая зависит от параметра:
+	\[I(a) = \int\limits_{0}^{\frac{\pi}{2}}\frac{\text{arctg}(a\text{tg}(x))}{\text{tg}(x)}dx\]
+	Найдём производуню по параметру:
+	\[I'(a) = \int\limits_0^\frac{\pi}{2}\frac{1}{\text{tg}(x) }\cdot \frac{\text{tg}(x)}{1+a^2\text{tg}^2(x)}dx = \int\limits_0^\frac{\pi}{2}\frac{1}{1+a^2\text{tg}^2(x)}dx\]
+	Проинтегрируем по $x$:
+	\[I'(a) = \int\limits_0^\frac{\pi}{2}\frac{1}{1+a^2\text{tg}^2(x)}dx = \int\limits_0^\frac{\pi}{2}\frac{1}{\cos^2(x)(\text{tg}^2(x)+1)(1+a^2x^2)}dx = \bigg|_{dt = \frac{dx}{\cos^2(x)}}^{t = \text{tg}(x)}\bigg| = \int\limits_{0}^{+\infty}\frac{dt}{(t^2+1)(1+a^2t^2)}=\]
+	\[=\int\limits_{0}^{+\infty}\frac{(a^2-1)}{(a^2-1)(t^2+1)(1+a^2t^2)}dt = \int\limits_{0}^{+\infty}\left(\frac{a^2}{(a^2-1)(1+a^2t^2)} - \frac{1}{(a^2-1)(t^2+1)}\right)dt=\]
+	\[=\frac{a^2}{a^2-1}\int\limits_{0}^{+\infty}\frac{1}{1+a^2t^2}dt - \frac{1}{a^2-1}\int\limits_{0}^{+\infty}\frac{1}{t^2+1}dt = \frac{a^2}{a^2-1} \frac{\text{arctg}(at)}{a}\bigg|_0^{+\infty} - \frac{1}{a^2-1}\text{arctg}(t)\bigg|_{0}^{+\infty}=\]
+	\[=\frac{a}{a^2-1}\cdot\frac{\pi}{2} - \frac{1}{a^2-1}\cdot\frac{\pi}{2} = \frac{\pi}{2}\left(\frac{a-1}{a^2-1}\right) = \frac{\pi}{2}\cdot\frac{1}{a+1}\]
+	Проинтегрируем по $a$:
+	\[\int\frac{\pi}{2}\cdot\frac{1}{a+1}da = \frac{\pi}{2}\ln(|a+1|)+C\]
+	Найдём константу.\\
+	Подставим 0 в изначальную формулу:
+	\[\frac{\text{arctg}(0\cdot x)}{\text{tg}(x)} = 0\]
+	Подставим в полученную формулу 0:
+	\[\frac{\pi}{2}\ln(|0+1|) = 0\]
+	Следовательно, константа равна нулю.
+	Таким образом получили функцию: 
+	\[\frac{\pi}{2}\ln(|a+1|)\]
+	
+	\section{Применяя интегрирование под знаком интеграла, вычислить:}
+	\[\int\limits_{0}^{1}\sin(\ln \frac{1}{x}) \cdot \frac{x^b -x ^ a}{\ln x}\]
+	\[\int\limits_{0}^{1}\sin(\ln \frac{1}{x}) \cdot \frac{x^b -x ^ a}{\ln x} = \int\limits_{0}^{1}\sin(\ln \frac{1}{x})\left(\int\limits_{a}^{b}x^ydy\right)dx=(*)\]
+	\[\frac{x^b -x ^ a}{\ln x} = \int\limits_{a}^{b}x^ydy = \frac{x^y}{\ln(x)} \bigg|_a^b = \frac{x^b - x^a}{\ln(x)}\]
+	\[\int\limits_a^b\left(\int\limits_c^df(x,y)dx\right)dy = \int\limits_{a}^{b}dy\int\limits_c^d f(x,y)dx = \int\limits_c^d dx \int\limits_a^b f(x,y)dy\]
+	\[(*)=\int\limits_{0}^{1}dx\int\limits_a^b \sin\left(\ln\left(\frac{1}{x}\right)\right)x^ydy = \int\limits_a^b dy \int\limits_0^1\sin\left(\ln\left(\frac{1}{x}\right)\right)x^y dx = \bigg|^{t=\ln\left(\frac{1}{x}\right)}_{dt = - e^{-t}}\bigg| = \int\limits_a^b dy \int\limits_0^{+\infty}e^{-ty}\sin(t)e^{-t}dt =\]
+	\[=\int\limits_a^b dy \int \limits_{0}^{+\infty} e^{-t(y+1)}\sin(t)dt \overset{(1)}{=} \int\limits_{a}^{b}dy \left( e^{-t(y+1)} \frac{-(y+1)\sin(t)- \cos(t)}{(y+1)^2 + 1}\right)\bigg|_{0}^{+\infty} = \int\limits_{a}^{b}\frac{1}{(y+1)^2 + 1}dy = (**)\]
+	\begin{equation}
+		\int e^{ax}\sin(bx)dx = e^{ax}\frac{a\cdot \sin(bx) - b\cdot \cos(bx)}{a^2+b^2}
+	\end{equation}
+	\[(**) = \text{arctg}(y+1)\bigg|_a^b = \text{arctg}(b+1) - \text{arctg}(a+1) \overset{(2)}{=} \text{arctg}\left(\frac{b-a}{1+(b+1)(a+1)}\right)\]
+	\begin{equation}
+		\text{arctg}(a) - \text{arctg}(b) = I \Rightarrow \text{tg}\left(I\right) = \text{tg}(\text{arctg}(a) - \text{arctg}(b)) = \frac{a-b}{1+ab}\Rightarrow I = \text{arctg}\left(\frac{a-b}{1+ab}\right)
+	\end{equation}
+	
+	\section{Найти область сходимости несобственного интеграла:}
+	\[\int\limits_0^\infty x^pe^{-x}dx\]
+	\[\exists\underset{a\rightarrow \infty}{\lim}\int_0^Ax^pe^{-x}dx = \alpha\]
+	Найдём следующий предел (основываясь на свойствах сравнения несобственных интегралах, и беря в качестве функции для сравнения $\frac{1}{x^a}$):
+	\[\underset{x \rightarrow \infty}{\lim}x^ax^pe^{-x}dx = \underset{x\rightarrow\infty}{\lim}\frac{x^{a+p}}{e^x} = 0, \text{ при }\forall p\]
+	Следовательно, область сходимости $\forall p$
+	
+	\section{Найти область сходимости несобственного интеграла:}
+	\[\int\limits_0^1 \frac{(1-x)^{-5/3}}{\text{arctg}^a(x-x^2)}dx\]
+	В силу аддитивности получим:
+	\\
+	\[\int\limits_0^1 \frac{(1-x)^{-5/3}}{\text{arctg}^a(x-x^2)}dx = \int\limits_0^\frac{1}{2} \frac{(1-x)^{-5/3}}{\text{arctg}^a(x-x^2)}dx + \int\limits_\frac{1}{2}^1 \frac{(1-x)^{-5/3}}{\text{arctg}^a(x-x^2)}dx\]
+	Рассмотрим критические точки.\\
+	0:
+	\[\frac{(1-x)^{-5/3}}{\text{arctg}^a((1-x)x)}\underset{x\rightarrow0}{\sim} \frac{1}{x^a} \ \Rightarrow \ \int\limits_{0}^{\frac{1}{2}}\frac{1}{x^a}dx \text{ - сходится, при } a < 1\]
+	1:
+	\[\frac{(1-x)^{-5/3}}{\text{arctg}^a((1-x)x)}\underset{x\rightarrow1}{\sim}\frac{(1-x)^{-5/3}}{(1-x)^a} = \frac{1}{(1-x)^{a+5/3}} \ \Rightarrow \ \int\limits_\frac{1}{2}^1\frac{1}{(1-x)^{a+5/3}}\text{ - сходится, при }a+\frac{5}{3} < 1 \Rightarrow a < -\frac{2}{3}\]
+	Объединив промежутку, получим, что $a < -\frac{2}{3}$
+	
+	\section{Исследовать на абсолютную и условную сходимость при всех значениях параметра}
+	\[\int\limits_{2}^{\infty}\frac{\sin(x)}{(\text{arctg}(\frac{1}{x}) - \text{arctg}\left(\frac{1}{x^2}\right))^a}dx\]
+	\[\int\limits_{2}^{\infty}\frac{\sin(x)}{(\text{arctg}(\frac{1}{x}) - \text{arctg}\left(\frac{1}{x^2}\right))^a}dx \overset{(2)}{=} \int_2^\infty \frac{\sin(x)}{\text{arctg}\left(\frac{(x-1)x}{x^3+1}\right)^a}dx\]
+	\[\left|\frac{\sin(x)}{\text{arctg}\left(\frac{(x-1)x}{x^3+1}\right)^a}\right| \le \frac{1}{\text{arctg}\left(\frac{(x-1)x}{x^3+1}\right)^a} \sim x^a \text{  и  } \int_{2}^{\infty} x^adx \text{ - сходится, при} a < 1 \Rightarrow \text{Сходится абсолютно при }a < -1\]
+	Применим признак Дирихле:\\
+	1) $\left|\int_{2}^{A}\sin(x)dx\right| \le 2 \Rightarrow$ равномерно ограничена\\
+	2) $\text{arctg}\frac{x^2-x}{x^3+1} < \frac{1}{x}\downarrow_{x\rightarrow\infty}$\\
+	3) $\frac{1}{\text{arctg}\left(\frac{(x-1)x}{x^3+1}\right)^a} \underset{a < 0}{\rightarrow} 0$\\
+	Следовательно, сходится условно, при $a < 0$.
+	\[\int_{1}^{\infty}\frac{|\sin(x)|}{x}dx - \text{ Расходится}\]
+	\[\frac{|\sin(x)|}{x} \ge \frac{\sin(x)^2}{x} = \frac{1}{2}\left(\frac{1-\cos(2x)}{x}\right) = \frac{1}{2}\left(\frac{1}{x} - \frac{\cos(2x)}{x}\right) \text{ - расходится}\]
+	\[\frac{|\sin(x)|}{\left(\text{arctg}\left(\frac{(x-1)x}{x^3+1}\right)\right)^{-1}} \ge \frac{\sin(x)^2}{x} \text{ - расходится}\]
+	Получили, что при $a \in (-\infty;-1)$ сходится абсолютно, $a\in[-1, 0)$ сходится условно и при $a\in(0, +\infty)$ - расходится
+	
+	
+	\section{Исследовать на равномерную сходимость интеграл на множестве $E$}
+	\[\int\limits_2^\infty\frac{xdx}{1+(x-a)^4}, \ E = (-\infty, b), \ b > 0\]
+	\[\underset{a\in E}{\sup}\left|\frac{x}{1+(x-a)^4}\right| \le \phi(x) \text{ и }\int_2^{\infty}\phi(x)dx \text{ - сходится, то первоначальный интеграл сходится равномерно}\]
+	\[\underset{a\in E}{\sup}\left|\frac{x}{1+(x-a)^4}\right|= \max\left(\underset{a<0}{\sup}\left|\frac{x}{1+(x-a)^4}\right|, \underset{0\le a\le b}{\sup}\left|\frac{x}{1+(x-a)^4}\right|\right) = (*)\] 
+	\[\underset{a<0}{\sup}\left|\frac{x}{1+(x-a)^4}\right| \le \frac{1}{x^3} \text{ - интеграл от этой функции сходится}\]
+	\[\underset{0\le a \le b}{\sup}\left|\frac{x}{1+(x-a)^4}\right| \le \frac{x}{1+(x-b)^4} \underset{x\rightarrow\infty}{\sim} \frac{x}{x^4} = \frac{1}{x^3} \text{ - интеграл от этой функции тоже сходится}\]
+	\[(*) = \frac{1}{x^3}\text{ - интеграл от этой функции сходится, следовательно, изначальный интеграл.сходится равномерно }\]
+	\[\int_2^\infty \frac{1}{x^3}dx = -\frac{1}{2}x^{-2}\bigg|_2^{\infty} = \frac{1}{8}\]
+	\section{Исследовать на равномерную сходимость интеграл на множестве $E$}
+	\[\int\limits_1^\infty \frac{\sin(a^2x)}{\sqrt{x}}\text{arctg}(ax)dx, \ E = \left(\frac{1}{2}, \infty\right)\]
+	Применим признак Дирихле:\\
+	1) $\left|\int\limits_0^A\sin(a^2x)\right| = \left|\frac{-\cos(a^2x)}{a^2}\right| \le 8$\\
+	2) $\frac{\text{arctg}(ax)}{\sqrt{x}}\downarrow_{x\rightarrow\infty}$\\
+	3) $\frac{\text{arctg}(ax)}{\sqrt{x}}\underset{x\rightarrow\infty}{\rightarrow}0$\\
+	Следоваетльно,
+	\[\int\limits_1^\infty \frac{\sin(a^2x)}{\sqrt{x}}\text{arctg}(ax)dx\overset{E}{\rightrightarrows}\]
+	
+	\section{Доказать равенство}
+	\[\underset{a\rightarrow+0}{\lim}\int\limits_0^\infty\frac{\cos(ax)}{1+x^2}dx=\frac{\pi}{2}\]
+	Применим предельный переход под знаком интеграла. Получим, что:
+	\[\underset{a\rightarrow+0}{\lim}\int\limits_0^\infty\frac{\cos(ax)}{1+x^2}dx= \int\limits_0^\infty\underset{a\rightarrow+0}{\lim}\frac{\cos(ax)}{1+x^2}dx = 
+	\int\limits_0^\infty\frac{1}{1+x^2}dx = \text{arctg}(x)\bigg|_0^\infty = \frac{\pi}{2}\]
+	Что и требовалось доказать
+	
+	
+	
+	
+\end{document}

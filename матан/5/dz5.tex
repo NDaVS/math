@@ -1,0 +1,321 @@
+\documentclass{article}
+
+\usepackage[T2A]{fontenc} % Кодировка шрифта
+\usepackage[utf8]{inputenc} % Кодировка ввода
+\usepackage[english,russian]{babel} % Языковые настройки
+\usepackage{graphicx} % Для вставки изображений
+\usepackage{amsmath} % Для использования математических формул
+\usepackage{amsfonts} % Для использования математических символов и шрифтов
+\usepackage{titlesec} % Для настройки заголовков разделов
+\usepackage{titling} % Для настройки титульной страницы
+\usepackage{geometry} % Для настройки размеров страницы
+
+% Настройка заголовков разделов
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
+% Настройка титульной страницы
+\setlength{\droptitle}{-4em} % Отступ заголовка
+\title{\vspace{-2cm}ИДЗ №5}
+\author{Вершинин Данил Алексеевич}
+\date{\today}
+
+% Настройка размеров страницы
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+\maketitle
+
+
+
+
+
+\section{Доказать, исходя из определения, равномерную сходимость функционального ряда на отрезке [0, 1]. При каких n абсолютная величина остатка ряда не превосходит 0,001 для любого $x \in [0, 1]$?}
+\[
+    \sum\limits_{n=1}^\infty (-1)^n\frac{x^n}{\sqrt[3]{8n^3-19}}, \ x \in [0 , 1], \ \epsilon = 0.001
+\]
+\[
+    \sup\limits_{x \in [0, 1]} \bigg | \sum\limits_{k=n+1}^\infty (-1)^k \frac{x^k}{\sqrt[3]{8k^3-19}} \bigg| \le \sup\limits_{x\in [0, 1]} \bigg| \frac{x^{n+1}}{\sqrt[3]{8(n+1)^3-19}} \bigg| = \frac{1}{|\sqrt[3]{8(n+1)^3-19}|} < \epsilon = 0.001
+\]
+\[
+    \sqrt[3]{8(n+1)^3-19} > 1000
+\]
+\[
+    8(n+1)^3 - 19 > 1000^3
+\]
+\[
+    n+1 > \sqrt[3]{\frac{1000^3 + 19}{8}}
+\]
+\[
+    n > \sqrt[3]{\frac{1000^3 + 19}{8}}-1 = \frac{\sqrt[3]{1000^3 + 19}}{2} - 1 > \frac{1000}{2} - 1
+\]
+\[
+    n > 499\]
+
+
+
+
+\section{Для данного функционального ряда построить мажорирующий ряд и доказать равномерную
+сходимость на указанном отрезке.}
+\[
+    \sum\limits_{n=1}^\infty\frac{(n+1)^4x^{2n}}{2n+1}, \ \bigg[-\frac{1}{2}, \frac{1}{2} \bigg]
+\]
+Рассмотрим числитель, при  $ n \ge$ 1 и $x \in \bigg[-\frac{1}{2}, \frac{1}{2} \bigg]$, $x^{2n} \le \frac{1}{4^n}$. Отсюда получаем, что $(n+1)^4x^{2n} \le \frac{(n+1)^4}{4^n}$.\\
+Рассмотрим знаменатель, при  $n \ge 1 $, $2n+1 > 1 \Rightarrow \frac{1}{2n+1} < 1$.
+Из этих рассуждений получаем:\\
+\[
+    \sup\limits_{-\frac{1}{2} < x < \frac{1}{2}} \bigg| \frac{(n+1)^4x^{2n}}{2n+1} \bigg| \le \frac{(n+1)^4}{4^n}
+\]\\
+Докажем сходимость:\\
+\[
+    \frac{(n+1)^4}{4^n} \underset{n \rightarrow \infty}{\sim} \frac{n^4}{4^n}
+\]\\
+Воспользуемся методом д'Аламбера:\\
+\[
+    D = \frac{(n+1)^4}{4^{n+1}}\times\frac{4^n}{n^4}\underset{n \rightarrow \infty}{\rightarrow} \frac{1}{4} < 1
+\]
+Этот ряд сходится. Следовательно, изначальный ряд сходится равномерно.\\
+Также, мажорирующим рядом для него является: $\sum\frac{(n+1)^4}{4^n}$.
+
+
+
+
+
+\section{Найти мажорирующий ряд (исправлена опечатка)}
+\[
+    \sum\limits_{n=1}^\infty\frac{2^{\frac{n}{2}}x^n}{1 + x^{2n}}, \ -\frac{1}{2} < x < \frac{1}{2}
+\]
+\[
+    \sup\limits_{-\frac{1}{2} < x < \frac{1}{2}} \bigg| \frac{2^{\frac{n}{2}}x^n}{1 + x^{2n}} \bigg| = \sup\limits_{0 < x < \frac{1}{2}} \frac{2^{\frac{n}{2}}x^n}{1 + x^{2n}} = \sup\limits_{0 < y < \frac{1}{2^n}} \frac{2^\frac{n}{2}y}{1+y^2} = \frac{2^\frac{n}{2}\frac{1}{2^n}}{1+\frac{1}{2^{2n}}} =
+    \frac{2^{-\frac{n}{2}}2^{2n}}{4^n + 1} \le \frac{2^{\frac{3}{2}n}}{2^{2n}} = \frac{1}{2^{\frac{1}{2}n}}
+\]
+
+\[
+    \biggl(
+        \frac{y}{1+y^2}
+    \biggr)' = \frac{1 + y^2 - 2y^2}{(1+y^2)^2} = \frac{1-y^2}{(1+y^2)^2} = 0, \ \Rightarrow y = 1
+\]
+Воспользуемся методом д'Аламбера:\\
+\[
+    D = \frac{1}{\sqrt{2}^{n+1}}\times\frac{\sqrt{2}^n}{1}\underset{n \rightarrow \infty}{\rightarrow} \frac{1}{\sqrt{2}} < 1
+\]
+Ряд $\sum\frac{1}{2^{\frac{n}{2}}}$ сходится. \\
+Мажорирующий ряд равен $\sum\frac{1}{2^{\frac{n}{2}}}$
+
+
+
+
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^{\infty} \frac{x^2 \sin (n\sqrt{x})}{1 + n^3x^4}, \ 0 < x < +\infty
+\]
+\[
+    \sup\limits_{x>0} \bigg| \frac{x^2 \sin (n\sqrt{x})}{1 + n^3x^4} \bigg| \le \sup\limits_{x>0} \frac{x^2}{1+n^3x^4} = \frac{1}{2\sqrt{n^3}} \sim \frac{1}{n^{3/2}} 
+\]
+
+\[
+    \bigg( \frac{x^2}{1+ n^3x^4} \bigg)' = \frac{2x(1+n^3x^4) - 4n^3x^5}{(1+n^3x^4)^2} = 0
+\]
+\[
+    1 =n^3x^4 \  \Rightarrow \   x = \frac{1}{\sqrt[4]{n^3}}
+\] 
+\[
+    \frac{x^2}{1+n^3x^4} = \bigg| \begin{tabular}{ c }
+        $x=\infty$  \\ 
+        $x=0$  \\  
+        $x=\frac{1}{\sqrt[4]{n^3}}$     
+       \end{tabular} \bigg| = \begin{cases}
+        0 \\
+        0 \\
+        \frac{1}{2\sqrt{n^3}}
+       \end{cases}
+\]
+\[
+       \frac{1}{\sqrt{n^3}(1+n^3\frac{1}{n^3})}=\frac{1}{2\sqrt{n^3}}
+\]
+$\frac{1}{n^{3/2}}$ - сходится, как обобщенный гармонический ряд с показателем 3/2. Следовательно, первоначальный ряд сходится раномерно.
+
+
+
+
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^{\infty}\frac{\sin(\frac{x}{n}) \sin(2nx)}{x^2+4n}, \ -\infty < x < +\infty
+\]
+\[
+       \sup\limits_{x>0}\bigg|\frac{\sin(\frac{x}{n}) \sin(2nx)}{x^2+4n} \bigg| \le \sup\limits_{x>0} \frac{x}{n(x^2+4n)} = \frac{1}{4n^{3/2}} \sim \frac{1}{n^{3/2}}
+\]
+
+
+\[
+    \bigg( \frac{x}{x^2+4n}\bigg)' = \frac{x^2+4n-2x^2}{(x^2+4n)^2} = 0
+\]
+\[
+    4n = x^2 \ \Rightarrow \ x = 2\sqrt{n}
+\]
+\[
+     \frac{x}{n(x^2+4n)} = \bigg| \begin{tabular}{ c }
+        $x=\infty$  \\ 
+        $x=0$  \\  
+        $x=2\sqrt{n}$     
+       \end{tabular} \bigg| = \begin{cases}
+        0 \\
+        0 \\
+        \frac{1}{4n^{3/2}}
+       \end{cases}
+\]
+\[
+       \frac{2\sqrt{n}}{n(4n+4n)} = \frac{1}{4n^{3/2}}
+\]
+$\frac{1}{n^{3/2}}$ - сходится, как обобщенный гармонический ряд с показателем 3/2. Следовательно, первоначальный ряд сходится раномерно.
+
+
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^\infty\frac{\sin(\frac{n}{x})\sin(\frac{x}{n})}{1+nx^2},  \ 0 < x < +\infty
+\]
+\[
+    \sup\limits_{x>0}\bigg| \frac{\sin(\frac{n}{x})\sin(\frac{x}{n})}{1+nx^2} \bigg| \le \sup\limits_{n>0} \frac{x}{n(1+nx^2)} = \frac{1}{2n^{3/2}} \sim \frac{1}{n^{3/2}}
+\]
+
+
+\[
+    \bigg( \frac{x}{1+nx^2}\bigg)' = \frac{1+nx^2 -2x^2n}{(1+nx^2)^2} = \frac{1 - nx^2}{(1+nx^2)^2}=0
+\]
+\[
+    x^2 =\frac{1}{n}, \ \Rightarrow  \ x=\frac{1}{\sqrt{n}}
+\]
+\[
+     \frac{x}{n(1+nx^2)} = \bigg| \begin{tabular}{ c }
+        $x=\infty$  \\ 
+        $x=0$  \\  
+        $x=\frac{1}{\sqrt{n}}$     
+       \end{tabular} \bigg| = \begin{cases}
+        0 \\
+        0 \\
+         \frac{1}{2n^{3/2}}
+       \end{cases}
+\]
+\[
+        \frac{1}{\sqrt{n}n(1+n\frac{1}{n})} = \frac{1}{2n^{3/2}}
+\]
+$\frac{1}{n^{3/2}}$ - сходится, как обобщенный гармонический ряд с показателем 3/2. Следовательно, первоначальный ряд сходится раномерно.
+
+
+
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^{\infty} \bigg( \frac{x\sin(\frac{x}{\sqrt{n}})}{x^3+n} \bigg)^2, \ 0 < x < +\infty 
+\]
+\[
+    \sup\limits_{x>0}\bigg| \frac{x\sin(\frac{x}{\sqrt{n}})}{x^3+n} \bigg|^2 \le \sup\limits_{x>0} \bigg| \frac{x^2}{\sqrt{n}(x^3 + n)} \bigg|^2 = \sup\limits_{x>0} \frac{x^4}{n(x^3 + n)^2}  = \frac{2^{4/3}}{9n^{5/3}} \sim \frac{1}{n^{5/3}}
+\]
+
+
+\[
+    \bigg( \frac{x^4}{n(x^3 + n)^2} \bigg)' = \frac{4x^3n(x^3 + n)^2 - x^4n2(x^3 + n)3x^2}{n^2(x^3 + n)^4} = \frac{4nx^3 - 2x^6}{n(x^3 + n)^3}
+\]
+\[
+    4nx^3 = 2x^6 \ \Rightarrow \ 2n = x^3 \ \Rightarrow \ x = \sqrt[3]{2n}
+\]
+\[
+     \frac{x^4}{n(x^3 + n)^2} = \bigg| \begin{tabular}{ c }
+        $x=\infty$  \\ 
+        $x=0$  \\  
+        $x= \sqrt[3]{2n}$     
+       \end{tabular} \bigg| = \begin{cases}
+        0 \\
+        0 \\
+         \frac{2^{4/3}}{9n^{5/3}}
+       \end{cases}
+\]
+\[
+     \frac{(2n)^{4/3}}{n(3n)^2} = \frac{2^{4/3}}{9n^{5/3}}
+\]
+$\frac{1}{n^{5/3}}$ - сходится, как обобщенный гармонический ряд с показателем 5/3. Следовательно, первоначальный ряд сходится раномерно.
+
+
+
+
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^\infty\sin^2\biggl( \frac{1}{1+nx} \bigg), \ 0 < x < +\infty
+\]
+\[
+    \sup\limits_{x>0} \bigg| \sin^2\biggl( \frac{1}{1+nx} \biggr) \bigg| \le \sup\limits_{x > 0} \bigg( \frac{1}{1+nx} \bigg)^2 \le \sup\limits_{x > 0}\bigg( \frac{1}{nx} \bigg)^2 \le \sup\limits_{x > 0}\bigg( \frac{1}{n} \bigg)^2  = \frac{1}{n^2}
+\]
+$\frac{1}{n^{2}}$ - сходится, как обобщенный гармонический ряд с показателем 2. Следовательно, первоначальный ряд сходится раномерно.
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^\infty\frac{\sin (nx)}{(1+nx)\sqrt{nx}}, \  0 < x < \pi
+\]
+\[
+    \sup\limits_{0<x<\pi} \bigg| \frac{\sin(nx)}{(1+nx)\sqrt{nx}} \bigg| \le \sup\limits_{0<x<\pi} \bigg| \frac{1}{(1+nx) \sqrt{nx}} \bigg| \le \sup\limits_{0<x<\pi} \bigg| \frac{1}{(nx)^{3/2}} \bigg| \le \sup\limits_{0<x<\pi} \bigg| \frac{1}{n^{3/2}} \bigg| = \frac{1}{n^{3/2}}
+\]
+$\frac{1}{n^{3/2}}$ - сходится, как обобщенный гармонический ряд с показателем 3/2. Следовательно, первоначальный ряд сходится раномерно.
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^\infty \frac{n}{x^2}e^{-n^2/x} , \ 0 < x < +\infty
+\]
+\[
+    \sup\limits_{x>0} \frac{ne^{-\frac{n^2}{x}}}{x^2} = \frac{4e^{-2}}{n^3} \sim \frac{1}{n^3}
+\]
+
+
+
+\[
+    \biggl( \frac{e^{-\frac{n^2}{x}}}{x^2}\biggr)' = \frac{e^{-\frac{n^2}{x}}\times \frac{n^2}{x^2} x^2 - 2 x e^{-\frac{n^2}{x}}}{x^4} = \frac{e^{-\frac{n^2}{x}}(n^2 - 2x)}{x^4} = 0
+\]
+\[
+    x = \frac{n^2}{2}
+\]
+
+\[
+     \frac{ne^{-\frac{n^2}{x}}}{x^2} = \bigg| \begin{tabular}{ c }
+        $x=\infty$  \\ 
+        $x=0$  \\  
+        $x= \frac{n^2}{2}$     
+       \end{tabular} \bigg| = \begin{cases}
+        0 \\
+        0 \\
+          \frac{4e^{-2}}{n^3}
+       \end{cases}
+\]
+\[
+      \frac{4ne^{-2}}{n^4} = \frac{4e^{-2}}{n^3}
+\]
+$\frac{1}{n^{3}}$ - сходится, как обобщенный гармонический ряд с показателем 3. Следовательно, первоначальный ряд сходится раномерно.
+
+
+
+
+\section{Исследовать на равномерную сходимость}
+\[
+	\sum\limits_{n=1}^\infty\frac{\sin(nx)}{2n+n^2x^2}, \ x\in [0, 1]
+\]
+Признак Абеля-Дирихле. Если ряд \(\sum_{n=1}^{\infty} a_n(x)\) сходится равномерно на [a, b], и ${b_n(x)}$ - монотонная ограниченная последовательность, то ряд \(\sum_{n=1}^{\infty} a_n(x)b_n(x)\) сходится равномерно на [a, b].
+
+В нашем случае, \(a_n(x) = \frac{1}{2n+n^2x^2}\) и \(b_n(x) = \sin(nx)\).
+
+Последовательность \(b_n(x)\) является ограниченной, так как \(-1 \leq \sin(nx) \leq 1\) для всех x и n.
+
+Последовательность \(a_n(x)\) монотонно убывает по n для каждого фиксированного x, так как при увеличении n знаменатель увеличивается, делая всю дробь меньше.
+
+Таким образом, по признаку Абеля-Дирихле, ряд \(\frac{\sin(nx)}{2n+n^2x^2}\) сходится равномерно на [0, 1].
+
+
+\section{Исследовать на равномерную сходимость}
+\[
+    \sum\limits_{n=1}^\infty \frac{\sqrt{x}\sin(nx)}{\sqrt{n}(2nx^2 + 1)}, \ 0 < x < +\infty
+\]
+\[
+    \sup\limits_{x > 0} \bigg|\frac{\sqrt{x}\sin(nx)}{\sqrt{n}(2nx^2 + 1)} \bigg| \le \sup\limits_{x > 0} \frac{\sqrt{x}}{\sqrt{n}(2nx^2 + 1)} \le  \sup\limits_{x > 0} \frac{1}{\sqrt{n}} \sqrt{\frac{x}{(2nx^2 + 1)^2}} \le \frac{1}{\sqrt{n}} \sqrt{\sup\limits_{x > 0} \frac{x}{(2nx^2 + 1)^2}} \le
+\]
+\[
+    \le \frac{1}{\sqrt{n}} \sqrt{\sup\limits_{x > 0} \frac{x}{(2nx^2)^2}} \le \frac{1}{2n^{3/2}} \sqrt{\sup\limits_{x> 0} \frac{x}{x^4}} \le \frac{1}{2n^{3/2}} \sqrt{\sup\limits_{x> 0} \frac{x^4}{x^4}} = \frac{1}{2n^{3/2}} \sim \frac{1}{n^{3/2}}
+\]
+$\frac{1}{n^{3/2}}$ - сходится, как обобщенный гармонический ряд с показателем 3/2. Следовательно, первоначальный ряд сходится раномерно.
+
+\end{document}

@@ -1,0 +1,46 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {0.1}Найти все значения корня: $\sqrt [3]{8i}$}{5}{}%
+\contentsline {subsection}{\numberline {0.1.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.1.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.2}Представить в алгебраической форме: $\sh (2-\pi i)$}{5}{}%
+\contentsline {subsection}{\numberline {0.2.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.2.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.3}Представить в алгебраической форме: $\text {arcth}(1+ \sqrt {3}i)$}{5}{}%
+\contentsline {subsection}{\numberline {0.3.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.3.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.4}Представить в алгебраической форме: $(-3i)^i$}{5}{}%
+\contentsline {subsection}{\numberline {0.4.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.4.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.5}Представить в алгебраической форме: $\text {Ln}(2+2\sqrt {3}i)$}{5}{}%
+\contentsline {subsection}{\numberline {0.5.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.5.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.6}Вычертить область, заданную неравествами: $\\D = \{z : |z - 1 + i| \ge 1, Re(z) < 1, Im(z) \le 1 \}$}{5}{}%
+\contentsline {subsection}{\numberline {0.6.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.6.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.7}Определить вид пути и в случае, когда он проходит через точку $\infty $, исследовать его поведение в этой точке: $z = \frac {4}{\ch (4t)} + i2\th (4t)$}{5}{}%
+\contentsline {subsection}{\numberline {0.7.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.7.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.8}Восстановить голоморфную в окрестности точки $z_0$ функцию $f(z)$ по известной действительной части $u(x,y)$ или мнимой $v(x,y)$ и начальному значению $f(z_0)$: $u = x^2 - y^2 + x, \ f(0) = 0$}{5}{}%
+\contentsline {subsection}{\numberline {0.8.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.8.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.9}Вычислить интеграл от функции комплексной переменной по данному пути: $\DOTSI \intop \ilimits@ _{AB} z Im z^2 dz; \ AB - \text {отрезок прямой } z_A = 0, \ z_B = 1 + i$}{5}{}%
+\contentsline {subsection}{\numberline {0.9.1}Решение:}{5}{}%
+\contentsline {subsection}{\numberline {0.9.2}Ответ:}{5}{}%
+\contentsline {section}{\numberline {0.10}Найти радиус сходимости степенного ряда: $\DOTSB \sum@ \slimits@ \limits _{n=1}^{\infty }(\cos ^2(n))\cdot z^n$}{6}{}%
+\contentsline {subsection}{\numberline {0.10.1}Решение:}{6}{}%
+\contentsline {subsection}{\numberline {0.10.2}Ответ:}{6}{}%
+\contentsline {section}{\numberline {0.11}Найти все лорановское разложение данной функции в 0 и в $\infty $: $f(z) = \frac {5z+100}{50z - 5z^2 - 2 z^3}$}{6}{}%
+\contentsline {subsection}{\numberline {0.11.1}Решение:}{6}{}%
+\contentsline {subsection}{\numberline {0.11.2}Ответ:}{6}{}%
+\contentsline {section}{\numberline {0.12}Найти все лорановское разложение данной функции по степеням $z - z_0$: $f(z) = \frac {z+3}{z^2 - 1},\ z_0 = -2 -2i $}{6}{}%
+\contentsline {subsection}{\numberline {0.12.1}Решение:}{6}{}%
+\contentsline {subsection}{\numberline {0.12.2}Ответ:}{6}{}%
+\contentsline {section}{\numberline {0.13}Данную функцию разложить в ряд Лорана в окрестности точки $z_0$: $f(z)=ze^{\frac {z}{z-5}}, z_0 = 5$}{6}{}%
+\contentsline {subsection}{\numberline {0.13.1}Решение:}{6}{}%
+\contentsline {subsection}{\numberline {0.13.2}Ответ:}{6}{}%
+\contentsline {section}{\numberline {0.14}Определить тип особой точки $z = 0$ для данной функции: $f(z) = \frac {\ch (5z) - 1}{e^z - 1 -z}$}{6}{}%
+\contentsline {subsection}{\numberline {0.14.1}Решение:}{6}{}%
+\contentsline {subsection}{\numberline {0.14.2}Ответ:}{6}{}%
+\contentsline {section}{\numberline {0.15}Для данной функции найти все изолированные особые точки и определить их тип: $f(z) = \ctg (\pi z)$}{6}{}%
+\contentsline {subsection}{\numberline {0.15.1}Решение:}{6}{}%
+\contentsline {subsection}{\numberline {0.15.2}Ответ:}{6}{}%
