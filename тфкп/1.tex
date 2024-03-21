@@ -6,6 +6,7 @@
 \usepackage{graphicx} % Для вставки изображений
 \usepackage{amsmath} % Для использования математических формул
 \usepackage{amssymb}
+\usepackage{cancel}
 \usepackage{amsfonts} % Для использования математических символов и шрифтов
 \usepackage{titlesec} % Для настройки заголовков разделов
 \usepackage{titling} % Для настройки титульной страницы
@@ -91,25 +92,52 @@
 	
 	\section{Вычертить область, заданную неравествами: $\\D = \{z : |z - 1 + i| \ge 1, Re(z) < 1, Im(z) \le 1 \}$}
 	\subsection{Ответ:}
-	\begin{tikzpicture}
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			
+			\filldraw[draw=cyan, line width=1pt, fill=cyan!20] (-3, 0) -- (1,0) arc (90:270:1)--(1,-3)--(-3,-3)--(-3,0);
+			\draw[blue!40] (1,-1) circle (1); % заливка круга с центром в (1,1) и радиусом 1
+			\draw[thick, ->] (-3,0) -- (3,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-3) -- (0,2) node[left] {$\Im(z)$};
+			\draw[thick] (1,-1)--(2, -1) node[midway,below]{1} ;
+			\draw (-3, 1) -- (3,1);
+			
+			\draw[dashed] (1,2) -- (1,0); % линия Im(z) = 1
+			\draw[dashed] (1,-2) -- (1, -3);
+			
+		\end{tikzpicture}
+				\caption{Нужная нам область}
+		
+	\end{figure}
 	
-		\filldraw[draw=cyan, line width=1pt, fill=cyan!20] (-3, 0) -- (1,0) arc (90:270:1)--(1,-3)--(-3,-3)--(-3,0);
-		\draw[blue!40] (1,-1) circle (1); % заливка круга с центром в (1,1) и радиусом 1
-		\draw[thick, ->] (-3,0) -- (3,0) node[below] {$\Re(z)$};
-		\draw[thick, ->] (0,-3) -- (0,2) node[left] {$\Im(z)$};
-		\draw[thick] (1,-1)--(2, -1) node[midway,below]{1} ;
-		\draw (-3, 1) -- (3,1);
-		
-		\draw[dashed] (1,2) -- (1,0); % линия Im(z) = 1
-		\draw[dashed] (1,-2) -- (1, -3);
-		
-	\end{tikzpicture}
 	
 	
 	
 	\section{Определить вид пути и в случае, когда он проходит через точку $\infty$, исследовать его поведение в этой точке: $z = \frac{4}{\ch(4t)} + i2\th(4t)$}
 	\subsection{Решение:}
-	\subsection{Ответ:}
+		\[z = \frac{4}{\ch(4t)} + i2\th(4t)\]
+		\[\begin{cases}
+		x = \frac{4}{\ch(4t)} \\
+		y = 2 \th(4t)
+		\end{cases}\]
+		\[x= \frac{4}{\ch (4t)} \Rightarrow \frac{x}{4} = \frac{1}{\ch (4t)} \Rightarrow \frac{x^2}{16} = \frac{1}{\ch^2 (4t)}\]
+		\[y = 2 \th(4t) \Rightarrow \frac{y}{2} = \frac{\sh(4t)}{\ch(4t)} \Rightarrow\frac{y^2}{4} = \frac{\sh^2(4t)}{\ch^2(4t)} + 1 -1 \Rightarrow\frac{y^2}{4} = -\frac{1}{\ch(4t)}+1\]
+		\[-\frac{y}{4} + 1 = \frac{1}{\ch(4t)}\]
+		\[\frac{x^2}{16} = -\frac{y^2}{4} + 1 \Rightarrow \frac{x^2}{16} + \frac{y^2}{4} = 1\]
+		\[t =0 : x \rightarrow 4, y \rightarrow 0\]
+		\[t \rightarrow +\infty : x \rightarrow 0, y \rightarrow 2\]
+		\[t \rightarrow -\infty : x \rightarrow 0, y \rightarrow -2\]
+		
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width= 0.9\textwidth]	{7.png}
+		\caption{z - эллипс. Левая часть не нужна, т.к. x не может принимать отрицательные значения}
+		\label{fig:your_label}
+	\end{figure}
+	
+	
 	
 	\section{Восстановить голоморфную в окрестности точки $z_0$ функцию $f(z)$ по известной действительной части $u(x,y)$ или мнимой $v(x,y)$ и начальному значению $f(z_0)$: $u = x^2 - y^2 + x, \ f(0) = 0$}
 	\subsection{Решение:}
@@ -135,16 +163,37 @@
 	 \[f(0) = 0 \Rightarrow C = 0\]
 	 \[f(z) = z^2 + z\]
 	\subsection{Ответ:}
+	\[f(z) = z^2 + z\]
 	
-	\section{Вычислить интеграл от функции комплексной переменной по данному пути: $\int_{AB} z Im z^2 dz; \ AB - \text{отрезок прямой } z_A = 0, \ z_B = 1 + i$}
+	\section{Вычислить интеграл от функции комплексной переменной по данному пути: $\int_{AB} z \Im(z^2) dz; \ AB - \text{отрезок прямой } z_A = 0, \ z_B = 1 + i$}
 	\subsection{Решение:}
+	\[z= x +iy \Rightarrow z ^2 = x^2 - y^2 + 2ixy \Rightarrow \Im(z^2) = 2ixy\]
+	\[z\Im (z^2) = (x+iy)(2ixy) = 2ix^2y - 2xy^2\]
+	\[Z_AZ_B: \begin{cases}
+		x =t \\ y = t
+	\end{cases}; 0 \le t \le 1; \ z(t) = t + it \Rightarrow z'(t) = 1 + i\]
+	
+	\[\int_{AB} z \Im(z^2) dz = \int\limits_{0}^1 (2ix^2(t)y(t) - 2x(t)y^2(t)) (1+i) dt = \int\limits_{0}^1 (2it^3 - 2t^3) (1+i) dt = \int\limits_{0}^1 2t^3(i-1)(i+1)dt = \]
+	\[ =\int\limits_{0}^1 2t^3(i^2-1^2)dt = \int\limits_{0}^1 -4t^3dt = -1\]
 	\subsection{Ответ:}
-	\newpage
+	$-1$
 	
 	\section{Найти радиус сходимости степенного ряда: $\sum\limits_{n=1}^{\infty}(\cos^2(n))\cdot z^n$}
 	\subsection{Решение:}
+	\[\sum\limits_{n=1}^{\infty}(\cos^2(n))\cdot z^n\]
+	\[\text{Радиус сходимости: }R = \frac{1}{\rho}, \text{ где } \rho = \overline{\underset{n\rightarrow\infty}{\lim}}\sqrt[n]{C_n}\]
+	\[C_n = \cos^2n, \text{ очевидно, что }\cos^2n \le 1 \Rightarrow \overline{\underset{n\rightarrow\infty}{\lim}}\sqrt[n]{C_n} \le 1\]
+	\[|C_n| \ \cancel{\rightarrow} \ 0 \Rightarrow \cos^2n \ \cancel{\rightarrow} \ 0 \eqno(*)\]
+	\[\exists n_k \cos^2 n_k \underset{n_k \rightarrow \infty}{\rightarrow} \alpha \ne 0 \Rightarrow \overline{\underset{n_k \rightarrow\infty}{\lim}} \sqrt[n_k]{\cos^2 n_k} \ge \overline{\underset{n_k \rightarrow\infty}{\lim}} \sqrt[n_k]{\alpha}\]
+	\[\overline{\underset{n_k\rightarrow\infty}{\lim}} \sqrt[n_k]{\alpha} \le \overline{\underset{n_k\rightarrow\infty}{\lim}} \sqrt[n_k]{\cos^2 n_k} \le 1 \Rightarrow\overline{\underset{n\rightarrow\infty}{\lim}}\sqrt[n]{\cos^2n} = 1\]
+	\[(*): \text{ предположим противное: } \cos^2 n \underset{n \rightarrow \infty}{\rightarrow} 0 \Rightarrow \cos^2 (2n) \underset{n \rightarrow \infty}{\rightarrow} 0\]
+	\[(\cos^2n -\sin^2n) \underset{n \rightarrow \infty}{\rightarrow} 0 \Rightarrow\begin{cases}
+		\cos^2n \underset{n \rightarrow \infty}{\rightarrow} 0 \\
+		\sin^2n \underset{n \rightarrow \infty}{\rightarrow} 0
+	\end{cases}, \text{ но при этом } \cos^2 + \sin^2 = 1 \text{ - не выполнсяется.}\]\[\text{ Следовательно, получилм противоречие. } \Rightarrow \cos^2n \cancel{\rightarrow} 0, \text{ что и требовалось доказать.}\]
+	Тогда получается, что $R = 1 / \rho = 1/ \ \overline{\underset{n\rightarrow\infty}{\lim}}\sqrt[n]{\cos^2n}  =1/1  = 1$
 	\subsection{Ответ:}
-	
+	$R = 1$
 	\section{Найти все лорановское разложение данной функции в 0 и в $\infty$: $f(z) = \frac{5z+100}{50z - 5z^2 - 2 z^3}$}
 	\subsection{Решение:}
 	\subsection{Ответ:}
