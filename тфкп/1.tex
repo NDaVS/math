@@ -113,6 +113,27 @@
 	
 	\section{Восстановить голоморфную в окрестности точки $z_0$ функцию $f(z)$ по известной действительной части $u(x,y)$ или мнимой $v(x,y)$ и начальному значению $f(z_0)$: $u = x^2 - y^2 + x, \ f(0) = 0$}
 	\subsection{Решение:}
+	\[u = x^2 - y^2 + x\]
+	\[\frac{\delta u}{\delta x} = 2x+1\]
+	\[\frac{\delta u}{\delta y} = -2y\]
+	\[\begin{cases}
+		\frac{\delta^2 u}{\delta x ^2} = 2\\
+		\frac{\delta ^ 2 г}{\delta y^2} = -2
+	\end{cases} \Rightarrow 2 -2 = 0 \text{- следовательно, условие Лапласа выполнено}\]
+	 \[\begin{cases}
+	 	\frac{\delta u }{\delta x} = \frac{\delta v}{\delta y} \\
+	 	\frac{\delta u} {\delta y} = - \frac{\delta v}{\delta x}
+	 \end{cases} \Rightarrow
+	 \begin{cases}
+	 	\frac{\delta v}{\delta y} = 2x+1 \\
+	 	\frac{\delta v}{\delta x} = 2y
+	 \end{cases}\]
+	 \[v = 2yx + \phi (y) \ \Rightarrow \frac{\delta v}{\delta y} =2x + \phi'(y) \Rightarrow \phi' (y) = 1 \Rightarrow \phi(y) = y+C\]
+	 \[f(x,y) = u(x,y) + iv(x,y) = x^2 - y^2 +x + i (2xy + y + C)  = x + iy + x^2 - y^2 + 2ixy + iC =()*)\]
+	 \[z = x + iy \Rightarrow z ^2 = x^2 - y^2 +2ixy\]
+	 \[(*) = z + z^2 + iC\]
+	 \[f(0) = 0 \Rightarrow C = 0\]
+	 \[f(z) = z^2 + z\]
 	\subsection{Ответ:}
 	
 	\section{Вычислить интеграл от функции комплексной переменной по данному пути: $\int_{AB} z Im z^2 dz; \ AB - \text{отрезок прямой } z_A = 0, \ z_B = 1 + i$}
