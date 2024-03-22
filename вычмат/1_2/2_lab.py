@@ -9,7 +9,7 @@ def function(x):
 def values(a, b, step):
     table = []
     while a <= b:
-        table.append((a, function(a)))
+        table.append((round(a, 2), function(a)))
         a += step
     return table
 
@@ -84,28 +84,81 @@ def t_newton_positive(ed, a, step, x):
     return result
 
 
+def t_newton_negative(ed, b, step, x):
+    t = (x - b + step) / step
+    result = float(ed[-1][1])
+    for i in range(1, len(ed[0]) - 1):
+        value = float(ed[-i - 1][i + 1])
+        for j in range(i):
+            coef = t + j
+            value = value * coef
+
+        value /= math.factorial(i)
+        result += value
+    return result
+
+
+def take_dif(func, x, n):
+    new_fun = func
+    for _ in range(n):
+        new_fun = diff(new_fun, x)
+    return new_fun
+
+
+def omega(a, b, step, x):
+    result = 1
+    while a <= b:
+        result *= (x - a)
+        a += step
+    return result
+
+
 def main():
     a = 1.5
     b = 2
     step = (b - a) / 10
     table = values(a, b, step)
     table = ended_difference([x[0] for x in table])
-    # print(table)
+    print(len(table))
+    print(len(table[0]))
 
     print_pretty_table(table)
+
+    X = symbols('x')
+    f = X ** 2 + log(X) - 4
+    df = take_dif(f, X, 11)
     xs = [1.52, 1.97, 1.77]
     for x in xs:
         i = find_interval(x, a, b, step)
+        r_min = (df.subs(X, a ) / math.factorial(11)) * omega(a, b, step, x)
+
+        r_max = df.subs(X, b) / math.factorial(11) * omega(a, b, step, x)
+        limits = [r_min, r_max]
+        limits.sort()
+        r_min, r_max = limits
         if i == 0:
             # первый ньютон#
             print("первый ньютон")
             l_n = t_newton_positive(table, a, step, x)
             print(l_n)
             print(function(x))
+            r1 = l_n - function(x)
+            if r_min < r1 < r_max:
+                print('nice')
+            else:
+                print('за работу')
+
         elif i == 9:
             # второй ньютон#
             print("второй ньютон")
-            pass
+            l_n = t_newton_negative(table, b, step, x)
+            print(l_n)
+            print(function(x))
+            r1 = l_n - function(x)
+            if r_min < r1 < r_max:
+                print('nice')
+            else:
+                print('за работу')
         elif a + (i + 1) * step - x < a + (i) * step - x:
             # второй гаусс#
             print("второй гауус")
