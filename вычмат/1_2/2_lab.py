@@ -78,7 +78,7 @@ def t_newton_positive(ed, a, step, x):
         for j in range(i):
             coef = t - j
             value = value * coef
-            print('*')
+
         value /= math.factorial(i)
         result += value
     return result
@@ -101,6 +101,7 @@ def main():
             print("первый ньютон")
             l_n = t_newton_positive(table, a, step, x)
             print(l_n)
+            print(function(x))
         elif i == 9:
             # второй ньютон#
             print("второй ньютон")
