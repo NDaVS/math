@@ -24,7 +24,12 @@ def ended_difference(xs):
             table[j].append((table[j + 1][i + 1] - table[j][i + 1]))
     return table
 
+
 def print_pretty_table(data, cell_sep='|', header_separator=True):
+    table = data
+    for i in range(len(table)):
+        for j in range(len(table) - i, len(table)):
+            table[j].append('--')
     rows = len(data)
     cols = len(data[0])
     table = data
@@ -54,16 +59,61 @@ def print_pretty_table(data, cell_sep='|', header_separator=True):
             result.append(item)
         print(cell_sep.join(result))
 
+
+def find_interval(x, a, b, step):
+    i = 0
+    while a + i * step <= b:
+        prev = a + i * step
+        next = a + step * (i + 1)
+        if prev < x < next:
+            return i
+        i += 1
+
+
+def t_newton_positive(ed, a, step, x):
+    t = (x - a) / step
+    result = float(ed[0][1])
+    for i in range(1, len(ed[0]) - 1):
+        value = float(ed[0][i + 1])
+        for j in range(i):
+            coef = t - j
+            value = value * coef
+            print('*')
+        value /= math.factorial(i)
+        result += value
+    return result
+
+
 def main():
     a = 1.5
     b = 2
     step = (b - a) / 10
-    table = values(a - step, b, step)
-    table = ended_difference(   [x[0] for x in table])
-    for i in range(len(table)):
-        for j in range(len(table) - i, len(table)):
-            table[j].append('--')
+    table = values(a, b, step)
+    table = ended_difference([x[0] for x in table])
+    # print(table)
+
     print_pretty_table(table)
+    xs = [1.52, 1.97, 1.77]
+    for x in xs:
+        i = find_interval(x, a, b, step)
+        if i == 0:
+            # первый ньютон#
+            print("первый ньютон")
+            l_n = t_newton_positive(table, a, step, x)
+            print(l_n)
+        elif i == 9:
+            # второй ньютон#
+            print("второй ньютон")
+            pass
+        elif a + (i + 1) * step - x < a + (i) * step - x:
+            # второй гаусс#
+            print("второй гауус")
+            pass
+        else:
+            # первый гаусс#
+            print("первый гауус")
+            pass
+        print(i)
 
 
 if __name__ == '__main__':
