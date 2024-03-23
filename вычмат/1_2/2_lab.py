@@ -106,9 +106,10 @@ def t_gauss_1(ed, x, step, index):
     # row_number -= 1
     for i in range(1, len(ed[0]) - 1):
         value = float(ed[row_number][i + 1])
-        for j in range(i):
-            coef = t - j if j % 2 == 1 or j == 0 else t + j - 1
-            value = value * coef
+        coef = 1
+        for m in range(i):
+            coef *= t - m // 2 -1 if m % 2 else t + m / 2
+        value *= coef
 
         value /= math.factorial(i)
         result += value
@@ -152,7 +153,7 @@ def main():
         i = find_interval(x, a, b, step)
         r_min = (df.subs(X, a) / math.factorial(11)) * omega(a, b, step, x)
 
-        r_max = df.subs(X,b) / math.factorial(11) * omega(a, b, step, x)
+        r_max = df.subs(X, b) / math.factorial(11) * omega(a, b, step, x)
         limits = [abs(r_min), abs(r_max)]
         limits.sort()
         r_min, r_max = limits
@@ -187,11 +188,11 @@ def main():
                 print('за работу')
         elif a + (i + 1) * step - x < a + (i) * step - x:
             # второй гаусс#
-            print("второй гауус")
+            print("второй гаусс")
             pass
         else:
             # первый гаусс#
-            print("первый гауус")
+            print("первый гаусс")
             print(function(x))
             l_n = t_gauss_1(table, x, step, i)
             print(l_n)
