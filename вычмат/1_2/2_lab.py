@@ -11,6 +11,7 @@ def values(a, b, step):
     while a <= b:
         table.append((round(a, 2), function(a)))
         a += step
+    table.append((round(a, 2), function(a)))
     return table
 
 
@@ -85,7 +86,7 @@ def t_newton_positive(ed, a, step, x):
 
 
 def t_newton_negative(ed, b, step, x):
-    t = (x - b + step) / step
+    t = (x - b) / step
     result = float(ed[-1][1])
     for i in range(1, len(ed[0]) - 1):
         value = float(ed[-i - 1][i + 1])
@@ -95,6 +96,25 @@ def t_newton_negative(ed, b, step, x):
 
         value /= math.factorial(i)
         result += value
+    return result
+
+
+def t_gauss_1(ed, x, step, index):
+    row_number = index
+    t = round((x - float(ed[row_number][0])) / step, 2)
+    result = float(ed[row_number][1])
+    # row_number -= 1
+    for i in range(1, len(ed[0]) - 1):
+        value = float(ed[row_number][i + 1])
+        for j in range(i):
+            coef = t - j if j % 2 == 1 or j == 0 else t + j-1
+            value = value * coef
+
+        value /= math.factorial(i)
+        result += value
+        if i % 2 == 1 :
+            row_number -= 1
+
     return result
 
 
@@ -133,7 +153,7 @@ def main():
         r_min = (df.subs(X, a ) / math.factorial(11)) * omega(a, b, step, x)
 
         r_max = df.subs(X, b) / math.factorial(11) * omega(a, b, step, x)
-        limits = [r_min, r_max]
+        limits = [asb(r_min), abs(r_max)]
         limits.sort()
         r_min, r_max = limits
         if i == 0:
@@ -166,7 +186,14 @@ def main():
         else:
             # первый гаусс#
             print("первый гауус")
-            pass
+            print(function(x))
+            l_n = t_gauss_1(table, x, step, i)
+            print(l_n)
+            r1 = l_n - function(x)
+            if r_min < r1 < r_max:
+                print('nice')
+            else:
+                print('за работу')
         print(i)
 
 
