@@ -107,12 +107,12 @@ def t_gauss_1(ed, x, step, index):
     for i in range(1, len(ed[0]) - 1):
         value = float(ed[row_number][i + 1])
         for j in range(i):
-            coef = t - j if j % 2 == 1 or j == 0 else t + j-1
+            coef = t - j if j % 2 == 1 or j == 0 else t + j - 1
             value = value * coef
 
         value /= math.factorial(i)
         result += value
-        if i % 2 == 1 :
+        if i % 2 == 1:
             row_number -= 1
 
     return result
@@ -127,7 +127,7 @@ def take_dif(func, x, n):
 
 def omega(a, b, step, x):
     result = 1
-    while a <= b:
+    while round(a, 2) <= b:
         result *= (x - a)
         a += step
     return result
@@ -150,10 +150,10 @@ def main():
     xs = [1.52, 1.97, 1.77]
     for x in xs:
         i = find_interval(x, a, b, step)
-        r_min = (df.subs(X, a ) / math.factorial(11)) * omega(a, b, step, x)
+        r_min = (df.subs(X, a) / math.factorial(11)) * omega(a, b, step, x)
 
-        r_max = df.subs(X, b) / math.factorial(11) * omega(a, b, step, x)
-        limits = [asb(r_min), abs(r_max)]
+        r_max = df.subs(X,b) / math.factorial(11) * omega(a, b, step, x)
+        limits = [abs(r_min), abs(r_max)]
         limits.sort()
         r_min, r_max = limits
         if i == 0:
@@ -162,7 +162,9 @@ def main():
             l_n = t_newton_positive(table, a, step, x)
             print(l_n)
             print(function(x))
-            r1 = l_n - function(x)
+            r1 = abs(l_n - function(x))
+            print(r1 < r_max)
+            print(r_min < r1)
             if r_min < r1 < r_max:
                 print('nice')
             else:
@@ -174,7 +176,11 @@ def main():
             l_n = t_newton_negative(table, b, step, x)
             print(l_n)
             print(function(x))
-            r1 = l_n - function(x)
+            r1 = abs(l_n - function(x))
+            print(r1 < r_max)
+            print(r_min < r1)
+            print(r_min)
+            print(r1)
             if r_min < r1 < r_max:
                 print('nice')
             else:
@@ -190,8 +196,10 @@ def main():
             l_n = t_gauss_1(table, x, step, i)
             print(l_n)
             r1 = l_n - function(x)
+            print(r1 < r_max)
+            print(r_min < r1)
             if r_min < r1 < r_max:
-                print('nice')
+                print(1)
             else:
                 print('за работу')
         print(i)
