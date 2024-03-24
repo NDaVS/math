@@ -108,12 +108,32 @@ def t_gauss_1(ed, x, step, index):
         value = float(ed[row_number][i + 1])
         coef = 1
         for m in range(i):
-            coef *= t - m // 2 -1 if m % 2 else t + m / 2
+            coef *= t - m // 2 - 1 if m % 2 else t + m / 2
         value *= coef
 
         value /= math.factorial(i)
         result += value
         if i % 2 == 1:
+            row_number -= 1
+
+    return result
+
+
+def t_gauss_2(ed, x, step, index):
+    row_number = index+1
+    t = round((x - float(ed[row_number][0])) / step, 2)
+    result = float(ed[row_number][1])
+    row_number -= 1
+    for i in range(1, len(ed[0]) - 1):
+        value = float(ed[row_number][i + 1])
+        coef = 1
+        for m in range(i):
+            coef *= t + m // 2 - 1 if m % 2 else t - m / 2
+        value *= coef
+
+        value /= math.factorial(i)
+        result += value
+        if i % 2 == 0:
             row_number -= 1
 
     return result
@@ -134,21 +154,62 @@ def omega(a, b, step, x):
     return result
 
 
+def show_answer(x, limits, table, a, b, step, i):
+    r_min, r_max = limits
+    if i == 0:
+        # первый ньютон#
+        print(f"{x} - первый ньютон")
+        l_n = t_newton_positive(table, a, step, x)
+        r1 = abs(l_n - function(x))
+        if r_min < r1 < r_max:
+            print('nice')
+        else:
+            print('за работу')
+
+    elif i == 9:
+        # второй ньютон#
+        print(f"{x} - второй Ньютон")
+        l_n = t_newton_negative(table, b, step, x)
+        r1 = abs(l_n - function(x))
+
+        if r_min < r1 < r_max:
+            print('nice')
+        else:
+            print('за работу')
+    elif a + (i + 1) * step - x < x - a - i * step:
+        # второй гаусс#
+        print(f"{x} - второй гаусс")
+        l_n = t_gauss_2(table, x, step, i)
+        r1 = l_n - function(x)
+        if r_min < r1 < r_max:
+            print('nice')
+        else:
+            print('за работу')
+            print(r1)
+    else:
+        # первый гаусс#
+        print(f"{x} - первый гаусс")
+        l_n = t_gauss_1(table, x, step, i)
+        r1 = l_n - function(x)
+        if r_min < r1 < r_max:
+            print('nice')
+        else:
+            print('за работу')
+
+
 def main():
     a = 1.5
     b = 2
     step = (b - a) / 10
     table = values(a, b, step)
     table = ended_difference([x[0] for x in table])
-    print(len(table))
-    print(len(table[0]))
 
     print_pretty_table(table)
 
     X = symbols('x')
     f = X ** 2 + log(X) - 4
     df = take_dif(f, X, 11)
-    xs = [1.52, 1.97, 1.77]
+    xs = [1.52, 1.97, 1.77, 1.79]
     for x in xs:
         i = find_interval(x, a, b, step)
         r_min = (df.subs(X, a) / math.factorial(11)) * omega(a, b, step, x)
@@ -156,54 +217,7 @@ def main():
         r_max = df.subs(X, b) / math.factorial(11) * omega(a, b, step, x)
         limits = [abs(r_min), abs(r_max)]
         limits.sort()
-        r_min, r_max = limits
-        if i == 0:
-            # первый ньютон#
-            print("первый ньютон")
-            l_n = t_newton_positive(table, a, step, x)
-            print(l_n)
-            print(function(x))
-            r1 = abs(l_n - function(x))
-            print(r1 < r_max)
-            print(r_min < r1)
-            if r_min < r1 < r_max:
-                print('nice')
-            else:
-                print('за работу')
-
-        elif i == 9:
-            # второй ньютон#
-            print("второй ньютон")
-            l_n = t_newton_negative(table, b, step, x)
-            print(l_n)
-            print(function(x))
-            r1 = abs(l_n - function(x))
-            print(r1 < r_max)
-            print(r_min < r1)
-            print(r_min)
-            print(r1)
-            if r_min < r1 < r_max:
-                print('nice')
-            else:
-                print('за работу')
-        elif a + (i + 1) * step - x < a + (i) * step - x:
-            # второй гаусс#
-            print("второй гаусс")
-            pass
-        else:
-            # первый гаусс#
-            print("первый гаусс")
-            print(function(x))
-            l_n = t_gauss_1(table, x, step, i)
-            print(l_n)
-            r1 = l_n - function(x)
-            print(r1 < r_max)
-            print(r_min < r1)
-            if r_min < r1 < r_max:
-                print(1)
-            else:
-                print('за работу')
-        print(i)
+        show_answer(x, limits, table, a, b, step, i)
 
 
 if __name__ == '__main__':
