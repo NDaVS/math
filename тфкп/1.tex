@@ -107,7 +107,7 @@
 			\draw[dashed] (1,-2) -- (1, -3);
 			
 		\end{tikzpicture}
-				\caption{Нужная нам область}
+		\caption{Нужная нам область}
 		
 	\end{figure}
 	
@@ -116,19 +116,19 @@
 	
 	\section{Определить вид пути и в случае, когда он проходит через точку $\infty$, исследовать его поведение в этой точке: $z = \frac{4}{\ch(4t)} + i2\th(4t)$}
 	\subsection{Решение:}
-		\[z = \frac{4}{\ch(4t)} + i2\th(4t)\]
-		\[\begin{cases}
+	\[z = \frac{4}{\ch(4t)} + i2\th(4t)\]
+	\[\begin{cases}
 		x = \frac{4}{\ch(4t)} \\
 		y = 2 \th(4t)
-		\end{cases}\]
-		\[x= \frac{4}{\ch (4t)} \Rightarrow \frac{x}{4} = \frac{1}{\ch (4t)} \Rightarrow \frac{x^2}{16} = \frac{1}{\ch^2 (4t)}\]
-		\[y = 2 \th(4t) \Rightarrow \frac{y}{2} = \frac{\sh(4t)}{\ch(4t)} \Rightarrow\frac{y^2}{4} = \frac{\sh^2(4t)}{\ch^2(4t)} + 1 -1 \Rightarrow\frac{y^2}{4} = -\frac{1}{\ch(4t)}+1\]
-		\[-\frac{y}{4} + 1 = \frac{1}{\ch(4t)}\]
-		\[\frac{x^2}{16} = -\frac{y^2}{4} + 1 \Rightarrow \frac{x^2}{16} + \frac{y^2}{4} = 1\]
-		\[t =0 : x \rightarrow 4, y \rightarrow 0\]
-		\[t \rightarrow +\infty : x \rightarrow 0, y \rightarrow 2\]
-		\[t \rightarrow -\infty : x \rightarrow 0, y \rightarrow -2\]
-		
+	\end{cases}\]
+	\[x= \frac{4}{\ch (4t)} \Rightarrow \frac{x}{4} = \frac{1}{\ch (4t)} \Rightarrow \frac{x^2}{16} = \frac{1}{\ch^2 (4t)}\]
+	\[y = 2 \th(4t) \Rightarrow \frac{y}{2} = \frac{\sh(4t)}{\ch(4t)} \Rightarrow\frac{y^2}{4} = \frac{\sh^2(4t)}{\ch^2(4t)} + 1 -1 \Rightarrow\frac{y^2}{4} = -\frac{1}{\ch(4t)}+1\]
+	\[-\frac{y}{4} + 1 = \frac{1}{\ch(4t)}\]
+	\[\frac{x^2}{16} = -\frac{y^2}{4} + 1 \Rightarrow \frac{x^2}{16} + \frac{y^2}{4} = 1\]
+	\[t =0 : x \rightarrow 4, y \rightarrow 0\]
+	\[t \rightarrow +\infty : x \rightarrow 0, y \rightarrow 2\]
+	\[t \rightarrow -\infty : x \rightarrow 0, y \rightarrow -2\]
+	
 	
 	\begin{figure}[h]
 		\centering
@@ -148,20 +148,20 @@
 		\frac{\delta^2 u}{\delta x ^2} = 2\\
 		\frac{\delta ^ 2 г}{\delta y^2} = -2
 	\end{cases} \Rightarrow 2 -2 = 0 \text{- следовательно, условие Лапласа выполнено}\]
-	 \[\begin{cases}
-	 	\frac{\delta u }{\delta x} = \frac{\delta v}{\delta y} \\
-	 	\frac{\delta u} {\delta y} = - \frac{\delta v}{\delta x}
-	 \end{cases} \Rightarrow
-	 \begin{cases}
-	 	\frac{\delta v}{\delta y} = 2x+1 \\
-	 	\frac{\delta v}{\delta x} = 2y
-	 \end{cases}\]
-	 \[v = 2yx + \phi (y) \ \Rightarrow \frac{\delta v}{\delta y} =2x + \phi'(y) \Rightarrow \phi' (y) = 1 \Rightarrow \phi(y) = y+C\]
-	 \[f(x,y) = u(x,y) + iv(x,y) = x^2 - y^2 +x + i (2xy + y + C)  = x + iy + x^2 - y^2 + 2ixy + iC =()*)\]
-	 \[z = x + iy \Rightarrow z ^2 = x^2 - y^2 +2ixy\]
-	 \[(*) = z + z^2 + iC\]
-	 \[f(0) = 0 \Rightarrow C = 0\]
-	 \[f(z) = z^2 + z\]
+	\[\begin{cases}
+		\frac{\delta u }{\delta x} = \frac{\delta v}{\delta y} \\
+		\frac{\delta u} {\delta y} = - \frac{\delta v}{\delta x}
+	\end{cases} \Rightarrow
+	\begin{cases}
+		\frac{\delta v}{\delta y} = 2x+1 \\
+		\frac{\delta v}{\delta x} = 2y
+	\end{cases}\]
+	\[v = 2yx + \phi (y) \ \Rightarrow \frac{\delta v}{\delta y} =2x + \phi'(y) \Rightarrow \phi' (y) = 1 \Rightarrow \phi(y) = y+C\]
+	\[f(x,y) = u(x,y) + iv(x,y) = x^2 - y^2 +x + i (2xy + y + C)  = x + iy + x^2 - y^2 + 2ixy + iC =()*)\]
+	\[z = x + iy \Rightarrow z ^2 = x^2 - y^2 +2ixy\]
+	\[(*) = z + z^2 + iC\]
+	\[f(0) = 0 \Rightarrow C = 0\]
+	\[f(z) = z^2 + z\]
 	\subsection{Ответ:}
 	\[f(z) = z^2 + z\]
 	
@@ -200,7 +200,7 @@
 	\[z_1=0,\ 50-5z-z^2 = 0\]
 	\[z_{2,3} = \frac{5 \pm \sqrt{25+200}}{-2} =\begin{cases}
 		-10,\\ 5
-		\end{cases}\]
+	\end{cases}\]
 	\[\frac{5z+100}{50z-5z^2-z^3} =-\left( \frac{a}{z} + \frac{b}{z-5} + \frac{c}{z+10}\right) = (*)\]
 	\[50a - 5az -az^2 - bz^2 - 10bz - cz^2 + 5cz=5z+100\]
 	$z^2: \ a+b+c=0\Rightarrow b+c = -2\Rightarrow c =-1/3$\newline
@@ -236,22 +236,91 @@
 	$\frac{2}{z} + \sum\limits_{n=0}^\infty \frac{1}{3}\left(\frac{1}{5^n} + \frac{(-1)^{n+1}}{10^n}\right)z^n$\newline\newline
 	В точке $\infty$: \newline
 	$\frac{-33}{z} - \sum\limits_{n=-\infty}^{-2}\left(\frac{1}{3\cdot5^n} + \frac{1}{3(-1)^{n-1} 10^{n-1}}\right)z^n$
-	
+	\newpage
 	\section{Найти все лорановское разложение данной функции по степеням $z - z_0$: $f(z) = \frac{z+3}{z^2 - 1},\  z_0 = -2 -2i $}
 	\subsection{Решение:}
+	\[f(z) = \frac{z+3}{z^2 -1} = \frac{z+3}{(z-1)(z+1)} = - \left( \frac{1}{z+1} + \frac{2}{1-z} \right)\]
+	\[|-2-2i+1| = |-1 -2i| = \sqrt{5}\]
+	\[|-2-2i-1| = |-3 -2i| = \sqrt{13}\]
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			\draw[thick, blue!40] (-2,-2) circle ({sqrt(13)});
+			\draw[thick, blue!40] (-2,-2) circle ({sqrt(5)}); % заливка круга с центром в (1,1) и радиусом 1
+			\draw[thick, ->] (-6,0) -- (3,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-6) -- (0,3) node[left] {$\Im(z)$};
+			
+			\node at (-2,-2) [circle,fill,inner sep=1.5pt,label=below:$z_0$] {};
+			\node at (1,0) [circle,fill,inner sep=1.5pt,label=above:$1$] {};
+			\node at (-1,0) [circle,fill,inner sep=1.5pt,label=above:$-1$] {};
+			
+			\node at (-1,-2) {I};
+			\node at (1,-2) {II};
+			\node at (2,-2) {III};
+		\end{tikzpicture}
+		\caption{Нужная нам область}
+	\end{figure}
+	\[I: \frac{2}{1-z} \in O(II)\]
+	\[\frac{2}{1-z} = \frac{2}{1-z_0+z_0-z} = \frac{2}{1-z_0 } \cdot\frac{1}{\left(1 - \frac{z-z_0 }{1-z_0 }\right)} = \frac{2}{1-z_0} \sum\limits_{n=0}^{\infty} \left(\frac{z-z_0}{1-z_0}\right)^n =\sum\limits_{n=0}^{\infty} \frac{2}{(1-z_0)^{n+1}} (z-z_0)^n\]
+	\[\frac{1}{z+1} = \frac{1}{z - z_0 + z_0 + 1} = \frac{1}{z_0 +1} \cdot \frac{1}{\left(1 + \frac{z-z_0}{z_0+1}\right)} = \frac{1}{1+z_0} \sum\limits_{n=0}^\infty(-1)^n\left(\frac{z-z_0}{1+z_0}\right)^n = \sum\limits_{n=0}^\infty\frac{(-1)^n}{(1+z_0)^{n+1}}(z-z_0)^n\]
+	Складывая оба разложения, окончательно в кольце I получим
+	\[\frac{z+3}{z^2-1} = \sum\limits_{n=0}^\infty \left[\frac{(-1)^{n+1}}{(1+z_0)^{n+1}} - \frac{2}{(1-z_0)^{n+1}}\right](z-z_0)^n\]
+	где $z_0 = -2-2i$.
+	\[II: \frac{1}{z+1} \in O(III)\]
+	\[\frac{1}{z+1} = \frac{1}{z-z_0 + z_0 +1} = \frac{1}{z-z_0}\cdot \frac{1}{\left(1+\frac{1+z_0}{z-z_0}\right)} = \frac{1}{z-z_0}\sum\limits_{n=0}^\infty (-1)^n \left(\frac{1+z_0}{z-z_0}\right)^n = \sum\limits_{n=0}^\infty  \frac{(-1)^n(1+z_0)^n}{(z-z_0)^{n+1}} =\]
+	\[= \left(\text{Замена индекса (стерли штрих) : } n+1=-n'\right) = \sum\limits_{n=-\infty}^{-1} \frac{(-1)^{n+1}}{(1-z_0)^{n+1}}(z-z_0)^n\]
+	
+	Тут $\frac{2}{1-z}$ остается голоморфной и поэтому её разложение будет таким же, как и в кольце I. \newline
+	Складывая оба разложения, окончательно в кольце II получим
+	\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \frac{(-1)^{n}}{(1-z_0)^{n+1}}(z-z_0)^n -\sum\limits_{n=0}^\infty \frac{2}{(1-z_0)^{n+1}}(z-z_0)^n\]
+	где $z_0 = -2-2i$.
+	\[III:\]
+	Тут $\frac{1}{z+1}$ остается голоморфной и поэтому её разложение будет таким же, как и в кольце II.\newline
+	Сперва следует домножить на -1, чтобы далее выполнялось условие $\left|\frac{1-z_0}{z-z_0}\right| < 1$
+	
+	\[\frac{2}{1-z} = -\frac{2}{z - z_0 + z_0 -1} = - \frac{2}{z - z_0} \cdot \frac{1}{1 + \frac{z_0 -1}{z-z_0}} = -\frac{2}{z-z_0} \cdot\sum\limits_{n=0}^\infty (-1)^n\left(\frac{z_0-1}{z-z_0}\right)^n = \sum\limits_{n=0}^\infty \frac{2(-1)^{n+1}(z_0-1)^n}{(z-z_0)^{n+1}} =\]
+	\[=\left(\text{Замена индекса (стерли штрих) : } n+1=-n'\right)= \sum\limits_{n=-\infty}^{-1} \frac{2(-1)^{n}}{(z_0-1)^{n+1}}(z-z_0)^n\]
+	И так в кольце III получаем 
+	\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \left[\frac{(-1)^n}{(1-z_0)^{n+1}} + \frac{2(-1)^{n+1}}{(z_0 -1)^{n+1}}\right](z-z_0)^n\]
+	где $z_0 = -2-2i$.
 	\subsection{Ответ:}
+	I:
+		\[\frac{z+3}{z^2-1} = \sum\limits_{n=0}^\infty \left[\frac{(-1)^{n+1}}{(1+z_0)^{n+1}} - \frac{2}{(1-z_0)^{n+1}}\right](z-z_0)^n\]
+	II: 
+		\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \frac{(-1)^{n}}{(1-z_0)^{n+1}}(z-z_0)^n -\sum\limits_{n=0}^\infty \frac{2}{(1-z_0)^{n+1}}(z-z_0)^n\]
+	III:
+		\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \left[\frac{(-1)^n}{(1-z_0)^{n+1}} + \frac{2(-1)^{n+1}}{(z_0 -1)^{n+1}}\right](z-z_0)^n\]
+		где $z_0 = -2-2i$.
 	
 	\section{Данную функцию разложить в ряд Лорана в окрестности точки $z_0$: $f(z)=ze^{\frac{z}{z-5}}, z_0 = 5$}
 	\subsection{Решение:}
+	\[f(z)=ze^{\frac{z}{z-5}}\]
+	\[e^z = \sum\limits_{n=0}^\infty \frac{z^n}{n!}\]
+	\[\frac{z-5+5}{z-5} = 1 + \frac{5}{z-5}\]
+	\[((z-5)+5)e^{1 + \frac{5}{z-5}} = e((z-5)+5)e^{\frac{5}{z-5}} = e((z-5)+5)\sum\limits_{n=0}^\infty\frac{5^n}{n!(z-5)^n}\]
+	Раскроем скобки
+	\[\sum\limits_{n=0}^\infty \frac{e5^n}{n!}\cdot \frac{1}{(z-5)^n} + \sum\limits_{n=0}^\infty\frac{e5^{n+1}}{n!}\cdot\frac{1}{(z-5)^n} = e(z-5) + 5e + \sum\limits_{n=2}^\infty \frac{e5^n}{n!}\cdot \frac{1}{(z-5)^n} + 5e + \sum\limits_{n=1}^\infty\frac{e5^{n+1}}{n!}\cdot\frac{1}{(z-5)^n} = \]
+	\[= 10e + e(z-5) = \sum\limits_{n=-\infty}^{-1}\frac{e(z-5)^n}{(1-n)! 5^{n-1}} + \sum\limits_{n=-\infty}^{-1}\frac{e5^{n-1}(z-5)^n}{(-n)!} = 10e + e(z-5) + \sum\limits_{n=-\infty}^{-1}\frac{e}{5^{n-1}} \left(\frac{1}{(1-n)!} + \frac{1}{(-n)!}\right)(z-5)^n\]
+	$z_0$ - СОТ
 	\subsection{Ответ:}
-	
+	\[f(z)=ze^{\frac{z}{z-5}} = 10e + e(z-5) + \sum\limits_{n=-\infty}^{-1}\frac{e}{5^{n-1}} \left(\frac{1}{(1-n)!} + \frac{1}{(-n)!}\right)(z-5)^n\]
 	\section{Определить тип особой точки $z = 0$ для данной функции: $f(z) = \frac{\ch(5z) - 1}{e^z - 1 -z}$}
 	\subsection{Решение:}
+	\[f(z) = \frac{\ch(5z) - 1}{e^z - 1 -z}\]
+	\[ch5z = \sum\limits_{n=0}^\infty \frac{(5z)^{2n}}{(2n)!} = 1 + \frac{(5z)^{2n}}{2}  + \frac{(5z)^4n}{4!} + \dots\]
+	\[e^z = \sum\limits_{n=0}^\infty \frac{z^n}{n!} = 1 + z + \frac{z^2}{2} + \dots\]
+	\[\underset{z\rightarrow0}{\lim} f(z) = \underset{z\rightarrow0}{\lim} \frac{\ch5z -1}{e^z-1-z} = \underset{z\rightarrow0}{\lim} \frac{\frac{(5z)^2}{2} + o(z^4)}{\frac{z^2}{2} + \frac{z^3}{3!}+ o(z^4)} = \underset{z\rightarrow0}{\lim}\frac{\cancel{z^2}\left(\frac{25}{2} + o(z^2)\right)}{\cancel{z^2}\left(\frac{1}{2} + \frac{z}{3!}+ o(z^2)\right)} =25 \Rightarrow z_0\text{ - УОТ}\]
 	\subsection{Ответ:}
-	
+	$z_0\text{ - УОТ}$
 	
 	\section{Для данной функции найти все изолированные особые точки и определить их тип: $f(z) = \ctg(\pi z)$}
 	\subsection{Решение:}
+	\[f(z) = \ctg\pi z = \frac{\cos\pi z}{\sin \pi z}\]
+	\[\sin \pi z = 0\]
+	\[\pi z = \pi n, \ n \in \mathbb{Z}\]
+	\[z = n, \ n  \in \mathbb{Z}\]
+	Получили точки $z = n, \ n  \in \mathbb{Z}$.
+	\[\underset{z\rightarrow0}{\lim} ??? 0??? \]
 	\subsection{Ответ:}
 	
 \end{document}
