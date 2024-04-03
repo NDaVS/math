@@ -318,9 +318,14 @@
 	\[f(z) = \ctg\pi z = \frac{\cos\pi z}{\sin \pi z}\]
 	\[\sin \pi z = 0\]
 	\[\pi z = \pi n, \ n \in \mathbb{Z}\]
-	\[z = n, \ n  \in \mathbb{Z}\]
-	Получили точки $z = n, \ n  \in \mathbb{Z}$.
-	\[\underset{z\rightarrow0}{\lim} ??? 0??? \]
+	\[z_n = n, \ n  \in \mathbb{Z}\]
+	Получили точки $z_n = n$ - особые точки. \newline
+	$\infty$ - не является изолированной особой точкой.
+	\[\underset{z\rightarrow n}{\lim} \frac{\cos \pi z}{\sin \pi z} \]
+	\[\sin \pi z = (-1)^n \sin \pi (z-n), \eqno (1)\]
+	\[\cos \pi z = (-1)^n \cos \pi (z-n), \eqno (2)\]
+	Из (1) и (2) получаем слудующий предел:
+	\[\underset{z\rightarrow n}{\lim} \frac{\cos \pi (z-1)}{\sin \pi (z-n)}\text{, сделав замену $\zeta = z - n$ получим: } \underset{\zeta \rightarrow 0}{\lim} \frac{\cos \pi \zeta}{\sin \pi \zeta} = \underset{\zeta \rightarrow 0}{\lim} \frac{1}{\pi \zeta} = \infty \Rightarrow \text{$z_n$ - полюс}\]
 	\subsection{Ответ:}
 	
 \end{document}
