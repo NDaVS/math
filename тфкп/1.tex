@@ -45,11 +45,11 @@
 	\[z_k = 2 \left(\cos\left(\frac{\pi }{2\cdot 3} + \frac{2\pi k}{3}\right) + i \sin\left(\frac{\pi }{2\cdot 3} + \frac{2\pi k}{3}\right)\right) = 2 \left(\cos\left(\frac{\pi }{6} + \frac{2\pi k}{3}\right) + i \sin\left(\frac{\pi }{6} + \frac{2\pi k}{3}\right)\right)\]
 	\[z_0 = 2 \left(\cos\left(\frac{\pi}{6}\right) + i \sin\left(\frac{\pi}{6}\right)\right) = \sqrt{3} + i\]
 	\[z_1 = 2 \left(\cos\left(\frac{\pi}{6} + \frac{2\pi}{3}\right) + i \sin\left(\frac{\pi}{6} + \frac{2\pi}{3}\right)\right) = 2 \left(\cos\left(\frac{5\pi}{6}\right) + i \sin\left(\frac{5\pi}{6}\right)\right) = - \sqrt{3} + i\]
-	\[z_2 = 2 \left(\cos\left(\frac{\pi}{6} + \frac{4\pi}{3}\right) + i \sin\left(\frac{\pi}{6} + \frac{4\pi}{3}\right)\right) = 2 \left(\cos\left(\frac{3\pi}{2}\right) + i \sin\left(\frac{3\pi}{2}\right)\right) = 2i\]
+	\[z_2 = 2 \left(\cos\left(\frac{\pi}{6} + \frac{4\pi}{3}\right) + i \sin\left(\frac{\pi}{6} + \frac{4\pi}{3}\right)\right) = 2 \left(\cos\left(\frac{3\pi}{2}\right) + i \sin\left(\frac{3\pi}{2}\right)\right) = -2i\]
 	\subsection{Ответ:}
 	\[z_0 = \sqrt{3} + i\]
-	\[z_1 = - \sqrt{3} = i\]
-	\[z_3 = 2i\]
+	\[z_1 = - \sqrt{3} + i\]
+	\[z_3 = -2i\]
 	
 	\section{Представить в алгебраической форме: $\sh(2-\pi i)$}
 	\subsection{Решение:}
@@ -79,10 +79,10 @@
 	\section{Представить в алгебраической форме: $(-3i)^i$}
 	\subsection{Решение:}
 	\[(-3i)^i = e^{i\text{Ln}(-3i)}\]
-	\[\text{Ln}(-3i) = \ln |-3i| + i\text{Arg}(-3i) = \ln(3) + i\left(\frac{\pi}{2} + 2\pi k\right), k \in \mathbb{Z}\]
-	\[e^{i\text{Ln}(-3i)} = e ^ {-\left(\frac{\pi}{2} + 2\pi k\right) + i\ln(3)} = e ^ {-\left(\frac{\pi}{2} + 2\pi k\right)}\left(\cos\left(\ln(3)\right) + i\sin\left(\ln(3)\right)\right), k \in \mathbb{Z}\]
+	\[\text{Ln}(-3i) = \ln |-3i| + i\text{Arg}(-3i) = \ln(3) + i\left(-\frac{\pi}{2} + 2\pi k\right), k \in \mathbb{Z}\]
+	\[e^{i\text{Ln}(-3i)} = e ^ {\left(\frac{\pi}{2} + 2\pi k\right) + i\ln(3)} = e ^ {\left(\frac{\pi}{2} + 2\pi k\right)}\left(\cos\left(\ln(3)\right) + i\sin\left(\ln(3)\right)\right), k \in \mathbb{Z}\]
 	\subsection{Ответ:}
-	\[e ^ {-\left(\frac{\pi}{2} + 2\pi k\right)}\left(\cos\left(\ln(3)\right) + i\sin\left(\ln(3)\right)\right), k \in \mathbb{Z}\]
+	\[e ^ {\left(\frac{\pi}{2} + 2\pi k\right)}\left(\cos\left(\ln(3)\right) + i\sin\left(\ln(3)\right)\right), k \in \mathbb{Z}\]
 	
 	\section{Представить в алгебраической форме: $\text{Ln}(2+2\sqrt{3}i)$}
 	\subsection{Решение:}
@@ -92,22 +92,24 @@
 	
 	\section{Вычертить область, заданную неравествами: $\\D = \{z : |z - 1 + i| \ge 1, Re(z) < 1, Im(z) \le 1 \}$}
 	\subsection{Ответ:}
+	Пунктир
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}
 			
-			\filldraw[draw=cyan, line width=1pt, fill=cyan!20] (-3, 0) -- (1,0) arc (90:270:1)--(1,-3)--(-3,-3)--(-3,0);
+			\filldraw[draw=cyan, line width=1pt, fill=cyan!20] (-3, 1) -- (1,1) -- (1, 0) arc (90:270:1)--(1,-3)--(-3,-3)--(-3,0);
 			\draw[blue!40] (1,-1) circle (1); % заливка круга с центром в (1,1) и радиусом 1
 			\draw[thick, ->] (-3,0) -- (3,0) node[below] {$\Re(z)$};
 			\draw[thick, ->] (0,-3) -- (0,2) node[left] {$\Im(z)$};
 			\draw[thick] (1,-1)--(2, -1) node[midway,below]{1} ;
 			\draw (-3, 1) -- (3,1);
-			
+			\filldraw (1,0) circle (2pt) node[above, right]{$1$};
+			\filldraw (0,1) circle (2pt) node[above, right]{$i$};
 			\draw[dashed] (1,2) -- (1,0); % линия Im(z) = 1
 			\draw[dashed] (1,-2) -- (1, -3);
 			
 		\end{tikzpicture}
-		\caption{Нужная нам область}
+		\caption{Нужная нам область выделена голубым}
 		
 	\end{figure}
 	
@@ -123,7 +125,7 @@
 	\end{cases}\]
 	\[x= \frac{4}{\ch (4t)} \Rightarrow \frac{x}{4} = \frac{1}{\ch (4t)} \Rightarrow \frac{x^2}{16} = \frac{1}{\ch^2 (4t)}\]
 	\[y = 2 \th(4t) \Rightarrow \frac{y}{2} = \frac{\sh(4t)}{\ch(4t)} \Rightarrow\frac{y^2}{4} = \frac{\sh^2(4t)}{\ch^2(4t)} + 1 -1 \Rightarrow\frac{y^2}{4} = -\frac{1}{\ch(4t)}+1\]
-	\[-\frac{y}{4} + 1 = \frac{1}{\ch(4t)}\]
+	\[-\frac{y^2}{4} + 1 = \frac{1}{\ch^2(4t)}\]
 	\[\frac{x^2}{16} = -\frac{y^2}{4} + 1 \Rightarrow \frac{x^2}{16} + \frac{y^2}{4} = 1\]
 	\[t =0 : x \rightarrow 4, y \rightarrow 0\]
 	\[t \rightarrow +\infty : x \rightarrow 0, y \rightarrow 2\]
@@ -157,7 +159,7 @@
 		\frac{\delta v}{\delta x} = 2y
 	\end{cases}\]
 	\[v = 2yx + \phi (y) \ \Rightarrow \frac{\delta v}{\delta y} =2x + \phi'(y) \Rightarrow \phi' (y) = 1 \Rightarrow \phi(y) = y+C\]
-	\[f(x,y) = u(x,y) + iv(x,y) = x^2 - y^2 +x + i (2xy + y + C)  = x + iy + x^2 - y^2 + 2ixy + iC =()*)\]
+	\[f(x,y) = u(x,y) + iv(x,y) = x^2 - y^2 +x + i (2xy + y + C)  = x + iy + x^2 - y^2 + 2ixy + iC =(*)\]
 	\[z = x + iy \Rightarrow z ^2 = x^2 - y^2 +2ixy\]
 	\[(*) = z + z^2 + iC\]
 	\[f(0) = 0 \Rightarrow C = 0\]
@@ -167,16 +169,16 @@
 	
 	\section{Вычислить интеграл от функции комплексной переменной по данному пути: $\int_{AB} z \Im(z^2) dz; \ AB - \text{отрезок прямой } z_A = 0, \ z_B = 1 + i$}
 	\subsection{Решение:}
-	\[z= x +iy \Rightarrow z ^2 = x^2 - y^2 + 2ixy \Rightarrow \Im(z^2) = 2ixy\]
-	\[z\Im (z^2) = (x+iy)(2ixy) = 2ix^2y - 2xy^2\]
+	\[z= x +iy \Rightarrow z ^2 = x^2 - y^2 + 2ixy \Rightarrow \Im(z^2) = 2xy\]
+	\[z\Im (z^2) = (x+iy)(2xy) = 2x^2y + 2ixy^2\]
 	\[Z_AZ_B: \begin{cases}
 		x =t \\ y = t
 	\end{cases}; 0 \le t \le 1; \ z(t) = t + it \Rightarrow z'(t) = 1 + i\]
 	
-	\[\int_{AB} z \Im(z^2) dz = \int\limits_{0}^1 (2ix^2(t)y(t) - 2x(t)y^2(t)) (1+i) dt = \int\limits_{0}^1 (2it^3 - 2t^3) (1+i) dt = \int\limits_{0}^1 2t^3(i-1)(i+1)dt = \]
-	\[ =\int\limits_{0}^1 2t^3(i^2-1^2)dt = \int\limits_{0}^1 -4t^3dt = -1\]
+	\[\int_{AB} z \Im(z^2) dz = \int\limits_{0}^1 (2x^2(t)y(t) + 2ix(t)y^2(t)) (1+i) dt = \int\limits_{0}^1 (2t^3 + 2it^3) (1+i) dt = \int\limits_{0}^1 2t^3(i+1)^2dt = \]
+	\[ =2(1+i)^2\int\limits_{0}^1 t^3dt = \cancel{2}(1+i)^2\cdot\frac{1}{\cancel{4}_2} = \frac{1}{2}(\cancel{1} + 2i -\cancel{1}) = \frac{2i}{2} = i\]
 	\subsection{Ответ:}
-	$-1$
+	$i$
 	
 	\section{Найти радиус сходимости степенного ряда: $\sum\limits_{n=1}^{\infty}(\cos^2(n))\cdot z^n$}
 	\subsection{Решение:}
@@ -212,28 +214,28 @@
 	Заметим, что функция $\frac{5}{3(z-5)}$ - голоморфна при $|z| < 5$, следовательно, её ряд Лорана совпадает с рядом Тейлора (с кругом сходимости $|z| < 5$):
 	\[\frac{5}{3(z-5)} = \frac{5}{15} \cdot \frac{-1}{(1-\frac{z}{5})}=\frac{-1}{3}\sum\limits_{n=0}^\infty \left(\frac{z}{5}\right)^n = \sum\limits_{n=0}^\infty \left(\frac{-1}{3}\cdot\frac{1}{5^n}z^n\right) \eqno(1)\]
 	Аналогично расскладывается и третье слагаемое. Также отметим, что функция $\frac{1}{3(z+10)}$- голоморфна при $|z| < 10$. Отсюда получаем, что её ряд Лорена совпадает с рядом Тейлора (с кругом сходимости $|z| < 10$):
-	\[\frac{1}{3(z+10)} = \frac{1}{3}\cdot\frac{1}{(1+\frac{z}{10})} = \frac{1}{3}\sum\limits_{n=0}^{\infty}(-1)^n\left(\frac{z}{10}\right)^n = \sum\limits_{n=0}^{\infty}\frac{1}{3}\frac{(-1)^n}{10^n}z^n\eqno(2)\]
+	\[\frac{1}{3(z+10)} = \frac{1}{30}\cdot\frac{1}{(1+\frac{z}{10})} = \frac{1}{30}\sum\limits_{n=0}^{\infty}(-1)^n\left(\frac{z}{10}\right)^n = \sum\limits_{n=0}^{\infty}\frac{1}{3}\frac{(-1)^n}{10^{n+1}}z^n\eqno(2)\]
 	Формулы (1) и (2) справедливы при $|z| < 5$
-	\[\frac{5z+100}{50z - 5z^2 -  z^3} = \frac{2}{z} + \sum\limits_{n=0}^\infty \left(\frac{1}{3}\cdot\frac{1}{5^n}z^n\right) - \sum\limits_{n=0}^{\infty}\frac{1}{3}\frac{(-1)^n}{10^n}z^n = \frac{2}{z} + \sum\limits_{n=0}^\infty \frac{1}{3}\left(\frac{1}{5^n} + \frac{(-1)^{n+1}}{10^n}\right)z^n\]
-	Это выполняется в кольце $0 < z < 5$, где $\begin{cases}
+	\[\frac{5z+100}{50z - 5z^2 -  z^3} = \frac{2}{z} + \sum\limits_{n=0}^\infty \left(\frac{1}{3}\cdot\frac{1}{5^n}z^n\right) - \sum\limits_{n=0}^{\infty}\frac{1}{3}\frac{(-1)^n}{10^{n+1}}z^n = \frac{2}{z} + \sum\limits_{n=0}^\infty \frac{1}{3}\left(\frac{1}{5^n} + \frac{(-1)^{n+1}}{10^{n+1}}\right)z^n\]
+	Это выполняется в кольце $0 < z < 5$, где $C_n = \begin{cases}
 		0, & n \le -2\\
 		2, & n = -1\\
-		\frac{1}{5^n} + \frac{(-1)^{n+1}}{10^n}, & n \ge 0 
+		\frac{1}{5^n} + \frac{(-1)^{n+1}}{10^{n+1}}, & n \ge 0 
 	\end{cases}$ \newline
 	Разложим теперь $\frac{5}{3(z-5)}$ в окрестности $\infty$. Очевидно, что эта функция голоморфна на $|z| > 5$. Поэтому преобразуем её так:
 	\[\frac{5}{3(z-5)} = \frac{5}{3z} \cdot \frac{1}{(1-\frac{5}{z})}\]
 	Заметим, что при $|z| > 5$ имеем $\left|\frac{5}{z}\right| < 1$ и поэтому получим:
 	\[\frac{1}{1 - \frac{5}{z}} = \sum\limits_{n=0}^\infty \left(\frac{5}{z}\right)^n\]
 	Окончательно получим:
-	\[\frac{5}{3z} \cdot \frac{1}{1 - \frac{5}{z}} = \frac{5}{3z} \cdot \sum\limits_{n=0}^\infty \left(\frac{5}{z}\right)^n = \sum\limits_{n=0}^\infty \frac{5^{n+1}}{3z^{n+1}} = \sum\limits_{n=-\infty}^{-1}\frac{z^n}{3\cdot 5^n}\eqno(3)\]
-	Аналогично и при $|z| > 10$ разложение для $\frac{1}{3(z+10)}$:
+	\[\frac{5}{3z} \cdot \frac{1}{1 - \frac{5}{z}} = \frac{5}{3z} \cdot \sum\limits_{n=0}^\infty \left(\frac{5}{z}\right)^n = \sum\limits_{n=0}^\infty \frac{5^{n+1}}{3z^{n+1}} =(\text{замена индекса (штрих стерли): } n+1 = -n') = \sum\limits_{n=-\infty}^{-1}\frac{z^n}{3\cdot 5^n}\eqno(3)\]
+	Аналогично и при $|z| > 10$ разложение для $\frac{1}{3(z+10)}$(четвертое равенство - замена индекса $n+1=-n'$, штрих стерли):
 	\[\frac{1}{3(z+10)} = \frac{1}{3z}\cdot\frac{1}{1+\frac{10}{z}} = \frac{1}{3z} \sum\limits_{n=0}^{\infty}(-1)^n \left(\frac{10}{z}\right)^n = \sum\limits_{n=0}^\infty \frac{(-1)^n 10^n}{3z^{n+1}} = \sum\limits_{n=-\infty}^{-1} \frac{z^n}{3(-1)^{n-1} 10^{n-1}}\eqno(4)\]
-	Формулы (3) и (4) справедливы для $|z| > 10$ 
+	Формулы (3) и (4) справедливы для $|z| > 10$ поэтому :
 	\[\frac{5z+100}{50z - 5z^2 -  z^3} = \frac{2}{z} - \frac{5}{3(z-5)} - \frac{1}{3(z+10)} = \frac{2}{z} - \sum\limits_{n=-\infty}^{-1}\left(\frac{1}{3\cdot5^n} + \frac{1}{3(-1)^{n-1} 10^{n-1}}\right)z^n =\]
 	\[=(\text{Вычислим сумму для }n =-1) =\frac{-33}{z} - \sum\limits_{n=-\infty}^{-2}\left(\frac{1}{3\cdot5^n} + \frac{1}{3(-1)^{n-1} 10^{n-1}}\right)z^n\]
 	\subsection{Ответ:}
 	В точке 0:\newline
-	$\frac{2}{z} + \sum\limits_{n=0}^\infty \frac{1}{3}\left(\frac{1}{5^n} + \frac{(-1)^{n+1}}{10^n}\right)z^n$\newline\newline
+	$\frac{2}{z} + \sum\limits_{n=0}^\infty \frac{1}{3}\left(\frac{1}{5^n} + \frac{(-1)^{n+1}}{10^{n+1}}\right)z^n$\newline\newline
 	В точке $\infty$: \newline
 	$\frac{-33}{z} - \sum\limits_{n=-\infty}^{-2}\left(\frac{1}{3\cdot5^n} + \frac{1}{3(-1)^{n-1} 10^{n-1}}\right)z^n$
 	\newpage
@@ -258,7 +260,7 @@
 			\node at (1,-2) {II};
 			\node at (2,-2) {III};
 		\end{tikzpicture}
-		\caption{Нужная нам область}
+		\caption{Кольца для разложения Лорана}
 	\end{figure}
 	\[I: \frac{2}{1-z} \in O(II)\]
 	\[\frac{2}{1-z} = \frac{2}{1-z_0+z_0-z} = \frac{2}{1-z_0 } \cdot\frac{1}{\left(1 - \frac{z-z_0 }{1-z_0 }\right)} = \frac{2}{1-z_0} \sum\limits_{n=0}^{\infty} \left(\frac{z-z_0}{1-z_0}\right)^n =\sum\limits_{n=0}^{\infty} \frac{2}{(1-z_0)^{n+1}} (z-z_0)^n\]
@@ -285,12 +287,12 @@
 	где $z_0 = -2-2i$.
 	\subsection{Ответ:}
 	I:
-		\[\frac{z+3}{z^2-1} = \sum\limits_{n=0}^\infty \left[\frac{(-1)^{n+1}}{(1+z_0)^{n+1}} - \frac{2}{(1-z_0)^{n+1}}\right](z-z_0)^n\]
+	\[\frac{z+3}{z^2-1} = \sum\limits_{n=0}^\infty \left[\frac{(-1)^{n+1}}{(1+z_0)^{n+1}} - \frac{2}{(1-z_0)^{n+1}}\right](z-z_0)^n\]
 	II: 
-		\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \frac{(-1)^{n}}{(1-z_0)^{n+1}}(z-z_0)^n -\sum\limits_{n=0}^\infty \frac{2}{(1-z_0)^{n+1}}(z-z_0)^n\]
+	\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \frac{(-1)^{n}}{(1-z_0)^{n+1}}(z-z_0)^n -\sum\limits_{n=0}^\infty \frac{2}{(1-z_0)^{n+1}}(z-z_0)^n\]
 	III:
-		\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \left[\frac{(-1)^n}{(1-z_0)^{n+1}} + \frac{2(-1)^{n+1}}{(z_0 -1)^{n+1}}\right](z-z_0)^n\]
-		где $z_0 = -2-2i$.
+	\[\frac{z+3}{z^2-1} = \sum\limits_{n=-\infty}^{-1} \left[\frac{(-1)^n}{(1-z_0)^{n+1}} + \frac{2(-1)^{n+1}}{(z_0 -1)^{n+1}}\right](z-z_0)^n\]
+	где $z_0 = -2-2i$.
 	
 	\section{Данную функцию разложить в ряд Лорана в окрестности точки $z_0$: $f(z)=ze^{\frac{z}{z-5}}, z_0 = 5$}
 	\subsection{Решение:}
@@ -318,9 +320,21 @@
 	\[f(z) = \ctg\pi z = \frac{\cos\pi z}{\sin \pi z}\]
 	\[\sin \pi z = 0\]
 	\[\pi z = \pi n, \ n \in \mathbb{Z}\]
-	\[z = n, \ n  \in \mathbb{Z}\]
-	Получили точки $z = n, \ n  \in \mathbb{Z}$.
-	\[\underset{z\rightarrow0}{\lim} ??? 0??? \]
+	\[z_n = n, \ n  \in \mathbb{Z}\]
+	Получили точки $z_n = n$ - особые точки. \newline
+	$\infty$ - не является изолированной особой точкой.
+	\[\underset{z\rightarrow n}{\lim} \frac{\cos \pi z}{\sin \pi z} \]
+	\[\sin \pi z = (-1)^n \sin \pi (z-n),\ n  \in \mathbb{Z} \eqno (1)\]
+	\[\cos \pi z = (-1)^n \cos \pi (z-n),\ n  \in \mathbb{Z} \eqno (2)\]
+	Из (1) и (2) получаем слудующий предел:
+	\[\underset{z\rightarrow n}{\lim} \frac{\cos \pi (z-n)}{\sin \pi (z-n)},\ n  \in \mathbb{Z}\text{, сделав замену $\zeta = z - n$ получим: } \underset{\zeta \rightarrow 0}{\lim} \frac{\cos \pi \zeta}{\sin \pi \zeta} = \underset{\zeta \rightarrow 0}{\lim} \frac{1}{\pi \zeta} = \infty \Rightarrow \text{$z_n$ - полюс}\ n  \in \mathbb{Z}\]
+	\[\underset{z\rightarrow n}{\lim} (z-n)^k \ctg \pi z = \underset{z\rightarrow n}{\lim} \frac{(z-n)^k\cos \pi (z-n)}{\sin\pi(z-n)} = \underset{\zeta\rightarrow n}{\lim}\frac{\zeta^k \cos\pi\zeta}{\sin\pi\zeta} = \underset{\zeta\rightarrow n}{\lim}\frac{\zeta^k}{\pi \zeta} = \begin{cases}
+	0,& k >1\\
+	\frac{1}{\pi}, & k = 1 \\
+	\infty, &k < 1
+	\end{cases}\Rightarrow\]
+	\[\Rightarrow z_n = n -\text{полюс первого порядка}, \ n  \in \mathbb{Z}\]
 	\subsection{Ответ:}
+	$z_n = n -\text{полюс первого порядка}, \ n  \in \mathbb{Z}	$
 	
 \end{document}
