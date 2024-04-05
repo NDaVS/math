@@ -211,7 +211,7 @@ def main():
     X = symbols('x')
     f = X ** 2 + log(X) - 4
     df = take_dif(f, X, 11)
-    xs = [1.52, 1.97, 1.77, 1.79]
+    xs = [1.52, 1.97, 1.77]
     for x in xs:
         i = find_interval(x, a, b, step)
         r_min = (df.subs(X, a) / math.factorial(11)) * omega(a, b, step, x)
