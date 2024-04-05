@@ -125,6 +125,7 @@ def t_gauss_2(ed, x, step, index):
     result = float(ed[row_number][1])
     row_number -= 1
     for i in range(1, len(ed[0]) - 1):
+        
         value = float(ed[row_number][i + 1])
         coef = 1
         for m in range(i):
@@ -186,6 +187,7 @@ def show_answer(x, limits, table, a, b, step, i):
         else:
             print('за работу')
             print(r1)
+            print(function(x))
     else:
         # первый гаусс#
         print(f"{x} - первый гаусс")
