@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.10)  27 APR 2024 16:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.10)  29 APR 2024 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -871,22 +871,22 @@ Overfull \hbox (26.71066pt too wide) detected at line 166
 [] [] [] \OT1/cmr/m/n/10 = [] [] [] = [][][]
  []
 
-[5]
-Overfull \hbox (33.6108pt too wide) in paragraph at lines 198--198
+[5] [6] [7] [8] [9]
+Overfull \hbox (33.6108pt too wide) in paragraph at lines 347--347
 \T2A/cmr/bx/n/14.4 вле-тво-ря-ю-щее за-дан-но-му на-чаль-но-му усло-вию $[]$| 
  []
 
-[6] (2.aux)
+[10] (2.aux)
  ***********
 LaTeX2e <2023-06-01> patch level 1
 L3 programming layer <2023-08-29>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 25999 strings out of 475247
- 639678 string characters out of 5775613
- 1942785 words of memory out of 5000000
- 47102 multiletter control sequences out of 15000+600000
+ 26001 strings out of 475247
+ 639736 string characters out of 5775613
+ 1945785 words of memory out of 5000000
+ 47104 multiletter control sequences out of 15000+600000
  572416 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  99i,14n,103p,723b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -898,18 +898,19 @@ pi600\larm1200.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t
 2a/dpi600\larm1728.pk><D:/TEX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/TEX
 /fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/TEX/fonts/type1/public/amsfonts/
 cm/cmmi12.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/TEX/fonts/ty
-pe1/public/amsfonts/cm/cmmi7.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmmi8.p
-fb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/TEX/fonts/type1/public/
-amsfonts/cm/cmr12.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr5.pfb><D:/TEX/f
-onts/type1/public/amsfonts/cm/cmr6.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/c
-mr7.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr8.pfb><D:/TEX/fonts/type1/pub
-lic/amsfonts/cm/cmsy10.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><D:
-/TEX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><D:/TEX/fonts/type1/public/amsfon
-ts/cm/cmsy8.pfb><D:/TEX/fonts/type1/public/amsfonts/latxfont/line10.pfb><D:/TEX
-/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 2.pdf (6 pages, 250917 bytes).
+pe1/public/amsfonts/cm/cmmi6.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmmi7.p
+fb><D:/TEX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/TEX/fonts/type1/public/
+amsfonts/cm/cmr10.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/TEX/
+fonts/type1/public/amsfonts/cm/cmr5.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/
+cmr6.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/TEX/fonts/type1/pu
+blic/amsfonts/cm/cmr8.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:
+/TEX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><D:/TEX/fonts/type1/public/amsfon
+ts/cm/cmsy7.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/TEX/fonts/
+type1/public/amsfonts/latxfont/line10.pfb><D:/TEX/fonts/type1/public/amsfonts/s
+ymbols/msam10.pfb><D:/TEX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on 2.pdf (10 pages, 300476 bytes).
 PDF statistics:
- 281 PDF objects out of 1000 (max. 8388607)
+ 311 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
