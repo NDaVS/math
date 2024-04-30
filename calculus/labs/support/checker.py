@@ -2,6 +2,7 @@ from calculus.labs.support.subs import *
 from calculus.labs.support.interpolations import *
 
 
+
 def check_results(initial_function, interpolated_function, symbol, start_x, finish_x, points_number, x_value):
     """
          Проверить удволетворяет ли полученная интерполяционная функция необходимой погрешности
@@ -13,7 +14,8 @@ def check_results(initial_function, interpolated_function, symbol, start_x, fini
          : param points_number: количество взятых узлов
          : param x_value: Интересующая точка
     """
-    param = -1
+    x_value += -0.02
+    param = 1
 
     # Инициализация -------------------------------------------------------------------------------
     step = (finish_x - start_x) / points_number
@@ -24,20 +26,20 @@ def check_results(initial_function, interpolated_function, symbol, start_x, fini
     # ---------------------------------------------------------------------------------------------
 
     R_min = abs((dnf(initial_function, symbol, points_number - param).subs(symbol, x_min_value)
-                 / factorial(points_number - param)
-                 * omega(start_x, finish_x, points_number, symbol, points_number - param)).subs(symbol, x_value))
+             / factorial(points_number - param)
+             * omega(start_x, finish_x, points_number, symbol)).subs(symbol, x_value))
 
     R_max = abs((dnf(initial_function, symbol, points_number - param).subs(symbol, x_max_value)
-                 / factorial(points_number - param)
-                 * omega(start_x, finish_x, points_number, symbol, points_number - param)).subs(symbol, x_value))
+             / factorial(points_number - param)
+             * omega(start_x, finish_x, points_number, symbol, points_number - param)).subs(symbol, x_value))
 
     R_min, R_max = (R_min, R_max) if R_min <= R_max else (R_max, R_min)
     R = abs(interpolated_function.subs(symbol, x_value) - initial_function.subs(symbol, x_value))
 
     if R_min <= R <= R_max:
         print("Ok")
-        print(f"{R_min} <= {R} <= {R_max}")
-        return True
-    print("Fail")
-    print(f"{R_min} <> {R} <> {R_max}")
-    return False
+        print(f'{R_min} <= {R} <= {R_max}')
+        return true
+    else:
+        print("Fail")
+        return false

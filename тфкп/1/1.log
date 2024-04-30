@@ -1,35 +1,37 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10) (preloaded format=pdflatex 2023.10.10)  29 APR 2024 17:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.27)  2 APR 2024 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./2.tex
-(2.tex
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
-(D:\TEX\tex/latex/base\article.cls
+**./1.tex
+(1.tex
+LaTeX2e <2023-11-01>
+L3 programming layer <2023-12-11>
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
-(D:\TEX\tex/latex/base\size10.clo
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
 File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
+\c@part=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
-) (D:\TEX\tex/latex/base\fontenc.sty
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 
-(D:\TEX\tex/latex/cyrillic\t2aenc.def
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2aenc.def
 File: t2aenc.def 2022/06/11 v1.0j Cyrillic encoding definition file
 Now handling font encoding T2A ...
 ... processing UTF-8 mapping file for font encoding T2A
- (D:\TEX\tex/latex/base\t2aenc.dfu
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/base\t2aenc.dfu
 File: t2aenc.dfu 2022/06/07 v1.3c UTF-8 support
    defining Unicode char U+00A4 (decimal 164)
    defining Unicode char U+00A7 (decimal 167)
@@ -233,30 +235,33 @@ File: t2aenc.dfu 2022/06/07 v1.3c UTF-8 support
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 1
 12.
 
-(D:\TEX\tex/latex/cyrillic\t2acmr.fd
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmr.fd
 File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-)) (D:\TEX\tex/latex/base\inputenc.sty
+))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
 )
-(D:\TEX\tex/generic/babel\babel.sty
-Package: babel 2023/09/29 v3.95 The Babel package
-\babel@savecnt=\count193
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2023/12/10 v3.99 The Babel package
+\babel@savecnt=\count195
 \U@D=\dimen141
 \l@unhyphenated=\language79
- (D:\TEX\tex/generic/babel\txtbabel.def)
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel.def)
 \bbl@readstream=\read2
-\bbl@dirlevel=\count194
+\bbl@dirlevel=\count196
 
 *************************************
 * Local config file bblopts.cfg used
 *
-(D:\TEX\tex/latex/arabi\bblopts.cfg
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-(D:\TEX\tex/latex/babel-english\english.ldf
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.l
+df
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
@@ -265,68 +270,74 @@ Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
 (babel)             (\language73). Reported on input line 108.
 )
-(D:\TEX\tex/latex/babel-russian\russianb.ldf
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/babel-russian\russianb.
+ldf
 File: russianb.ldf 2021/01/10 1.3m Russian support for the Babel system
 Language: russian 2020/09/09 1.3k Russian support for the Babel system
 Package babel Info: Making " an active character on input line 124.
 Package babel Info: Default for \cyrdash is provided on input line 163.
 ))
-(D:\TEX\tex/generic/babel/locale/ru\babel-russian.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/ru\babel
+-russian.tex
 Package babel Info: Importing font and identification data for russian
 (babel)             from babel-ru.ini. Reported on input line 11.
 )
-(D:\TEX\tex/generic/babel/locale/en\babel-english.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babel
+-english.tex
 Package babel Info: Importing font and identification data for english
 (babel)             from babel-en.ini. Reported on input line 11.
 )
-(D:\TEX\tex/latex/graphics\graphicx.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (D:\TEX\tex/latex/graphics\keyval.sty
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
 )
-(D:\TEX\tex/latex/graphics\graphics.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
- (D:\TEX\tex/latex/graphics\trig.sty
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
-(D:\TEX\tex/latex/graphics-cfg\graphics.cfg
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
 
-(D:\TEX\tex/latex/graphics-def\pdftex.def
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen142
 \Gin@req@width=\dimen143
-)
-(D:\TEX\tex/latex/amsmath\amsmath.sty
+) (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
 Package: amsmath 2023/05/13 v2.17o AMS math features
 \@mathmargin=\skip50
-
 For additional information on amsmath, use the `?' option.
-(D:\TEX\tex/latex/amsmath\amstext.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
- (D:\TEX\tex/latex/amsmath\amsgen.sty
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks20
 \ex@=\dimen144
 ))
-(D:\TEX\tex/latex/amsmath\amsbsy.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen145
-) (D:\TEX\tex/latex/amsmath\amsopn.sty
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count195
+\inf@bad=\count197
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count196
-\leftroot@=\count197
+\uproot@=\count198
+\leftroot@=\count199
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count198
-\DOTSCASE@=\count199
+\classnum@=\count266
+\DOTSCASE@=\count267
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -339,20 +350,20 @@ LaTeX Info: Redefining \Bigg on input line 725.
 \big@size=\dimen146
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count266
+\macc@depth=\count268
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count267
+\c@MaxMatrixCols=\count269
 \dotsspace@=\muskip16
-\c@parentequation=\count268
-\dspbrk@lvl=\count269
+\c@parentequation=\count270
+\dspbrk@lvl=\count271
 \tag@help=\toks21
-\row@=\count270
-\column@=\count271
-\maxfields@=\count272
+\row@=\count272
+\column@=\count273
+\maxfields@=\count274
 \andhelp@=\toks22
 \eqnshift@=\dimen147
 \alignsep@=\dimen148
@@ -367,18 +378,20 @@ LaTeX Info: Redefining \Relbar on input line 971.
 LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 )
-(D:\TEX\tex/latex/amsfonts\amssymb.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- (D:\TEX\tex/latex/amsfonts\amsfonts.sty
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (D:\TEX\tex/latex/cancel\cancel.sty
+)) (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
-) (D:\TEX\tex/latex/titlesec\titlesec.sty
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/titlesec\titlesec.sty
 Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \ttl@box=\box53
 \beforetitleunit=\skip53
@@ -389,21 +402,25 @@ Package: titlesec 2023/10/27 v2.16 Sectioning titles
 \titlewidth=\dimen155
 \titlewidthlast=\dimen156
 \titlewidthfirst=\dimen157
-) (D:\TEX\tex/latex/titling\titling.sty
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/titling\titling.sty
 Package: titling 2009/09/04 v2.1d maketitle typesetting
 \thanksmarkwidth=\skip55
 \thanksmargin=\skip56
 \droptitle=\skip57
-) (D:\TEX\tex/latex/geometry\geometry.sty
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-(D:\TEX\tex/generic/iftex\ifvtex.sty
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (D:\TEX\tex/generic/iftex\iftex.sty
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count273
-\Gm@cntv=\count274
-\c@Gm@tempcnt=\count275
+\Gm@cnth=\count275
+\Gm@cntv=\count276
+\c@Gm@tempcnt=\count277
 \Gm@bindingoffset=\dimen158
 \Gm@wd@mp=\dimen159
 \Gm@odd@mp=\dimen160
@@ -414,38 +431,49 @@ Package: iftex 2022/02/03 v1.0f TeX engine tests
 \Gm@layoutvoffset=\dimen165
 \Gm@dimlist=\toks26
 
-(D:\TEX\tex/latex/geometry\geometry.cfg))
-(D:\TEX\tex/latex/pgfplots\pgfplots.sty
-(D:\TEX\tex/generic/pgfplots\pgfplots.revision.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgfplots\pgfplots.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.rev
+ision.tex)
 Package: pgfplots 2021/05/15 v1.18.1 Data Visualization (1.18.1)
 
-(D:\TEX\tex/latex/pgf/frontendlayer\tikz.sty
-(D:\TEX\tex/latex/pgf/basiclayer\pgf.sty
-(D:\TEX\tex/latex/pgf/utilities\pgfrcs.sty
-(D:\TEX\tex/generic/pgf/utilities\pgfutil-common.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.
+sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.st
+y
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
+-common.tex
 \pgfutil@everybye=\toks27
 \pgfutil@tempdima=\dimen166
 \pgfutil@tempdimb=\dimen167
 )
-(D:\TEX\tex/generic/pgf/utilities\pgfutil-latex.def
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
+-latex.def
 \pgfutil@abb=\box54
 )
-(D:\TEX\tex/generic/pgf/utilities\pgfrcs.code.tex
-(D:\TEX\tex/generic/pgf\pgf.revision.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.
+code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
 Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
 Package: pgf 2023-01-15 v3.1.10 (3.1.10)
 
-(D:\TEX\tex/latex/pgf/basiclayer\pgfcore.sty
-(D:\TEX\tex/latex/pgf/systemlayer\pgfsys.sty
-(D:\TEX\tex/generic/pgf/systemlayer\pgfsys.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.
+sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.
+sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+s.code.tex
 Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 
-(D:\TEX\tex/generic/pgf/utilities\pgfkeys.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+.code.tex
 \pgfkeys@pathtoks=\toks28
 \pgfkeys@temptoks=\toks29
 
-(D:\TEX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+libraryfiltered.code.tex
 \pgfkeys@tmptoks=\toks30
 ))
 \pgf@x=\dimen168
@@ -460,80 +488,102 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 \pgf@yd=\dimen177
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count276
-\c@pgf@countb=\count277
-\c@pgf@countc=\count278
-\c@pgf@countd=\count279
+\c@pgf@counta=\count278
+\c@pgf@countb=\count279
+\c@pgf@countc=\count280
+\c@pgf@countd=\count281
 \t@pgf@toka=\toks31
 \t@pgf@tokb=\toks32
 \t@pgf@tokc=\toks33
-\pgf@sys@id@count=\count280
+\pgf@sys@id@count=\count282
 
-(D:\TEX\tex/generic/pgf/systemlayer\pgf.cfg
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
+fg
 File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
 )
 Driver file for pgf: pgfsys-pdftex.def
 
-(D:\TEX\tex/generic/pgf/systemlayer\pgfsys-pdftex.def
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+s-pdftex.def
 File: pgfsys-pdftex.def 2023-01-15 v3.1.10 (3.1.10)
 
-(D:\TEX\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+s-common-pdf.def
 File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 )))
-(D:\TEX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+ssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count281
-\pgfsyssoftpath@bigbuffer@items=\count282
+\pgfsyssoftpath@smallbuffer@items=\count283
+\pgfsyssoftpath@bigbuffer@items=\count284
 )
-(D:\TEX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
+sprotocol.code.tex
 File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
 ))
-(D:\TEX\tex/latex/xcolor\xcolor.sty
-Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
- (D:\TEX\tex/latex/graphics-cfg\color.cfg
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 227.
-
-(D:\TEX\tex/latex/graphics\mathcolor.ltx)
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
-Package xcolor Info: Model `RGB' extended on input line 1369.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1371.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1372.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
-Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
-Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
-Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
+Package xcolor Info: Driver file: pdftex.def on input line 274.
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1354.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcore.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+e.code.tex
 Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
 
-(D:\TEX\tex/generic/pgf/math\pgfmath.code.tex
-(D:\TEX\tex/generic/pgf/math\pgfmathutil.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathparser.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code
+.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.
+code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
+r.code.tex
 \pgfmath@dimen=\dimen178
-\pgfmath@count=\count283
+\pgfmath@count=\count285
 \pgfmath@box=\box55
 \pgfmath@toks=\toks34
 \pgfmath@stack@operand=\toks35
 \pgfmath@stack@operation=\toks36
 )
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathcalc.code.tex)
-(D:\TEX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count284
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.basic.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.trigonometric.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.random.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.comparison.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.base.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.round.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.misc.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
+ions.integerarithmetics.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.
+code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
+.code.tex
+\c@pgfmathroundto@lastzeros=\count286
 ))
-(D:\TEX\tex/generic/pgf/math\pgfint.code.tex)
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
+tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epoints.code.tex
 File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@picminx=\dimen179
 \pgf@picmaxx=\dimen180
@@ -550,104 +600,131 @@ File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@zx=\dimen191
 \pgf@zy=\dimen192
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@path@lastx=\dimen193
 \pgf@path@lasty=\dimen194
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epathusage.code.tex
 File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@shorten@end@additional=\dimen195
 \pgf@shorten@start@additional=\dimen196
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+escopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfpic=\box56
 \pgf@hbox=\box57
 \pgf@layerbox@main=\box58
-\pgf@picture@serial@count=\count285
+\pgf@picture@serial@count=\count287
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+egraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgflinewidth=\dimen197
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+etransformations.code.tex
 File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@pt@x=\dimen198
 \pgf@pt@y=\dimen199
 \pgf@pt@temp=\dimen256
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+equick.code.tex
 File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eobjects.code.tex
 File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epathprocessing.code.tex
 File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+earrows.code.tex
 File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfarrowsep=\dimen257
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen258
-\pgf@sys@shading@range@num=\count286
-\pgf@shadingcount=\count287
+\pgf@sys@shading@range@num=\count288
+\pgf@shadingcount=\count289
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eimage.code.tex
 File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+eexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfexternal@startupbox=\box59
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+elayers.code.tex
 File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+etransparency.code.tex
 File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+epatterns.code.tex
 File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
+erdf.code.tex
 File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
-(D:\TEX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
+shapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgfnodeparttextbox=\box60
 )
-(D:\TEX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
+plot.code.tex
 File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
-(D:\TEX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfco
+mp-version-0-65.sty
 Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
 \pgf@nodesepstart=\dimen259
 \pgf@nodesepend=\dimen260
 )
-(D:\TEX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfco
+mp-version-1-18.sty
 Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
 ))
-(D:\TEX\tex/latex/pgf/utilities\pgffor.sty
-(D:\TEX\tex/latex/pgf/utilities\pgfkeys.sty
-(D:\TEX\tex/generic/pgf/utilities\pgfkeys.code.tex))
-(D:\TEX\tex/latex/pgf/math\pgfmath.sty
-(D:\TEX\tex/generic/pgf/math\pgfmath.code.tex))
-(D:\TEX\tex/generic/pgf/utilities\pgffor.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.st
+y
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.s
+ty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
+.code.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code
+.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.
+code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen261
 \pgffor@skip=\dimen262
 \pgffor@stack=\toks37
 \pgffor@toks=\toks38
 ))
-(D:\TEX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z\tikz.code.tex
 Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 
-(D:\TEX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
+aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count288
+\pgf@plot@mark@count=\count290
 \pgfplotmarksize=\dimen263
 )
 \tikz@lastx=\dimen264
@@ -662,95 +739,131 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@figbox@bg=\box62
 \tikz@tempbox=\box63
 \tikz@tempbox@bg=\box64
-\tikztreelevel=\count289
-\tikznumberofchildren=\count290
-\tikznumberofcurrentchild=\count291
-\tikz@fig@count=\count292
+\tikztreelevel=\count291
+\tikznumberofchildren=\count292
+\tikznumberofcurrentchild=\count293
+\tikz@fig@count=\count294
 
-(D:\TEX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
+matrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count293
-\pgfmatrixcurrentcolumn=\count294
-\pgf@matrix@numberofcolumns=\count295
+\pgfmatrixcurrentrow=\count295
+\pgfmatrixcurrentcolumn=\count296
+\pgf@matrix@numberofcolumns=\count297
 )
-\tikz@expandcount=\count296
+\tikz@expandcount=\count298
 
-(D:\TEX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.te
-x
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
-))) (D:\TEX\tex/generic/pgfplots\pgfplots.code.tex
-(D:\TEX\tex/generic/pgfplots\pgfplotscore.code.tex
+)))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.cod
+e.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscore
+.code.tex
 \t@pgfplots@toka=\toks39
 \t@pgfplots@tokb=\toks40
 \t@pgfplots@tokc=\toks41
 \pgfplots@tmpa=\dimen272
-\c@pgfplots@coordindex=\count297
-\c@pgfplots@scanlineindex=\count298
+\c@pgfplots@coordindex=\count299
+\c@pgfplots@scanlineindex=\count300
 
-(D:\TEX\tex/generic/pgfplots/sys\pgfplotssysgeneric.code.tex))
-(D:\TEX\tex/generic/pgfplots/libs\pgfplotslibrary.code.tex)
-(D:\TEX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_loader.code.tex
-(D:\TEX\tex/generic/pgf/libraries\pgflibraryfpu.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgfplots
+sysgeneric.code.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgfplot
+slibrary.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompat
+ib\pgfplotsoldpgfsupp_loader.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
+aryfpu.code.tex)
 Package pgfplots: loading complementary utilities for your pgf version...
 \t@pgf@toka=\toks42
 \t@pgf@tokb=\toks43
 \t@pgf@tokc=\toks44
 
-(D:\TEX\tex/generic/pgfplots/oldpgfcompatib\pgfplotsoldpgfsupp_pgfutil-common-l
-ists.tex)) (D:\TEX\tex/generic/pgfplots/util\pgfplotsutil.code.tex
-(D:\TEX\tex/generic/pgfplots/liststructure\pgfplotsliststructure.code.tex)
-(D:\TEX\tex/generic/pgfplots/liststructure\pgfplotsliststructureext.code.tex)
-(D:\TEX\tex/generic/pgfplots/liststructure\pgfplotsarray.code.tex
-\c@pgfplotsarray@tmp=\count299
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/oldpgfcompat
+ib\pgfplotsoldpgfsupp_pgfutil-common-lists.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
+sutil.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
+e\pgfplotsliststructure.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
+e\pgfplotsliststructureext.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
+e\pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count301
 )
-(D:\TEX\tex/generic/pgfplots/liststructure\pgfplotsmatrix.code.tex)
-(D:\TEX\tex/generic/pgfplots/numtable\pgfplotstableshared.code.tex
-\c@pgfplotstable@counta=\count300
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
+e\pgfplotsmatrix.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/numtable\pgf
+plotstableshared.code.tex
+\c@pgfplotstable@counta=\count302
 \t@pgfplotstable@a=\toks45
 )
-(D:\TEX\tex/generic/pgfplots/liststructure\pgfplotsdeque.code.tex)
-(D:\TEX\tex/generic/pgfplots/util\pgfplotsbinary.code.tex
-(D:\TEX\tex/generic/pgfplots/util\pgfplotsbinary.data.code.tex))
-(D:\TEX\tex/generic/pgfplots/util\pgfplotsutil.verb.code.tex)
-(D:\TEX\tex/generic/pgfplots/libs\pgflibrarypgfplots.surfshading.code.tex
-\c@pgfplotslibrarysurf@no=\count301
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/liststructur
+e\pgfplotsdeque.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
+sbinary.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
+sbinary.data.code.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
+sutil.verb.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\pgflibr
+arypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count303
 
-(D:\TEX\tex/generic/pgfplots/sys\pgflibrarypgfplots.surfshading.pgfsys-pdftex.d
-ef))) (D:\TEX\tex/generic/pgfplots/util\pgfplotscolormap.code.tex
-(D:\TEX\tex/generic/pgfplots/util\pgfplotscolor.code.tex))
-(D:\TEX\tex/generic/pgfplots\pgfplotsstackedplots.code.tex)
-(D:\TEX\tex/generic/pgfplots\pgfplotsplothandlers.code.tex
-(D:\TEX\tex/generic/pgfplots\pgfplotsmeshplothandler.code.tex
-(D:\TEX\tex/generic/pgfplots\pgfplotsmeshplotimage.code.tex)))
-(D:\TEX\tex/generic/pgfplots\pgfplots.scaling.code.tex)
-(D:\TEX\tex/generic/pgfplots\pgfplotscoordprocessing.code.tex)
-(D:\TEX\tex/generic/pgfplots\pgfplots.errorbars.code.tex)
-(D:\TEX\tex/generic/pgfplots\pgfplots.markers.code.tex)
-(D:\TEX\tex/generic/pgfplots\pgfplotsticks.code.tex)
-(D:\TEX\tex/generic/pgfplots\pgfplots.paths.code.tex)
-(D:\TEX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.cod
-e.tex (D:\TEX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/sys\pgflibra
+rypgfplots.surfshading.pgfsys-pdftex.def)))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
+scolormap.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/util\pgfplot
+scolor.code.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsstac
+kedplots.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsplot
+handlers.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmesh
+plothandler.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotsmesh
+plotimage.code.tex)))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.sca
+ling.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotscoor
+dprocessing.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.err
+orbars.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.mar
+kers.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplotstick
+s.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots\pgfplots.pat
+hs.code.tex)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarydecorations.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
+decorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen273
 \pgfdecoratedremainingdistance=\dimen274
 \pgfdecoratedinputsegmentcompleteddistance=\dimen275
 \pgfdecoratedinputsegmentremainingdistance=\dimen276
 \pgf@decorate@distancetomove=\dimen277
-\pgf@decorate@repeatstate=\count302
+\pgf@decorate@repeatstate=\count304
 \pgfdecorationsegmentamplitude=\dimen278
 \pgfdecorationsegmentlength=\dimen279
 )
 \tikz@lib@dec@box=\box65
 )
-(D:\TEX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pat
-hmorphing.code.tex
-(D:\TEX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathmorphin
-g.code.tex))
-(D:\TEX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pat
-hreplacing.code.tex
-(D:\TEX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathreplaci
-ng.code.tex))
-(D:\TEX\tex/generic/pgfplots/libs\tikzlibrarypgfplots.contourlua.code.tex)
-\pgfplots@numplots=\count303
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarydecorations.pathmorphing.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorat
+ions\pgflibrarydecorations.pathmorphing.code.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibrarydecorations.pathreplacing.code.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorat
+ions\pgflibrarydecorations.pathreplacing.code.tex))
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgfplots/libs\tikzlib
+rarypgfplots.contourlua.code.tex)
+\pgfplots@numplots=\count305
 \pgfplots@xmin@reg=\dimen280
 \pgfplots@xmax@reg=\dimen281
 \pgfplots@ymin@reg=\dimen282
@@ -758,18 +871,21 @@ ng.code.tex))
 \pgfplots@zmin@reg=\dimen284
 \pgfplots@zmax@reg=\dimen285
 )
-(D:\TEX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryplotmarks.code.
-tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
+z/libraries\tikzlibraryplotmarks.code.tex
 File: tikzlibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
- (D:\TEX\tex/generic/pgf/libraries\pgflibraryplotmarks.code.tex
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
+aryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
-(D:\TEX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count304
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
+tex.def
+File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count306
 \l__pdf_internal_box=\box66
-) (2.aux)
-\openout1 = `2.aux'.
+) (1.aux)
+\openout1 = `1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
@@ -789,25 +905,29 @@ LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 32.
 LaTeX Font Info:    ... okay on input line 32.
 LaTeX Info: Redefining \th on input line 32.
 
-(D:\TEX\tex/context/base/mkii\supp-pdf.mkii
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
+ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count305
+\scratchcounter=\count307
 \scratchdimen=\dimen286
 \scratchbox=\box67
-\nofMPsegments=\count306
-\nofMParguments=\count307
+\nofMPsegments=\count308
+\nofMParguments=\count309
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count308
+\MPscratchCnt=\count310
 \MPscratchDim=\dimen287
-\MPnumerator=\count309
-\makeMPintoPDFobject=\count310
+\MPnumerator=\count311
+\makeMPintoPDFobject=\count312
 \everyMPtoPDFconversion=\toks47
-) (D:\TEX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
+ase.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(D:\TEX\tex/latex/00miktex\epstopdf-sys.cfg
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
+fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 *geometry* driver: auto-detecting
@@ -849,68 +969,90 @@ enefit from \pgfplotsset{compat=1.18} (current compat level: 1.9).
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 35.
 
-(D:\TEX\tex/latex/amsfonts\umsa.fd
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 35.
 
- (D:\TEX\tex/latex/amsfonts\umsb.fd
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 [1
 
-{C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
+{C:/Users/fandj/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
+<7.png, id=29, 593.21625pt x 446.41782pt>
+File: 7.png Graphic file (type png)
+<use 7.png>
+Package pdftex.def Info: 7.png  used on input line 135.
+(pdftex.def)             Requested size: 435.32422pt x 327.61249pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [3]
-Overfull \hbox (17.79755pt too wide) detected at line 149
-[] [] \OT1/cmr/m/n/10 = 2\OML/cmm/m/it/10 ^^Yi[][] \OT1/cmr/m/n/10 = 2\OML/cmm/
-m/it/10 ^^Yi[][] \OT1/cmr/m/n/10 = [][][] =
+
+LaTeX Warning: Command \cyrg invalid in math mode on input line 149.
+
+Missing character: There is no г in font cmr7!
+[4 <./7.png>] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 205--209
+
  []
 
-[4]
-Overfull \hbox (26.71066pt too wide) detected at line 166
-[] [] [] \OT1/cmr/m/n/10 = [] [] [] = [][][]
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 235--239
+
  []
 
-[5] [6] [7] [8] [9]
-Overfull \hbox (33.6108pt too wide) in paragraph at lines 347--347
-\T2A/cmr/bx/n/14.4 вле-тво-ря-ю-щее за-дан-но-му на-чаль-но-му усло-вию $[]$| 
+[7] [8]
+Overfull \hbox (22.95778pt too wide) detected at line 303
+\OT1/cmr/m/n/10 = 10\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 e\OT1
+/cmr/m/n/10 (\OML/cmm/m/it/10 z \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 5) = [] []
+ + [] [] = 10\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + \OML/cmm/m/it/10 e\OT1/cmr/m/
+n/10 (\OML/cmm/m/it/10 z \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 5) + [] [] [] (\O
+ML/cmm/m/it/10 z \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 5)[]
  []
 
-[10] (2.aux)
+[9] [10] (1.aux)
  ***********
-LaTeX2e <2023-06-01> patch level 1
-L3 programming layer <2023-08-29>
+LaTeX2e <2023-11-01>
+L3 programming layer <2023-12-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 26001 strings out of 475247
- 639736 string characters out of 5775613
- 1945785 words of memory out of 5000000
- 47104 multiletter control sequences out of 15000+600000
- 572416 words of font info for 76 fonts, out of 8000000 for 9000
+ 26150 strings out of 474495
+ 657050 string characters out of 5743934
+ 1949460 words of memory out of 5000000
+ 48003 multiletter control sequences out of 15000+600000
+ 574057 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,14n,103p,723b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm10
-00.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
-bx1200.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
-0\labx1440.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/d
-pi600\larm1200.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t
-2a/dpi600\larm1728.pk><D:/TEX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:/TEX
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/TEX/fonts/type1/public/amsfonts/
-cm/cmmi12.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><D:/TEX/fonts/ty
-pe1/public/amsfonts/cm/cmmi6.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmmi7.p
-fb><D:/TEX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><D:/TEX/fonts/type1/public/
-amsfonts/cm/cmr10.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/TEX/
-fonts/type1/public/amsfonts/cm/cmr5.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/
-cmr6.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr7.pfb><D:/TEX/fonts/type1/pu
-blic/amsfonts/cm/cmr8.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><D:
-/TEX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><D:/TEX/fonts/type1/public/amsfon
-ts/cm/cmsy7.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><D:/TEX/fonts/
-type1/public/amsfonts/latxfont/line10.pfb><D:/TEX/fonts/type1/public/amsfonts/s
-ymbols/msam10.pfb><D:/TEX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on 2.pdf (10 pages, 300476 bytes).
+ 99i,12n,107p,723b,702s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm07
+00.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
+rm1000.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
+0\labx1200.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/d
+pi600\labx1440.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t
+2a/dpi600\larm1200.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/
+lh-t2a/dpi600\larm1728.pk><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmex10.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTe
+X/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/fandj/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/fandj/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/fandj/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/
+fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
+:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr1
+2.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmr5.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/a
+msfonts/cm/cmr7.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/p
+ublic/amsfonts/cm/cmsy10.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/font
+s/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/fandj/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/fandj/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/latxfont/line10.pfb><C:/Users/fandj/App
+Data/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on 1.pdf (10 pages, 266427 bytes).
 PDF statistics:
- 311 PDF objects out of 1000 (max. 8388607)
+ 303 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 18 words of extra memory for PDF output out of 10000 (max. 10000000)
 
