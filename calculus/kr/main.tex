@@ -1,0 +1,87 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\linespread{1.3}
+
+\usepackage[english,russian]{babel} 
+\usepackage{fontspec} 
+\usepackage{amsmath }
+\defaultfontfeatures{Ligatures={TeX},Renderer=Basic} 
+\setmainfont[Ligatures={TeX,Historic}]{Times New Roman}
+\usepackage{geometry}
+\usepackage{indentfirst}
+\usepackage{spverbatim}
+\geometry{
+	left=3cm,
+	right=1cm,
+	top = 2cm,
+	bottom = 2cm
+}
+\setlength{\parindent}{1.25cm}
+
+% Настройка титульной страницы
+%\setlength{\droptitle}{-3em} % Отступ заголовка
+\title{Контрольная работа по теме численное интегрирование}
+\author{Вершинин Данил Алексеевич}
+\date{\today}
+
+% Настройка размеров страницы
+%\geometry{a4paper, margin=2cm}
+
+\begin{document}
+	
+	% Автоматическая генерация оглавления (см. далее)
+	\maketitle
+	\thispagestyle{empty}
+	
+	
+	\section{Формулировка задания}
+	Для вычисления $\int\limits_0^1 f(x)dx$ применяется составная формула трапеций. Оценить минимальное число разбиений N, обеспечивающее точность $10^{-3}$ на классе функций: \newline$||f''(x)||_{L_1} = \int\limits_0^1|f''(x)dx| \le 1$
+	
+	\section{Решение}
+	Погрешность вычисления интеграла на отрезке методом трапеций равна
+	\[R_{2i}(f)=\int\limits_{x_i}^{x_{i+1}}f(x)dx - (x_{i+1} - x_i)\frac{f(x_{i+1})+f(x_i)}{2} \eqno(1)\]
+	Заметим, что для оценки погрешности также справедлива следующая формула :
+	\[R_{2i}(f)=\frac{1}{2}\int\limits_{x_i}^{x_{i+1}} (x-x_i)(x-x_{i+1}) f''(x)dx\]
+	Её можно проверить, проинтегрировав два раза по частям
+	\[\frac{1}{2}\int\limits_{x_i}^{x_{i+1}} (x-x_i)(x-x_{i+1}) f''(x)dx \eqno(2)\]
+	Покажем это:
+	\[\frac{1}{2}\int\limits_{a}^{b} (x-a)(x-b) f''(x)dx = \begin{vmatrix}
+		u=(a-x)(b-x) & du=(x -a)+(x+b)dx\\
+		dv=f''(x) & v = f'(x)
+	\end{vmatrix}=\]
+	\[=\frac{1}{2} (a-x)(b-x)f''(x)\Big|_a^b- \frac{1}{2}\int\limits_{a}^b(2x - (a+b))f'(x)dx  = - \frac{1}{2}\int\limits_{a}^b(2x-(a+b))f'(x)dx=\]
+	\[ =-\int\limits_{a}^b\left(x-\frac{(a+b)}{2}\right)f'(x)dx = \begin{vmatrix}
+		u = x - \frac{a+b}{2} & du = dx\\
+		dv = f'(x)dx & v = f(x)
+	\end{vmatrix} = \] 
+	\[-(f(x)(x - \frac{a+b}{2}))\Big|_a^b + \int\limits_a^bf(x)dx = \int\limits_a^bf(x)dx  - \frac{b-a}{2}(f(b)-f(a)) = (1)\]
+	\newline
+	Оценим погрешность на отрезке
+	\[\frac{1}{2}\int\limits_{x_i}^{x_{i+1}} (x-x_i)(x-x_{i+1}) f''(x)dx \le \frac{\max|((x-x_i)(x-x_{i+1}))|}{2} \int\limits_{x_i}^{x_{i+1}}f''(x)dx \eqno (3)\]
+	Оценим $\max|((x-x_i)(x-x_{i+1}))|$:
+	\[\text{Очевидно, максимальное значение будет при }x = \frac{x_i + x_{i+1}}{2}, \text{ т.е $x$ -- середина отрезка }[x_i, x_{i+1}]\]	
+	Подставив это значение и получим:
+	\[\left(\frac{x_i + x_{i+1}}{2} - \frac{2x_i}{2}\right)\left(\frac{x_i + x_{i+1}}{2} - \frac{2x_{i+1}}{2}\right) = -\frac{(x_{i+1} - x_i)^2}{4} = -\frac{h^2}{4}\]
+	По модулю получим $h^2/4$. Тогда правая часть (3) перепишется слудующим образом:
+	\[\frac{\max|((x-x_i)(x-x_{i+1}))|}{2} \int\limits_{x_i}^{x_{i+1}}f''(x)dx = \frac{h^2}{8}\int\limits_{x_i}^{x_{i+1}}f''(x)dx \]
+	И так, мы получили оценку погрешности на отрезке. Теперь нехитрым образом найдём погрешность на всём интервале:
+	\[R_2(f) = \sum\limits_{i=1}^{n-1}\frac{h^2}{8}\int\limits_{x_i}^{x_{i+1}}f''(x)dx  = \frac{h^2}{8}\sum\limits_{i=1}^{n-1}\int\limits_{x_i}^{x_{i+1}}f''(x)dx\]
+	Зная, что наш интервал равен [0,1] и применяя свойство аддитивности для интегралов, получим:
+	\[\frac{h^2}{8}\sum\limits_{i=1}^{n-1}\int\limits_{x_i}^{x_{i+1}}f''(x)dx = \frac{h^2}{8}\int\limits_0^1f''(x)dx\eqno (4)\]
+	Но нам дано условие с модулем. Следовательно, применим свойства модуля интеграла:
+	\[1 \ge \int |f''(x)|dx \ge \left|\int f''(x)dx\right| \Rightarrow \left|\int f''(x)dx\right| \le 1\]
+	Раскрыв модуль, получим неравенство:
+	\[-1 \le \int f''(x)dx \le 1\]
+	Теперь мы можем оценить (4):
+	\[\frac{h^2}{8}\int\limits_{0}^{1}f''(x)dx \le \frac{h^2}{8}\]
+	Представив $h$ как отношение длины интервала (у нас 1)  и количества разбиений $n$, получим оценку:
+	\[R_2 =\frac{1}{8n^2}\]
+	Теперь остаётся только решить неравенство
+	\[10^{-3} \ge \frac{1}{8n^2} \Rightarrow n^2 \ge \frac{1000}{8} \Rightarrow n \ge \frac{10\sqrt{10}}{2\sqrt{2}}\]
+	\[n \ge 5\sqrt{5} \approx 11.18\]
+	Следовательно, если взять $n \ge 12$, то полученная точность будет удовлетворять условию.
+	\section{Ответ: N=12}
+	
+
+\end{document}

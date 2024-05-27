@@ -38,6 +38,27 @@
 	\section{Вычислить интеграл $\oint\limits_{|z-1|=3} \frac{ze^z}{\sin z}dz$}
 	\subsection{Решение:}
 	\[\oint\limits_{|z-1|=3} \frac{ze^z}{\sin z}dz - \text{Отношение голоморфных функций}\]
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			
+			
+			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
+			
+			\filldraw (1,0) circle (1pt) node[below]{1};
+			\filldraw (0,1) circle (1pt) node[left]{i};
+			
+			\draw[blue!40] (1,0) circle (3);
+			\draw[thick, ->] (1, 0) -- (1,3) node[midway,right] {$r=3$};
+			
+			
+			
+		\end{tikzpicture}
+		\caption{Контур интегрирования}
+		
+	\end{figure}
+	\newline
 	\text{Найдём особые точки:}
 	\[\sin z = 0 \Rightarrow z = \pi n, n \in \mathbb{Z}\]
 	\text{В круге $|z-1|=3 $ - две особые точки: $z=0, z = \pi$}
@@ -45,9 +66,9 @@
 	\[(\sin z)'\ = \cos z \bigg|_{z=0} = 1 \ne 0\]
 	\text{Следовательно, 0 - нуль первого порядка, следовательно УОТ, следователь вычет в ней равен 0}
 	Точка $\pi$ - нуль первого порядка знаменателя, числитель в ней не обращается в 0.
-	\[ze^z \bigg|_{z=\pi} = \pi e^ pi \ne 0; \ (\sin z )' = \cos z \bigg|_{z=\pi} = -1 \ne 0\]
+	\[ze^z \bigg|_{z=\pi} = \pi e^\pi \ne 0; \ (\sin z )' = \cos z \bigg|_{z=\pi} = -1 \ne 0\]
 	Следовательно, $z=\pi$ - полюс первого порядка, вычет вычисляется по формуле:
-	\[\underset{z=\pi}{\text{Res}} \frac{ze^z}{\sin z } = \frac{zez^z}{\cos z}\bigg|_{z=\pi} = -\pi e^\pi\]
+	\[\underset{z=\pi}{\text{Res}} \frac{ze^z}{\sin z } = \frac{ze^z}{\cos z}\bigg|_{z=\pi} = -\pi e^\pi\]
 	Поэтому интеграл равен:
 	\[\oint\limits_{|z-1|=3} \frac{ze^z}{\sin z}dz = 2\pi i \cdot (-\pi e^\pi) =  -2\pi^2 e^\pi i\]
 	
@@ -58,6 +79,27 @@
 	
 	\subsection{Решение:}
 	\[\oint\limits_{|z|=1}\frac{e^{2z}-z}{z^2} dz\]
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			
+			
+			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
+			
+			\filldraw (1,0) circle (1pt) node[below]{1};
+			\filldraw (0,1) circle (1pt) node[left]{i};
+			
+			\draw[blue!40] (0,0) circle (1);
+			\draw[thick, ->] (0, 0) -- (0,1) node[midway,right] {$r=1$};
+			
+			
+			
+		\end{tikzpicture}
+		\caption{Контур интегрирования}
+		
+	\end{figure}
+	\newline
 	Заметим, что \[\oint\limits_{|z|=1}\frac{e^{2z}-z}{z^2} dz = \oint\limits_{|z|=1}\left(\frac{e^{2z}}{z^2} - \frac{1}{z}\right) dz = \oint\limits_{|z|=1}\frac{e^{2z}}{z^2}dz - \oint\limits_{|z|=1}\frac{1}{z}dz\]
 	\[\underset{z=0}{\text{Res}} \frac{1}{z} = 1\]
 	\[\lim\limits_{z\rightarrow0} \frac{z^2 e^{2z}}{z^2} = 1 \text{ - видим, что 0 - полюс второго порядка}\]
@@ -70,7 +112,28 @@
 	\section{Вычислить интеграл $\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz$}
 	\subsection{Решение:}
 	\[\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz\]
-	Числитель и знаменатель голоморфные функции всюду в$\mathbb{C} \Rightarrow$ особые точки - это нули знаменателя, при условии $|z| < 0,05$
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			
+			
+			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
+			
+			\filldraw (3,0) circle (1pt) node[below]{0.1};
+			\filldraw (0,3) circle (1pt) node[left]{i0.1};
+			
+			\draw[blue!40] (0,0) circle (1.5);
+			\draw[thick, ->] (0, 0) -- (0,1.5) node[midway,right] {$r=0.05$};
+			
+			
+			
+		\end{tikzpicture}
+		\caption{Контур интегрирования}
+		
+	\end{figure}
+	\newline
+	Числитель и знаменатель голоморфные функции всюду в $\mathbb{C} \Rightarrow$ особые точки - это нули знаменателя, при условии $|z| < 0,05$
 	\[z^3\sh16\pi z \iff z^3 = 0 \ \lor \ \sh 16 \pi z = 0 \]
 	Последнее перепишем:
 	\[\sh 16 \pi z = 0 \Rightarrow e^{16\pi z} - e^{-16\pi z} = 0 \Rightarrow e^{16\pi z} = e^{-16\pi z} \Rightarrow e^{32\pi z} = 1 \Rightarrow 32\pi z = 2\pi n, n \in \mathbb{Z}\]
@@ -79,33 +142,59 @@
 	Итак, вычисления показывают, что:
 	\[\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz = 2\pi i \underset{z=0}{\text{Res}}\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}\]
 	Заметим, что $z=0$ - является нулём первого порядка для числителя:
-	\[e^{iz}-1\sin4z \big|_{z=0} = 0; \ (e^{iz} -1 -\sin 4z)'\big|_{z=0} = (ize^{iz} -4\cos 4z)\big|_{z=0} = i -4 \ne 0\]
+	\[e^{iz}-1-\sin4z \big|_{z=0} = 0; \ (e^{iz} -1 -\sin 4z)'\big|_{z=0} = (ize^{iz} -4\cos 4z)\big|_{z=0} = i -4 \ne 0\]
 	и нуль четвертого порядка для знаменателя, т.к. он является $z^3$ (3-го порядка) и $\sh16\pi z$ (первый порядок); $(\sh16\pi z)'\big|_{z=0} \ne 0$\newline
 	Поэтому, для дроби $z=0$ - полюс 3-го порядка. \newline Вычет равен:
-	\[\underset{z=0}{Res}\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z} = \frac{1}{2}\left(\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}\right)^{(2)}\]
+	\[\underset{z=0}{\text{Res}}\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z} = \frac{1}{2}\left(\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}\right)^{(2)}\]
 	Брать вторую производную достаточно затратное занятие. Найдём вычет через ряд Лорана
 	$z=0$ - полюс 3-го порядка, следовательно разложение будет иметь вид:
-	\[f(z) = \frac{C_{-3}}{z^3} + \frac{C_{-2}}{z^2} + \frac{C_{-1}}{z} + C_0 + \dots \big| \cdot \sh16\pi z\]
+	\[f(z) = \frac{C_{-3}}{z^3} + \frac{C_{-2}}{z^2} + \frac{C_{-1}}{z} + C_0 + \dots \big| \cdot z^3\sh16\pi z\]
 	\[e^{iz} -1 -\sin4z = \sh 16 \pi z (C_{-3} + C_{-2}z + C_{-1}z^2 + C_{0}z^3 + \dots)\]
 	Разложим левую часть:
-	\[e^{iz} -1 -\sin4z = iz + \frac{(iz)^2}{2!} + \frac{(iz)^3}{3!} + \dots - (4z - \frac{(4z)^3}{3!}) = (i-4)z + \frac{(iz)^2}{2} + \frac{4^3 - i}{6}z^3 + \dots\]
+	\[e^{iz} -1 -\sin4z = iz + \frac{(iz)^2}{2!} + \frac{(iz)^3}{3!} + \dots - (4z - \frac{(4z)^3}{3!} + \dots) = (i-4)z + \frac{(iz)^2}{2} + \frac{4^3 - i}{6}z^3 + \dots\]
 	Справа получили разложение:
-	\[\sh16\pi z (C_{-3} +\dots) = (16\pi z + \frac{(16\pi z)^3}{6} + \dots)(C_{-3} + C_{-2}z + C_{-1}z^2) + C_{0}z^3 + o(z^4) = \]
+	\[\sh16\pi z (C_{-3} +\dots) = (16\pi z + \frac{(16\pi z)^3}{6} + \dots)(C_{-3} + C_{-2}z + C_{-1}z^2 + C_{0}z^3 + o(z^4)) = \]
 	\[=16\pi z C_{-3} + 16 \pi C_{-2}z^2 + \left[\frac{(16\pi)^3}{6}C_{-3} + 16\pi C_{-1}\right]z^3 + \dots\]
 	Приравниваем коэффициенты:
 	\[\begin{Bmatrix}
 		i-4 = 16\pi C_{-3} & \Rightarrow &C_{-3} =  \frac{i-4}{16\pi} \\
-		\frac{1}{2} = 16\pi C_{-2} & \Rightarrow & C_{-2} = \frac{1}{32\pi}\\
+		-\frac{1}{2} = 16\pi C_{-2} & \Rightarrow & C_{-2} = -\frac{1}{32\pi}\\
 		\frac{4^3-i}{6} = \frac{(16\pi)^3}{6}C_{-3} + 16\pi C_{-1} & \Rightarrow & C_{-1} = \left(\frac{4^3 - i}{6} - \frac{(16\pi)^3}{6}C_{-3}\right)\frac{1}{16\pi}
 		
 	\end{Bmatrix}\]
 	Таким образом:
-	\[\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz = 2\pi i \cdot \frac{1}{16\pi}\left(\frac{4^3-i}{6} - \frac{(16\pi)^3}{6}\cdot\frac{(i-4)}{16\pi}\right) = \frac{i}{8\pi}\left(\frac{4-i - (16\pi)^2(i-4)}{6}\right)\]
-	\subsection{Ответ:$\frac{i}{8\pi}\left(\frac{4-i - (16\pi)^2(i-4)}{6}\right)$}
+	\[\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz = 2\pi i \cdot \frac{1}{16\pi}\left(\frac{4^3-i}{6} - \frac{(16\pi)^3}{6}\cdot\frac{(i-4)}{16\pi}\right) = \frac{i}{8}\left(\frac{4^3-i - (16\pi)^2(i-4)}{6}\right)\]
+	\subsection{Ответ:$\frac{i}{8}\left(\frac{4^3-i - (16\pi)^2(i-4)}{6}\right)$}
 	
-	
+	\newpage
 	\section{Вычислить интеграл $\oint\limits_{|z+3|=2}\left(z \sh \frac{i}{z+3} - \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z}\right) dz$}
 	\subsection{Решение:}
+	
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			
+			
+			\draw[thick, ->] (-6,0) -- (2,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
+			
+			\filldraw (1,0) circle (1pt) node[below]{1};
+			\filldraw (0,1) circle (1pt) node[left]{i};
+			\filldraw (-3,0) circle (2pt) node[below]{-3};
+			
+			\filldraw (-2,0) circle (2pt) node[below]{-2};
+			\filldraw (0,0) circle (2pt) node[ below left]{0};
+			
+			\draw[blue!40] (-3,0) circle (2);
+			\draw[thick, ->] (-3, 0) -- (-3,2) node[midway,right] {$r=2$};
+			
+			
+			
+		\end{tikzpicture}
+		\caption{Контур интегрирования}
+		
+	\end{figure}
+	
 	Интеграл суммы равен сумме интегралов, поэтому:
 	\[\oint\limits_{|z+3|=2}\left(z \sh \frac{i}{z+3} - \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z}\right) dz = \oint\limits_{|z+3|=2}z \sh \frac{i}{z+3}dz - \oint\limits_{|z+3|=2} \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} dz\]
 	Рассмотрим первый интеграл. Очевидно, что подынтегральное выражение имеет в $\mathbb{C}$ только одну изолированную особую точку:  $z=-3$ -  центр окружности, по которой интегрируем:
@@ -165,7 +254,7 @@
 	Первый из корней лежит вне круга $|z|<1$, поэтому:
 	\[\frac{4}{i}\oint\limits_{|z|=1}\frac{zdz}{\left(\sqrt{5}z^2 + 2\sqrt{7}z + \sqrt{5}\right)^2} = \frac{4}{i}\oint\limits_{|z|=1} \frac{zdz}{5\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2\left(z+\frac{\sqrt{7}-\sqrt{2}}{\sqrt{5}}\right)^2} = \frac{8\pi}{5}\underset{z=-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}}{\text{Res}} \frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2\left(z+\frac{\sqrt{7}-\sqrt{2}}{\sqrt{5}}\right)^2}\]
 	Очевидно, для выражение под знаком вычета точка $z =-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}$ является полюсом второго порядка, поэтому вычет вычисляется по формуле для полюса порядка n (n = 2)
-	\[\underset{z=-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}}{\text{Res}} \frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2\left(z+\frac{\sqrt{7}-\sqrt{2}}{\sqrt{5}}\right)^2} = \lim\limits_{z \rightarrow-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}} \left(\frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2}\right)' = \lim\limits_{z \rightarrow-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}} \frac{-5\sqrt{5}x + 5\sqrt{7} + 5\sqrt{2}}{(\sqrt{5}x + \sqrt{7} + \sqrt{2})^3} = \]
+	\[\underset{z=-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}}{\text{Res}} \frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2\left(z+\frac{\sqrt{7}-\sqrt{2}}{\sqrt{5}}\right)^2} = \lim\limits_{z \rightarrow-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}} \left(\frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2}\right)' = \lim\limits_{z \rightarrow-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}} \frac{-5\sqrt{5}z + 5\sqrt{7} + 5\sqrt{2}}{(\sqrt{5}z + \sqrt{7} + \sqrt{2})^3} = \]
 	\[=\frac{5\sqrt{14}}{16}\]
 	Окончательно получаем
 	\subsection{Ответ:}
@@ -181,12 +270,33 @@
 		-\frac{1}{2} + i \frac{\sqrt{3}}{2}\\
 		-\frac{1}{2} - i \frac{\sqrt{3}}{2}
 	\end{cases}\]
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			
+			
+			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
+			
+			\filldraw (1,0) circle (1pt) node[below]{1};
+			\filldraw (0,1) circle (1pt) node[left]{i};
+			
+			\filldraw (-0.5, 0.866) circle (2pt) node[above left]{$-\frac{1}{2} + i\frac{\sqrt{3}}{2}$};
+			\filldraw (-0.5, -0.866) circle (2pt) node[below left]{$-\frac{1}{2} - i\frac{\sqrt{3}}{2}$};
+			
+			
+			
+		\end{tikzpicture}
+		\caption{Корни знаменателя. Только один лежит в верхней полуплоскости}
+		
+	\end{figure}
+	\newline
 	Теперь можно преобразовать знаменатель:
 	\[f(z) = \frac{z^2 + 1}{\left(z+\frac{1}{2} + i\frac{\sqrt{3}}{2}\right)^2 \left(z+\frac{1}{2} - i\frac{\sqrt{3}}{2}\right)^2}\]
 	$f(z)$ голоморфна всюду в верхней полуплоскости, кроме точки $z_1 = -\frac{1}{2} + i \frac{\sqrt{3}}{2}$. Очевидно, что она является полюсом второго порядка.\newline
 	Кроме того
 	\[\sup\limits_{\substack{|z|= R\\\Im\ge0}} \frac{|z^2+1||z|}{|(z^2+z+1)^2|} = \sup\limits_{\substack{|z|= R\\\Im\ge0}} \frac{|z^2+1||z|}{|z^2+z+1|^2} \le \sup\limits_{\substack{|z|= R\\\Im\ge0}}\frac{(|z^2| + 1)|z|}{||z|^2 + |z| - 1|^2} = \frac{(R^2 + 1)R}{(R^2 +R-1)} \underset{R\rightarrow\infty}{\rightarrow}0\]
-	Таким образом, выполнены все условия теоремы о вычислении интегралов вида $\int_{-\infty}^{+\infty}f(x)dx$. А так как $z_2 = -\frac{1}{2} - i \frac{\sqrt{3}}{2}$ лежит в нижней полуплоскости, поэтому:
+	Таким образом, выполнены все условия теоремы о вычислении интегралов вида $\int_{-\infty}^{+\infty}f(x)dx$. А так как $z_2 = -\frac{1}{2} - i \frac{\sqrt{3}}{2}$ лежит в нижней полуплоскости, следовательно:
 	\[\int\limits_{-\infty}^{+\infty} \frac{x^2+1}{\left(x^2 + x + 1\right)^2}dx = 2\pi i \left(\underset{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}}{\text{Res}}\frac{z^2 + 1}{\left(z+\frac{1}{2} + i\frac{\sqrt{3}}{2}\right)^2 \left(z+\frac{1}{2} - i\frac{\sqrt{3}}{2}\right)^2}\right)\]
 	Вычет вычисляем по формуле для полюсов 2-го порядка:
 	\[\underset{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}}{\text{Res}} f(z) = \lim\limits_{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}} \left(\frac{z^2+1}{\left(z + \frac{1}{2} + i\frac{\sqrt{3}}{2}\right)^2}\right)' = \lim\limits_{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}} \frac{8z+8\sqrt{3}iz - 16}{(2z+1+\sqrt{3}i)^3} =\]
@@ -195,7 +305,7 @@
 	\[\int\limits_{-\infty}^{+\infty} \frac{x^2+1}{\left(x^2 + x + 1\right)^2}dx = \frac{2\pi i \cdot 4}{3\sqrt{3}i} = \frac{8\pi}{3\sqrt{3}}\]
 	\subsection{Ответ: $\frac{8\pi}{3\sqrt{3}}$}
 	
-	
+	\newpage
 	\section{Вычислить интеграл $\int\limits_{-\infty}^{+\infty} \frac{\sin 2x}{\left(x^2 - 2x + 10\right)}dx$}
 
 	\subsection{Решение:}
@@ -204,6 +314,26 @@
 		1 + 3i \\
 		1 - 3i
 	\end{cases}\]
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+			
+			
+			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
+			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
+			
+			\filldraw (1,0) circle (1pt) node[below]{1};
+			\filldraw (0,1) circle (1pt) node[left]{i};
+			
+			\filldraw (1,3) circle (2pt) node[above, right]{$1+3i$};
+			\filldraw (1,-3) circle (2pt) node[above, right]{$1-3i$};
+			
+			
+		\end{tikzpicture}
+		\caption{Корни знаменателя. Только один лежит в верхней полуплоскости}
+		
+	\end{figure}
+	\newline
 	Заметим, что $\sin(2x) = \Im e^{i2x} $ и, применяя основную теорему о вычетах, получим:
 	\[\int\limits_{-\infty}^{+\infty} \frac{\sin 2x}{\left(x^2 - 2x + 10\right)}dx = \Im \left(\int\limits_{-\infty}^{+\infty} \frac{e^{i2z}}{\left(z^2 - 2z + 10\right)}dz\right) = \Im \left(2\pi i \sum_{\Im z \ge 0} \underset{z=z_k}{\text{Res}}f(z)e^{2iz}\right)\]
 	Кроме того
