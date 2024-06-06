@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.26)  5 JUN 2024 13:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (MiKTeX 24.4) (preloaded format=pdflatex 2024.5.26)  5 JUN 2024 14:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./main.tex
-(main.tex
+**./2.tex
+(2.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
 (D:\TEX\tex/latex/base\article.cls
@@ -771,8 +771,8 @@ File: pgflibraryplotmarks.code.tex 2023-01-15 v3.1.10 (3.1.10)
 File: l3backend-pdftex.def 2024-04-11 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count308
 \l__pdf_internal_box=\box66
-) (main.aux)
-\openout1 = `main.aux'.
+) (2.aux)
+\openout1 = `2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
 LaTeX Font Info:    ... okay on input line 33.
@@ -860,37 +860,30 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
  (D:\TEX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+Underfull \hbox (badness 10000) in paragraph at lines 80--82
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
 [1
 
-{C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2]
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-220.
- (D:\TEX\tex/latex/cyrillic\t2acmtt.fd
-File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) [3] (main.bbl) [4] (main.aux)
+{C:/Users/Admin/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2]
+[3] (2.bbl) [4] (2.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 26102 strings out of 474369
- 643115 string characters out of 5758336
+ 26096 strings out of 474369
+ 642674 string characters out of 5758336
  1944754 words of memory out of 5000000
- 48079 multiletter control sequences out of 15000+600000
- 569625 words of font info for 69 fonts, out of 8000000 for 9000
+ 48076 multiletter control sequences out of 15000+600000
+ 570134 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,9n,93p,726b,684s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,8n,93p,806b,682s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati10
 00.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\la
-tt1000.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
+bx1200.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi60
 0\larm1000.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/d
 pi600\labx1440.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t
 2a/dpi600\larm1200.pk> <C:\Users\Admin\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/
@@ -899,9 +892,9 @@ lh-t2a/dpi600\larm1728.pk><D:/TEX/fonts/type1/public/amsfonts/cm/cmex10.pfb><D:
 nts/cm/cmmi7.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/TEX/fonts
 /type1/public/amsfonts/cm/cmr7.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmsy1
 0.pfb><D:/TEX/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
-Output written on main.pdf (4 pages, 164100 bytes).
+Output written on 2.pdf (4 pages, 149816 bytes).
 PDF statistics:
- 336 PDF objects out of 1000 (max. 8388607)
+ 271 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
