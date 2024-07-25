@@ -1,518 +1,60 @@
 \documentclass{article}
-
+\usepackage{amsmath}
+\usepackage{amsthm}
 \usepackage[T2A]{fontenc} % Кодировка шрифта
 \usepackage[utf8]{inputenc} % Кодировка ввода
 \usepackage[english,russian]{babel} % Языковые настройки
-\usepackage{graphicx} % Для вставки изображений
-\usepackage{amsmath} % Для использования математических формул
-\usepackage{amssymb}
-\usepackage{cancel}
-\usepackage{amsfonts} % Для использования математических символов и шрифтов
-\usepackage{titlesec} % Для настройки заголовков разделов
-\usepackage{titling} % Для настройки титульной страницы
-\usepackage{geometry} % Для настройки размеров страницы
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.9}
+% Определение стилей для теорем, лемм и замечаний
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{corollary}[theorem]{Следствие}
+\newtheorem{proposition}[theorem]{Утверждение}
 
-% Настройка заголовков разделов
-\titleformat{\section}
-{\normalfont\Large\bfseries}{\arabic{section}}{1em}{}
-\titleformat{\subsection}
-{\normalfont\large\bfseries}{}{1em}{}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\newtheorem{example}[theorem]{Пример}
 
-% Настройка титульной страницы
-\setlength{\droptitle}{-3em} % Отступ заголовка
-\title{\vspace{-1cm}ИДЗ №1}
-\author{Вершинин Данил Алексеевич}
-\date{\today}
-
-% Настройка размеров страницы
-\geometry{a4paper, margin=2cm}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Замечание}
 
 \begin{document}
+	\tableofcontents
 	
-	% Автоматическая генерация оглавления (см. далее)
-	\maketitle
-	%\tableofcontents
-	%\chapter{Задачи}
-	\section{Вычислить интеграл $\oint\limits_{|z-1|=3} \frac{ze^z}{\sin z}dz$}
-	\subsection{Решение:}
-	\[\oint\limits_{|z-1|=3} \frac{ze^z}{\sin z}dz - \text{Отношение голоморфных функций}\]
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}
-			
-			
-			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
-			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
-			
-			\filldraw (1,0) circle (1pt) node[below]{1};
-			\filldraw (0,1) circle (1pt) node[left]{i};
-			
-			\draw[blue!40] (1,0) circle (3);
-			\draw[thick, ->] (1, 0) -- (1,3) node[midway,right] {$r=3$};
-			
-			
-			
-		\end{tikzpicture}
-		\caption{Контур интегрирования}
-		
-	\end{figure}
-	\newline
-	\text{Найдём особые точки:}
-	\[\sin z = 0 \Rightarrow z = \pi n, n \in \mathbb{Z}\]
-	\text{В круге $|z-1|=3 $ - две особые точки: $z=0, z = \pi$}
-	\[(ze^z)' = e^z + ze^z \bigg|_{z=0} = 1 \ne 0\]
-	\[(\sin z)'\ = \cos z \bigg|_{z=0} = 1 \ne 0\]
-	\text{Следовательно, 0 - нуль первого порядка, следовательно УОТ, следователь вычет в ней равен 0}
-	Точка $\pi$ - нуль первого порядка знаменателя, числитель в ней не обращается в 0.
-	\[ze^z \bigg|_{z=\pi} = \pi e^\pi \ne 0; \ (\sin z )' = \cos z \bigg|_{z=\pi} = -1 \ne 0\]
-	Следовательно, $z=\pi$ - полюс первого порядка, вычет вычисляется по формуле:
-	\[\underset{z=\pi}{\text{Res}} \frac{ze^z}{\sin z } = \frac{ze^z}{\cos z}\bigg|_{z=\pi} = -\pi e^\pi\]
-	Поэтому интеграл равен:
-	\[\oint\limits_{|z-1|=3} \frac{ze^z}{\sin z}dz = 2\pi i \cdot (-\pi e^\pi) =  -2\pi^2 e^\pi i\]
+	\section{Примеры теорем и лемм}
 	
-	\subsection{Ответ:}
-	$ -2\pi^2 e^\pi i$
+	\begin{theorem}
+		\label{theorem:example}
+		Это пример теоремы. Текст теоремы может содержать математические формулы, например, \( E = mc^2 \).
+	\end{theorem}
 	
-	\section{Вычислить интеграл $\oint\limits_{|z|=1}\frac{e^{2z}-z}{z^2} dz$}
+	\begin{proof}
+		Это пример доказательства теоремы \ref{theorem:example}. Доказательства обычно содержат последовательные логические шаги.
+	\end{proof}
 	
-	\subsection{Решение:}
-	\[\oint\limits_{|z|=1}\frac{e^{2z}-z}{z^2} dz\]
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}
-			
-			
-			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
-			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
-			
-			\filldraw (1,0) circle (1pt) node[below]{1};
-			\filldraw (0,1) circle (1pt) node[left]{i};
-			
-			\draw[blue!40] (0,0) circle (1);
-			\draw[thick, ->] (0, 0) -- (0,1) node[midway,right] {$r=1$};
-			
-			
-			
-		\end{tikzpicture}
-		\caption{Контур интегрирования}
-		
-	\end{figure}
-	\newline
-	Заметим, что \[\oint\limits_{|z|=1}\frac{e^{2z}-z}{z^2} dz = \oint\limits_{|z|=1}\left(\frac{e^{2z}}{z^2} - \frac{1}{z}\right) dz = \oint\limits_{|z|=1}\frac{e^{2z}}{z^2}dz - \oint\limits_{|z|=1}\frac{1}{z}dz\]
-	\[\underset{z=0}{\text{Res}} \frac{1}{z} = 1\]
-	\[\lim\limits_{z\rightarrow0} \frac{z^2 e^{2z}}{z^2} = 1 \text{ - видим, что 0 - полюс второго порядка}\]
-	Разложим $\frac{e^{2z}}{z^2}$ в ряд Лорана в окрестности точки 0:
-	\[\frac{1}{z^2}\left(1 + 2z + \frac{4z^2}{2!} + \dots\right) = \frac{1}{z^2} + \frac{2}{z} + \frac{4}{2!} + \dots\]
-	Отсюда видим, что вычет равен 2. Следовательно интеграл равен:
-	\[\oint\limits_{|z|=1}\frac{e^{2z}-z}{z^2} dz = 2\pi i (2 - 1) = 2\pi i\]
-	\subsection{Ответ: $2\pi i$}
+	\begin{lemma}
+		Это пример леммы. Леммы часто используются для доказательства теорем.
+	\end{lemma}
 	
-	\section{Вычислить интеграл $\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz$}
-	\subsection{Решение:}
-	\[\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz\]
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}
-			
-			
-			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
-			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
-			
-			\filldraw (3,0) circle (1pt) node[below]{0.1};
-			\filldraw (0,3) circle (1pt) node[left]{i0.1};
-			
-			\draw[blue!40] (0,0) circle (1.5);
-			\draw[thick, ->] (0, 0) -- (0,1.5) node[midway,right] {$r=0.05$};
-			
-			
-			
-		\end{tikzpicture}
-		\caption{Контур интегрирования}
-		
-	\end{figure}
-	\newline
-	Числитель и знаменатель голоморфные функции всюду в $\mathbb{C} \Rightarrow$ особые точки - это нули знаменателя, при условии $|z| < 0,05$
-	\[z^3\sh16\pi z \iff z^3 = 0 \ \lor \ \sh 16 \pi z = 0 \]
-	Последнее перепишем:
-	\[\sh 16 \pi z = 0 \Rightarrow e^{16\pi z} - e^{-16\pi z} = 0 \Rightarrow e^{16\pi z} = e^{-16\pi z} \Rightarrow e^{32\pi z} = 1 \Rightarrow 32\pi z = 2\pi n, n \in \mathbb{Z}\]
-	Следующая оценка покажет, что в $|z| < 0,05$ попадает тольо одна точка ($z=0$)
-	\[n \ne 0 \Rightarrow \left|\frac{\pi}{16}n\right| \ge \left|\frac{\pi}{16}\right| > \frac{3}{16} > \frac{1}{20}\]
-	Итак, вычисления показывают, что:
-	\[\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz = 2\pi i \underset{z=0}{\text{Res}}\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}\]
-	Заметим, что $z=0$ - является нулём первого порядка для числителя:
-	\[e^{iz}-1-\sin4z \big|_{z=0} = 0; \ (e^{iz} -1 -\sin 4z)'\big|_{z=0} = (ize^{iz} -4\cos 4z)\big|_{z=0} = i -4 \ne 0\]
-	и нуль четвертого порядка для знаменателя, т.к. он является $z^3$ (3-го порядка) и $\sh16\pi z$ (первый порядок); $(\sh16\pi z)'\big|_{z=0} \ne 0$\newline
-	Поэтому, для дроби $z=0$ - полюс 3-го порядка. \newline Вычет равен:
-	\[\underset{z=0}{\text{Res}}\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z} = \frac{1}{2}\left(\frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}\right)^{(2)}\]
-	Брать вторую производную достаточно затратное занятие. Найдём вычет через ряд Лорана
-	$z=0$ - полюс 3-го порядка, следовательно разложение будет иметь вид:
-	\[f(z) = \frac{C_{-3}}{z^3} + \frac{C_{-2}}{z^2} + \frac{C_{-1}}{z} + C_0 + \dots \big| \cdot z^3\sh16\pi z\]
-	\[e^{iz} -1 -\sin4z = \sh 16 \pi z (C_{-3} + C_{-2}z + C_{-1}z^2 + C_{0}z^3 + \dots)\]
-	Разложим левую часть:
-	\[e^{iz} -1 -\sin4z = iz + \frac{(iz)^2}{2!} + \frac{(iz)^3}{3!} + \dots - (4z - \frac{(4z)^3}{3!} + \dots) = (i-4)z + \frac{(iz)^2}{2} + \frac{4^3 - i}{6}z^3 + \dots\]
-	Справа получили разложение:
-	\[\sh16\pi z (C_{-3} +\dots) = (16\pi z + \frac{(16\pi z)^3}{6} + \dots)(C_{-3} + C_{-2}z + C_{-1}z^2 + C_{0}z^3 + o(z^4)) = \]
-	\[=16\pi z C_{-3} + 16 \pi C_{-2}z^2 + \left[\frac{(16\pi)^3}{6}C_{-3} + 16\pi C_{-1}\right]z^3 + \dots\]
-	Приравниваем коэффициенты:
-	\[\begin{Bmatrix}
-		i-4 = 16\pi C_{-3} & \Rightarrow &C_{-3} =  \frac{i-4}{16\pi} \\
-		-\frac{1}{2} = 16\pi C_{-2} & \Rightarrow & C_{-2} = -\frac{1}{32\pi}\\
-		\frac{4^3-i}{6} = \frac{(16\pi)^3}{6}C_{-3} + 16\pi C_{-1} & \Rightarrow & C_{-1} = \left(\frac{4^3 - i}{6} - \frac{(16\pi)^3}{6}C_{-3}\right)\frac{1}{16\pi}
-		
-	\end{Bmatrix}\]
-	Таким образом:
-	\[\oint\limits_{|z|=0,05} \frac{e^{iz} - 1 -\sin 4z}{z^3 \sh 16 \pi z}dz = 2\pi i \cdot \frac{1}{16\pi}\left(\frac{4^3-i}{6} - \frac{(16\pi)^3}{6}\cdot\frac{(i-4)}{16\pi}\right) = \frac{i}{8}\left(\frac{4^3-i - (16\pi)^2(i-4)}{6}\right)\]
-	\subsection{Ответ:$\frac{i}{8}\left(\frac{4^3-i - (16\pi)^2(i-4)}{6}\right)$}
+	\begin{corollary}
+		Это пример следствия, которое вытекает из теоремы или леммы.
+	\end{corollary}
 	
-	\newpage
-	\section{Вычислить интеграл $\oint\limits_{|z+3|=2}\left(z \sh \frac{i}{z+3} - \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z}\right) dz$}
-	\subsection{Решение:}
+	\begin{proposition}
+		Это пример утверждения, которое можно доказать аналогично теореме или лемме.
+	\end{proposition}
 	
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}
-			
-			
-			\draw[thick, ->] (-6,0) -- (2,0) node[below] {$\Re(z)$};
-			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
-			
-			\filldraw (1,0) circle (1pt) node[below]{1};
-			\filldraw (0,1) circle (1pt) node[left]{i};
-			\filldraw (-3,0) circle (2pt) node[below]{-3};
-			
-			\filldraw (-2,0) circle (2pt) node[below]{-2};
-			\filldraw (0,0) circle (2pt) node[ below left]{0};
-			
-			\draw[blue!40] (-3,0) circle (2);
-			\draw[thick, ->] (-3, 0) -- (-3,2) node[midway,right] {$r=2$};
-			
-			
-			
-		\end{tikzpicture}
-		\caption{Контур интегрирования}
-		
-	\end{figure}
+	\begin{definition}
+		Это пример определения. Определения нужны для уточнения понятий и терминов.
+	\end{definition}
 	
-	Интеграл суммы равен сумме интегралов, поэтому:
-	\[\oint\limits_{|z+3|=2}\left(z \sh \frac{i}{z+3} - \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z}\right) dz = \oint\limits_{|z+3|=2}z \sh \frac{i}{z+3}dz - \oint\limits_{|z+3|=2} \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} dz\]
-	Рассмотрим первый интеграл. Очевидно, что подынтегральное выражение имеет в $\mathbb{C}$ только одну изолированную особую точку:  $z=-3$ -  центр окружности, по которой интегрируем:
-	\[\oint\limits_{|z+3|=2}z \sh \frac{i}{z+3}dz\]
-	Применяя основную теорему о вычетах, получим:
-	\[\oint\limits_{|z+3|=2}z \sh \frac{i}{z+3}dz = 2\pi i \underset{z=-3}{\text{Res}}z\sh\frac{i}{z+3}\]
-	Разложим подынтегральную функцию в ряд лорана в окрестности точки $z=-3$:
-	\[z\sh\frac{i}{z+3} = (-3 + (z+3))\left(\frac{i}{z+3} + \frac{i^3}{3!(z+3)^3} + \frac{i^5}{5!(z+3)^5} +\dots\right) = i - \frac{3i}{z+3} - \frac{i}{3!(z+3)^2} + \frac{3i}{3!(z+3)^3} + \dots\]
-	Отсюда видим, что разложение содержит бесконечно много ненулевых коэффициентов при отрицательных степенях $(z+3)$, значит $z=-3$ - СОТ. \newline 
-	Кроме того, вычет в этой точке 
-	\[\underset{z=-3}{\text{Res}}z\sh\frac{i}{z+3} = -3i\]
-	Значит,
-	\[\oint\limits_{|z+3|=2}z \sh \frac{i}{z+3}dz = 6\pi\]
-	Теперь займёмся вторым интегралом:
-	\[\oint\limits_{|z+3|=2} \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} dz\]
-	Особыми точками подынтегральной функции являются нули знаменателя $z=0$ и $z=-2$. Но точка $z=0$ лежит вне окружности $|z+3|=2$, поэтому по основной теореме Коши о вычетах имеем:
-	\[\oint\limits_{|z+3|=2} \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} dz = 2\pi i \underset{z=-2}{\text{Res}}\frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} \]
-	Но $z=-2$ полюс второго порядка, так как является, очевидно, нулем второго порядка для знаменателя, а числитель в ней $\ne 0$. По
-	формуле для вычисления вычета в полюсе порядка 2
-	\[\underset{z=-2}{\text{Res}}\frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} = \lim\limits_{z\rightarrow -2} \left(\frac{4 \sh \frac{\pi i z}{4}}{z}\right)' = 4\lim\limits_{z\rightarrow-2}\frac{\frac{\pi i}{4}\ch\frac{\pi i z}{4}z - \sh\frac{\pi i z}{4}}{z^2} = \frac{\pi i }{4}\ch\left(-\frac{\pi i}{2}\right) - \sh \left(-\frac{\pi i}{2}\right) =\]
-	\[=\frac{\pi i }{4}\cos\left(-\frac{\pi}{2}\right) - i\sin \left(-\frac{\pi}{2}\right) = i\]
-	Поэтому
-	\[\oint\limits_{|z+3|=2} \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} dz = 2\pi i \underset{z=-2}{\text{Res}}\frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z} = -2\pi\]
-	\subsection{Ответ:}
-	\[\oint\limits_{|z+3|=2}\left(z \sh \frac{i}{z+3} - \frac{4 \sh \frac{\pi i z}{4}}{(z+2)^2z}\right) dz = 8\pi\]
+	\begin{example}
+		Это пример примера. Примеры помогают иллюстрировать определения и теоремы.
+	\end{example}
 	
-	\section{Вычислить интеграл $\int\limits_{0}^{2\pi} \frac{dt}{2\sqrt{6}\sin t - 5}$}
-	\subsection{Решение:}
-	Проведём замену $e^{it} = z\Rightarrow dt = dz/iz$. Будут справедливы формулы:
+	\begin{remark}
+		Это пример замечания. Замечания содержат дополнительные комментарии или наблюдения.
+	\end{remark}
 	
-	\[\sin t = \frac{e^{iz} - e^{-iz}}{2i} = \frac{1}{2i}\left(z - \frac{1}{z}\right)\]
-	\[\cos t = \frac{e^{iz} + e^{-iz}}{2} = \frac{1}{2}\left(z + \frac{1}{z}\right)\]
-	После замены получаем
-	\[\int\limits_{0}^{2\pi} \frac{dt}{2\sqrt{6}\sin t - 5} = \oint \limits_{|z|=1} \frac{dz}{\left(\cancel{2} \sqrt{6} \frac{1}{\cancel{2}i}\left(z - \frac{1}{z}\right) -5\right)iz} = \oint \limits_{|z|=1} \frac{dz}{\sqrt{6}z \left(z - \frac{1}{z}\right) -5iz} = \oint \limits_{|z|=1} \frac{dz}{\sqrt{6}z^2 - \sqrt{6} -5iz}\]
-	очевидно, что нули наменателя являются полюсами первого порядка для подынтегрального выражения. Найдём их:
-	\[\sqrt{6}z^2 - \sqrt{6} -5iz =0 \Rightarrow z_{1,2} = \frac{5i \pm \sqrt{-25 + 24}}{2\sqrt{6}} = \begin{cases}
-		\frac{i\sqrt{6}}{2} \\
-		\frac{i\sqrt{6}}{3}
-	\end{cases}\]
-	В круге $|z|=1$ лежит только корень $\frac{i\sqrt{6}}{3}$. Поэтому, искомый интеграл вычисялется так:
-	\[\oint \limits_{|z|=1} \frac{dz}{\sqrt{6}z^2 - \sqrt{6} -5iz} = 2\pi i \underset{z=\frac{i\sqrt{6}}{3}}{\text{Res}} \frac{1}{\sqrt{6}z^2 - \sqrt{6} -5iz} = 2\pi i \underset{z=\frac{i\sqrt{6}}{3}}{\text{Res}} \frac{1}{\sqrt{6}\left(z - \frac{i\sqrt{6}}{2}\right)\left(z - \frac{i\sqrt{6}}{3}\right)} = \frac{2\pi i}{\sqrt{6}\left(z - \frac{i\sqrt{6}}{2}\right)}\Big|_{z = \frac{i\sqrt{6}}{3}}  =\]
-	\[= \frac{2 \pi i }{\sqrt{6}\left(\frac{i\sqrt{6}}{3} - \frac{i\sqrt{6}}{2}\right)} = -2\pi\]
-	\subsection{Ответ:}
-	\[\int\limits_{0}^{2\pi} \frac{dt}{2\sqrt{6}\sin t - 5} = -2\pi\]
+	$\mathbf{x}$
 	
-	
-	\section{Вычислить интеграл $\int\limits_{0}^{2\pi} \frac{dt}{\left(\sqrt{7} + \sqrt{5}\cos t\right)^2}dt$}
-	\subsection{Решение:}
-	Произведём замену $e^{it} = z \Rightarrow dt = dz/iz $
-	\[\cos t = \frac{1}{2}\left(z + \frac{1}{z}\right)\]
-	\[\int\limits_{0}^{2\pi} \frac{dt}{\left(\sqrt{7} + \sqrt{5}\cos t\right)^2}dt = \oint\limits_{|z|=1}\frac{dz}{\left(\sqrt{7} + \frac{\sqrt{5}}{2}\left(z + \frac{1}{z}\right)\right)^2iz} = \frac{4}{i}\oint\limits_{|z|=1}\frac{zdz}{\left(\sqrt{5}z^2 + 2\sqrt{7}z + \sqrt{5}\right)^2}\]
-	Последний интеграл вычисляем по основной теореме Коши о вычетах. Для этого найдём нули знаменателя:
-	\[\sqrt{5}z^2 + 2\sqrt{7}z + \sqrt{5} = 0 \Rightarrow z_{1,2} = \frac{-2\sqrt{7} \pm \sqrt{28 - 20}}{2\sqrt{5}} = \begin{cases}
-		\frac{-\sqrt{7} -\sqrt{2}}{\sqrt{5}}\\
-		\frac{-\sqrt{7} +\sqrt{2}}{\sqrt{5}}
-	\end{cases}\]
-	Первый из корней лежит вне круга $|z|<1$, поэтому:
-	\[\frac{4}{i}\oint\limits_{|z|=1}\frac{zdz}{\left(\sqrt{5}z^2 + 2\sqrt{7}z + \sqrt{5}\right)^2} = \frac{4}{i}\oint\limits_{|z|=1} \frac{zdz}{5\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2\left(z+\frac{\sqrt{7}-\sqrt{2}}{\sqrt{5}}\right)^2} = \frac{8\pi}{5}\underset{z=-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}}{\text{Res}} \frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2\left(z+\frac{\sqrt{7}-\sqrt{2}}{\sqrt{5}}\right)^2}\]
-	Очевидно, для выражение под знаком вычета точка $z =-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}$ является полюсом второго порядка, поэтому вычет вычисляется по формуле для полюса порядка n (n = 2)
-	\[\underset{z=-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}}{\text{Res}} \frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2\left(z+\frac{\sqrt{7}-\sqrt{2}}{\sqrt{5}}\right)^2} = \lim\limits_{z \rightarrow-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}} \left(\frac{z}{\left(z+\frac{\sqrt{7}+\sqrt{2}}{\sqrt{5}}\right)^2}\right)' = \lim\limits_{z \rightarrow-\frac{\sqrt{7} - \sqrt{2}}{\sqrt{5}}} \frac{-5\sqrt{5}z + 5\sqrt{7} + 5\sqrt{2}}{(\sqrt{5}z + \sqrt{7} + \sqrt{2})^3} = \]
-	\[=\frac{5\sqrt{14}}{16}\]
-	Окончательно получаем
-	\subsection{Ответ:}
-	\[\int\limits_{0}^{2\pi} \frac{dt}{\left(\sqrt{7} + \sqrt{5}\cos t\right)^2}dt = \frac{\sqrt{14}}{2}\pi\]
-	
-	\section{Вычислить интеграл $\int\limits_{-\infty}^{+\infty} \frac{x^2+1}{\left(x^2 + x + 1\right)^2}dx$}
-	\subsection{Решение:}
-	\[\int\limits_{-\infty}^{+\infty} \frac{x^2+1}{\left(x^2 + x + 1\right)^2}dx\]
-	Преобразуем подынтегральную функцию $f(x)$ в $f(z)$:
-	\[f(x) = \frac{x^2+1}{\left(x^2 + x + 1\right)^2}  = \frac{z^2+1}{\left(z^2 + z + 1\right)^2} = f(z)\]
-	Найдём нули знаменатля:
-	\[z^2 + z + 1 = 0 \Rightarrow z_{1,2} = \frac{-1 \pm \sqrt{-3}}{2} = \begin{cases}
-		-\frac{1}{2} + i \frac{\sqrt{3}}{2}\\
-		-\frac{1}{2} - i \frac{\sqrt{3}}{2}
-	\end{cases}\]
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}
-			
-			
-			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
-			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
-			
-			\filldraw (1,0) circle (1pt) node[below]{1};
-			\filldraw (0,1) circle (1pt) node[left]{i};
-			
-			\filldraw (-0.5, 0.866) circle (2pt) node[above left]{$-\frac{1}{2} + i\frac{\sqrt{3}}{2}$};
-			\filldraw (-0.5, -0.866) circle (2pt) node[below left]{$-\frac{1}{2} - i\frac{\sqrt{3}}{2}$};
-			
-			
-			
-		\end{tikzpicture}
-		\caption{Корни знаменателя. Только один лежит в верхней полуплоскости}
-		
-	\end{figure}
-	\newline
-	Теперь можно преобразовать знаменатель:
-	\[f(z) = \frac{z^2 + 1}{\left(z+\frac{1}{2} + i\frac{\sqrt{3}}{2}\right)^2 \left(z+\frac{1}{2} - i\frac{\sqrt{3}}{2}\right)^2}\]
-	$f(z)$ голоморфна всюду в верхней полуплоскости, кроме точки $z_1 = -\frac{1}{2} + i \frac{\sqrt{3}}{2}$. Очевидно, что она является полюсом второго порядка.\newline
-	Кроме того
-	\[\sup\limits_{\substack{|z|= R\\\Im\ge0}} \frac{|z^2+1||z|}{|(z^2+z+1)^2|} = \sup\limits_{\substack{|z|= R\\\Im\ge0}} \frac{|z^2+1||z|}{|z^2+z+1|^2} \le \sup\limits_{\substack{|z|= R\\\Im\ge0}}\frac{(|z^2| + 1)|z|}{||z|^2 + |z| - 1|^2} = \frac{(R^2 + 1)R}{(R^2 +R-1)} \underset{R\rightarrow\infty}{\rightarrow}0\]
-	Таким образом, выполнены все условия теоремы о вычислении интегралов вида $\int_{-\infty}^{+\infty}f(x)dx$. А так как $z_2 = -\frac{1}{2} - i \frac{\sqrt{3}}{2}$ лежит в нижней полуплоскости, следовательно:
-	\[\int\limits_{-\infty}^{+\infty} \frac{x^2+1}{\left(x^2 + x + 1\right)^2}dx = 2\pi i \left(\underset{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}}{\text{Res}}\frac{z^2 + 1}{\left(z+\frac{1}{2} + i\frac{\sqrt{3}}{2}\right)^2 \left(z+\frac{1}{2} - i\frac{\sqrt{3}}{2}\right)^2}\right)\]
-	Вычет вычисляем по формуле для полюсов 2-го порядка:
-	\[\underset{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}}{\text{Res}} f(z) = \lim\limits_{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}} \left(\frac{z^2+1}{\left(z + \frac{1}{2} + i\frac{\sqrt{3}}{2}\right)^2}\right)' = \lim\limits_{z=-\frac{1}{2} + i\frac{\sqrt{3}}{2}} \frac{8z+8\sqrt{3}iz - 16}{(2z+1+\sqrt{3}i)^3} =\]
-	\[= \frac{8\left(-\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) + 8\sqrt{3}i\left(-\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) - 16}{2\left(-\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) + \sqrt{3}i} = \frac{-4  + \cancel{8\frac{\sqrt{3}}{2}} -  \cancel{8\frac{\sqrt{3}}{2}} - 12 - 16}{(2\sqrt{3})^3} = \frac{4}{3\sqrt{3}i}\]
-	Окончательно получаем:
-	\[\int\limits_{-\infty}^{+\infty} \frac{x^2+1}{\left(x^2 + x + 1\right)^2}dx = \frac{2\pi i \cdot 4}{3\sqrt{3}i} = \frac{8\pi}{3\sqrt{3}}\]
-	\subsection{Ответ: $\frac{8\pi}{3\sqrt{3}}$}
-	
-	\newpage
-	\section{Вычислить интеграл $\int\limits_{-\infty}^{+\infty} \frac{\sin 2x}{\left(x^2 - 2x + 10\right)}dx$}
-
-	\subsection{Решение:}
-		$f(z) = \frac{\sin 2z}{z^2 -2z+10}$ голоморфна всюду в верхней полуплоскости, кроме точки $z  =1+3i$ - полюс первого порядка, т.к.
-	\[z^2 -2z + 10 = 0 \Rightarrow z_{1,2} = \frac{2 \pm \sqrt{4 - 40}}{2} = \begin{cases}
-		1 + 3i \\
-		1 - 3i
-	\end{cases}\]
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}
-			
-			
-			\draw[thick, ->] (-4,0) -- (4,0) node[below] {$\Re(z)$};
-			\draw[thick, ->] (0,-4) -- (0,4) node[left] {$\Im(z)$};
-			
-			\filldraw (1,0) circle (1pt) node[below]{1};
-			\filldraw (0,1) circle (1pt) node[left]{i};
-			
-			\filldraw (1,3) circle (2pt) node[above, right]{$1+3i$};
-			\filldraw (1,-3) circle (2pt) node[above, right]{$1-3i$};
-			
-			
-		\end{tikzpicture}
-		\caption{Корни знаменателя. Только один лежит в верхней полуплоскости}
-		
-	\end{figure}
-	\newline
-	Заметим, что $\sin(2x) = \Im e^{i2x} $ и, применяя основную теорему о вычетах, получим:
-	\[\int\limits_{-\infty}^{+\infty} \frac{\sin 2x}{\left(x^2 - 2x + 10\right)}dx = \Im \left(\int\limits_{-\infty}^{+\infty} \frac{e^{i2z}}{\left(z^2 - 2z + 10\right)}dz\right) = \Im \left(2\pi i \sum_{\Im z \ge 0} \underset{z=z_k}{\text{Res}}f(z)e^{2iz}\right)\]
-	Кроме того
-	\[\sup\limits_{\substack{|z|= R\\\Im\ge0}} \frac{1}{|z^2 -2z +10|} \le\sup\limits_{\substack{|z|= R\\\Im\ge0}}\frac{1}{|z^2|- 2|z| - 10} \le \frac{1}{R^2 -2R - 10} \underset{R\rightarrow \infty}{\rightarrow} 0\]
-	По теореме Жордано получим:
-	\[\int\limits_{-\infty}^{+\infty} \frac{e^{i2z}}{z^2 -2z + 10} dz= 2 \pi i \underset{z = 1 + 3i}{\text{Res}}\frac{e^{i2z}}{(z-(1-3i))(z-(1-3i))} = \frac{2\pi i e ^{i2z}}{z-(1-3i)}\Big|_{z=1+3i} = \frac{\pi e^{i(2+6i)}}{3}\]
-	Отделяя мнимую часть, получим
-	\[\int\limits_{-\infty}^{+\infty} \frac{\sin 2x}{\left(x^2 - 2x + 10\right)}dx = \Im \frac{\pi}{3}e^{i(2+6i)} = \Im \frac{\pi}{3 e^6} (\cos 2 + i \sin 2) = \frac{\pi \sin 2}{3e^{6}}\]
-	\subsection{Ответ:}
-	\[\frac{\pi \sin 2}{3e^{6}}\]
-	
-	
-	\section{Найти оригинал по заданному изображению $\frac{5p}{(p+2)(p^2-2p+2)}$}
-	\subsection{Решение:}
-	\[\frac{5p}{(p+2)(p^2-2p+2)} = \frac{a}{p+2} + \frac{bp+c}{p^2-2p+2} \eqno (1)\]
-	\[ap^2-2pa+2a+bp +cp +2bp + 2c=5p\]
-	\[\begin{cases}
-		n^2:&a+b = 0\\
-		n:& -2a+c+2b =5\\
-		1:&2a+2c=0
-	\end{cases} \Rightarrow\begin{cases}
-	a = -b\\
-	b = c\\
-	2c+c+2c = 5
-	\end{cases}\Rightarrow\begin{cases}
-	a = -1\\
-	b = 1\\
-	c=1
-	\end{cases}\eqno (2)\]
-	Подставляя найденные коэфициенты из (2) в (1) получим разложение в сумму дробей
-	\[-\frac{1}{p+2} + \frac{p+1}{p^2-2p+2} = -\frac{1}{p+2} + \frac{p-1}{(p-1)^2+1} + \frac{2}{(p-1)^2 + 1}\]
-	Тогда первое слагаемое является образом для
-	\[-e^{-2t}\]
-	Для оставшихся 
-	\[F(p+1) = \frac{p}{p^2+1} + \frac{2}{p^2=1} \fallingdotseq \cos t + 2\sin t\]
-	По теореме смещениия отсюда
-	\[F(p)=F(p+1-1) \fallingdotseq e^{t}(2\sin t + \cos t)\]
-	Окончательно получаем:
-	\[f(t) = e^t(2\sin t + \cos t) - e^{-2t}\]
-	\subsection{Ответ: $e^t(2\sin t + \cos t) - e^{-2t}$}
-	\newpage
-	\section{Найти решение дифференциального уравнения, удовлетворяющее условию $y'' + 2y' = \frac{1}{\ch^2t}$}
-	\subsection{Решение:}
-	\[y'' + 2y' = \frac{1}{\ch^2t}\]
-	Вычисляем преобразование Лапласа для левой части уравнения, а правую приравняем к $f(t)$
-	\[p^2\bar{y}-pC_1-C_2 + 2(p\bar{y} - C_1) = \bar{f}(p)\]
-	Выразим $\bar{y}$
-	\[\bar{y} = \frac{\bar{f}(p) + pC_1+C_2+2C_1}{p^2+2p} = \frac{\bar{f}(p)}{p^2+2p} +\frac{C_1}{p+2}+\frac{C_2}{p(p+2)}+\frac{2C_1}{p(p+1)}\]
-	Очевидно, что это выражение можно преобразовать следующим образом:
-	\[\frac{\bar{f}(p)}{p^2+2p} +\frac{C_1}{p+2}+\frac{C_2}{p(p+2)}+\frac{2C_1}{p(p+1)} = \frac{\bar{f}(p)}{p^2+2p} +\frac{C_1}{p+2}+\frac{C_2}{2p}-\frac{C_2}{2(p+2)}+\frac{C_1}{p} - \frac{C_1}{p+2}\]
-	Найдём оригиналы для всех слагаемых, кроме первого:
-	\[\frac{C_1}{p+2} \fallingdotseq  C_1e^{-2t}\]
-	\[\frac{C_2}{2p}\fallingdotseq\frac{C_2}{2}\]
-	\[\frac{C_2}{2(p+2)} \fallingdotseq \frac{C_2}{2}e^{-2t}\]
-	\[\frac{C_1}{p} \fallingdotseq C_1\]
-	\[\frac{C_1}{p+2} \fallingdotseq C_1e^{-2t}\]
-	Для первого слагаемого нужно поступить следующим образом.\newline
-	Найдём оригинал для $1/(p^2+2p)$
-	\[\frac{1}{p(p+2)} = \frac{1}{2p} - \frac{1}{2(p+2)}\]
-	Таким образом, оригинал равен
-	\[\frac{1}{2} - \frac{1}{2}e^{-2t}\]
-	Далее найдём интеграл по теореме ****
-	\[\int\limits_{0}^t \left(\frac{1}{2} -\frac{1}{2}e^{-2(t-\tau)}\right)\frac{1}{\ch^2\tau}d\tau=\frac{1}{2}\int\limits_{0}^t \frac{1}{\ch^2\tau}d\tau - \frac{1}{2e^{2t}}\int\limits_{0}^t \frac{e^{2\tau}}{\ch^2\tau}\]
-	Первый интеграл равен
-	\[\frac{1}{2}\int\limits_{0}^t \frac{1}{\ch^2\tau}d\tau = \frac{1}{2}th\tau\big|_0^t = \frac{1}{2}\th t\]
-	Второй сложнее
-	\[\int\limits_{0}^t \frac{e^{2\tau}}{\ch^2\tau} = \int\limits_{0}^t \frac{e^{2\tau}}{\left(\frac{e^\tau + e^{-\tau}}{2}\right)^2}=\int\limits_{0}^t 2e^{2\tau} \frac{2e^{2\tau}}{(e^{2\tau}+1)^2}d\tau = 2\int\limits_{0}^t\frac{e^{2\tau}d(e^{2\tau})}{(e^{2\tau} + 1)^2} = 2\int\limits_{0}^t\frac{e^{2\tau}+1-1}{(e^{2\tau} + 1)^2}d(e^{2\tau}) =\]
-	\[=2\int\limits_{0}^t\frac{d(e^{2\tau})}{e^{2\tau} + 1} - 2 \int\limits_{0}^t\frac{d(e^{2\tau})}{(e^{2\tau} + 1)^2} = 2 \ln {(e^{2\tau} + 1)} \big|_0^t + \frac{2}{e^{2\tau} +1} \big|_0^t =  2\ln(e^{2t} + 1) + \frac{2}{e^{2t} +1} - 2\ln2 +1 \]
-	Таким образом получаем 
-	\[y = \frac{1}{2}\th t -\frac{\ln(e^{2t} + 1)}{e^{2t}} - \frac{1}{e^{4t} = e^{2t}} - \frac{\ln2}{e^{2t}} + \frac{1}{2e^{2t}} + \frac{C_2}{2}e^{-2t} + \frac{C_2}{2} + C_1\]
-	\subsection{Ответ:}
-	\[y = \frac{1}{2}\th t -\frac{\ln(e^{2t} + 1)}{e^{2t}} - \frac{1}{e^{4t} = e^{2t}} - \frac{\ln2}{e^{2t}} + \frac{1}{2e^{2t}} + \frac{C_2}{2}e^{-2t} + \frac{C_2}{2} + C_1\]
-	
-	\section{Операционным методом решить задачу Коши $2y'' + 3y' + y = 3e^t, \ y(0) = 0, \ y'(0)=1$}
-	\subsection{Решение:}
-	Применяя преобразование Лапласа к левой и правой частям данного дифференциального уравнения, получаем операторное уравнение:
-	\[2p^2\bar{y}  - p\cdot 0 - 2 + 3p\bar{y} - 0 + \bar{y} = \frac{3}{p-1}\]
-	\[2p^2\bar{y} - 2 + 3p\bar{y} + \bar{y} = \frac{3}{p-1}\]
-	Откуда находим
-	\[\bar{y}(2p^2 + 3p +1) = 2  +\frac{3}{p-1}\]
-	Или
-	\[\bar{y} = \frac{2}{2p^2 + 3p +1} + \frac{3}{(p-1)(2p^2 + 3p +1)}\]
-	Найдём нули знаменателя первой дроби:
-	\[2p^2 + 3p + 1 = 0 \Rightarrow p_{1,2} = \frac{-3 \pm \sqrt{9 - 8}}{4} = \begin{cases}
-		-1\\
-		-1/2
-	\end{cases}\]
-	Тогда выражение перепишется слудующим образом:
-	\[\bar{y} = \frac{2}{2(p+1)(p+\frac{1}{2}) }+ \frac{3}{2(p-1)(p+1)(p+\frac{1}{2})}\]
-	Или
-	\[\bar{y} = \frac{4}{(p+1)(2p+1) }+ \frac{6}{(p-1)(p+1)(2p+1)}\]
-	Разложим первое слагаемое методом неопределенных коэффициентов:
-	\[\frac{2}{(p+1)(2p+1)} = \frac{a}{p+1} + \frac{b}{2p+1}\]
-	\[2pa + a + bp + b = 2\]
-	\[\begin{Bmatrix}
-		p: & 2a + b = 0\\
-		1: & a + b = 2
-	\end{Bmatrix}\Rightarrow \begin{cases}
-	a = 2 - b \\
-	4 - 2b + b = 0
-	\end{cases}\Rightarrow\begin{cases}
-	b = 4 \\
-	a = -2
-	
-	\end{cases}\]
-	Таким образом первая дробь запишется так
-	\[\frac{2}{(p+1)(2p+1)} = -\frac{2}{p+1} + \frac{4}{2p+1}\]
-	Теперь вторая:
-	\[\frac{3}{(p-1)(p+1)(2p+1)} = \frac{a}{p-1} + \frac{b}{p+1} + \frac{c}{2p+1}\]
-	\[2p^2a + 3pa + a +p^2 b - pb - b + p^2c - c = 3\]
-	\[\begin{Bmatrix}
-		p^2: & 2a + 2b + c = 0\\
-		p: & 3a - b = 0\\
-		1: & a - b - c = 3
-	\end{Bmatrix}\Rightarrow \begin{cases}
-	a = b/3\\
-	b/3 - b - c = 3\\
-	2b/3 + 2b + c = 0\\
-	
-	\end{cases} \Rightarrow \begin{cases}
-	a = b/6\\
-	-2b - 3c = 9\\
-	8b +3c= 0
-	\end{cases}\Rightarrow \begin{cases}
-	b = 3/2\\
-	c = -4\\
-	a = 1/2
-	\end{cases}\]
-	\[\frac{6}{(p-1)(p+1)(2p+1)} = \frac{1}{2(p-1)2} + \frac{3}{2(p+1)} - \frac{4}{2p+1}\]
-	Исходное выражение равно:
-	\[\bar{y} = -\frac{2}{p+1} + \frac{4}{2p+1} + \frac{1}{2(p-1)} + \frac{3}{2(p+1)} - \frac{4}{2p+1} = -\frac{1}{p+1}  + \frac{1}{p-1}\]
-	
-	Произведём  обратное преобразование Лапласа:
-	\[ -\frac{1}{p+1}  + \frac{1}{p-1}  \fallingdotseq \frac{e^t}{2} - \frac{1}{2e^t} = y\]
-	
-	\subsection{Ответ: $y =\frac{e^t}{2} - \frac{1}{2e^t}$}
-	
-	\section{Найти решение системы дифференциальных уравнений, удовлетворяющее заданному начальному условию $\begin{cases}
-			x'=y+3,& x(0) =1 \\
-			y'=x+2,& y(0)=0
-		\end{cases}$}
-	\subsection{Решение:}
-	Применем преобразование Лапласа:
-	\[\begin{cases}
-		p\bar{x} + \bar{y} + \frac{3}{p} + 1 \\
-		p\bar{y} = \bar{x} + \frac{2}{p}
-	\end{cases} \Rightarrow \begin{cases}
-	p\bar{x} - \bar{y} = \frac{3}{p} + 1\\
-	p\bar{y} - \bar{x} = \frac{2}{p}
-	\end{cases}\]
-	Решаем эту систему по правилу Крамера:
-	\[\Delta = \begin{vmatrix}
-		p & -1 \\
-		-1 & p
-	\end{vmatrix} = p^2 -1 = (p-1)(p+1)\]
-	
-	\[\Delta_x = \begin{vmatrix}
-		\frac{3}{p} + 1 & -1\\
-		\frac{2}{p} & p
-	\end{vmatrix} = 3+p +\frac{2}{p} = \frac{3p + p^2 + 2}{p}\]
-	
-	\[\Delta_y =\begin{vmatrix}
-		p & \frac{3}{p} + 1\\
-		-1 & \frac{2}{p}
-	\end{vmatrix} = \frac{3p+3}{p}\]
-	Отсюда
-	\[\bar{x} = \frac{p^2+3p+2}{p(p-1)(p+1)} = \frac{p+2}{p(p-1)}\]
-	\[\bar{y} = \frac{3p+3}{p(p-1)(p+1)} = \frac{3}{p(p-1)}\]
-	Разложение на простые множетели очевидное:
-	\[\bar{x} = \frac{p+2}{p(p-1)} = -\frac{2}{p} + \frac{3}{p-1}\]
-	\[\bar{y} = \frac{3}{p(p-1)} = -\frac{3}{p} + \frac{3}{p-1}\]
-	Найдём оригиналы 
-	\[\begin{cases}
-		x = -2 + 3e^{t} \\
-		y = -3 + 3e^t
-	\end{cases}\]
-	
-	\subsection{Ответ:$\begin{cases}
-			x = -2 + 3e^{t} \\
-			y = -3 + 3e^t
-		\end{cases}$}
 \end{document}

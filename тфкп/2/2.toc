@@ -1,0 +1,2 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Примеры теорем и лемм}{1}{}%
