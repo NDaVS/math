@@ -1,0 +1,151 @@
+\documentclass[12pt]{article}
+
+\usepackage[T2A]{fontenc} % Кодировка шрифта
+\usepackage[utf8]{inputenc} % Кодировка ввода
+\usepackage[english,russian]{babel} % Языковые настройки
+\usepackage{graphicx} % Для вставки изображений
+\usepackage{amsmath} % Для использования математических формул
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{tikz}
+\usepackage{amsfonts} % Для использования математических символов и шрифтов
+\usepackage{titlesec} % Для настройки заголовков разделов
+\usepackage{titling} % Для настройки титульной страницы
+\usepackage{geometry} % Для настройки размеров страницы
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.9}
+
+% Настройка заголовков разделов
+\titleformat{\section}
+{\normalfont\Large\bfseries}{\arabic{section}}{1em}{}
+\titleformat{\subsection}
+{\normalfont\large\bfseries}{}{1em}{}
+
+% Настройка титульной страницы
+\setlength{\droptitle}{-3em} % Отступ заголовка
+\title{\vspace{-1cm}Резистивное расстояние}
+\author{Вершинин Данил Алексеевич}
+\date{\today}
+
+% Настройка размеров страницы
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+	
+\section{Число обусловленности матрицы}
+\subsection{Условие: }
+$A = \begin{cases}
+	2x+y=2 \\
+	(2-\epsilon)x + y = 1
+\end{cases}$, \ $\epsilon$ > 0
+
+\subsection{Найти: $\mu(A), \ x, \ y$}
+\subsection{Решение}
+Найдём $x,y$\\
+\[\begin{cases}
+	y = 2 - 2x\\
+	x = \frac{1-y}{2-\epsilon}
+\end{cases} \Rightarrow 
+\begin{cases}
+	x = \frac{2x-1}{2-\epsilon}\\
+	y = 2-2x
+\end{cases} \Rightarrow
+\begin{cases}
+	x = \frac{1}{\epsilon}\\
+	y = 2-\frac{2}{\epsilon}
+\end{cases}\]
+\[A = \begin{pmatrix}
+	2 & 1\\
+	2-\epsilon & 1
+\end{pmatrix},  \ B = \begin{pmatrix}
+2 \\ 1
+\end{pmatrix}\]
+
+$|A| = 2 - 2 + \epsilon = \epsilon$\\
+$||A||_1 = max(2 + |2-\epsilon|, 2)$
+\[A^{-1} = \frac{1}{\epsilon}\begin{pmatrix}
+	1 & -1 \\
+	\epsilon - 2 & 2
+\end{pmatrix}\]
+$||A^{-1}||_1 = \frac{1}{\epsilon} max(3, |\epsilon - 2| + 1)$\\
+\begin{figure}[h] % Параметр h указывает LaTeX разместить рисунок "здесь"
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines = middle,
+			xlabel = \( x \),
+			ylabel = { \( y \) },
+			xtick = {-5,-4,...,5},
+			ytick = {0,1,2,3,4,5},
+			ymin = 0, ymax = 5,
+			xmin = -5, xmax = 5,
+			domain = -5:5,
+			samples = 100,
+			legend pos = north west,
+			]
+			\addplot[blue, thick] {2+abs(2 - x)}; 
+			\addlegendentry{\(2+|2 - x|\)}
+			
+			\addplot[red, thick] {2}; 
+			\addlegendentry{2}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Графики функций \(2+|2 - x|\) и \(2\).}
+	\label{fig:first}
+\end{figure}\\
+Из Рис.\ref{fig:first} видно, что максимумом из двух функций на промежутке положительных чисел является $2 + |2-\epsilon|$.
+\begin{figure}[h] % Параметр h указывает LaTeX разместить рисунок "здесь"
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+			axis lines = middle,
+			xlabel = \( x \),
+			ylabel = { \( y \) },
+			xtick = {-5,-4,...,5},
+			ytick = {0,1,2,3,4,5},
+			ymin = 0, ymax = 5,
+			xmin = -5, xmax = 5,
+			domain = -5:5,
+			samples = 100,
+			legend pos = north west,
+			]
+			\addplot[blue, thick] {1+abs(x - 2)}; 
+			\addlegendentry{\(1+|x - 2|\)}
+			
+			\addplot[red, thick] {3}; 
+			\addlegendentry{2}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Графики функций \(1+|2 - x|\) и \(3\).}
+	\label{fig:second}
+\end{figure}\\
+
+Из рис \ref{fig:second} видно, что на $(0,4)$ большей функцией является 3, а для $x\in(4, +\infty)$ -- 1+|x-2|.\\
+
+Рассмотрим три промежутка: $(0,2), \ (2,4), \ (4,+\infty)$. \\
+\subsection{$(0,2)$}
+Норма $||A||_1$ будет равна $4-\epsilon$\\
+Норма $||A^{-1}||_1$ будет равна $\frac{3}{\epsilon}$\\
+Таким образом, число обусловленности на данном промежутке будет равно: $\mu(A) = ||A||\cdot ||A^{-1}|| = \frac{12}{\epsilon} - 3$
+\subsection{$(2,4)$}
+Норма $||A||_1$ будет равна $\epsilon$
+Норма $||A^{-1}||_1$ будет равна $\frac{3}{\epsilon}$\\
+Таким образом, число обусловленности на данном промежутке будет равно: $\mu(A) = ||A||\cdot ||A^{-1}|| = 3$
+\subsection{$(4,+\infty)$}
+Норма $||A||_1$ будет равна $\epsilon$\\
+Норма $||A^{-1}||_1$ будет равна $\frac{\epsilon-1}{\epsilon}$\\
+Таким образом, число обусловленности на данном промежутке будет равно: $\mu(A) = ||A||\cdot ||A^{-1}|| =\epsilon - 1$
+
+\section{Ответ:}
+\[\mu(a) = \begin{cases}
+	\frac{12}{\epsilon} -3 & \epsilon \in (0, 2)\\
+	3 &  \epsilon \in (2, 4)\\
+	\epsilon - 1  & \epsilon \in (4, +\infty)\\
+\end{cases}\]
+\[\begin{cases}
+	x = \frac{1}{\epsilon}\\
+	y = 2-\frac{2}{\epsilon}
+\end{cases}\]
+
+
+\end{document}
