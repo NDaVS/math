@@ -102,9 +102,10 @@ if __name__ == '__main__':
     
     x = gauss_with_pivoting(A, b)
 
-    if x == -1:
+    if type(x) == int:
         print("Матрица вырожденная")
         exit(0)
+
     print("Вектор ответа: " + str(x))
 
     print(

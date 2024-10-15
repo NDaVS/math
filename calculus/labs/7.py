@@ -1,15 +1,16 @@
 import numpy as np
 
 
-def find_max_abs_value(A, row_number, n):
-    column, value = 0, 0
+def find_max_abs_value(A, start_index, end_index):
+    row, column, value = 0, 0, 0
 
-    for i in range(row_number, n):
-        if np.abs(A[row_number][i]) > np.abs(value):
-            column = i
-            value = A[row_number][i]
-
-    return column, value
+    for i in range(start_index, end_index):
+        for j in range(start_index, end_index):
+            if np.abs(A[i][j]) > np.abs(value):
+                row = i
+                column = j
+                value = A[i][j]
+    return row, column, value
 
 
 def check_permutation(augmented_matrix, column_indices, max_row, max_column, k):
@@ -34,9 +35,9 @@ def answer_permutation(target_vector, order):
     return x_permuted
 
 
-def optimal_exception(A, b):
+def gauss_with_pivoting(A, b):
     """
-    Решение системы линейных уравнений Ax = b методом оптимального исключения
+    Решение системы линейных уравнений Ax = b методом Гаусса с выбором главного элемента.
 
     :param A: Коэффициентная матрица (numpy array)
     :param b: Вектор свободных членов (numpy array)
@@ -49,49 +50,39 @@ def optimal_exception(A, b):
     column_indices = np.arange(n)
 
     for k in range(n):
-        for i in range(k):
-            augmented_matrix[k] = augmented_matrix[k] - augmented_matrix[i] * augmented_matrix[k][i]
-
-        # Находим наибольший элемент по модулю, а также его номер в строке
-        max_column, max_abs_value = find_max_abs_value(augmented_matrix, k, n)
-
-        if max_abs_value == 0:
-            return -1
+        # Находим наибольший элемент по модулю, а также его координаты
+        max_row, max_column, max_abs_value = find_max_abs_value(augmented_matrix, k, n)
 
         # Переносим его в левый верхний угод подматрицы
-        augmented_matrix, column_indices = check_permutation(augmented_matrix, column_indices, k, max_column, k)
+        augmented_matrix, column_indices = check_permutation(augmented_matrix, column_indices, max_row, max_column, k)
 
+        # Вычитаем строку с максимальным элементом по модулю, умноженную на коэффициент
+        for i in range(k + 1, n):
+            augmented_matrix[i] = augmented_matrix[i] + augmented_matrix[k] * \
+                                  (- augmented_matrix[i][k] / augmented_matrix[k][k])
         # Нормализуем целевую строку
         augmented_matrix[k] = augmented_matrix[k] / augmented_matrix[k][k]
 
-        # Вычитаем целевую строку из верхних строк
-        for i in range(k):
-            augmented_matrix[i] = augmented_matrix[i] + augmented_matrix[k] * \
-                                  (- augmented_matrix[i][k] / augmented_matrix[k][k])
-        print(augmented_matrix)
-
-    print(augmented_matrix)
-
+    # Обратный ход для вычислений
     x = np.zeros(n)
 
-    for i in range(n):
-        x[i] = augmented_matrix[i][-1]
+    for i in range(n - 1, -1, -1):
+        x[i] = (augmented_matrix[i, -1] - np.dot(augmented_matrix[i, i + 1:n], x[i + 1:])) / augmented_matrix[i, i]
 
     # ставим на свои места нужные элементы
     return answer_permutation(x, column_indices)
 
 
 if __name__ == '__main__':
-    np.set_printoptions(linewidth=200, suppress=True)  # Установите ширину строки и отключите экспоненциальный формат
-    # # Пример использования
+    # # # Пример использования
     # A = np.array([[2.1, -4.5, -2.0],
     #               [3, 2.5, 4.3],
     #               [-6, 3.5, 2.5]])
     # b = np.array([19.07, 3.21, -18.25])
     #
-    # x = optimal_exception(A, b)
+    # x = gauss_with_pivoting(A, b)
     # print(x)
-
+    #
     # x = np.linalg.solve(A, b)
     # print(x)
 
@@ -106,11 +97,7 @@ if __name__ == '__main__':
     ])
     b = np.array([0.096, 1.252, 1.024, 1.023, 1.155, 1.937, 1.673])
 
-    x = optimal_exception(A, b)
-
-    if type(x) == int:
-        print("Матрица вырожденная")
-        exit(0)
+    x = gauss_with_pivoting(A, b)
 
     print("Вектор ответа: " + str(x))
 
