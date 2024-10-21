@@ -129,7 +129,6 @@ def main():
     )
 
 
-
 if __name__ == '__main__':
     np.set_printoptions(linewidth=200, suppress=True)  # Установите ширину строки и отключите экспоненциальный формат
 

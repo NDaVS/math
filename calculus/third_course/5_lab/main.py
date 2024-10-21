@@ -24,7 +24,7 @@ def sum_for_y(B, b, y, i):
     sum_answer = 0
 
     for k in range(i):
-        sum_answer += B[i][k] * y[k]
+        sum_answer += B[k][i] * y[k]
 
     return (b[i] - sum_answer) / B[i][i]
 
@@ -78,10 +78,7 @@ def square_root_method(A, b):
         for j in range(i + 1, n):
             B[i][j] = sum_for_b(A, B, C, i, j) / B[i][i]
 
-
-    C = B.T
-
-    y = find_y(C, b)
+    y = find_y(B, b)
     x = find_x(y, B)
 
     return x
@@ -89,14 +86,17 @@ def square_root_method(A, b):
 
 def main():
     A = np.array([
-        [1, 3, -2, 0, -2],
-        [3, 4, -5, 1, -3],
-        [-2, -5, 3, -2, 2],
-        [0, 1, -2, 5, 3],
-        [-2, -3, 2, 3, 4]
-    ], dtype=complex)
+        [2.2, 4, -3, 1.5, 0.6, 2, 0.7],
+        [4, 3.2, 1.5, -0.7, -0.8, 3, 1],
+        [-3, 1.5, 1.8, 0.9, 3, 2, 2],
+        [1.5, -0.7, 0.9, 2.2, 4, 3, 1],
+        [0.6, -0.8, 3, 4, 3.2, 0.6, 0.7],
+        [2, 3, 2, 3, 0.6, 2.2, 4],
+        [0.7, 1, 2, 1, 0.7, 4, 3.2]
+    ])
 
-    b = np.array([0.5, 5.4, 5, 7.5, 3.3], dtype=complex)
+    # Вектор b - вектор свободных членов системы уравнений
+    b = np.array([3.2, 4.3, -0.1, 3.5, 5.3, 9.0, 3.7])
 
     x = square_root_method(A, b)
 

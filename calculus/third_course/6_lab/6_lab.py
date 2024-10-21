@@ -1,6 +1,7 @@
 import numpy as np
 from calculus.third_course.support.checker import *
 
+
 def matrix_inverse(A):
     n = A.shape[0]  # размер матрицы
     A_inv = np.zeros_like(A, dtype=float)  # создаем пустую матрицу для хранения обратной
@@ -59,9 +60,11 @@ def main():
     A_inv = matrix_inverse(A)
 
     x = A_inv @ b
+    np.set_printoptions(precision=16, suppress=False)
+
+    print(A_inv @ A)
 
     check_answer(A, b, x)
-
 
 
 if __name__ == '__main__':
