@@ -1,18 +1,12 @@
-import numpy as np
 from calculus.third_course.support.checker import *
 
 
 def sigma(a):
-    if a < 0:
-        return -1
+    return -1 if a < 0 else 1
 
-    return 1
 
-def kd(i,j): #Kronecker delta
-    if i == j:
-        return 1
-
-    return 0
+def kd(i, j):  # Kronecker delta
+    return 1 if i == j else 0
 
 
 def qr(A):
@@ -25,17 +19,17 @@ def qr(A):
         ps = np.zeros(n)
         norm_x = np.sqrt(np.sum(R[k:, k] ** 2))
         ps[k] = R[k, k] + sigma(R[k, k]) * norm_x
-        ps[k+1:] = R[k+1:, k]
+        ps[k + 1:] = R[k + 1:, k]
 
         # Шаг 2: Формируем матрицу P_k (отражение Хаусхолдера)
         P_k = np.eye(n) - 2 * np.outer(ps, ps) / np.sum(ps[k:] ** 2)
 
         # Шаг 3: Применяем P_k к R и Q
         R = P_k @ R
+        print(R)
         Q = P_k @ Q
 
     return Q.T, R
-
 
 
 def get_answer(A, b):
