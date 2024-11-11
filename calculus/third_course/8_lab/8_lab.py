@@ -16,7 +16,7 @@ def check_matrix(A):
     return isValid
 
 
-def simple_iteration_method(A, b, x0, tol=1e-6, max_iter=1000):
+def simple_iteration_method(A, b, x0, tol=1e-3, max_iter=1000):
     for i in range(b.shape[0]):
         delimiter = A[i, i]
         A[i] = A[i] / delimiter
@@ -43,12 +43,7 @@ def simple_iteration_method(A, b, x0, tol=1e-6, max_iter=1000):
         raise ValueError('error')
 
 
-def first_sum(A, x, i):
-    return np.dot(A[i, :i], x[:i])  # Сумма до i-го элемента
 
-
-def second_sum(A, x, i, n):
-    return np.dot(A[i, i + 1:n], x[i + 1:n])  # Сумма после i-го элемента
 
 
 def relaxation_method(A, b, x0, omega, epsilon=1e-3, max_iterations=1000000):
@@ -58,7 +53,9 @@ def relaxation_method(A, b, x0, omega, epsilon=1e-3, max_iterations=1000000):
     for _ in range(max_iterations):
         x_new = x.copy()
         for i in range(n):
-            x_new[i] = (1 - omega) * x[i] + (b[i] - first_sum(A, x, i) - second_sum(A, x, i, n)) * omega / A[i, i]
+            x_new[i] = (1 - omega) * x[i] + (
+                    b[i] - np.dot(A[i, :i], x[:i]) - np.dot(A[i, i + 1:n], x[i + 1:n])
+            ) * omega / A[i, i]
 
         if np.linalg.norm(x_new - x) < epsilon:
             return x_new
@@ -69,30 +66,49 @@ def relaxation_method(A, b, x0, omega, epsilon=1e-3, max_iterations=1000000):
 
 
 def main():
-    # A = np.array([
-    #     [0.411, 0.421, -0.333, 0.313, -0.141, -0.381, 0.245],
-    #     [0.241, 0.705, 0.139, -0.409, 0.321, 0.0625, 0.101],
-    #     [0.123, -0.239, 0.502, 0.901, 0.243, 0.819, 0.321],
-    #     [0.413, 0.309, 0.801, 0.865, 0.423, 0.118, 0.183],
-    #     [0.241, -0.221, -0.243, 0.134, 1.274, 0.712, 0.423],
-    #     [0.281, 0.525, 0.719, 0.118, -0.974, 0.808, 0.923],
-    #     [0.246, -0.301, 0.231, 0.813, -0.702, 1.223, 1.105],
-    # ])
-    # b = np.array([0.096, 1.252, 1.024, 1.023, 1.155, 1.937, 1.673])
-
     A = np.array([
-        [10, 2, 1],
-        [1, 10, 2],
-        [1, 1, 10]
+        [10.9, 1.2, 2.1, 0.9],
+        [1.2, 11.2, 1.5, 2.5],
+        [2.1, 1.5, 9.8, 1.3],
+        [0.9, 2.5, 1.3, 12.1],
+    ])
+    b = np.array([-7.0, 5.3, 10.3, 24.6])
+
+    A1 = np.array([
+        [3.82, 1.02, 0.75, 0.81],
+        [1.05, 4.53, 0.98, 1.53],
+        [0.73, 0.85, 4.71, 0.81],
+        [0.88, 0.81, 1.28, 3.50]
     ], dtype=float)
 
-    b = np.array([10, 12, 8], dtype=float)
+    b1 = np.array([15.655, 22.705, 23.480, 16.110], dtype=float)
+
     x0 = np.ones(b.shape[0])
-    # x = simple_iteration_method(A, b, x0, 1e-15)
-    x = relaxation_method(A, b, x0, 1)
+    print('Исходная матрица:')
+    print(A)
+
+    print("Вектор свободных членов", b)
+
+    print('\nРезультаты для метода простой итерации:')
+    x = simple_iteration_method(A, b, x0, )
 
     check_answer(A, b, x)
-    # print(x)
+    print('\nРезультаты для метода релаксации:')
+    x = relaxation_method(A, b, x0, 1)
+    check_answer(A, b, x)
+
+    print('\n\nИсходная матрица:')
+    print(A1)
+
+    print("Вектор свободных членов", b1)
+
+    print('\nРезультаты для метода простой итерации:')
+    x = simple_iteration_method(A1, b1, x0)
+
+    check_answer(A1, b1, x)
+    print('\nРезультаты для метода релаксации:')
+    x = relaxation_method(A1, b1, x0, 1)
+    check_answer(A1, b1, x)
 
 
 if __name__ == '__main__':
