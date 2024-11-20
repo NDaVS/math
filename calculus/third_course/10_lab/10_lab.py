@@ -1,4 +1,5 @@
 from calculus.third_course.support.checker import *
+import numpy as np
 
 
 class RotationWithBarriers:
@@ -13,51 +14,39 @@ class RotationWithBarriers:
         self._sigma = None
 
     def _isPositiveDefine(self):
-
-        # Проверяем, что матрица квадратная
         if self.A.shape[0] != self.A.shape[1]:
             return False
 
-        # Проверяем, что матрица симметрична
         if not np.allclose(self.A, self.A.T):
             return False
 
-        # Вычисляем главные миноры
         minors = [np.linalg.det(self.A[:i, :i]) for i in range(1, self.A.shape[0] + 1)]
-
-        # Проверяем, что все главные миноры положительны
         return all(minor > 0 for minor in minors)
 
     def __sgn(self, value):
-        if value >= 0:
-            return 1
+        return 1 if value >= 0 else -1
 
-        return -1
-
-    def _d(self, ):
+    def _d(self):
         return np.sqrt((self.A[self.i, self.i] - self.A[self.j, self.j]) ** 2 + 4 * self.A[self.i, self.j] ** 2)
 
     def _c(self):
-        return np.sqrt(0.5 * (1 + np.abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
+        return np.sqrt(0.5 * (1 + abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
 
     def _s(self):
         return self.__sgn(self.A[self.i, self.j] * (self.A[self.i, self.i] - self.A[self.j, self.j])) * \
-            np.sqrt(
-                0.5 * (1 - np.abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d())
-            )
+               np.sqrt(0.5 * (1 - abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
 
     def _iteration(self):
+        self.C = np.zeros_like(self.A)  # Явная инициализация на каждом шаге
         for k in range(self._n):
             for l in range(self._n):
                 if k != self.i and k != self.j and l != self.i and l != self.j:
                     self.C[k, l] = self.A[k, l]
-
                 elif k != self.i and k != self.j:
                     self.C[k, self.i] = self._c() * self.A[k, self.i] + self._s() * self.A[k, self.j]
-                    self.C[self.i, k] = self._c() * self.A[k, self.i] + self._s() * self.A[k, self.j]
-
-                    self.C[k, self.j] = (-1) * self._s() * self.A[k, self.i] + self._c() * self.A[k, self.j]
-                    self.C[self.j, k] = (-1) * self._s() * self.A[k, self.i] + self._c() * self.A[k, self.j]
+                    self.C[self.i, k] = self.C[k, self.i]
+                    self.C[k, self.j] = -self._s() * self.A[k, self.i] + self._c() * self.A[k, self.j]
+                    self.C[self.j, k] = self.C[k, self.j]
 
         self.C[self.i, self.i] = (self._c() ** 2) * self.A[self.i, self.i] + \
                                  2 * self._c() * self._s() * self.A[self.i, self.j] + \
@@ -71,56 +60,54 @@ class RotationWithBarriers:
         self.C[self.j, self.i] = 0
 
     def _sigmas(self):
-        self._sigma = [np.sqrt(max(abs(self.A[i, i]) for i in range(self._n))) * p_i for p_i in range(1, self.p)]
+        self._sigma = [np.sqrt(max(self.A[i, i] for i in range(self._n))) / (10 ** p_i) for p_i in range(self.p + 1)]
 
     def _findIJ(self):
         max_abs_value = 0
         indexes = [0, 0]
-
-        for i in range(1, self._n):
+        for i in range(self._n):
             for j in range(i + 1, self._n):
-                if self.A[i, j] > max_abs_value:
-                    max_abs_value = self.A[i, j]
-                    indexes[0] = i
-                    indexes[1] = j
-
+                if abs(self.A[i, j]) > max_abs_value:  # Исправление здесь
+                    max_abs_value = abs(self.A[i, j])
+                    indexes[0], indexes[1] = i, j
         return indexes[0], indexes[1]
 
     def _isEnough(self):
-        if all(self.A[self.i, self.j] < sigma for sigma in self._sigma):
-            return True
-
-        return False
+        return all(abs(self.A[self.i, self.j]) < sigma for sigma in self._sigma)
 
     def compute(self):
         self.i, self.j = self._findIJ()
         self._sigmas()
-
         while not self._isEnough():
-            self.i, self.j = self._findIJ()
             self._iteration()
+            self.A = self.C.copy()
+            self.i, self.j = self._findIJ()
+        return self.C
 
 
 def main():
-    A = np.array([
-        [10.9, 1.2, 2.1, 0.9],
-        [1.2, 11.2, 1.5, 2.5],
-        [2.1, 1.5, 9.8, 1.3],
-        [0.9, 2.5, 1.3, 12.1],
-    ])
-
-    A1 = np.array([
-        [3.82, 1.02, 0.75, 0.81],
-        [1.05, 4.53, 0.98, 1.53],
-        [0.73, 0.85, 4.71, 0.81],
-        [0.88, 0.81, 1.28, 3.50]
-    ], dtype=float)
-
-    solution = RotationWithBarriers(A, 5)
+    # A = np.array([
+    #     [2, 1, 1],
+    #     [1, 2.5, 1],
+    #     [1, 1, 3],
+    # ])
+    # A = np.array([[2.2, 1, 0.5, 2],
+    #               [1, 1.3, 2, 1],
+    #               [0.5, 2, 0.5, 1.6],
+    #               [2, 1, 1.6, 2]])
+    # A = np.array([[-0.168700, 0.353699, 0.008540, 0.733624],
+    #               [0.353699, 0.056519, -0.723182, -0.076440],
+    #               [0.008540, -0.723182, 0.015938, 0.342333],
+    #               [0.733624, -0.076440, 0.342333, -0.045744]])
+    A = np.array([[1.00, 0.42, 0.54, 0.66],
+                  [0.42, 1.00, 0.32, 0.44],
+                  [0.54, 0.32, 1.00, 0.22],
+                  [0.66, 0.44, 0.22, 1.00]])
+    rotation = RotationWithBarriers(A, 5)
+    solution = rotation.compute()
+    print(solution)
 
 
 if __name__ == '__main__':
-    np.set_printoptions(linewidth=200,
-                        suppress=True)  # Установите ширину строки и отключите экспоненциальный формат
-
+    np.set_printoptions(linewidth=200, suppress=True)
     main()
