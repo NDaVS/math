@@ -16,14 +16,14 @@ def check_matrix(A):
     return isValid
 
 
-def simple_iteration_method(A, b, x0, tol=1e-3, max_iter=1000):
+def simple_iteration_method(A, b, x0, tol=1e-5, max_iter=1000):
     for i in range(b.shape[0]):
         delimiter = A[i, i]
         A[i] = A[i] / delimiter
         b[i] /= delimiter
 
     if check_matrix(A):
-        for _ in range(max_iter):
+        for k in range(max_iter):
             new_x = np.zeros_like(b)
 
             for i in range(b.shape[0]):
@@ -36,33 +36,35 @@ def simple_iteration_method(A, b, x0, tol=1e-3, max_iter=1000):
                 new_x[i] = tmp + b[i]
 
             if (np.linalg.norm(new_x - x0, ord=np.inf)) < tol:
-                return new_x
+                return new_x, k
 
             x0 = new_x
 
         raise ValueError('error')
 
 
-
-
-
-def relaxation_method(A, b, x0, omega, epsilon=1e-3, max_iterations=1000000):
+def relaxation_method(A, b, x0, omega, epsilon=1e-5, max_iterations=10000000):
     n = len(b)
     x = x0.copy()
 
-    for _ in range(max_iterations):
-        x_new = x.copy()
+    for k in range(max_iterations):
+        x_old = x.copy()
+
         for i in range(n):
-            x_new[i] = (1 - omega) * x[i] + (
-                    b[i] - np.dot(A[i, :i], x[:i]) - np.dot(A[i, i + 1:n], x[i + 1:n])
-            ) * omega / A[i, i]
+            sum1 = np.dot(A[i, :i], x[:i])
+            sum2 = np.dot(A[i, i + 1:], x[i + 1:])
+            x[i] = (1 - omega) * x[i] + omega * (b[i] - sum1 - sum2) / A[i, i]
 
-        if np.linalg.norm(x_new - x) < epsilon:
-            return x_new
+            # Overflow check
+            if np.isinf(x[i]) or np.isnan(x[i]):
+                raise ValueError("Overflow or NaN detected. Check matrix conditioning or reduce omega.")
 
-        x = x_new
+        # Convergence check
+        if np.linalg.norm(x - x_old, ord=np.inf) < epsilon:
+            return x, k + 1
 
-    raise ValueError('Слишком много итераций')
+    raise ValueError(
+        f"Convergence not achieved after {max_iterations} iterations with omega={omega}, epsilon={epsilon}")
 
 
 def main():
@@ -84,18 +86,25 @@ def main():
     b1 = np.array([15.655, 22.705, 23.480, 16.110], dtype=float)
 
     x0 = np.ones(b.shape[0])
+
+    omegas = [0.01, 0.5, 1, 1.5, 1.99]
+
     print('Исходная матрица:')
     print(A)
 
     print("Вектор свободных членов", b)
 
     print('\nРезультаты для метода простой итерации:')
-    x = simple_iteration_method(A, b, x0, )
+    x, i = simple_iteration_method(A, b, x0, )
+    print(f'Сходимость метода за {i} итераций')
 
     check_answer(A, b, x)
-    print('\nРезультаты для метода релаксации:')
-    x = relaxation_method(A, b, x0, 1)
-    check_answer(A, b, x)
+
+    for omega in omegas:
+        print(f'\nРезультаты для метода релаксации с параметром omega = {omega}:')
+        x, iterations = relaxation_method(A, b, x0, omega)
+        print(f'Сходимость метода за {iterations} итераций')
+        check_answer(A, b, x)
 
     print('\n\nИсходная матрица:')
     print(A1)
@@ -103,12 +112,19 @@ def main():
     print("Вектор свободных членов", b1)
 
     print('\nРезультаты для метода простой итерации:')
-    x = simple_iteration_method(A1, b1, x0)
+    x, i = simple_iteration_method(A1, b1, x0)
+    print(f'Сходимость метода за {i} итераций')
+    check_answer(A1, b1, x)
 
-    check_answer(A1, b1, x)
-    print('\nРезультаты для метода релаксации:')
-    x = relaxation_method(A1, b1, x0, 1)
-    check_answer(A1, b1, x)
+    for omega in omegas:
+        try:
+            print(f'\nРезультаты для метода релаксации с параметром omega = {omega}:')
+            x, iterations = relaxation_method(A1, b1, x0, omega)
+            print(f'Сходимость метода за {iterations} итераций')
+            check_answer(A1, b1, x)
+        except Exception as e:
+            print(f"Convergence not achieved after {10}M iterations with omega={omega}, epsilon={1e-3}")
+
 
 
 if __name__ == '__main__':
