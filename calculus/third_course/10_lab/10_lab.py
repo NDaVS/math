@@ -1,4 +1,3 @@
-from calculus.third_course.support.checker import *
 import numpy as np
 
 
@@ -34,7 +33,7 @@ class RotationWithBarriers:
 
     def _s(self):
         return self.__sgn(self.A[self.i, self.j] * (self.A[self.i, self.i] - self.A[self.j, self.j])) * \
-               np.sqrt(0.5 * (1 - abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
+            np.sqrt(0.5 * (1 - abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
 
     def _iteration(self):
         self.C = np.zeros_like(self.A)  # Явная инициализация на каждом шаге
@@ -105,7 +104,25 @@ def main():
                   [0.66, 0.44, 0.22, 1.00]])
     rotation = RotationWithBarriers(A, 5)
     solution = rotation.compute()
-    print(solution)
+    sz = [solution[i,i] for i in range(solution.shape[0])]
+
+    isPassed = True
+
+    for i in range(A.shape[0]):
+        if np.linalg.det(A - sz[i] * np.eye(A.shape[0])) < 1e-13:
+            print("Success")
+
+        else:
+            print(f"Fail! Error = {np.linalg.det(A - sz[i] * np.eye(A.shape[0]))}")
+            isPassed = False
+            continue
+
+    if isPassed:
+        print(f"All values has been tested successfully.\nValues: {sz}")
+        return
+
+    print("One or more value is wrong or error is too high")
+
 
 
 if __name__ == '__main__':
