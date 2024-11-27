@@ -14,15 +14,14 @@ class SimpleIteration:
 
     def compute(self):
         x = np.ones(self._A.shape[0])
-        lmd, x_old = self._compute(x)
+        eigenvalue, x_old = self._compute(x)
 
         while True:
-            lmd_new, x_new = self._compute(x_old)
+            eigenvalue_new, x_new = self._compute(x_old)
 
             if np.linalg.norm(x_old - x_new) < self._tol:
-                return lmd_new, x_new
+                return eigenvalue_new, x_new
 
-            lmd = lmd_new
             x_old = x_new
 
 
@@ -34,10 +33,10 @@ def main():
                   [0.66, 0.44, 0.22, 1.00]])
 
     iterator = SimpleIteration(A, tol)
-    lmd, s_vector = iterator.compute()
-    print("Наибольшее собственное значение = ", lmd)
-    print("Собственный вектор соответствующий этому значению: ", s_vector)
-    print("Проверка вида Ax - lmd * x = ", np.linalg.norm(A @ s_vector - lmd * s_vector))
+    eigenvalue, eigenvector = iterator.compute()
+    print("Наибольшее собственное значение =", eigenvalue)
+    print("Собственный вектор соответствующий этому значению: ", eigenvector)
+    print("Проверка вида Ax - lmd * x = ", np.linalg.norm(A @ eigenvector - eigenvalue * eigenvector))
 
 
 if __name__ == '__main__':
