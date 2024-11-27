@@ -57,24 +57,25 @@ class Gradient:
 
     def check_h(self, x: np.array, i: int):
         old_f = self.f(x)
+        local_h = self.h
 
         while True:
 
-            x[i] = x[i] + self.h[i]
+            x[i] = x[i] + local_h[i]
 
             if old_f > self.f(x):
                 self.x = x
                 return
 
-            x[i] -= 2 * self.h[i]
+            x[i] -= 2 * local_h[i]
 
             if old_f > self.f(x):
                 self.x = x
                 return
 
-            x[i] += self.h[i]
+            x[i] += local_h[i]
 
-            self.h[i] /= 2
+            local_h[i] /= 2
 
     def partition_descent(self):
         x = self.x0
@@ -93,7 +94,7 @@ def main():
                   [2, 7, 2],
                   [1, 3, 3]])
     b = np.array([3, 4, 5])
-    x0 = np.array([1, 1, 10], dtype='float')
+    x0 = np.array([1, 1, 0], dtype='float')
     alpha = 0.01
     h = 0.2
     gradient = Gradient(A, b, x0, alpha, h)
