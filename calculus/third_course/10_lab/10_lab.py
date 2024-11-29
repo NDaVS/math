@@ -1,9 +1,11 @@
+import math
+
 import numpy as np
 
 
 class RotationWithBarriers:
     def __init__(self, A: np.array, p: int):
-        self.A = A
+        self.A = A.copy()
         self.C = np.zeros_like(A)
         self._n = A.shape[0]
         self.p = p
@@ -32,64 +34,69 @@ class RotationWithBarriers:
         return np.sqrt(0.5 * (1 + abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
 
     def _s(self):
-        return self.__sgn(self.A[self.i, self.j] * (self.A[self.i, self.i] - self.A[self.j, self.j])) * \
-            np.sqrt(0.5 * (1 - abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
+        return (
+            self.__sgn(self.A[self.i, self.j] * (self.A[self.i, self.i] - self.A[self.j, self.j]))
+            * np.sqrt(0.5 * (1 - abs(self.A[self.i, self.i] - self.A[self.j, self.j]) / self._d()))
+        )
 
     def _iteration(self):
-        self.C = np.zeros_like(self.A)  # Явная инициализация на каждом шаге
+        c = self._c()
+        s = self._s()
+        C = self.A.copy()
+
         for k in range(self._n):
-            for l in range(self._n):
-                if k != self.i and k != self.j and l != self.i and l != self.j:
-                    self.C[k, l] = self.A[k, l]
-                elif k != self.i and k != self.j:
-                    self.C[k, self.i] = self._c() * self.A[k, self.i] + self._s() * self.A[k, self.j]
-                    self.C[self.i, k] = self.C[k, self.i]
-                    self.C[k, self.j] = -self._s() * self.A[k, self.i] + self._c() * self.A[k, self.j]
-                    self.C[self.j, k] = self.C[k, self.j]
+            if k != self.i and k != self.j:
+                C[k, self.i] = c * self.A[k, self.i] + s * self.A[k, self.j]
+                C[self.i, k] = C[k, self.i]
+                C[k, self.j] = -s * self.A[k, self.i] + c * self.A[k, self.j]
+                C[self.j, k] = C[k, self.j]
 
-        self.C[self.i, self.i] = (self._c() ** 2) * self.A[self.i, self.i] + \
-                                 2 * self._c() * self._s() * self.A[self.i, self.j] + \
-                                 (self._s() ** 2) * self.A[self.j, self.j]
+        C[self.i, self.i] = c**2 * self.A[self.i, self.i] + 2 * c * s * self.A[self.i, self.j] + s**2 * self.A[self.j, self.j]
+        C[self.j, self.j] = s**2 * self.A[self.i, self.i] - 2 * c * s * self.A[self.i, self.j] + c**2 * self.A[self.j, self.j]
+        C[self.i, self.j] = 0
+        C[self.j, self.i] = 0
 
-        self.C[self.j, self.j] = (self._s() ** 2) * self.A[self.i, self.i] - \
-                                 2 * self._c() * self._s() * self.A[self.i, self.j] + \
-                                 (self._c() ** 2) * self.A[self.j, self.j]
-
-        self.C[self.i, self.j] = 0
-        self.C[self.j, self.i] = 0
+        self.A = C.copy()
 
     def _sigmas(self):
-        self._sigma = [np.sqrt(max(self.A[i, i] for i in range(self._n))) / (10 ** p_i) for p_i in range(self.p + 1)]
+        """Compute the stopping threshold values."""
+        self._sigma = [np.sqrt(max(abs(self.A[i, i]) for i in range(self._n))) / (10**p_i) for p_i in range(self.p + 1)]
 
     def _findIJ(self):
         max_abs_value = 0
-        indexes = [0, 0]
+        indexes = (0, 0)
+
         for i in range(self._n):
             for j in range(i + 1, self._n):
-                if abs(self.A[i, j]) > max_abs_value:  # Исправление здесь
+                if abs(self.A[i, j]) > max_abs_value:
                     max_abs_value = abs(self.A[i, j])
-                    indexes[0], indexes[1] = i, j
-        return indexes[0], indexes[1]
+                    indexes = (i, j)
+
+        return indexes
 
     def _isEnough(self):
-        return all(abs(self.A[self.i, self.j]) < sigma for sigma in self._sigma)
+        for i in range(self._n):
+            for j in range(i + 1, self._n):
+                if abs(self.A[i, j]) > min(self._sigma):
+                    return False
+        return True
 
     def compute(self):
-        self.i, self.j = self._findIJ()
         self._sigmas()
+        iterations = 0
+
         while not self._isEnough():
-            self._iteration()
-            self.A = self.C.copy()
             self.i, self.j = self._findIJ()
-        return self.C
+            self._iteration()
+            iterations += 1
+
+        eigenvalues = [self.A[i, i] for i in range(self._n)]
+        eigenvalues.sort()
+        return eigenvalues, iterations
 
 
 def main():
-    # A = np.array([
-    #     [2, 1, 1],
-    #     [1, 2.5, 1],
-    #     [1, 1, 3],
-    # ])
+    isPassed = True
     # A = np.array([[2.2, 1, 0.5, 2],
     #               [1, 1.3, 2, 1],
     #               [0.5, 2, 0.5, 1.6],
@@ -102,29 +109,32 @@ def main():
                   [0.42, 1.00, 0.32, 0.44],
                   [0.54, 0.32, 1.00, 0.22],
                   [0.66, 0.44, 0.22, 1.00]])
-    rotation = RotationWithBarriers(A, 5)
-    solution = rotation.compute()
-    sz = [solution[i,i] for i in range(solution.shape[0])]
+    A = np.array([[2, 1],
+                 [1, 2]])
+    p = 2
+    rotation = RotationWithBarriers(A, p)
+    solution, iterations = rotation.compute()
 
-    isPassed = True
+    eigenvalues = solution
+    print(f"Converged in {iterations} iterations.")
+    print(f"Eigenvalues: {eigenvalues}")
 
     for i in range(A.shape[0]):
-        if np.linalg.det(A - sz[i] * np.eye(A.shape[0])) < 1e-13:
+        if np.linalg.det(A - eigenvalues[i] * np.eye(A.shape[0])) < math.pow(10, - p):
             print("Success")
 
         else:
-            print(f"Fail! Error = {np.linalg.det(A - sz[i] * np.eye(A.shape[0]))}")
+            print(f"Fail! Error = {np.linalg.det(A - eigenvalues[i] * np.eye(A.shape[0]))}")
             isPassed = False
             continue
 
     if isPassed:
-        print(f"All values has been tested successfully.\nValues: {sz}")
+        print(f"All values has been tested successfully.")
         return
 
     print("One or more value is wrong or error is too high")
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     np.set_printoptions(linewidth=200, suppress=True)
     main()

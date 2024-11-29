@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 from calculus.third_course.support.Rotation import RotationWithBarriers
 from calculus.third_course.support.checker import check_answer
@@ -6,7 +7,7 @@ from calculus.third_course.support.checker import check_answer
 
 class Richardson:
     def __init__(self, A: np.array, b: np.array, x: np.array, p: int = 5, tol: float = 1e-5):
-        self._tol = tol
+        self._tol = math.pow(10, - (p-1))
         self._eta = None
         self._tau_0 = None
         self._rho_0 = None
@@ -14,7 +15,7 @@ class Richardson:
         self._b = b
         self._lambda_min = None
         self._lambda_max = None
-        self._n = 20
+        self._n = 17
         self._x = x
         self._p = p
 
@@ -36,7 +37,7 @@ class Richardson:
     def _v_k(self, k):
         return np.cos(
             (2 * k - 1) * np.pi /
-            2 * self._n
+            (2 * self._n)
         )
 
     def _t_k(self, k):
@@ -63,11 +64,22 @@ class Richardson:
 
 
 def main():
-    A = np.array([[1.00, 0.42, 0.54, 0.66],
-                  [0.42, 1.00, 0.32, 0.44],
-                  [0.54, 0.32, 1.00, 0.22],
-                  [0.66, 0.44, 0.22, 1.00]])
-    b = np.array([1, 1, 1, 1])
+    # A = np.array([[2.2, 1, 0.5, 2],
+    #               [1, 1.3, 2, 1],
+    #               [0.5, 2, 0.5, 1.6],
+    #               [2, 1, 1.6, 2]])
+    # A = np.array([[-0.168700, 0.353699, 0.008540, 0.733624],
+    #               [0.353699, 0.056519, -0.723182, -0.076440],
+    #               [0.008540, -0.723182, 0.015938, 0.342333],
+    #               [0.733624, -0.076440, 0.342333, -0.045744]])
+    # A = np.array([[1.00, 0.42, 0.54, 0.66],
+    #               [0.42, 1.00, 0.32, 0.44],
+    #               [0.54, 0.32, 1.00, 0.22],
+    #               [0.66, 0.44, 0.22, 1.00]])
+    A = np.array([[2, 1],
+                 [1, 2]])
+    b = np.array([4,5])
+    # b = np.array([1, 1, 1, 1])
     x = np.zeros_like(b)
 
     richardson = Richardson(A, b, x)
