@@ -24,7 +24,7 @@ class SimpleIteration:
             eigenvalue, x_new = self._compute(x)
 
             if (
-                    np.linalg.norm(x - x_new) < self._tol
+                    np.linalg.norm(np.sign(eigenvalue)*x - x_new) < self._tol
                     and abs(eigenvalue - eigenvalue_old) < self._tol
             ):
                 print(f"Метод завершился за {iter_count} итераций.")

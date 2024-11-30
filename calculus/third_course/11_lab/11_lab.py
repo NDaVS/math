@@ -6,7 +6,7 @@ from calculus.third_course.support.checker import check_answer
 
 
 class Richardson:
-    def __init__(self, A: np.array, b: np.array, x: np.array, p: int = 5, tol: float = 1e-5):
+    def __init__(self, A: np.array, b: np.array, x: np.array, p: int = 4):
         self._tol = math.pow(10, - (p-1))
         self._eta = None
         self._tau_0 = None
@@ -15,7 +15,7 @@ class Richardson:
         self._b = b
         self._lambda_min = None
         self._lambda_max = None
-        self._n = 17
+        self._n = 8
         self._x = x
         self._p = p
 

@@ -15,8 +15,8 @@ class ReverseIterations:
         self._alpha = np.linalg.norm(x0, ord=np.inf)
         x_old = x0
         while True:
-            x_new = np.linalg.solve(self._A, x_old / self._alpha)
-            # x_new = lu.compute(x_old / self._alpha)
+            # x_new = np.linalg.solve(self._A, x_old / self._alpha)
+            x_new = lu.compute(x_old / self._alpha)
             alpha_new = np.linalg.norm(x_new, ord=np.inf)
 
             if np.abs(alpha_new - self._alpha) < self._tol:
