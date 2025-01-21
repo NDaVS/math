@@ -72,7 +72,7 @@ print(coefficients)
 
 # Теперь извлекаем коэффициенты и стандартные ошибки
 estimates <- coefficients
-std_errors <- std_errors
+std_errors <- coef_summary$standard.errors
 
 # Уровень доверия
 alpha <- 0.05
@@ -91,6 +91,9 @@ confidence_intervals <- data.frame(
 
 # Вывод доверительных интервалов
 print(confidence_intervals)
+
+z_scores <- coefficients / std_errors
+p_values <- 2 * (1 - pnorm(abs(z_scores)))
 
 cat("\nP-value:\n")
 print(p_values)
@@ -170,12 +173,12 @@ AIC(model)
 
 
 validation_predictions <- predict(model, test_data)
-validation_pred_prob <- predict(model, validation_data, type="prob")
+validation_pred_prob <- predict(model, test_data, type="prob")
 head(validation_predictions)
 head(validation_pred_prob)
 
 
-misclassification=table(validation_predictions, validation_data$class)
+misclassification=table(validation_predictions, test_data$class)
 misclassification
 
 correct_predictions <- sum(diag(misclassification))
@@ -189,3 +192,64 @@ accuracy <- correct_predictions / total_predictions
 # Вывод точности
 print(paste("Точность модели:", round(accuracy * 100, 2), "%"))
 
+# Убедитесь, что установлены необходимые пакеты
+if (!require("pROC")) install.packages("pROC")
+library(pROC)
+
+# Предсказание вероятностей для всех классов
+validation_pred_prob <- predict(model, validation_data, type = "prob")
+
+# Инициализация для хранения результатов
+roc_list <- list()
+auc_list <- c()
+
+# One-vs-Rest для каждого класса
+for (class in colnames(validation_pred_prob)) {
+  # Бинаризуем метки: текущий класс = 1, остальные = 0
+  binary_true_labels <- ifelse(validation_data$class == class, 1, 0)
+  
+  # Построение ROC-кривой
+  roc_curve <- roc(binary_true_labels, validation_pred_prob[, class], quiet = TRUE)
+  roc_list[[class]] <- roc_curve
+  
+  # Сохраняем AUC
+  auc_list <- c(auc_list, auc(roc_curve))
+  
+  # Выводим AUC для текущего класса
+  cat(paste("Класс:", class, "- AUC:", round(auc(roc_curve), 3)), "\n")
+}
+
+# Визуализация ROC-кривых
+plot(roc_list[[1]], col = "blue", main = "ROC-кривые (One-vs-Rest)", lwd = 2)
+for (i in 2:length(roc_list)) {
+  plot(roc_list[[i]], col = i, add = TRUE, lwd = 2)
+}
+legend("bottomright", legend = colnames(validation_pred_prob), col = 1:length(roc_list), lwd = 2)
+
+# Гистограмма распределения по количеству комнат (nrooms) для тестового набора
+ggplot(test_data, aes(x = nrooms, fill = class)) +
+  geom_histogram(binwidth = 1, position = "dodge", color = "black") +
+  labs(
+    title = "Распределение квартир по количеству комнат (nrooms) для тестового набора",
+    x = "Количество комнат (nrooms)",
+    y = "Количество квартир"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+
+# Гистограмма распределения по количеству комнат (nrooms) для предсказанных значений
+predicted_test_data <- test_data
+predicted_test_data$class <- validation_predictions  # Добавляем предсказанные классы
+
+ggplot(predicted_test_data, aes(x = nrooms, fill = class)) +
+  geom_histogram(binwidth = 1, position = "dodge", color = "black") +
+  labs(
+    title = "Распределение предсказанных значений по количеству комнат (nrooms)",
+    x = "Количество комнат (nrooms)",
+    y = "Количество квартир"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+
+summary(test_data$class)
+summary(predicted_test_data$class)
