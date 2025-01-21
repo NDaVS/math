@@ -14,12 +14,14 @@ class ReverseIterations:
         lu.precompute()
         self._alpha = np.linalg.norm(x0, ord=np.inf)
         x_old = x0
+        iterations = 0
         while True:
             x_new = lu.compute(x_old / self._alpha)
             alpha_new = np.linalg.norm(x_new, ord=np.inf)
+            iterations +=1
 
             if np.abs(alpha_new - self._alpha) < self._tol:
-                return 1 / alpha_new, x_new
+                return 1 / alpha_new, x_new, iterations
 
             self._alpha = alpha_new
             x_old = x_new
@@ -30,14 +32,15 @@ def result(matrix, tol: float):
         print("A= \n", A)
         iterator = ReverseIterations(A, tol)
         x0 = np.ones(A.shape[0])
-        eigenvalue, eigenvector = iterator.compute(x0)
-        print("Наибольшее собственное значение =", eigenvalue)
+        eigenvalue, eigenvector, iterations = iterator.compute(x0)
+        print(f"Метод сошёлся за {iterations} итераций")
+        print("Наименьшее по модулю собственное значение =", eigenvalue)
         print("Собственный вектор соответствующий этому значению: ", eigenvector)
         print("Проверка вида Ax - lmd * x = ", np.linalg.norm(A @ eigenvector - eigenvalue * eigenvector))
         print("=" * 50)
 
 def main():
-    tol = 1e-5
+    tol = 1e-7
     A1 = np.array([[-0.168700, 0.353699, 0.008540, 0.733624],
                   [0.353699, 0.056519, -0.723182, -0.076440],
                   [0.008540, -0.723182, 0.015938, 0.342333],

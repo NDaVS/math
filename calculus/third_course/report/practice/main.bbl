@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{idris2014learning}
+I.~Idris.
+\newblock {\em Learning NumPy Array}.
+\newblock Community experience distilled. Packt Publishing, 2014.
+
+\bibitem{mathcalc}
+Л.А.~Молчанова А.Г.~Колобов.
+\newblock {\em ЧИСЛЕННЫЕ МЕТОДЫ ЛИНЕЙНОЙ
+  АЛГЕБРЫ}.
+\newblock Методические указания и задания для
+  cтудентов математических cпециальноcтей.
+  Издательство Дальневосточного
+  университета, 2008.
+
+\bibitem{cm}
+Соснин~Н.В. Абакумов~М.В.
+\newblock {\em Лекции по численным методам}.
+\newblock МАКС Пресс, Москва, 2022.
+
+\bibitem{python}
+М. Эрик.
+\newblock {\em Изучаем Python: программирование игр,
+  визуализация данных, веб-приложения. 3-е
+  изд.}
+\newblock Питер, 2019.
+
+\end{thebibliography}

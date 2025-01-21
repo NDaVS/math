@@ -1,0 +1,138 @@
+\chapter{Заключение}
+
+В данной работе был исследован метод Гаусса решения СЛАУ с выбором ведущего элемента по строке. Была разработана программная реализация метода на языке Python. 
+Проведенные вычислительные эксперименты показали, что количество итераций увеличивается квадратично с ростом размерности матрицы. Погрешность решения, в свою очередь, имеет нелинейное поведение, демонстрируя значительные колебания и выбросы, что подчеркивает необходимость более внимательного анализа при работе с матрицами определенных размеров или структур.
+Несмотря на то, что метод Гаусса является достаточно эффективным для решения СЛАУ, при работе с матрицами больших размеров необходимо учитывать накопление ошибок округления и, возможно, использовать методы с более высокой численной устойчивостью.
+
+
+\chapter{Теоретические задания}
+
+\section*{Решение задач}
+
+\subsection*{Задача 1: Найти соотношение эквивалентности для $M(A)$ и $\|A\|_\infty$}
+
+\subsubsection*{Определения}
+Норма $M(A)$ определяется как:
+\[
+M(A) = n \cdot \max_{1 \leq i, j \leq n} |a_{ij}|,
+\]
+где $n$ --- размерность матрицы $A$.
+
+Норма $\|A\|_\infty$ определяется как:
+\[
+\|A\|_\infty = \max_{1 \leq i \leq n} \sum_{j=1}^n |a_{ij}|,
+\]
+где берётся максимальная сумма по строкам матрицы $A$.
+
+\subsubsection*{Вывод соотношения эквивалентности}
+Для нахождения соотношения между $M(A)$ и $\|A\|_\infty$ рассмотрим следующие оценки:
+
+Нижняя граница:
+\[
+\|A\|_\infty \leq M(A).
+\]
+Поскольку $M(A)$ учитывает максимальный элемент матрицы, умноженный на $n$, эта величина всегда превосходит максимальную строковую сумму.
+
+Верхняя граница:
+\[
+M(A) \leq n \cdot \|A\|_\infty.
+\]
+Для каждой строки $i$ справедливо, что сумма элементов ограничена сверху $n \cdot \max_{i,j}|a_{ij}|$, что соответствует определению $M(A)$.
+
+Таким образом, соотношение имеет вид:
+\[
+\frac{\|A\|_\infty}{n} \leq \frac{M(A)}{n} \leq \|A\|_\infty.
+\]
+
+\subsubsection*{Экспериментальная проверка}
+Для экспериментальной проверки сгенерируем случайные матрицы $A$, вычислить $M(A)$ и $\|A\|_\infty$, а затем проверим соотношение. Это можно реализовать с помощью скрипта на Python с использованием библиотеки NumPy.
+
+\begin{lstlisting}[caption={Задача 1}]
+import numpy as np
+
+n = 8
+A = np.random.rand(n, n) * 10
+
+max_element = np.max(np.abs(A))
+M_A = n * max_element
+
+infinity_norm = np.max(np.sum(np.abs(A), axis=1))
+
+ratio_lower = infinity_norm / n
+ratio_upper = infinity_norm
+
+print("Matrix A:")
+print(A)
+print(f"M(A): {M_A}")
+print(f"M(A)/n: {M_A / n}")
+print(f"||A||_e: {infinity_norm}")
+print(f"||A||_e / n: {ratio_lower}")
+print(f"Equivalence ratio: {ratio_lower} <= M(A)/n <= {ratio_upper}")
+print(f'Is equivalence true: {True if ratio_lower <= M_A / n <= ratio_upper else False}')
+\end{lstlisting}
+
+Данный код был проверен сотни раз, на каждом из них программа выводит True.
+
+
+\newpage
+\subsection*{Задача 2: Доказать, что $\mu(A) = \mu(\alpha A)$}
+
+\subsubsection*{Определение числа обусловленности}
+Число обусловленности $\mu(A)$ определяется как:
+\[
+\mu(A) = \|A\| \cdot \|A^{-1}\|,
+\]
+где $\| A \|$ --- любая матричная норма.
+
+\subsubsection*{Доказательство}
+Пусть $\alpha \neq 0$ --- скаляр. Тогда:
+\[
+\|\alpha A\| = |\alpha| \cdot \|A\|,
+\]
+и
+\[
+(\alpha A)^{-1} = \frac{1}{\alpha} A^{-1}.
+\]
+Отсюда:
+\[
+\|(\alpha A)^{-1}\| = \left\|\frac{1}{\alpha} A^{-1}\right\| = \frac{1}{|\alpha|} \cdot \|A^{-1}\|.
+\]
+
+Подставим это в определение числа обусловленности:
+\[
+\mu(\alpha A) = \|\alpha A\| \cdot \|(\alpha A)^{-1}\| = (|\alpha| \cdot \|A\|) \cdot \left(\frac{1}{|\alpha|} \cdot \|A^{-1}\|\right).
+\]
+
+После сокращения получаем:
+\[
+\mu(\alpha A) = \|A\| \cdot \|A^{-1}\| = \mu(A).
+\]
+
+\subsubsection*{Экспериментальная проверка}
+Сгенерируем случайные матрицы $A$ и скаляр $\alpha \neq 0$, вычислим $\mu(A)$ и $\mu(\alpha A)$, чтобы убедиться, что они равны.
+
+\begin{lstlisting}[caption={Задача 2}]
+import numpy as np
+
+n = 8
+A = np.random.rand(n, n) * 10
+
+A += np.eye(n) * n
+
+norm_A = np.linalg.norm(A, ord=np.inf)
+norm_A_inv = np.linalg.norm(np.linalg.inv(A), ord=np.inf)
+condition_number_A = norm_A * norm_A_inv
+
+alpha = 5
+norm_alpha_A = np.linalg.norm(alpha * A, ord=np.inf)
+norm_alpha_A_inv = np.linalg.norm(np.linalg.inv(alpha * A), ord=np.inf)
+condition_number_alpha_A = norm_alpha_A * norm_alpha_A_inv
+
+print("Matrix A:")
+print(A)
+print(f"mu(A): {condition_number_A}")
+print(f"mu(alpha * A) with alpha={alpha}: {condition_number_alpha_A}")
+print(f"Condition numbers are equal: {np.isclose(condition_number_A, condition_number_alpha_A)}")
+\end{lstlisting}
+
+Данный код был проверен сотни раз, на каждом из них программа выводит True.

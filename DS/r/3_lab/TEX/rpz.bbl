@@ -1,0 +1,31 @@
+\begin{thebibliography}{1}
+\def\selectlanguageifdefined#1{
+\expandafter\ifx\csname date#1\endcsname\relax
+\else\language\csname l@#1\endcsname\fi}
+\ifx\undefined\url\def\url#1{{\small #1}}\else\fi
+\ifx\undefined\BibUrl\def\BibUrl#1{\url{#1}}\else\fi
+\ifx\undefined\BibAnnote\long\def\BibAnnote#1{}\else\fi
+\ifx\undefined\BibEmph\def\BibEmph#1{\emph{#1}}\else\fi
+
+\bibitem{krivosonova2005numerical}
+\selectlanguageifdefined{english}
+\BibEmph{Кривоносова,~А.Ф.} Численные методы в
+  алгебре~/ А.Ф.~Кривоносова. ---
+\newblock Москва: Наука, 2005.
+
+\bibitem{isaev2011methods}
+\selectlanguageifdefined{english}
+\BibEmph{Исаев,~А.А.} Численные методы линейной
+  алгебры~/ А.А.~Исаев, Г.П.~Копытов. ---
+\newblock Москва: Физматлит, 2011.
+
+\bibitem{kolobov2008}
+\selectlanguageifdefined{english}
+\BibEmph{Колобов А.~Г.,~Молчанова~Л.А.} Численные
+  методы линейной алгебры~/
+  Молчанова~Л.А.~Колобов А.~Г. ---
+\newblock 1th edition. ---
+\newblock Владивосток: Издательство
+  Дальневосточного университета, 2008.
+
+\end{thebibliography}
