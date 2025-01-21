@@ -17,7 +17,7 @@ data$class <- cut(data$totsp, breaks = 4, labels = c("small", "medium", "large",
 
 data <- select(data, -totsp)
 dim(data)
-summary(data)
+summary(data$class)
 
 train_index <- caret::createDataPartition(data$class, p = 0.6, list = FALSE)
 train_data <- data[train_index, ]
@@ -253,3 +253,79 @@ ggplot(predicted_test_data, aes(x = nrooms, fill = class)) +
 
 summary(test_data$class)
 summary(predicted_test_data$class)
+
+
+
+model <- ksvm(class ~ ., data = train_data, kernel = "rbfdot", prob.model = TRUE)
+
+# Обзор модели
+print(model)
+
+# Оценка модели на валидационных данных
+validation_predictions <- predict(model, validation_data, type = "response")
+validation_pred_prob <- predict(model, validation_data, type = "probabilities")
+
+# Метрики классификации
+misclassification <- table(validation_predictions, validation_data$class)
+print(misclassification)
+
+accuracy <- sum(diag(misclassification)) / sum(misclassification)
+cat("\nТочность модели на валидационных данных:", round(accuracy * 100, 2), "%\n")
+
+# Оценка модели на тестовых данных
+test_predictions <- predict(model, test_data, type = "response")
+test_pred_prob <- predict(model, test_data, type = "probabilities")
+
+# Метрики классификации на тестовых данных
+misclassification_test <- table(test_predictions, test_data$class)
+print(misclassification_test)
+
+accuracy_test <- sum(diag(misclassification_test)) / sum(misclassification_test)
+cat("\nТочность модели на тестовых данных:", round(accuracy_test * 100, 2), "%\n")
+
+# ROC-анализ для SVM
+if (!require("pROC")) install.packages("pROC")
+library(pROC)
+
+roc_list <- list()
+auc_list <- c()
+
+# One-vs-Rest для каждого класса
+for (class in colnames(validation_pred_prob)) {
+  binary_true_labels <- ifelse(validation_data$class == class, 1, 0)
+  roc_curve <- roc(binary_true_labels, validation_pred_prob[, class], quiet = TRUE)
+  roc_list[[class]] <- roc_curve
+  auc_list <- c(auc_list, auc(roc_curve))
+  cat(paste("Класс:", class, "- AUC:", round(auc(roc_curve), 3)), "\n")
+}
+
+# Визуализация ROC-кривых
+plot(roc_list[[1]], col = "blue", main = "ROC-кривые (One-vs-Rest)", lwd = 2)
+for (i in 2:length(roc_list)) {
+  plot(roc_list[[i]], col = i, add = TRUE, lwd = 2)
+}
+legend("bottomright", legend = colnames(validation_pred_prob), col = 1:length(roc_list), lwd = 2)
+
+# Визуализация результатов
+ggplot(test_data, aes(x = nrooms, fill = class)) +
+  geom_histogram(binwidth = 1, position = "dodge", color = "black") +
+  labs(
+    title = "Распределение квартир по количеству комнат (nrooms) для тестового набора",
+    x = "Количество комнат (nrooms)",
+    y = "Количество квартир"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
+
+predicted_test_data <- test_data
+predicted_test_data$class <- test_predictions
+
+ggplot(predicted_test_data, aes(x = nrooms, fill = class)) +
+  geom_histogram(binwidth = 1, position = "dodge", color = "black") +
+  labs(
+    title = "Распределение предсказанных значений по количеству комнат (nrooms)",
+    x = "Количество комнат (nrooms)",
+    y = "Количество квартир"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set3")
