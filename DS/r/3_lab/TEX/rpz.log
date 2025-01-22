@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.27)  18 JAN 2025 17:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.27)  22 JAN 2025 20:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1163,9 +1163,41 @@ Package: G7-32 2003/07/07 v1.00 Titles for GOST 7.32-2001
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
+fg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen170
+\Gin@req@width=\dimen171
+) (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count290
+\rotFPtop=\skip72
+\rotFPbot=\skip73
+\rot@float@box=\box58
+\rot@mess@toks=\toks32
+)
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
-e 8.
+e 9.
 
 (preamble.inc.tex
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
@@ -1220,15 +1252,15 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count290
+\c@section@level=\count291
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count291
+\etb@tempcnta=\count292
 )
-\@linkdim=\dimen170
-\Hy@linkcounter=\count292
-\Hy@pagecounter=\count293
+\@linkdim=\dimen172
+\Hy@linkcounter=\count293
+\Hy@pagecounter=\count294
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
 File: pd1enc.def 2023-11-26 v7.01g Hyperref: PDFDocEncoding definition (HO)
@@ -1239,7 +1271,7 @@ Now handling font encoding PD1 ...
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count294
+\Hy@SavedSpaceFactor=\count295
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
 File: puenc.def 2023-11-26 v7.01g Hyperref: PDF Unicode definition (HO)
@@ -1258,14 +1290,14 @@ Package hyperref Info: Plain pages OFF on input line 4196.
 Package hyperref Info: Backreferencing OFF on input line 4201.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4448.
-\c@Hy@tempcnt=\count295
+\c@Hy@tempcnt=\count296
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4786.
-\XeTeXLinkMargin=\dimen171
+\XeTeXLinkMargin=\dimen173
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -1275,9 +1307,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count296
-\Field@Width=\dimen172
-\Fld@charsize=\dimen173
+\Fld@menulength=\count297
+\Field@Width=\dimen174
+\Fld@charsize=\dimen175
 Package hyperref Info: Hyper figures OFF on input line 6065.
 Package hyperref Info: Link nesting OFF on input line 6070.
 Package hyperref Info: Hyper index ON on input line 6073.
@@ -1290,9 +1322,9 @@ Package hyperref Info: PDF/A mode OFF on input line 6095.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count297
-\c@Item=\count298
-\c@Hfootnote=\count299
+\Hy@abspage=\count298
+\c@Item=\count299
+\c@Hfootnote=\count300
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
@@ -1303,8 +1335,8 @@ Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count300
-\c@bookmark@seq@number=\count301
+\Fld@listcount=\count301
+\c@bookmark@seq@number=\count302
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
 echeck.sty
@@ -1317,28 +1349,7 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 )
-\Hy@SectionHShift=\skip72
-)
-(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
-Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
-Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
-
-(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
-Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-)
-(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
-fg
-File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
-)
-Package graphics Info: Driver file: pdftex.def on input line 107.
-
-(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
-File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
-))
-\Gin@req@height=\dimen174
-\Gin@req@width=\dimen175
+\Hy@SectionHShift=\skip74
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
@@ -1352,12 +1363,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen183
 \cmidrulekern=\dimen184
 \defaultaddspace=\dimen185
-\@cmidla=\count302
-\@cmidlb=\count303
+\@cmidla=\count303
+\@cmidlb=\count304
 \@aboverulesep=\dimen186
 \@belowrulesep=\dimen187
-\@thisruleclass=\count304
-\@lastruleclass=\count305
+\@thisruleclass=\count305
+\@lastruleclass=\count306
 \@thisrulewidth=\dimen188
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.
@@ -1367,13 +1378,13 @@ sty
 y
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
 -common.tex
-\pgfutil@everybye=\toks32
+\pgfutil@everybye=\toks33
 \pgfutil@tempdima=\dimen189
 \pgfutil@tempdimb=\dimen190
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil
 -latex.def
-\pgfutil@abb=\box58
+\pgfutil@abb=\box59
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.
 code.tex
@@ -1392,12 +1403,12 @@ Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
 .code.tex
-\pgfkeys@pathtoks=\toks33
-\pgfkeys@temptoks=\toks34
+\pgfkeys@pathtoks=\toks34
+\pgfkeys@temptoks=\toks35
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys
 libraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks35
+\pgfkeys@tmptoks=\toks36
 ))
 \pgf@x=\dimen191
 \pgf@y=\dimen192
@@ -1411,14 +1422,14 @@ libraryfiltered.code.tex
 \pgf@yd=\dimen256
 \w@pgf@writea=\write3
 \r@pgf@reada=\read3
-\c@pgf@counta=\count306
-\c@pgf@countb=\count307
-\c@pgf@countc=\count308
-\c@pgf@countd=\count309
-\t@pgf@toka=\toks36
-\t@pgf@tokb=\toks37
-\t@pgf@tokc=\toks38
-\pgf@sys@id@count=\count310
+\c@pgf@counta=\count307
+\c@pgf@countb=\count308
+\c@pgf@countc=\count309
+\c@pgf@countd=\count310
+\t@pgf@toka=\toks37
+\t@pgf@tokb=\toks38
+\t@pgf@tokc=\toks39
+\pgf@sys@id@count=\count311
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.c
 fg
@@ -1437,8 +1448,8 @@ File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 ssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfsyssoftpath@smallbuffer@items=\count311
-\pgfsyssoftpath@bigbuffer@items=\count312
+\pgfsyssoftpath@smallbuffer@items=\count312
+\pgfsyssoftpath@bigbuffer@items=\count313
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsy
 sprotocol.code.tex
@@ -1473,11 +1484,11 @@ code.tex)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparse
 r.code.tex
 \pgfmath@dimen=\dimen257
-\pgfmath@count=\count313
-\pgfmath@box=\box59
-\pgfmath@toks=\toks39
-\pgfmath@stack@operand=\toks40
-\pgfmath@stack@operation=\toks41
+\pgfmath@count=\count314
+\pgfmath@box=\box60
+\pgfmath@toks=\toks40
+\pgfmath@stack@operand=\toks41
+\pgfmath@stack@operation=\toks42
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunct
 ions.code.tex)
@@ -1501,7 +1512,7 @@ ions.integerarithmetics.code.tex)
 code.tex)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat
 .code.tex
-\c@pgfmathroundto@lastzeros=\count314
+\c@pgfmathroundto@lastzeros=\count315
 ))
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.
 tex)
@@ -1538,10 +1549,10 @@ File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 escopes.code.tex
 File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfpic=\box60
-\pgf@hbox=\box61
-\pgf@layerbox@main=\box62
-\pgf@picture@serial@count=\count315
+\pgfpic=\box61
+\pgf@hbox=\box62
+\pgf@layerbox@main=\box63
+\pgf@picture@serial@count=\count316
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 egraphicstate.code.tex
@@ -1576,8 +1587,8 @@ File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
 eshade.code.tex
 File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \pgf@max=\dimen281
-\pgf@sys@shading@range@num=\count316
-\pgf@shadingcount=\count317
+\pgf@sys@shading@range@num=\count317
+\pgf@shadingcount=\count318
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 eimage.code.tex
@@ -1586,7 +1597,7 @@ File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 eexternal.code.tex
 File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfexternal@startupbox=\box63
+\pgfexternal@startupbox=\box64
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcor
 elayers.code.tex
@@ -1607,7 +1618,7 @@ File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 shapes.code.tex
 File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfnodeparttextbox=\box64
+\pgfnodeparttextbox=\box65
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 plot.code.tex
@@ -1637,8 +1648,8 @@ code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
 \pgffor@iter=\dimen284
 \pgffor@skip=\dimen285
-\pgffor@stack=\toks42
-\pgffor@toks=\toks43
+\pgffor@stack=\toks43
+\pgffor@toks=\toks44
 ))
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z\tikz.code.tex
@@ -1647,7 +1658,7 @@ Package: tikz 2023-01-15 v3.1.10 (3.1.10)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibr
 aryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgf@plot@mark@count=\count318
+\pgf@plot@mark@count=\count319
 \pgfplotmarksize=\dimen286
 )
 \tikz@lastx=\dimen287
@@ -1658,23 +1669,23 @@ File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
 \tikz@lastmovetoy=\dimen292
 \tikzleveldistance=\dimen293
 \tikzsiblingdistance=\dimen294
-\tikz@figbox=\box65
-\tikz@figbox@bg=\box66
-\tikz@tempbox=\box67
-\tikz@tempbox@bg=\box68
-\tikztreelevel=\count319
-\tikznumberofchildren=\count320
-\tikznumberofcurrentchild=\count321
-\tikz@fig@count=\count322
+\tikz@figbox=\box66
+\tikz@figbox@bg=\box67
+\tikz@tempbox=\box68
+\tikz@tempbox@bg=\box69
+\tikztreelevel=\count320
+\tikznumberofchildren=\count321
+\tikznumberofcurrentchild=\count322
+\tikz@fig@count=\count323
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodule
 matrix.code.tex
 File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfmatrixcurrentrow=\count323
-\pgfmatrixcurrentcolumn=\count324
-\pgf@matrix@numberofcolumns=\count325
+\pgfmatrixcurrentrow=\count324
+\pgfmatrixcurrentcolumn=\count325
+\pgf@matrix@numberofcolumns=\count326
 )
-\tikz@expandcount=\count326
+\tikz@expandcount=\count327
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tik
 z/libraries\tikzlibrarytopaths.code.tex
@@ -1707,59 +1718,59 @@ File: pgflibraryfadings.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )))
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/tools\enumerate.sty
 Package: enumerate 2023/07/04 v3.00 enumerate extensions (DPC)
-\@enLab=\toks44
+\@enLab=\toks45
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
-\multirow@colwidth=\skip73
-\multirow@cntb=\count327
-\multirow@dima=\skip74
+\multirow@colwidth=\skip75
+\multirow@cntb=\count328
+\multirow@dima=\skip76
 \bigstrutjot=\dimen296
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/paralist\paralist.sty
 Package: paralist 2017/01/22 v2.7 Extended list environments
-\pltopsep=\skip75
-\plpartopsep=\skip76
-\plitemsep=\skip77
-\plparsep=\skip78
-\pl@lab=\toks45
+\pltopsep=\skip77
+\plpartopsep=\skip78
+\plitemsep=\skip79
+\plparsep=\skip80
+\pl@lab=\toks46
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
 Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
 \col@sep=\dimen297
-\ar@mcellbox=\box69
+\ar@mcellbox=\box70
 \extrarowheight=\dimen298
-\NC@list=\toks46
-\extratabsurround=\skip79
-\backup@length=\skip80
-\ar@cellbox=\box70
+\NC@list=\toks47
+\extratabsurround=\skip81
+\backup@length=\skip82
+\ar@cellbox=\box71
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 60.
 )
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
-e 11.
+e 12.
 
 (listings.inc.tex
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.sty
-\lst@mode=\count328
-\lst@gtempboxa=\box71
-\lst@token=\toks47
-\lst@length=\count329
+\lst@mode=\count329
+\lst@gtempboxa=\box72
+\lst@token=\toks48
+\lst@length=\count330
 \lst@currlwidth=\dimen299
-\lst@column=\count330
-\lst@pos=\count331
+\lst@column=\count331
+\lst@pos=\count332
 \lst@lostspace=\dimen300
 \lst@width=\dimen301
-\lst@newlines=\count332
-\lst@lineno=\count333
+\lst@newlines=\count333
+\lst@lineno=\count334
 \lst@maxwidth=\dimen302
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
-\c@lstnumber=\count334
-\lst@skipnumbers=\count335
-\lst@framebox=\box72
+\c@lstnumber=\count335
+\lst@skipnumbers=\count336
+\lst@framebox=\box73
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/listings\listings.cfg
 File: listings.cfg 2023/02/27 1.9 listings configuration
@@ -1768,40 +1779,40 @@ Package: listings 2023/02/27 1.9 (Carsten Heinz)
 )
 
 LaTeX Warning: \include should only be used after \begin{document} on input lin
-e 14.
+e 15.
 
 (macros.inc.tex)
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
 tex.def
 File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count336
-\l__pdf_internal_box=\box73
+\l__color_backend_stack_int=\count337
+\l__pdf_internal_box=\box74
 ) (rpz.aux (12-intro.aux) (20-analysis.aux) (30-design.aux) (40-impl.aux) (50-r
 esearch.aux) (80-conclusion.aux) (81-biblio.aux) (90-appendix1.aux)
 (91-appendix2.aux))
 \openout1 = `rpz.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 16.
-LaTeX Font Info:    ... okay on input line 16.
-LaTeX Info: Redefining \th on input line 16.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 17.
+LaTeX Font Info:    ... okay on input line 17.
+LaTeX Info: Redefining \th on input line 17.
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/ucs\ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -1814,6 +1825,7 @@ Package caption Info: longtable package is loaded.
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
+Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 *geometry* driver: auto-detecting
@@ -1850,26 +1862,21 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 16.
-(rpz.out) (rpz.out)
-\@outlinefile=\write4
-\openout4 = `rpz.out'.
-
 
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count337
+\scratchcounter=\count338
 \scratchdimen=\dimen303
-\scratchbox=\box74
-\nofMPsegments=\count338
-\nofMParguments=\count339
-\everyMPshowfont=\toks48
-\MPscratchCnt=\count340
+\scratchbox=\box75
+\nofMPsegments=\count339
+\nofMParguments=\count340
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count341
 \MPscratchDim=\dimen304
-\MPnumerator=\count341
-\makeMPintoPDFobject=\count342
-\everyMPtoPDFconversion=\toks49
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
+\everyMPtoPDFconversion=\toks50
 )
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
 ase.sty
@@ -1881,11 +1888,15 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count343
+Package hyperref Info: Link coloring ON on input line 17.
+ (rpz.out) (rpz.out)
+\@outlinefile=\write4
+\openout4 = `rpz.out'.
+
+\c@lstlisting=\count344
  (rpz.toc<<ot1.cmap>><<oml.cmap>><<oms.cmap>><<omx.cmap>>
 LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
-
-(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+ (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
@@ -1938,11 +1949,16 @@ LaTeX Font Info:    No file PUcmr.fd. on input line 2.
 LaTeX Font Warning: Font shape `PU/cmr/m/up' undefined
 (Font)              using `PU/pdf/m/n' instead on input line 2.
 
-)
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
+4.
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\t2acmtt.fd
+File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+))
 \tf@toc=\write5
 \openout5 = `rpz.toc'.
 
- [1
+
+[1
 
 
 {C:/Users/fandj/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
@@ -1954,30 +1970,30 @@ LaTeX Font Warning: Font shape `PU/cmr/m/up' undefined
 ]
 \openout2 = `20-analysis.aux'.
 
- (20-analysis.tex [3
+ (20-analysis.tex
+LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <14.4> not available
+(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 9.
+LaTeX Font Info:    Font shape `OML/cmr/m/up' in size <14.4> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 36.
+LaTeX Font Info:    Font shape `OMS/cmr/m/up' in size <14.4> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 36.
+ [3
 
 
 
 
-] [4] [5]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 78.
+] [4]
+Overfull \hbox (34.9426pt too wide) detected at line 102
+[] \OT1/cmr/m/n/14.4 = []\OML/cmm/m/it/14.4 :
+ []
 
-(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
-File: koi8-r.def 2022/06/11 v1.0e Input encoding file
-)
-[6] [7]
-<figures/1.png, id=212, 481.8pt x 301.125pt>
-File: figures/1.png Graphic file (type png)
-<use figures/1.png>
-Package pdftex.def Info: figures/1.png  used on input line 165.
-(pdftex.def)             Requested size: 455.2593pt x 256.09988pt.
-<figures/2.png, id=214, 803.0pt x 501.875pt>
-File: figures/2.png Graphic file (type png)
-<use figures/2.png>
-Package pdftex.def Info: figures/2.png  used on input line 176.
-(pdftex.def)             Requested size: 455.25195pt x 256.08304pt.
- [8 <./figures/1.png>]) [9 <./figures/2.png (PNG copy)>]
+[5] [6] [7]
+Underfull \hbox (badness 2073) in paragraph at lines 194--195
+[]\T2A/cmr/m/n/14.4 ROC-кривые и AUC для ве^^?ро^^?ят^^?ност^^?ных пред^^?ска^^
+?за^^?ний (при
+ []
+
+) [8]
 \openout2 = `30-design.aux'.
 
 
@@ -1987,34 +2003,140 @@ No file 30-design.tex.
 No file 40-impl.tex.
 \openout2 = `50-research.aux'.
 
-No file 50-research.tex.
-\openout2 = `80-conclusion.aux'.
+(50-research.tex
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2023/02/27 1.9 listings language file
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang2.sty
+File: lstlang2.sty 2023/02/27 1.9 listings language file
+)
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang3.sty
+File: lstlang3.sty 2023/02/27 1.9 listings language file
+)
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 7.
 
-(80-conclusion.tex [10
-
-
-
-
-
-
-
-
-
-
-
-
-
-] [11
-
-]
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
 File: koi8-r.def 2022/06/11 v1.0e Input encoding file
 )
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+[9
+
+
+
+
+
+
+
+
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 75--77
+
+ []
+
+
+Overfull \hbox (14.70099pt too wide) in paragraph at lines 82--87
+ [][] 
+ []
+
+
+Underfull \hbox (badness 1400) in paragraph at lines 78--88
+[]\T2A/cmr/m/n/14.4 Проверка на пол^^?но^^?ту да^^?та^^?се^^?та (\T2A/cmr/bx/n/
+14.4 print(colSums(sapply(data,
+ []
+
+[10]
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+Underfull \hbox (badness 10000) in paragraph at lines 108--122
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 108--122
+
+ []
+
+[11]
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+[]\T2A/cmr/m/n/14.4 50% от вре^^?мен^^?ной вы^^?бор^^?ки на^^?зна^^?ча^^?ют^^?с
+я ва^^?ли^^?да^^?
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+\T2A/cmr/m/n/14.4 ци^^?он^^?ным дан^^?ным с ис^^?поль^^?зо^^?ва^^?ни^^?ем той ж
+е функ^^?ции
+ []
+
 [12]
 (C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
 File: koi8-r.def 2022/06/11 v1.0e Input encoding file
 )
-[13]) [14]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13] [14] [15]
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+Underfull \hbox (badness 10000) in paragraph at lines 310--312
+
+ []
+
+[16]
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 367--369
+[]\T2A/cmr/bx/n/14.4 Получение ко^^?эф^^?фи^^?ци^^?ен^^?тов мо^^?де^^?ли
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 369--370
+[]\T2A/cmr/m/n/14.4 Результаты мо^^?де^^?ли из^^?вле^^?ка^^?ют^^?ся с по^^?мо^^
+?щью
+ []
+
+
+Underfull \hbox (badness 2547) in paragraph at lines 369--370
+\T2A/cmtt/m/n/14.4 summary(model)\T2A/cmr/m/n/14.4 . Это поз^^?во^^?ля^^?ет по^
+^?лу^^?чить ин^^?фор^^?ма^^?цию о
+ []
+
+[18] [19] [20]
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+[21]
+Overfull \hbox (18.95557pt too wide) in paragraph at lines 510--518
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[22]
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+[23] [24]
+(C:\Users\fandj\AppData\Local\Programs\MiKTeX\tex/latex/cyrillic\koi8-r.def
+File: koi8-r.def 2022/06/11 v1.0e Input encoding file
+)
+[25]) [26]
+\openout2 = `80-conclusion.aux'.
+
+ (80-conclusion.tex)
 \openout2 = `81-biblio.aux'.
 
  (81-biblio.tex (rpz.bbl
@@ -2029,7 +2151,10 @@ Underfull \hbox (badness 1735) in paragraph at lines 24--30
 --
  []
 
-)) [15
+)) [27
+
+
+
 
 
 
@@ -2053,35 +2178,52 @@ L3 programming layer <2023-12-11>
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: File `rpz.out' has not changed.
-(rerunfilecheck)             Checksum: 1F2A1B743B45CD88D073ABF042596823;1370.
+
+Package rerunfilecheck Warning: File `rpz.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `rpz.out':
+(rerunfilecheck)             Before: 9356C63EECAA8F27302842180C1BD664;5318
+(rerunfilecheck)             After:  BE9B9333A31423EE047A3ACE54C70633;5318.
  ) 
 Here is how much of TeX's memory you used:
- 28156 strings out of 474495
- 519941 string characters out of 5743934
- 2023460 words of memory out of 5000000
- 49669 multiletter control sequences out of 15000+600000
- 566524 words of font info for 56 fonts, out of 8000000 for 9000
+ 29245 strings out of 474495
+ 534531 string characters out of 5743934
+ 2020460 words of memory out of 5000000
+ 50646 multiletter control sequences out of 15000+600000
+ 575198 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,6n,98p,1156b,2373s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati14
-40.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
-tcrm1000.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi
-600\larm1000.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
-/dpi600\labx1440.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
--t2a/dpi600\larm1440.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/l
-h/lh-t2a/dpi600\labx1728.pk><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/fandj/AppData/Local/Programs/MiK
-TeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/fandj/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/fandj/AppData/
-Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/fandj/
-AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/User
-s/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symb
-ols/msam10.pfb>
-Output written on rpz.pdf (15 pages, 300434 bytes).
+ 91i,11n,98p,717b,2440s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{section*.33} has been referenced but does not exist
+, replaced by a fixed one
+
+ <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm10
+00.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\
+tcbx1000.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a/dpi
+600\labx1000.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh-t2a
+/dpi600\larm1000.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/lh/lh
+-t2a/dpi600\lati1440.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfour/l
+h/lh-t2a/dpi600\labx1440.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/ljfo
+ur/lh/lh-t2a/dpi600\latt1440.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts/pk/
+ljfour/lh/lh-t2a/dpi600\larm1440.pk> <C:\Users\fandj\AppData\Local\MiKTeX\fonts
+/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk><C:/Users/fandj/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/fandj/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/fandj/AppDa
+ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/fa
+ndj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:
+/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
+2.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
+/cm/cmmib10.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/fonts/typ
+e1/public/amsfonts/cm/cmr12.pfb><C:/Users/fandj/AppData/Local/Programs/MiKTeX/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/fandj/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/fandj/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on rpz.pdf (27 pages, 382984 bytes).
 PDF statistics:
- 655 PDF objects out of 1000 (max. 8388607)
- 176 named destinations out of 1000 (max. 500000)
- 195 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1007 PDF objects out of 1200 (max. 8388607)
+ 210 named destinations out of 1000 (max. 500000)
+ 337 words of extra memory for PDF output out of 10000 (max. 10000000)
 
