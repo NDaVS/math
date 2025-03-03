@@ -1,8 +1,0 @@
-\babel@toc {russian}{}\relax 
-\contentsline {section}{\numberline {1}Постановка задачи}{4}{}%
-\contentsline {subsection}{\numberline {1.1}Необходимые условия}{4}{}%
-\contentsline {subsection}{\numberline {1.2}Тестовые данные}{4}{}%
-\contentsline {section}{\numberline {2}Метод Ричардсона}{5}{}%
-\contentsline {section}{\numberline {3}Программаная реализация}{6}{}%
-\contentsline {section}{\numberline {4}Анализ результатов решения}{8}{}%
-\contentsline {section}{\numberline {5}Заключение}{10}{}%
