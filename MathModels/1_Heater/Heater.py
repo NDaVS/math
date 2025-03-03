@@ -14,13 +14,13 @@ class SolderingIron:
     m : float
         Mass in grams.
     T0 : float
-        Initial temperature in Celsius.
+        Initial temperature in Kelvins.
     Tenv : float
-        Environmental temperature in Celsius.
+        Environmental temperature in Kelvins.
     Tmax : float
-        Maximum temperature in Celsius.
+        Maximum temperature in Kelvins.
     Tmin : float
-        Minimum temperature in Celsius.
+        Minimum temperature in Kelvins.
     alpha : float
         Heat transfer coefficient.
     S : float
@@ -44,13 +44,13 @@ class SolderingIron:
         m : float
             Mass in grams.
         T0 : float
-            Initial temperature in Celsius.
+            Initial temperature in Kelvins.
         Tenv : float
-            Environmental temperature in Celsius.
+            Environmental temperature in Kelvins.
         Tmax : float
-            Maximum temperature in Celsius.
+            Maximum temperature in Kelvins.
         Tmin : float
-            Minimum temperature in Celsius.
+            Minimum temperature in Kelvins.
         alpha : float
             Heat transfer coefficient.
         R : float
@@ -79,7 +79,7 @@ class SolderingIron:
         Parameters:
         -----------
         T : float
-            Current temperature in Celsius.
+            Current temperature in Kelvins.
 
         Returns:
         --------
@@ -95,7 +95,7 @@ class SolderingIron:
         Parameters:
         -----------
         T : float
-            Current temperature in Celsius.
+            Current temperature in Kelvins.
 
         Returns:
         --------
@@ -115,7 +115,7 @@ class SolderingIron:
         Parameters:
         -----------
         T : float
-            Current temperature in Celsius.
+            Current temperature in Kelvins.
 
         Returns:
         --------
@@ -203,13 +203,13 @@ def plot_temperature_vs_time(P, c, m, T0, Tenv, Tmax, Tmin, alpha, R, h, sigma):
     m : float
         Mass in grams.
     T0 : float
-        Initial temperature in Celsius.
+        Initial temperature in Kelvins.
     Tenv : float
-        Environmental temperature in Celsius.
+        Environmental temperature in Kelvins.
     Tmax : float
-        Maximum temperature in Celsius.
+        Maximum temperature in Kelvins.
     Tmin : float
-        Minimum temperature in Celsius.
+        Minimum temperature in Kelvins.
     alpha : float
         Heat transfer coefficient.
     R : float
@@ -242,13 +242,13 @@ def plot_temperature_vs_time_with_controller(P, c, m, T0, Tenv, Tmax, Tmin, alph
     m : float
         Mass in grams.
     T0 : float
-        Initial temperature in Celsius.
+        Initial temperature in Kelvins.
     Tenv : float
-        Environmental temperature in Celsius.
+        Environmental temperature in Kelvins.
     Tmax : float
-        Maximum temperature in Celsius.
+        Maximum temperature in Kelvins.
     Tmin : float
-        Minimum temperature in Celsius.
+        Minimum temperature in Kelvins.
     alpha : float
         Heat transfer coefficient.
     R : float
