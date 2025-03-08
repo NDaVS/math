@@ -261,7 +261,7 @@ def plot_temperature_vs_time_with_controller(P, c, m, T0, Tenv, Tmax, Tmin, alph
     soldering_iron = SolderingIron(P, c, m, T0, Tenv, Tmax, Tmin, alpha, R, h, sigma)
     t_values, T_values = soldering_iron.solve_with_controller(0, 1000, 1000)
     plt.subplot(1, 2, 2)
-    plt.plot(t_values, T_values, label=f"P={P}, c={c}, m={m}, $\alpha$={alpha}, S={soldering_iron.S:.4f}")
+    plt.plot(t_values, T_values, label=f"P={P}, c={c}, m={m}, $\\alpha$={alpha}, S={soldering_iron.S:.4f}")
     plt.axhline(y=Tmax, linestyle='--', label=f'Tmax={Tmax}')
     plt.axhline(y=Tmin, linestyle='--', label=f'Tmin={Tmin}')
     plt.xlabel('Time (s)')
