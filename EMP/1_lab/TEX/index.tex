@@ -1,0 +1,318 @@
+\documentclass[a4paper,12pt]{article}
+
+% Поддержка русского языка
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{mdframed}
+
+% Поддержка математических формул
+\usepackage{amsmath, amssymb, amsfonts}
+
+% Отступ первого абзаца
+\usepackage{indentfirst}
+
+% Возможность зачёркивания текста
+\usepackage{ulem}
+\usepackage{cancel}
+
+% Настройки полей страницы
+\usepackage[a4paper, left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry}
+
+\begin{document}
+	
+	\title{УРМ: ИДЗ 1. Вариант 3}
+	\author{Вершинин данил Алексеевия}
+	\date{\today}
+	\maketitle
+	
+	\section{Решения дифференциального уравнения}
+	\section*{Условие:}
+	\[u_{tt} - a^2u_{xx} = 0, x \in (-\infty, +\infty), t > 0, a = 3\]
+	\[\begin{cases}
+		u(x,0) = \ln(1-x^2) + 1  = \phi(x)\\
+		u_t(x,0) = 0.1\cos^2(x) = \psi(x)
+	\end{cases}\]
+	\section*{Решение методом Даламбера}
+	Формула Даламбера:
+	\begin{mdframed}
+		\[
+		u(x,t) = \frac{\phi(x+at) + \phi(x-at)}{2} + \frac{1}{2a}\int_{x-at}^{x+at}\psi(x')dx'
+		\]
+	\end{mdframed}
+	Подставив наши значения в эту формулу, получим:
+	\[
+		u(x,t) = \frac{\ln(1-(x+at)^2) + \ln(1-(x-at)^2) + 2}{2} + \frac{0.1}{6}\int_{x-3t}^{x+3t} \cos^2(x')dx'
+	\]
+	Отдельно высчитаем интеграл
+	\[
+		\int_{x-3t}^{x+3t} \cos^2(x')dx' = \int_{x-3t}^{x+3t} \frac{1}{2} + \frac{\cos(2x')}{2}dx' = \left(\frac{x'}{2} + \frac{\sin(2x')}{4}\right)\bigg|_{x-3t}^{x+3t} = 3t + \frac{1}{4}(\sin(2x + 6t) - \sin(2x-6t))=
+	\]
+	Зная формулу разности синусов:
+	\begin{mdframed}
+		\[
+		\sin A - \sin B = 2 \cos \left( \frac{A+B}{2} \right) \sin \left( \frac{A-B}{2} \right)
+		\]
+	\end{mdframed}
+	Значение интеграла можно переписать следующим образом:
+	\[
+		= 3t + \frac{\sin(6t)\cos(2x)}{2}
+	\]
+	Тогда искомая функция $u(x,t)$ будет равна:
+	\[
+		u(x,t) =  \frac{\ln(1-(x+3t)^2) + \ln(1-(x-3t)^2) + 2}{2} + \frac{0.1}{6} \cdot \left( 3t + \frac{\sin(6t)\cos(2x)}{2} \right)
+	\]
+	\section{Проверка полученного решения}
+		Для првоерки решения, необходимо найти вторые производные и подставить их в исходное выражение
+	\[
+		u_t = \frac{1}{\cancel{2}}\left(\frac{-\cancel{2}(x+3t)\cdot3}{1-(x+3t)^2} + \frac{\cancel{2}(x-3t)\cdot3}{1-(x-3t)^2}\right) + 
+		\frac{0.1}{6} \left(3 + \frac{6 \cos(6t)\cos(2x)}{2}\right) =
+	\]
+	\[
+	=\frac{-3(x+3t)}{1-(x+3t)^2} + \frac{3(x-3t)}{1-(x-3t)^2} + 
+	 0.2 + 0.1\frac{ \cos(6t)\cos(2x)}{2}
+	\]
+	
+	\[
+		u_{tt} = \frac{-9(1-(x+3t)^2) - 18(x+3t^2))}{(1-(x+3t)^2)^2} + \frac{-9(1-(x-3t)^2) -18(x-3t)^2)}{(1-(x-3t)^2)^2} + \frac{0.1}{2}(-6\sin(6t)\cos(2x))
+	\]
+	
+\begin{center}
+	\rule{0.8\linewidth}{1pt}
+\end{center}
+	\[
+		u_x = \frac{1}{\cancel{2}}\left(\frac{-\cancel{2}(x+3t)}{1-(x+3t)^2} + \frac{-\cancel{2}(x-3t)}{1-(x-3t)^2}\right) - \frac{0.1}{6}\sin(6x)\sin(2x) =
+	\]
+	\[
+		= -\left(\frac{(x+3t)}{1-(x+3t)^2} + \frac{(x-3t)}{1-(x-3t)^2}\right) - \frac{0.1}{6}\sin(6x)\sin(2x) 
+	\]
+	\[
+		u_{xx} = -\left(\frac{1-(x+3t) + 2(x+3t)^2}{(1-(x+3t)^2)^2} + \frac{1-(x-3t) + 2(x-3t)^2}{(1-(x+3t)^2)^2}\right) - \frac{0.1}{3}\sin(6t)\cos(2x)
+	\]
+	
+	Теперь подставим найденные вторые производные в выражение:
+	\[
+		u_{tt} - 9u_{x} = 
+	\]
+	\[
+	 \frac{-9(1-(x+3t)^2) - 18(x+3t^2))}{(1-(x+3t)^2)^2} + \frac{-9(1-(x-3t)^2) -18(x-3t)^2)}{(1-(x-3t)^2)^2} + \frac{0.1}{2}(-6\sin(6t)\cos(2x)) - 
+	\]
+	\[
+		-9\left( -\left(\frac{1-(x+3t) + 2(x+3t)^2}{(1-(x+3t)^2)^2} + \frac{1-(x-3t) + 2(x-3t)^2}{(1-(x+3t)^2)^2}\right) - \frac{0.1}{3}\sin(6t)\cos(2x)\right) = 
+	\]
+
+	\[
+	\frac{-9(1-(x+3t)^2) - 18(x+3t^2))}{(1-(x+3t)^2)^2} + \frac{-9(1-(x-3t)^2) -18(x-3t)^2)}{(1-(x-3t)^2)^2} - {0.1}\cdot3\sin(6t)\cos(2x) +
+	\]
+	\[
+	\frac{9(1-(x+3t) + 2(x+3t)^2)}{(1-(x+3t)^2)^2} + \frac{9(1-(x-3t) + 2(x-3t)^2)}{(1-(x+3t)^2)^2} + 0.1\cdot3\sin(6t)\cos(2x) = 0
+	\]
+	
+	Полученное выражение удовлетворяет условию. Следовательно, функция найдена верно.
+	\newpage
+	\section{Приведение диф. уравнения к каноническому виду}
+	\section*{a)}
+	\[
+		4u_{xx} - 12u_{xy} + 5u_{yy} - 5u_x + 2u_y = 0
+	\]
+	Общий вид диффуравнения второго порядка следующий:
+		\begin{mdframed}
+		\[
+		 a_{11} u_{xx} + 2a_{12}u_{xy} + a_{22}u_{yy} + F = 0
+		\]
+	\end{mdframed}
+	В нашем случае:
+	\[
+		a_{11} = 4, a_{12} = -6, a_{22} = 5
+	\]
+	\[
+		F = - 5u_x + 2u_y 
+	\]
+	
+	Для определения типа диф уравнения следует высчитать $\Delta$
+	\begin{mdframed}
+		\[
+		\Delta = a_{12}^2 - a_{11}\cdot a_{22}
+		\]
+	\end{mdframed}
+	\[
+		\Delta = (-6)^2 - 4 \cdot 5 = 36 - 20 = 16 >0 \Rightarrow \text{гиперболическое}
+	\]
+	В нашем случае алгоритм решения такой:
+	\begin{mdframed}
+		\[
+		\frac{d y}{d x} = \frac{a_{12} \pm \sqrt{\Delta}}{a_{11}} \Rightarrow dy = \frac{a_{12} \pm \sqrt{\Delta}}{a_{11}} dx
+		\]
+		
+		Сделаем замену:
+		\[
+			\begin{cases}
+				\xi = y - \frac{a_{12} - \sqrt{\Delta}}{a_{11}}x \\
+				\eta  = y - \frac{a_{12} + \sqrt{\Delta}}{a_{11}}x 
+			\end{cases}
+		\]
+		
+		И тогда функция $u(x,y)$ станет $u(\xi(x,y), \eta(x,y))$
+		
+	Канонический вид для гиперболических дифференциальных уравнений:
+	\[u_{\xi \xi} - u_{\eta \eta} \text{ или } u_{\xi \eta}\]
+	\end{mdframed}
+	
+	\[
+		\frac{dy}{dx} = \frac{-6 \pm 4}{4} \Rightarrow dy = \frac{-6 \pm 4}{4}dx
+	\]
+	
+	Сделаем замену:
+	\[
+		\begin{cases}
+			\xi = y + \frac{10}{4} x\\
+			\eta = y + \frac{1}{2}x
+		\end{cases} 
+	\]
+	\[\xi_x = \frac{10}{4}, \xi_y = 1\]
+	\[\eta_x = \frac{1}{2}, \eta_y = 1\]
+	
+	Теперь  $u(x,y) = u(\xi(x,y), \eta(x,y))$
+	
+	Найдём вторые производные от сложной функции:
+	\[
+		u_x = u_\xi \xi_x + u_\eta \eta_x = \frac{10}{4}u_\xi  + \frac{1}{2}u_\eta 
+	\]
+	\[
+		u_{xx} = \frac{10}{4}u_{\xi  \xi} \xi_x +\frac{10}{4}u_{\xi  \eta} \eta_x  + \frac{1}{2}u_{\eta \eta} \eta_x  + \frac{1}{2}u_{\eta \xi} \xi_x  = 
+		\left(\frac{10}{4}\right)^2 u_{\xi  \xi}+\frac{5}{4}u_{\xi  \eta} + \frac{1}{4}u_{\eta \eta}+ \frac{5}{4}u_{\eta \xi} =
+	\]
+	\[
+			\left(\frac{10}{4}\right)^2 u_{\xi  \xi}+\frac{10}{4}u_{\xi  \eta} + \frac{1}{4}u_{\eta \eta}
+	\]
+	\begin{center}
+		\rule{0.8\linewidth}{1pt}
+	\end{center}
+	
+	\[
+		u_y = u_\xi \xi_y + u_\eta \eta_y = u_\xi + u_\eta
+	\]
+	\[
+		u_{yy} =u_{\xi\xi} \xi_y  + u_{\xi\eta} \eta_y + u_{\eta\xi} \xi_y + u_{\eta\eta}\eta_y = u_{\xi\xi}   + 2u_{\xi\eta} + u_{\eta\eta}
+	\]
+		\begin{center}
+		\rule{0.8\linewidth}{1pt}
+	\end{center}
+	\[
+	u_{yx} = u_{\xi\xi} \xi_x  + u_{\xi\eta} \eta_x + u_{\eta\xi} \xi_x + u_{\eta\eta}\eta_x =  \frac{10}{4}u_{\xi\xi}   + \frac{1}{2}u_{\xi\eta} + \frac{10}{4}u_{\eta\xi} + \frac{1}{2}u_{\eta\eta} = \frac{10}{4}u_{\xi\xi}   +  3u_{\eta\xi} + \frac{1}{2}u_{\eta\eta}
+	\]
+	
+		Подставим полученные производые
+	\[
+		4\left(			\left(\frac{10}{4}\right)^2 u_{\xi  \xi}+\frac{10}{4}u_{\xi  \eta} + \frac{1}{4}u_{\eta \eta}\right)		 - 12\left(\frac{10}{4}u_{\xi\xi}   +  3u_{\eta\xi} + \frac{1}{2}u_{\eta\eta}\right) + 5\left(u_{\xi\xi}   + 2u_{\xi\eta} + u_{\eta\eta}\right) + F = 0
+	\]
+	
+	Раскроим скобки и преведём подобные слагаемые:
+	\[
+		u_{\xi\xi}\left(25 - 30 + 5\right) + 
+		u_{\xi\eta}\left(10 - 36 + 10\right) + 
+		u_{\eta\eta}\left(1 - 6 + 5\right) + F = 0 
+	\]
+	Тогда выражение можно переписать так:
+	\[
+		16u_{\xi\eta} = F \Rightarrow u_{\xi\eta} = \frac{F}{16}
+	\]
+		\section*{b)}
+		\[
+			-2u_{xx}+2u_{xy} - 0.5u_{yy} + 4u_y = 0
+		\]
+		\[
+			a_{11} = -2, a_{12} = 1, a_{22} = -0.5
+		\]
+		\[
+			F = +4u_y
+		\]
+		
+			Для определения типа диф уравнения следует высчитать $\Delta$
+			\[
+				\Delta = 1^2 - 2 \cdot 0.5 = 0 \Rightarrow \text{параболическое}
+			\]
+			
+		
+		\begin{mdframed}
+			\[
+			\frac{d y}{d x} = \frac{a_{12}}{a_{11}} \Rightarrow dy = \frac{a_{12}}{a_{11}} dx
+			\]
+			
+			Сделаем замену:
+			\[
+			\begin{cases}
+				\xi = y - \frac{a_{12}}{a_{11}} x \\
+				\eta = f(y,x)
+			\end{cases},
+			\]
+			$\eta $ - линейно независимо с $\xi$
+			
+			Тогда функция \( u(x,y) \) становится \( u(\xi(x,y)) \).
+			
+			Канонический вид для параболических дифференциальных уравнений:
+			\[
+			u_{\xi \xi} \quad \text{или} \quad u_{\eta \eta}
+			\]
+		\end{mdframed}
+		
+		\[
+			\frac{dy}{dx} = \frac{1}{-2} \Rightarrow dy = -\frac{1}{2}dx
+		\]
+		
+		Сделаем замену:
+		\[
+			\begin{cases}
+				\xi = y + \frac{x}{2} \\
+				\eta = x
+			\end{cases}
+		\]
+		\[\xi_x = \frac{1}{2}, \ \xi_y = 1\]
+		\[\eta_x = 1, \ \eta_y = 0\]
+		
+		
+		Теперь  $u(x,y) = u(\xi(x,y), \eta(x,y))$
+		
+		Найдём вторые производные от сложной функции:
+		
+		\[
+			u_x = u_\xi \xi_x + u_\eta \eta_x =  \frac{1}{2}u_\xi+ u_\eta 
+		\]
+		\[
+			u_{xx} =  \frac{1}{2}u_{\xi\xi} \xi_x+ \frac{1}{2}u_{\xi\eta} \eta_x +  u_{\eta\xi }\xi_x + u_{\eta\eta} \eta_x = 
+			 \frac{1}{4}u_{\xi\xi}+ \frac{1}{2}u_{\xi\eta} +  \frac{1}{2}u_{\eta\xi } + u_{\eta\eta}  = 
+			 \frac{1}{4}u_{\xi\xi}+u_{\eta\xi } + u_{\eta\eta}
+		\]
+			\begin{center}
+				\rule{0.8\linewidth}{1pt}
+			\end{center}
+			
+		\[
+			u_y = u_\xi \xi_y + u_\eta \eta_y = u_\xi 
+		\]
+		\[
+			u_{yy} = u_{\xi\xi} \xi_y + u_{\xi\eta} \eta_y = u_{\xi\xi}
+		\]
+		\begin{center}
+			\rule{0.8\linewidth}{1pt}
+		\end{center}
+		\[
+			u_{yx} = u_{\xi\xi}\xi_x + u_{\xi\eta}\eta_x = \frac{1}{2}u_{\xi\xi} + u_{\xi\eta}
+		\]
+		
+		Подставим полученные производые
+		\[
+			-2\left(\frac{1}{4}u_{\xi\xi}+u_{\eta\xi } + u_{\eta\eta}\right) + 2 \left(\frac{1}{2}u_{\xi\xi} + u_{\xi\eta}\right) - 0.5 \left(u_{\xi\xi}\right)  + F=0
+		\]
+		
+			Раскроим скобки и преведём подобные слагаемые:
+		\[
+			u_{\xi\xi} \left( -\frac{1}{2} + 1 - 0.5\right) +u_{\xi\eta}(-2 + 2) -2u_{\eta\eta} + F = 0
+		\]
+		
+		Теперь выражение можно переписать так:
+		\[
+			-2u_{\eta\eta} + F = 0 \Rightarrow u_{\eta\eta} = \frac{F}{2}
+		\]
+	
+\end{document}
