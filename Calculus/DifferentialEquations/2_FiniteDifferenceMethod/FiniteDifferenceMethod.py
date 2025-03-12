@@ -2,7 +2,7 @@ import numpy as np
 from numpy import ndarray
 from prettytable import PrettyTable
 
-from ..lib import DifferentialEquationSolver
+from Calculus.DifferentialEquations.libs import DifferentialEquationSolver
 
 
 def p(x: float | ndarray) -> float | ndarray:

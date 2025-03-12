@@ -1,7 +1,7 @@
 import numpy as np
 from prettytable import PrettyTable
 
-from Calculus.DifferentialEquations.lib import DifferentialEquationSolver
+from Calculus.DifferentialEquations.libs import DifferentialEquationSolver
 
 
 def true_f(x: float, a: float, b: float, c: float) -> float:

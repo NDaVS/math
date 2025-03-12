@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 
-from Calculus.DifferentialEquations.lib import AlgebraicSolver
+from Calculus.DifferentialEquations.libs import AlgebraicSolver
 
 
 def phi(x, t):
