@@ -144,3 +144,77 @@ summary(false_positives)
 cat("\nFalse Negatives (ошибочные предсказания 'смерти'):\n")
 summary(false_negatives)
 
+library(gridExtra)
+
+# Выбираем FP и FN
+false_positives <- test_data[test_data$predicted_class == 1 & test_data$survived == 0, ]
+false_negatives <- test_data[test_data$predicted_class == 0 & test_data$survived == 1, ]
+
+# Гистограммы для числовых признаков с разделением по полу
+p1 <- ggplot(false_positives, aes(x = age, fill = sex)) + 
+  geom_histogram(binwidth = 5, alpha = 0.7, position = "dodge") + 
+  ggtitle("False Positives: Age") + theme_minimal()
+
+p2 <- ggplot(false_negatives, aes(x = age, fill = sex)) + 
+  geom_histogram(binwidth = 5, alpha = 0.7, position = "dodge") + 
+  ggtitle("False Negatives: Age") + theme_minimal()
+
+p3 <- ggplot(false_positives, aes(x = fare, fill = sex)) + 
+  geom_histogram(binwidth = 10, alpha = 0.7, position = "dodge") + 
+  ggtitle("False Positives: Fare") + theme_minimal()
+
+p4 <- ggplot(false_negatives, aes(x = fare, fill = sex)) + 
+  geom_histogram(binwidth = 10, alpha = 0.7, position = "dodge") + 
+  ggtitle("False Negatives: Fare") + theme_minimal()
+
+# Boxplot'ы
+p5 <- ggplot(false_positives, aes(x = sex, y = age, fill = sex)) + 
+  geom_boxplot(alpha = 0.5) + 
+  ggtitle("FP: Age Distribution by Sex") + theme_minimal()
+
+p6 <- ggplot(false_negatives, aes(x = sex, y = age, fill = sex)) + 
+  geom_boxplot(alpha = 0.5) + 
+  ggtitle("FN: Age Distribution by Sex") + theme_minimal()
+
+# Категориальные переменные (Pclass)
+p7 <- ggplot(false_positives, aes(x = pclass, fill = sex)) + 
+  geom_bar(alpha = 0.7, position = "dodge") + 
+  ggtitle("False Positives: Pclass by Sex") + theme_minimal()
+
+p8 <- ggplot(false_negatives, aes(x = pclass, fill = sex)) + 
+  geom_bar(alpha = 0.7, position = "dodge") + 
+  ggtitle("False Negatives: Pclass by Sex") + theme_minimal()
+
+# Категориальные переменные (Embarked)
+p9 <- ggplot(false_positives, aes(x = embarked, fill = sex)) + 
+  geom_bar(alpha = 0.7, position = "dodge") + 
+  ggtitle("False Positives: Embarked by Sex") + theme_minimal()
+
+p10 <- ggplot(false_negatives, aes(x = embarked, fill = sex)) + 
+  geom_bar(alpha = 0.7, position = "dodge") + 
+  ggtitle("False Negatives: Embarked by Sex") + theme_minimal()
+
+# Отображение графиков
+grid.arrange(p1, p2, p3, p4, ncol = 2)
+grid.arrange(p5, p6, p7, p8, ncol = 2)
+grid.arrange(p9, p10, ncol = 2)
+
+ggplot(test_data, aes(x = age, y = sex, color = factor(predicted_class == survived))) +
+  geom_point(alpha = 0.7) +
+  scale_color_manual(values = c("red", "blue")) +
+  labs(title = "FP (красный) и FN (синий) на тестовой выборке")
+
+
+
+test_data <- test_data[!(test_data$sex == "female"  & test_data$pclass == "3rd"), ]
+test_data <- test_data[!(test_data$sex == "female"  & (test_data$embarked == "Southampton" |test_data$embarked == "Cherbourg" )), ]
+#test_data_2 <- test_data_2[!(test_data_2$sex == "male" & test_data_2$age >= 28 &  test_data_2$age <= 32), ]
+test_data <- test_data[!(test_data$sex == "male" & (test_data$embarked == "Southampton" |test_data$embarked == "Cherbourg" )), ]
+test_data <- test_data[!(test_data$sex == "male" & test_data$age == 29), ]
+# Оценка лучшей модели на тестовых данных
+predicted_survival <- predict(final_model, newdata = test_data, type = "response")
+predicted_class <- ifelse(predicted_survival > 0.5, 1, 0)
+
+conf_matrix <- confusionMatrix(factor(test_data$survived, levels = c(0, 1)), 
+                               factor(predicted_class, levels = c(0, 1)))
+conf_matrix
