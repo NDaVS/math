@@ -1,0 +1,75 @@
+\chapter{Анализ математической модели}
+Очевидным является тривиальное решение (0,0).
+
+Найдём точки равновесия уравнения (\ref{eq:model}).
+ \begin{equation}
+	\begin{cases}
+		\frac{dx}{dt} = 0 \\ 
+		\frac{dy}{dt} = 0
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+			\alpha x - \beta x y = 0\\
+			\delta x y  - \gamma y = 0
+	\end{cases}
+	\Rightarrow
+	\begin{cases}
+		x_{bal} = \frac{\gamma}{\delta}\\
+		y_{bal} = \frac{\alpha}{\beta}
+	\end{cases}
+	.
+	\label{eq:balance_points}
+\end{equation}
+
+Теперь проанализируем устойчивость решений, применив метод первого приближения. 
+Для этого построим матрицу Якоби (\textbf{$J$}), найдём её cобственные значения, подставив точки равновесия, и по ним укажем тип устойчивости.
+
+\begin{equation}
+	J = \begin{pmatrix}
+		\alpha - \beta y & - \beta x \\
+		\delta y & - \gamma + \delta x
+		\label{eq:jacobi}
+	\end{pmatrix}
+\end{equation}
+Подставляем тривиальное решение:
+\begin{equation}
+	J\big|_{(0,0)} = 
+	\begin{pmatrix}
+		\alpha & 0 \\
+		0 & -\gamma
+	\end{pmatrix}
+	\Rightarrow \lambda_1 = -\gamma , \lambda_2 = \alpha
+	\label{eq:EV_triv}
+\end{equation}
+
+Заметим, что собственные значения вещественны, но различны по знаку. 
+Это означает, что точка $(0,0)$ - является седловой точкой.
+
+Подставим нетривиальную точку равновесия:
+\begin{equation}
+	J\big|_{(x_{bal},y_{bal})} = 
+	\begin{pmatrix}
+		0 &  - \frac{\beta \gamma}{\delta} \\
+		\frac{\delta \alpha}{\beta} & 0
+	\end{pmatrix}
+	\Rightarrow \lambda_{1,2} = \pm i \sqrt{\alpha\gamma}
+	\label{eq:EV_bal}
+\end{equation}
+
+Собственные значения в точке равновесия $(x_bal, Y_bal)$ полностью мнимые. 
+Следовательно точка является неасимптотически устойчивой. Изменение величин в ней не будет происходить, хотя на удалении от неё будут появляться циклы
+
+Теперь найдём первый интеграл. Для этого поделим первое уравнение на второе и разделим переменные:
+\begin{equation}
+	\frac{dx}{dy} = \frac{\alpha x - \beta yx}{\delta xy - \gamma y} 
+	\Rightarrow
+	\left(\frac{\alpha}{y} - \beta\right) dy + \left(\frac{\gamma}{x} - \delta\right)dy = 0.
+	\label{eq:diff_FI}
+\end{equation}
+Интегрируя, получим следующий результат:
+\begin{equation}
+	\alpha \ln(|y|) - \beta y + \gamma \ln(|x|) - \delta x = \text{const}.
+	\label{eq:first_int}
+\end{equation}
+
+Выражение (\ref{eq:first_int}) показывает, что соотношение величин будет постоянным с течением времени. Следовательное, зная, что объёмы популяций меняются, в какой-то момент соотношения вренутся к начальным значениям.
