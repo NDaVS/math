@@ -382,7 +382,7 @@ _minted*
 
 # scrwfile
 *.wrt
-
+*.zip
 # svg
 svg-inkscape/
 

@@ -1,75 +1,109 @@
 \chapter{Анализ математической модели}
-Очевидным является тривиальное решение (0,0).
 
-Найдём точки равновесия уравнения (\ref{eq:model}).
- \begin{equation}
-	\begin{cases}
+Очевидным является тривиальное решение $(0,0)$.
+
+Найдём точки равновесия уравнения (\ref{eq:model}):
+
+\begin{equation} 
+	\begin{cases} 
 		\frac{dx}{dt} = 0 \\ 
-		\frac{dy}{dt} = 0
-	\end{cases}
-	\Rightarrow
-	\begin{cases}
-			\alpha x - \beta x y = 0\\
-			\delta x y  - \gamma y = 0
-	\end{cases}
-	\Rightarrow
-	\begin{cases}
-		x_{bal} = \frac{\gamma}{\delta}\\
-		y_{bal} = \frac{\alpha}{\beta}
-	\end{cases}
-	.
-	\label{eq:balance_points}
+		\frac{dy}{dt} = 0 
+	\end{cases} 
+	\Rightarrow 
+	\begin{cases} 
+		\alpha x - \beta x y = 0\\ 
+		\delta x y - \gamma y = 0 \end{cases} 
+		\Rightarrow 
+		\begin{cases} 
+			x_{bal} = \frac{\gamma}{\delta}\\ 
+			y_{bal} = \frac{\alpha}{\beta} 
+		\end{cases}. 
+		\label{eq:balance_points} 
 \end{equation}
 
-Теперь проанализируем устойчивость решений, применив метод первого приближения. 
-Для этого построим матрицу Якоби (\textbf{$J$}), найдём её cобственные значения, подставив точки равновесия, и по ним укажем тип устойчивости.
+Теперь проанализируем устойчивость решений, применив метод первого приближения.
+Для этого построим матрицу Якоби (\textbf{$J$}), найдём её собственные значения, подставив точки равновесия, и по ним укажем тип устойчивости.
 
-\begin{equation}
-	J = \begin{pmatrix}
-		\alpha - \beta y & - \beta x \\
-		\delta y & - \gamma + \delta x
-		\label{eq:jacobi}
-	\end{pmatrix}
-\end{equation}
+\begin{equation} 
+	J = \begin{pmatrix} \alpha - \beta y & - \beta x \\ \delta y & - \gamma + \delta x 
+	\end{pmatrix}. \label{eq:jacobi} \end{equation}
+
 Подставляем тривиальное решение:
-\begin{equation}
-	J\big|_{(0,0)} = 
-	\begin{pmatrix}
-		\alpha & 0 \\
-		0 & -\gamma
-	\end{pmatrix}
-	\Rightarrow \lambda_1 = -\gamma , \lambda_2 = \alpha
-	\label{eq:EV_triv}
-\end{equation}
 
-Заметим, что собственные значения вещественны, но различны по знаку. 
-Это означает, что точка $(0,0)$ - является седловой точкой.
+\begin{equation} J\big|_{(0,0)} = \begin{pmatrix} \alpha & 0 \\ 0 & -\gamma \end{pmatrix} \Rightarrow \lambda_1 = \alpha, \quad \lambda_2 = -\gamma. \label{eq:EV_triv} \end{equation}
 
-Подставим нетривиальную точку равновесия:
+Заметим, что собственные значения вещественны, но различны по знаку.
+Это означает, что точка $(0,0)$ является седловой точкой.
+
+Теперь подставим нетривиальную точку равновесия:
+
 \begin{equation}
-	J\big|_{(x_{bal},y_{bal})} = 
+	J\big|_{(x_{bal}, y_{bal})} =
 	\begin{pmatrix}
-		0 &  - \frac{\beta \gamma}{\delta} \\
+		\alpha - \beta \frac{\alpha}{\beta} & - \beta \frac{\gamma}{\delta} \\
+		\delta \frac{\alpha}{\beta} & -\gamma + \delta \frac{\gamma}{\delta}
+	\end{pmatrix} = 
+	\begin{pmatrix}
+		0 & - \frac{\beta \gamma}{\delta} \\
 		\frac{\delta \alpha}{\beta} & 0
+	\end{pmatrix}.
+\end{equation}
+
+Найдём её собственные значения, решая характеристическое уравнение:
+
+\begin{equation}
+	\det \left( J - \lambda I \right) = 0.
+\end{equation}
+
+Вычтем $\lambda I$ из $J$:
+
+\begin{equation}
+	J - \lambda I =
+	\begin{pmatrix}
+		-\lambda & - \frac{\beta \gamma}{\delta} \\
+		\frac{\delta \alpha}{\beta} & -\lambda
+	\end{pmatrix}.
+\end{equation}
+
+Найдём определитель:
+
+\begin{equation}
+	\det
+	\begin{pmatrix}
+		-\lambda & - \frac{\beta \gamma}{\delta} \\
+		\frac{\delta \alpha}{\beta} & -\lambda
 	\end{pmatrix}
-	\Rightarrow \lambda_{1,2} = \pm i \sqrt{\alpha\gamma}
-	\label{eq:EV_bal}
+	= (-\lambda) \cdot (-\lambda) - \left( - \frac{\beta \gamma}{\delta} \cdot \frac{\delta \alpha}{\beta} \right),
 \end{equation}
 
-Собственные значения в точке равновесия $(x_bal, Y_bal)$ полностью мнимые. 
-Следовательно точка является неасимптотически устойчивой. Изменение величин в ней не будет происходить, хотя на удалении от неё будут появляться циклы
-
-Теперь найдём первый интеграл. Для этого поделим первое уравнение на второе и разделим переменные:
 \begin{equation}
-	\frac{dx}{dy} = \frac{\alpha x - \beta yx}{\delta xy - \gamma y} 
-	\Rightarrow
-	\left(\frac{\alpha}{y} - \beta\right) dy + \left(\frac{\gamma}{x} - \delta\right)dy = 0.
-	\label{eq:diff_FI}
-\end{equation}
-Интегрируя, получим следующий результат:
-\begin{equation}
-	\alpha \ln(|y|) - \beta y + \gamma \ln(|x|) - \delta x = \text{const}.
-	\label{eq:first_int}
+	\lambda^2 - \left( - \frac{\beta \gamma}{\delta} \cdot \frac{\delta \alpha}{\beta} \right) = 0,
 \end{equation}
 
-Выражение (\ref{eq:first_int}) показывает, что соотношение величин будет постоянным с течением времени. Следовательное, зная, что объёмы популяций меняются, в какой-то момент соотношения вренутся к начальным значениям.
+\begin{equation}
+	\lambda^2 - \frac{\beta \gamma \delta \alpha}{\delta \beta} = 0,
+\end{equation}
+
+\begin{equation}
+	\lambda^2 - \alpha \gamma = 0.
+\end{equation}
+
+Решая квадратное уравнение:
+
+\begin{equation}
+	\lambda_{1,2} = \pm i \sqrt{\alpha\gamma}.
+\end{equation}
+
+Собственные значения в точке равновесия $(x_{bal}, y_{bal})$ чисто мнимые.
+Следовательно, точка является неасимптотически устойчивой. Изменение численности популяций в ней не будет происходить, но при малых отклонениях от неё появятся замкнутые циклы.
+
+Теперь найдём первый интеграл системы. Для этого поделим первое уравнение на второе и разделим переменные:
+
+\begin{equation} \frac{dx}{dy} = \frac{\alpha x - \beta x y}{\delta x y - \gamma y} \Rightarrow \left(\frac{\alpha}{y} - \beta\right) dy + \left(\frac{\gamma}{x} - \delta\right)dx = 0. \label{eq:diff_FI} \end{equation}
+
+Интегрируя, получим:
+
+\begin{equation} \alpha \ln |y| - \beta y + \gamma \ln |x| - \delta x = \text{const}. \label{eq:first_int} \end{equation}
+
+Выражение (\ref{eq:first_int}) показывает, что соотношение численности популяций остаётся постоянным во времени.
+Следовательно, хотя популяции изменяются, в какой-то момент их соотношение вернётся к первоначальному значению, что приводит к цикличному поведению системы.
