@@ -3,10 +3,11 @@ import matplotlib.pyplot as plt
 
 g = 9.81
 l = 1.0
-b = 0.0
+b = 0.1
 m = 1.0
-F = 0
+F = 1
 omega_f = np.sqrt(g/l)
+# omega_f = 0.5
 theta0 = np.pi / 10
 omega0 = 0
 
@@ -41,34 +42,33 @@ def runge_kutta4(f, y0, t_span, dt):
 
     return t_values, y_values.T
 
-t_span = (0, 15)
-dt = 0.025
+t_span = (0, 100)
+dt = 0.1
 
 t_vals, sol  = runge_kutta4(pendulum_eq, [theta0, omega0], t_span, dt)
 t_vals_lin, sol_lin = runge_kutta4(pendulum_eq_lin, [theta0, omega0], t_span, dt)
 
 
-def draw(t_vals1, theta_vals1, omega_vals1, t_vals2, theta_vals2, omega_vals2):
+def draw(t_vals, theta_vals, omega_vals):
     plt.figure(figsize=(12, 6))
+    split_idx = len(t_vals) // 3
 
-    # График угла
     plt.subplot(1, 2, 1)
-    plt.plot(t_vals1, np.degrees(theta_vals1), 'b', label=r'$\theta(t)$ (Модель нелинейная)')
-    plt.plot(t_vals2, np.degrees(theta_vals2), 'g', label=r'$\theta(t)$ (Модель линейная)')
-    plt.plot(t_vals1[0], np.degrees(theta_vals1[0]), 'bo',markersize=10, label='Начальное положение (Модель нелинейная)')
-    plt.plot(t_vals2[0], np.degrees(theta_vals2[0]), 'go', label='Начальное положение (Модель линейная)')
+    plt.plot(t_vals[:split_idx], np.degrees(theta_vals[:split_idx]), 'r', label=r'$\theta(t)$ (первая треть)')
+    plt.plot(t_vals[split_idx:], np.degrees(theta_vals[split_idx:]), 'b', label=r'$\theta(t)$')
+    plt.plot(t_vals[0], np.degrees(theta_vals[0]), 'go', label='Начальное положение')
     plt.xlabel('Время, с')
     plt.ylabel('Угол (градусы)')
     plt.title('Динамика математического маятника')
     plt.legend(loc='upper right')
     plt.grid()
 
-    # График фазового портрета
     plt.subplot(1, 2, 2)
-    plt.plot(np.degrees(theta_vals1), omega_vals1, 'b', label=r'Фазовый портрет (Модель нелинейная)')
-    plt.plot(np.degrees(theta_vals2), omega_vals2, 'g', label=r'Фазовый портрет (Модель линейная)')
-    plt.plot(np.degrees(theta_vals1[0]), omega_vals1[0], 'bo',markersize=10, label='Начальное положение (Модель нелинейная)')
-    plt.plot(np.degrees(theta_vals2[0]), omega_vals2[0], 'go', label='Начальное положение (Модель линейная)')
+    plt.plot(np.degrees(theta_vals[:split_idx]), omega_vals[:split_idx], 'r',
+             label=r'Фазовый портрет ($\omega$ от $\theta$) (первая треть)')
+    plt.plot(np.degrees(theta_vals[split_idx:]), omega_vals[split_idx:], 'b',
+             label=r'Фазовый портрет ($\omega$ от $\theta$)')
+    plt.plot(np.degrees(theta_vals[0]), omega_vals[0], 'go', label='Начальное положение')
     plt.xlabel('Угол (градусы)')
     plt.ylabel('Угловая скорость (рад/с)')
     plt.legend(loc='upper right')
@@ -77,5 +77,70 @@ def draw(t_vals1, theta_vals1, omega_vals1, t_vals2, theta_vals2, omega_vals2):
     plt.tight_layout()
     plt.show()
 
-# Вызов функции для отрисовки
-draw(t_vals, sol[0], sol[1], t_vals_lin, sol_lin[0], sol_lin[1])
+# draw(t_vals, sol[0], sol[1])
+draw(t_vals_lin, sol_lin[0], sol_lin[1])
+
+
+def get_amplitude(f_eq, omega_ff, muu, t_spann, dtt):
+    global b, F, omega_f
+    b = muu  # изменяем коэффициент трения
+    omega_f = omega_ff
+    t_vals, sol = runge_kutta4(f_eq, [theta0, omega0], t_spann, dtt)
+    theta_vals = sol[0]
+    last_quarter = theta_vals[len(theta_vals) * 3 // 4:]
+    return np.max(np.abs(last_quarter))
+
+
+# Определяем диапазоны частот
+omega = np.sqrt(g / l)
+omega_f_values_1 = np.linspace(0.5 * omega, 2 * omega, 60)
+omega_f_values_2 = np.linspace(0.9 * omega, 1.1 * omega, 60)
+
+mu_values = [1, 0.75, 0.5]  # Разные коэффициенты трения
+
+
+def calculate_theta(F_ee, mm,  omegaa, muu):
+    # Вычисление коэффициента затухания ζ
+    zeta = muu / (2 * mm * omegaa)
+    omega_fff = omegaa  * np.sqrt(1 - 2 * zeta ** 2)
+    # Вычисление θ(ω_f)
+    theta = F_ee / (mm * np.sqrt((2 * omega_fff * omegaa * zeta) ** 2 + (omegaa ** 2 - omega_fff ** 2) ** 2))
+    return omega_fff, theta
+plt.figure(figsize=(12, 6))
+
+for mu in mu_values:
+    amplitudes_1 = [get_amplitude(pendulum_eq_lin, wf, mu, t_span, dt) for wf in omega_f_values_1]
+    amplitudes_2 = [get_amplitude(pendulum_eq_lin, wf, mu, t_span, dt) for wf in omega_f_values_2]
+    max_amplitude_index_1 = np.argmax(amplitudes_1)
+    max_amplitude_index_2 = np.argmax(amplitudes_2)
+
+    omega_f_ , theta = calculate_theta(F, m, omega, mu)
+
+
+    plt.subplot(1, 2, 1)
+    plt.plot(omega_f_values_1 / omega, amplitudes_1, label=f'μ={mu}, [0.5w, 2w]')
+    plt.plot(omega_f_/ omega, theta, 'o',markersize=8, label=f'Теор. макс. μ={mu}')
+    plt.plot(omega_f_values_1[max_amplitude_index_1] / omega, amplitudes_1[max_amplitude_index_1], 'o',
+             label=f'Факт. макс. μ={mu}')
+    plt.title('Резонансные кривые')
+
+    plt.xlabel('Отношение $\\omega_f / \\omega$')
+    plt.ylabel('Амплитуда $\\theta_{max}$')
+    plt.title('Резонансные кривые')
+    plt.legend()
+    plt.grid()
+
+
+
+    plt.subplot(1, 2, 2)
+    plt.plot(omega_f_values_2 / omega, amplitudes_2, label=f'μ={mu}, [0.9w, 1.1w]')
+    plt.plot(omega_f_/ omega, theta, 'o',markersize=8 , label=f'Теор. макс. μ={mu}')
+    plt.plot(omega_f_values_2[max_amplitude_index_2] / omega , amplitudes_2[max_amplitude_index_2], 'o',
+             label=f'Факт. макс. μ={mu}')
+    plt.xlabel('Отношение $\\omega_f / \\omega$')
+    plt.ylabel('Амплитуда $\\theta_{max}$')
+    plt.title('Резонансные кривые')
+    plt.legend()
+    plt.grid()
+
+plt.show()

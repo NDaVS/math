@@ -1,0 +1,109 @@
+\RequirePackage{graphicx}
+\RequirePackage{multicol}
+
+\newcommand{\uline}[1]{\underline{#1\vphantom{lp}}}
+
+\newcommand{\usersignature}[1]{
+    \(
+        \underset{\textit{(Ф.И.О.)}}{\uline{~ \text{#1} ~}}
+    \)
+    \(
+        \underset{\textit{(подпись)}}{\uline{\hspace{50pt}}}
+    \)
+}
+
+\newcommand{\docdate}{
+    <<\uline{~\the\day~}>> \uline{~\monthname{\the\month}~} 20\uline{\DTMtwodigits{\the\year}}~г.
+}
+
+\newcommand{\fefutitlepage}[7]{
+
+    \thispagestyle{empty}
+
+    \begin{center}
+        \includegraphics[scale=0.25]{logo.pdf}
+
+        {\fontsize{11}{11}\selectfont МИНИСТЕРСТВО НАУКИ И ВЫСШЕГО ОБРАЗОВАНИЯ РОССИЙСКОЙ ФЕДЕРАЦИИ}
+        
+        \vspace*{-12pt}
+
+        {\fontsize{11}{11}\selectfont Федеральное государственное автономное образовательное учреждение высшего образования}
+
+        \vspace*{-10pt}
+
+        \textbf{<<Дальневосточный федеральный университет>>}
+
+        \vspace*{-10pt}
+
+        (ДВФУ)
+        
+        \vspace*{-10pt}
+
+        \rule{\textwidth}{3pt}
+
+        \vspace*{-24pt}
+
+        \rule{\textwidth}{1pt}
+
+        \vspace{10pt}
+
+        \textbf{ИНСТИТУТ МАТЕМАТИКИ И КОМПЬЮТЕРНЫХ ТЕХНОЛОГИЙ}
+
+        \textbf{(ШКОЛА)}
+
+        \vspace{10pt}
+
+        \textbf{Департамент математического и компьютерного моделирования}
+
+        \vspace{20pt}
+
+        \textbf{#1}
+
+        \vspace{15pt}
+
+        #2
+
+        \vspace{10pt}
+
+        Направление подготовки
+
+        \vspace*{-6pt}
+
+        #3
+
+    \end{center}
+
+    \begin{multicols}{2}
+        
+        \vfill\null
+
+        \columnbreak
+
+        Выполнил студент гр.
+
+        #4
+
+        \usersignature{#5}
+
+        #6
+
+        \usersignature{#7}
+
+        \vspace{10pt}
+
+        \docdate
+        
+    \end{multicols}
+
+    \vfill
+
+    \begin{center}
+
+        \textbf{г. Владивосток}
+
+        \textbf{2024}
+
+    \end{center}
+
+    \pagebreak
+}
