@@ -6,9 +6,9 @@ x = sp.symbols('x')
 n = sp.symbols('n', integer=True, positive=True)
 l = sp.symbols('l', positive=True)
 # Определяем функцию f(x) = x^2 и границы
-f_x = sp.sin(2*x * sp.pi / l)
-base = sp.sin(n*x * sp.pi / l)
-a, b = 0, l
+f_x = -x
+base = sp.sin(2*n*x)
+a, b = 0, sp.pi /2
 
 # Формула для коэффициентов Фурье
 A_n = sp.integrate(f_x * base, (x, a, b)) / sp.integrate(base**2, (x, a, b))

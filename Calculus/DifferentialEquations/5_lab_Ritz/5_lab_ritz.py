@@ -1,5 +1,6 @@
 import numpy as np
 import sympy as sp
+from prettytable import PrettyTable
 
 
 class Ritz:
@@ -12,7 +13,9 @@ class Ritz:
         self.c2 = c2
 
     def _phi(self, k):
-        return 1 - 0.5 *self.x ** (2 *k)
+        if k == 0:
+            return 0.5 * self.x ** 3
+        return 1- self.x ** (k + 1)
 
     def _P(self):
         xi = sp.symbols('xi')
@@ -37,7 +40,7 @@ class Ritz:
         return self._p() * (sp.diff(self.u(), self.x) ** 2) - self._q() * (u ** 2) + 2 * self._f() * self.u()
 
     def u(self):
-        return self.c1 * self._phi(1) + self.c2 * self._phi(2)
+        return  self._phi(0)+ self.c1 * self._phi(1) + self.c2 * self._phi(2)
 
     def dPhi_dCi(self, i):
         c = [self.c1, self.c2]
@@ -50,12 +53,13 @@ class Ritz:
 
 def main():
     n = 3
-    a, b = -1, 1
+    a, b = 0, 1
     x = sp.symbols('x')
     c1, c2 = sp.symbols('c1 c2')
     ritz = Ritz(x, c1, c2, a, b, n)
     A = np.zeros((n-1, n-1))
     b = np.zeros(n-1)
+    print(ritz.u().subs(x,0))
     for i in range(1, n):
         expr = ritz.dPhi_dCi(i)
         print(expr)
@@ -69,12 +73,20 @@ def main():
     solution = np.linalg.solve(A, b)
     answer = ritz.u().subs(c1, solution[0]).subs(c2, solution[1])
 
-    ab = np.linspace(0, 1, 100)
+    ab = np.linspace(0, 1, 10)
     my_values = [answer.subs(x, xi) for xi in ab]
     true_values = [1 / (xi ** 2 + 1) for xi in ab]
-    print([abs(true_values[i] - my_values[i]) for i in range(100)])
-    print(answer.subs(x, 1))
+    errors = [abs(true_values[i] - my_values[i]) for i in range(10)]
+    print(answer.subs(x, 0))
     print(sp.diff(ritz._phi(1), x).subs(x, 0))
+
+    table = PrettyTable()
+    table.field_names = ["x", "Истинное значение", "Ритц", "Ошибка"]
+
+    for i in range(len(ab)):
+        table.add_row([f"{ab[i]:.8f}", f"{true_values[i]:.12f}", f"{my_values[i]:.12f}", f"{errors[i]:.12f}"])
+
+    print(table)
 
 
 if __name__ == '__main__':
