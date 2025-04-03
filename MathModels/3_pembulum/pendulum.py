@@ -5,9 +5,9 @@ g = 9.81
 l = 1.0
 b = 0.1
 m = 1.0
-F = 1
-omega_f = np.sqrt(g/l)
-# omega_f = 0.5
+F = 0
+# omega_f = np.sqrt(g/l)/3
+omega_f = 1
 theta0 = np.pi / 10
 omega0 = 0
 
@@ -42,8 +42,8 @@ def runge_kutta4(f, y0, t_span, dt):
 
     return t_values, y_values.T
 
-t_span = (0, 100)
-dt = 0.1
+t_span = (0, 25)
+dt = 0.025
 
 t_vals, sol  = runge_kutta4(pendulum_eq, [theta0, omega0], t_span, dt)
 t_vals_lin, sol_lin = runge_kutta4(pendulum_eq_lin, [theta0, omega0], t_span, dt)
@@ -54,22 +54,20 @@ def draw(t_vals, theta_vals, omega_vals):
     split_idx = len(t_vals) // 3
 
     plt.subplot(1, 2, 1)
-    plt.plot(t_vals[:split_idx], np.degrees(theta_vals[:split_idx]), 'r', label=r'$\theta(t)$ (первая треть)')
-    plt.plot(t_vals[split_idx:], np.degrees(theta_vals[split_idx:]), 'b', label=r'$\theta(t)$')
-    plt.plot(t_vals[0], np.degrees(theta_vals[0]), 'go', label='Начальное положение')
+    plt.plot(t_vals, theta_vals, 'b', label=r'$\theta(t)$')
+    plt.plot(t_vals[0], theta_vals[0], 'go', label='Начальное положение')
     plt.xlabel('Время, с')
-    plt.ylabel('Угол (градусы)')
+    plt.ylabel('Угол (рад)')
     plt.title('Динамика математического маятника')
     plt.legend(loc='upper right')
     plt.grid()
 
     plt.subplot(1, 2, 2)
-    plt.plot(np.degrees(theta_vals[:split_idx]), omega_vals[:split_idx], 'r',
-             label=r'Фазовый портрет ($\omega$ от $\theta$) (первая треть)')
-    plt.plot(np.degrees(theta_vals[split_idx:]), omega_vals[split_idx:], 'b',
+    plt.plot(theta_vals, omega_vals, 'b',
              label=r'Фазовый портрет ($\omega$ от $\theta$)')
-    plt.plot(np.degrees(theta_vals[0]), omega_vals[0], 'go', label='Начальное положение')
-    plt.xlabel('Угол (градусы)')
+    plt.plot(theta_vals[0], omega_vals[0], 'go', label='Начальное положение')
+    plt.title('Фазовый портрет математического маятника')
+    plt.xlabel('Угол (рад)')
     plt.ylabel('Угловая скорость (рад/с)')
     plt.legend(loc='upper right')
     plt.grid()
