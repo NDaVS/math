@@ -13,9 +13,10 @@ class Ritz:
         self.c2 = c2
 
     def _phi(self, k):
+        """Базисные функции."""
         if k == 0:
-            return 0.5 * self.x ** 3
-        return 1- self.x ** (k + 1)
+            return 0.5
+        return (1-self.x ** 2) * self.x** (k - 1)
 
     def _P(self):
         xi = sp.symbols('xi')
@@ -37,14 +38,13 @@ class Ritz:
         return self._p() * self._F()
 
     def _J_1(self, u):
-        return self._p() * (sp.diff(self.u(), self.x) ** 2) - self._q() * (u ** 2) + 2 * self._f() * self.u()
+        return self._p() * (sp.diff(u, self.x) ** 2) - self._q() * (u ** 2) + 2 * self._f() * u
 
     def u(self):
-        return  self._phi(0)+ self.c1 * self._phi(1) + self.c2 * self._phi(2)
+        return self._phi(0) + self.c1 * self._phi(1) + self.c2 * self._phi(2)
 
     def dPhi_dCi(self, i):
         c = [self.c1, self.c2]
-        phi_i = self._phi(i)
         return sp.integrate(
             sp.diff(self._J_1(self.u()), c[i-1]),
             (self.x, self.a, self.b)
