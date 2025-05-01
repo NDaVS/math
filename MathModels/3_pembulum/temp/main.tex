@@ -1,0 +1,39 @@
+\documentclass[14pt, a4paper, titlepage, fleqn]{extarticle}
+
+\usepackage{style/style}
+\usepackage{style/titlepage}
+
+\everymath{\displaystyle}
+\renewcommand*\contentsname{\centering СОДЕРЖАНИЕ}
+
+\begin{document}
+
+    \input{parts/1 titlepage}
+    
+    \tableofcontents
+
+    \pagebreak
+
+    \input{parts/2 introduction}
+
+    \pagebreak
+
+    \input{parts/3 main}
+
+    \pagebreak
+
+    \input{parts/4 conclusion}
+
+    \pagebreak
+
+    \printbibliography
+
+    \pagebreak
+
+    \input{parts/5 appendix}
+    
+    \pagebreak
+
+    
+
+\end{document}

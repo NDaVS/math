@@ -1,152 +1,83 @@
 import numpy as np
-from prettytable import PrettyTable
 import matplotlib.pyplot as plt
+from scipy.interpolate import make_lsq_spline
+from tabulate import tabulate
 
-def p(x):
-    return - (1 + x)
+# Параметры задачи
+N = 20
+a, b = 0.0, 1.0
+x = np.linspace(a, b, N + 1)
+h = (b - a) / N
 
+# Коэффициенты из уравнения
+def p(x): return 4 * x / (x**2 + 1)
+def q(x): return -1 / (x**2 + 1)
+def f(x): return -3 / (x**2 + 1)**2
+def u_exact(x): return 1 / (x**2 + 1)
 
-def q(x):
-    return -1
+# Построение матрицы и правой части
+A = np.zeros((N + 1, N + 1))
+B = np.zeros(N + 1)
 
+# Внутренние точки
+for i in range(1, N):
+    xi = x[i]
+    pi = p(xi)
+    qi = q(xi)
+    fi = f(xi)
 
-def f(x):
-    return 2/((x + 1) ** 3)
+    A[i, i - 1] = 1 / h**2 - pi / (2 * h)
+    A[i, i] = -2 / h**2 + qi
+    A[i, i + 1] = 1 / h**2 + pi / (2 * h)
+    B[i] = fi
 
+# Краевые условия
+# u'(0) = 0 → (u[1] - u[-1]) / (2h) = 0 → u[1] = u[1], u[0] = u[1]
+A[0, 0] = -1
+A[0, 1] = 1
+B[0] = 0
 
-def A(h, x):
-    return 1 / (3 * h) * (1 - 0.5 * p(x) * h + 1 / 6 * q(x) * h ** 2)
+# u(1) = 0.5
+A[N, N] = 1
+B[N] = 0.5
 
+# Решение СЛАУ
+u_numeric = np.linalg.solve(A, B)
 
-def D(h, x):
-    return 1 / (3 * h) * (1 + 0.5 * p(x) * h + 1 / 6 * q(x) * h ** 2)
+# Построение B-сплайна по численному решению
+k = 3  # степень сплайна
+t_internal = np.linspace(a, b, N - k + 1)[1:-1]
+t = np.concatenate(([a] * (k + 1), t_internal, [b] * (k + 1)))
+spl = make_lsq_spline(x, u_numeric, t, k=k)
 
+# Тестовая сетка
+x_fine = np.linspace(a, b, 500)
+u_interp = spl(x_fine)
+u_true = u_exact(x_fine)
+error = np.abs(u_interp - u_true)
 
-def C(h, x):
-    return -A(h, x) - D(h, x) + 1 / 6 * q(x) * h * 2
+# Таблица ошибок
+u_grid_true = u_exact(x)
+error_grid = np.abs(u_numeric - u_grid_true)
 
+table = []
+for xi, ui, ue, err in zip(x, u_numeric, u_grid_true, error_grid):
+    table.append([f"{xi:.3f}", f"{ui:.6f}", f"{ue:.6f}", f"{err:.2e}"])
 
-def F(h):
-    return 1 / 6 * f(2 * h)
+print("\nТаблица значений (B-сплайн):")
+print(tabulate(table, headers=["x", "Численное u", "Точное u", "Ошибка"], tablefmt="grid"))
 
+# График
+plt.figure(figsize=(10, 6))
+plt.plot(x_fine, u_interp, 'r-', label='B-сплайн')
+plt.plot(x_fine, u_true, 'b--', label='Точное решение')
+plt.plot(x, u_numeric, 'ko', label='Узлы')
+plt.title("Метод конечных разностей + B-сплайн")
+plt.xlabel("x")
+plt.ylabel("u(x)")
+plt.grid(True)
+plt.legend()
+plt.tight_layout()
+plt.show()
 
-def A_m1(alpha_1, beta_1, h):
-    return alpha_1 * h - 3 * beta_1
-
-
-def C_m1(alpha_1, h):
-    return 2 * alpha_1 * 2 * h
-
-
-def D_m1(alpha_1, beta_1, h):
-    return alpha_1 * h + 3 * beta_1
-
-
-def F_m1(gamma_1, h):
-    return 2 * gamma_1 * 3 * h
-
-
-def tilda_C_0(alpha, beta, x_0, h):
-    return C(h, x_0) - C_m1(alpha, h) * A(h, x_0) / A_m1(alpha, beta, h)
-
-
-def tilda_D_0(alpha, beta, x_0, h):
-    return D(h, x_0) - D_m1(alpha, beta, h) * A(h, x_0) / A_m1(alpha, beta, h)
-
-
-def tilda_F_0(alpha, beta, gamma, x_0, h):
-    return F(h) - F_m1(gamma, h) * A(h, x_0) / A_m1(alpha, beta, h)
-
-
-def tilda_A_n(alpha, beta, x_n, h):
-    return A(h, x_n) - A_m1(alpha, beta, h) * D(h, x_n) / D_m1(alpha, beta, h)
-
-
-def tilda_C_n(alpha, beta, x_0, h):
-    return C(h, x_0) - C_m1(alpha, h) * D(h, x_0) / D_m1(alpha, beta, h)
-
-
-def tilda_F_n(alpha, beta, gamma, x_n, h):
-    return F(h) - F_m1(gamma, h) * D(h, x_n) / D_m1(alpha, beta, h)
-
-
-def B(i, x, ab, h):
-    k = 1 / 6
-    t = (x - ab[i]) / h
-    if x < ab[i - 2]:
-        return 0
-    if ab[i - 2] <= x < ab[i - 1]:
-        return k * t ** 3
-    if ab[i - 1] <= x < ab[i]:
-        return k * (1 + 3 * t + 3 * t ** 2)
-    if ab[i] <= x < ab[i + 1]:
-        return k * (1 + 3 * (1 - t) + 3 * t * (1 - t) ** 2)
-    if ab[i + 1] <= x < ab[i + 1]:
-        return k * (1 - t) ** 3
-    return 0
-
-
-def S(i, b):
-    return b[i] * 1 / 6 + b[i + 1] * 2 / 3 + 1 / 6 * b[i + 2]
-
-
-def get_b(alpha_1, beta_1, alpha_2, beta_2, gamma_1, gamma_2, x, h, n):
-    A_matrix = np.zeros((n + 1, n + 1))
-    B_vector = np.zeros(n + 1)
-
-    A_matrix[0][0] = tilda_C_0(alpha_1, beta_1, x[0], h)
-    A_matrix[0][1] = tilda_D_0(alpha_1, beta_1, x[0], h)
-    B_vector[0] = tilda_F_0(alpha_1, beta_1, gamma_1, x[0], h)
-
-    A_matrix[-1][-1] = tilda_C_n(alpha_2, beta_2, x[-1], h)
-    A_matrix[-1][-2] = tilda_A_n(alpha_2, beta_2, x[-1], h)
-    B_vector[-1] = tilda_F_n(alpha_2, beta_2, gamma_2, x[-1], h)
-
-    for i in range(1, n):
-        A_matrix[i][i - 1] = A(h, x[i])
-        A_matrix[i][i] = C(h, x[i])
-        A_matrix[i][i + 1] = D(h, x[i])
-        B_vector[i] = F(h)
-
-    return np.linalg.solve(A_matrix, B_vector)
-
-def main():
-    alpha_1, beta_1 = 1, 0
-    alpha_2, beta_2 = 1, 0
-    gamma_1, gamma_2 = 1,0.5
-    a, b = 0, 1
-    n = 3
-    h = (b - a) / n
-    x = np.linspace(a, b, n + 1)
-
-    b = get_b(alpha_1, beta_1, alpha_2, beta_2, gamma_1, gamma_2, x, h, n)
-
-    b_m1 = (F_m1(gamma_1, h) - b[0] * C_m1(alpha_1, h) - b[1] * D_m1(alpha_1, beta_1, h)) / A_m1(alpha_1, beta_1, h)
-    b_np1 = (F_m1(gamma_2, h) - b[-2] * A_m1(alpha_2, beta_2, h) - b[-1] * C_m1(alpha_2, h)) / D_m1(alpha_2, beta_2, h)
-    b = np.append([b_m1], np.append(b, b_np1))
-    my_values = []
-    for i in range(n + 1):
-        my_values.append(S(i, b))
-    true_values = [1/(xi + 1) for xi in x]
-    errors = [abs(true_values[i] - my_values[i]) for i in range(n + 1)]
-
-    table = PrettyTable()
-    table.field_names = ["x", "Истинное значение", "B-Сплайны", "Ошибка"]
-
-    for i in range(n  + 1):
-        table.add_row([f"{x[i]:.8f}", f"{true_values[i]:.12f}", f"{my_values[i]:.12f}", f"{errors[i]:.12f}"])
-
-    print(table)
-
-    plt.figure(figsize=(12,8))
-    plt.plot(x, my_values, label='B-Сплайн', color='blue')
-    plt.plot(x, true_values, label='Истинное значение', color='red')
-    plt.title('B-Сплайн')
-    plt.xlabel('x')
-    plt.ylabel('u(x)')
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
-if __name__ == '__main__':
-    main()
+print(f"\nМаксимальная ошибка: {np.max(error):.6e}")

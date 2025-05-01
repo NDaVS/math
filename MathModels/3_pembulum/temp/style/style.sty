@@ -1,0 +1,84 @@
+\usepackage[fontsize=14pt]{fontsize} % Устанавливает основной размер шрифта документа 14 пунктов
+
+\usepackage[%
+    left=30mm,%    Левое поле 30 мм
+    right=20mm,%   Правое поле 20 мм
+    top=20mm,%     Верхнее поле 20 мм
+    bottom=30mm,%  Нижнее поле 30 мм
+    headsep=1cm,   % Расстояние от верхнего колонтитула до текста
+    footskip=1cm   % Расстояние от нижнего колонтитула до текста
+]{geometry}%       Пакет для управления полями и размерами страницы
+
+\usepackage{titlesec} % Пакет для кастомизации заголовков
+\titleformat{\section} % Форматирование секций
+    {\filcenter\normalfont\Large\bfseries} % Центрирование + стиль шрифта
+    {\thesection.}      % Формат номера секции (с точкой)
+    {0.2em}             % Расстояние между номером и заголовком
+    {}                  % Дополнительный код после заголовка
+
+% Подключение основных математических пакетов
+\RequirePackage{amsmath}    % Расширенная математическая вёрстка
+\RequirePackage{amssymb}    % Дополнительные математические символы
+\RequirePackage{graphicx}   % Вставка графики
+\RequirePackage{float}      % Улучшенное управление позиционированием объектов
+\RequirePackage[hidelinks]{hyperref} % Гиперссылки без визуального оформления
+\RequirePackage{listings}   % Вставка исходного кода
+\RequirePackage{color}      % Работа с цветами
+\RequirePackage{datetime2}  % Форматирование даты и времени
+\RequirePackage[center]{caption} % Центрирование подписей к рисункам/таблицам
+
+% Пакеты для работы с русским языком
+\RequirePackage{polyglossia} % Многоязычная поддержка
+\RequirePackage{xecyr}       % Кириллизация для XeLaTeX
+
+\setdefaultlanguage{russian} % Основной язык документа
+\setotherlanguage{english}   % Дополнительный язык
+
+% Настройка шрифтов
+\setmainfont{Times New Roman}       % Основной шрифт
+\newfontfamily{\cyrillicfont}{Times New Roman} % Шрифт для кириллицы
+\newfontfamily{\dejavu}{DejaVu Sans Mono}      % Моноширинный шрифт для кода
+
+\SetLanguageKeys{russian}{indentfirst=true} % Красная строка в первом абзаце
+
+\parindent 1.25cm % Величина отступа красной строки
+\linespread{1.25}  % Межстрочный интервал
+
+% Настройка библиографии
+\usepackage[backend=biber, sorting=none]{biblatex} % Использование Biber
+\addbibresource{bibliography.bib} % Путь к файлу с библиографией
+
+\renewcommand{\lstlistingname}{Листинг} % Русское название для листингов
+
+% Кастомная команда для преобразования номера месяца в русское название
+\newcommand{\monthname}[1]{
+    \ifcase#1
+    \or января\or февраля\or марта\or апреля\or мая\or июня\or июля%
+    \or августа\or сентября\or октября\or ноября\or декабря\fi
+}
+
+% Цветовая палитра
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}     % Тёмно-красный
+\definecolor{darkgreen}{rgb}{0,0.50,0}       % Тёмно-зелёный
+\definecolor{lightblue}{rgb}{0.0,0.42,0.91} % Голубой
+\definecolor{orange}{rgb}{0.99,0.48,0.13}    % Оранжевый
+\definecolor{grass}{rgb}{0.18,0.80,0.18}     % Зелёная трава
+\definecolor{pink}{rgb}{0.97,0.15,0.45}      % Розовый
+
+% Стиль оформления листингов
+\lstdefinestyle{colored}{
+  basicstyle=\ttfamily,           % Моноширинный шрифт
+  backgroundcolor=\color{white},  % Фон
+  commentstyle=\color{green}\itshape, % Стиль комментариев
+  keywordstyle=\color{blue}\bfseries\itshape, % Стиль ключевых слов
+  stringstyle=\color{red},        % Стиль строк
+  morekeywords={self},            % Доп. ключевые слова
+  numbers=left,                   % Нумерация слева
+  numberstyle=\tiny,              % Мелкий размер номеров
+  numbersep=5pt,                  % Отступ номеров от кода
+  showstringspaces=false,         % Не показывать пробелы в строках
+  breaklines=true,                % Перенос длинных строк
+  tabsize=4                       % Размер табуляции
+}
+
+\delimitershortfall=-1pt % Корректировка расстояния вокруг математических разделителей

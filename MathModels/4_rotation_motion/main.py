@@ -11,8 +11,8 @@ class CircleMotion:
         return np.array([
             x[2],
             x[3],
-            2 * self.omega * x[3] * np.cos(self.phi),
-            -2 * self.omega * x[2] * np.cos(self.phi),
+            2 * self.omega * x[3] * np.sin(self.phi),
+            -2 * self.omega * x[2] * np.sin(self.phi),
         ])
 
     def runge_kutta(self, y0, t0, tn, h):
@@ -44,13 +44,18 @@ class CircleMotion:
         plt.legend()
         plt.grid()
         plt.axis("equal")
+
+        # Установим границы осей
+        plt.xlim(-10, 10)
+        plt.ylim(-10, 10)
+
         plt.show()
 
 
 # Example usage
 if __name__ == "__main__":
-    omega = 10.0  # Angular velocity
-    phi = np.pi / 2.5  # Latitude (45 degrees)
+    omega = 1.0  # Angular velocity
+    phi = np.pi / 4  # Latitude (45 degrees)
     print(np.degrees(phi))
     initial_conditions = [
         [1.0, 0.0, 0.0, 1.0],  # Initial state [x, y, vx, vy]

@@ -1,4 +1,4 @@
-setwd("D:\\Coding\\math\\DS\\r\\3_lab")
+setwd("/home/ndavs/study/math/DS/r/3_lab_flat_pricing")
 data <- read.table(file="moscow.txt", header = TRUE)
 summary(data)
 dim(data)
