@@ -24,7 +24,6 @@ def explicit(uu, c, dx, dt):
         for j in range(1, n):
             u_[ti + 1, j] = u_[ti, j] - k * (u_[ti, j + 1] - u_[ti, j - 1])
 
-        # Граничные условия (можно поставить 0, или Neumann, если нужно)
         u_[ti + 1, 0] = u_[ti, 0]
         u_[ti + 1, n] = u_[ti, n]
 
@@ -140,3 +139,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
