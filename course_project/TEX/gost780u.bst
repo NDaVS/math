@@ -969,7 +969,7 @@ FUNCTION {format.url}
 { url empty$
     { "" }
     { after.sentence 'output.state :=
-      "\BibUrl{ " url * "}" *
+      "URL: \ \BibUrl{ " url * "}" *
     }
   if$
 }
@@ -1210,9 +1210,10 @@ FUNCTION {misc}
   new.block
   format.date output
   new.block
-  note output
+
   new.sentence
   format.url output
+  note output
   format.annote output
   fin.entry
 }

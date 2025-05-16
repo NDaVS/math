@@ -7,7 +7,6 @@
 \usepackage{rotating}
 % Остальные стандартные настройки убраны в preamble.inc.tex.
 \include{preamble.inc}
-
 % Настройки листингов.
 \include{listings.inc}
 
@@ -27,12 +26,17 @@
 
 aboba
 \newpage
+\pagenumbering{gobble} % Отключаем нумерацию
 \include{annotation}
+
 \include{keywords}
 
 \tableofcontents
-
+\pagebreak
+\pagenumbering{arabic}   % Включаем арабскую нумерацию страниц
+\setcounter{page}{5}  
 \include{12-intro}
+
 %\include{13-intro-2}
 
 \mainmatter % это включает нумерацию глав и секций в документе ниже

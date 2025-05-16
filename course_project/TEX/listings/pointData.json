@@ -1,21 +1,14 @@
 {
-    "start_date": "2024-01-01",
+    "start_date": "2023-01-01",
     "end_date": "2024-04-01",
-    "intervals": 5,
+    "intervals": 3,
     "objects": [
         {
-            "name": "point1",
-            "coords": [
-                132,
-                43
-            ]
-        },
-        {
             "name": "moscow",
-            "coords": [
-                73,
-                12
-            ]
+            "coord": {
+                "lat": 55.7535,
+                "lon": 37.6205
+            }
         }
     ]
 }
