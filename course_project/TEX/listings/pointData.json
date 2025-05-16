@@ -1,0 +1,21 @@
+{
+    "start_date": "2024-01-01",
+    "end_date": "2024-04-01",
+    "intervals": 5,
+    "objects": [
+        {
+            "name": "point1",
+            "coords": [
+                132,
+                43
+            ]
+        },
+        {
+            "name": "moscow",
+            "coords": [
+                73,
+                12
+            ]
+        }
+    ]
+}

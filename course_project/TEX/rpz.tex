@@ -27,10 +27,13 @@
 
 aboba
 \newpage
+\include{annotation}
+\include{keywords}
+
 \tableofcontents
 
 \include{12-intro}
-\include{13-intro-2}
+%\include{13-intro-2}
 
 \mainmatter % это включает нумерацию глав и секций в документе ниже
 
@@ -41,14 +44,24 @@ aboba
 \include{40-algo}
 \include{architecture}
 \include{program}
-\include{80-end}
-%\include{81-biblio}
+\include{nextMove}
 \backmatter %% Здесь заканчивается нумерованная часть документа и начинаются ссылки и
+\include{80-end}
+\include{81-biblio}
+
             %% заключение
 
 
 \appendix   % Тут идут приложения
+\include{MainUI}
+\include{elevation}
+\include{cloud}
 
+\include{cityJSON}
+\include{pointJSON}
+\include{pointJSONrespose}
+%\include{polygonJSON}
+%\include{polygonJSONresponse}
 \end{document}
 
 %%% Local Variables:
