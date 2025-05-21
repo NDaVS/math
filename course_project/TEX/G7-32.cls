@@ -46,3 +46,4 @@
 
 \endinput
 % End of file `G7-32.cls'.
+

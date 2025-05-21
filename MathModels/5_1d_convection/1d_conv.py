@@ -75,11 +75,11 @@ def implicit(uu, c, dx, dt):
 def make_plot(x, u):
     plt.figure(figsize=(12, 8))
 
-    plt.plot(x, u[0], label='Start wave shape')
-    plt.plot(x, u[int(u.shape[0] * 0.1)], label='Wave shape in 10% of time')
-    plt.plot(x, u[int(u.shape[0] * 0.3)], label='Wave shape in 30% of time')
-    plt.plot(x, u[int(u.shape[0] * 0.5)], label='Wave shape in 50% of time')
-    plt.plot(x, u[int(u.shape[0] * 0.8)], label='Wave shape in 80% of time')
+    plt.plot(x, u[0], label='Положение волны в начальный момент времени')
+    plt.plot(x, u[int(u.shape[0] * 0.1)], label='Положение волны через 10% времени')
+    plt.plot(x, u[int(u.shape[0] * 0.3)], label='Положение волны через 30% времени')
+    plt.plot(x, u[int(u.shape[0] * 0.5)], label='Положение волны через 50% времени')
+    plt.plot(x, u[int(u.shape[0] * 0.8)], label='Положение волны через 80% времени')
 
     plt.xlabel('x')
     plt.ylabel('u')
@@ -117,10 +117,10 @@ def main():
     Nx = 100
     T = L / c
 
-    dt = 0.001
+    dt = 0.001 / 2
     Nt = int(T / dt) + 1
     dx = L / Nx
-    print(c * dt / (dx ** 2))
+    print(c * dt / (dx * 2))
     x = np.linspace(0, L, Nx + 1, endpoint=False)
     CFL = c * dt / dx
     print(CFL)
@@ -134,8 +134,18 @@ def main():
 
     u = get_initial_u()
     values_upstream = upstream(u, c, dx, dt)
+    values_explicit = explicit(u, c, dx, dt)
+    values_implicit = implicit(u, c, dx, dt)
     make_plot(x, values_upstream)
+    make_plot(x, values_explicit)
+    make_plot(x, values_implicit)
+
     integrals = compute_integrals(x, values_upstream)
+    print(integrals)
+    integrals = compute_integrals(x, values_explicit)
+    print(integrals)
+    integrals = compute_integrals(x, values_implicit)
+    print(integrals)
 
 
 if __name__ == '__main__':

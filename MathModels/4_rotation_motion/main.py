@@ -51,12 +51,7 @@ class CircleMotion:
 
         plt.show()
 
-
-# Example usage
-if __name__ == "__main__":
-    omega = 1.0  # Angular velocity
-    phi = np.pi / 4  # Latitude (45 degrees)
-    print(np.degrees(phi))
+def main(omega, phi):
     initial_conditions = [
         [1.0, 0.0, 0.0, 1.0],  # Initial state [x, y, vx, vy]
         [0.5, 0.5, -0.5, 0.5],
@@ -70,3 +65,13 @@ if __name__ == "__main__":
 
     motion = CircleMotion(omega, phi)
     motion.plot_trajectories(initial_conditions, t0, tn, h)
+
+# Example usage
+if __name__ == "__main__":
+    omega = 1.0  # Angular velocity
+    phi = np.radians(80)
+    main(1.0, np.radians(78))
+    main(1.0, np.radians(88))
+    main(3, np.radians(78))
+    main(3, np.radians(88))
+
