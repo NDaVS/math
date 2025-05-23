@@ -9,24 +9,24 @@
 
 Явная схема использует аппроксимацию по пространству и времени на текущем слое. Дифференциальное уравнение заменяется на:
 $$
-	\frac{u_i^{j+1} - u_i^j}{\Delta t} + c \frac{u_{i+1}^j - u_{i-1}^j}{2\Delta x} = f_{i}^{j}.
+	\frac{u_i^{j+1} - u_i^j}{\Delta t} + v \frac{u_{i+1}^j - u_{i-1}^j}{2\Delta x} = f_{i}^{j}.
 $$
 
 Рекуррентная формула для вычисления значений:
 $$
- u_i^{j+1} = u_i^j - \frac{c \Delta t}{2 \Delta x} \left( u_{i+1}^j - u_{i-1}^j \right),
+ u_i^{j+1} = u_i^j - \frac{v \Delta t}{2 \Delta x} \left( u_{i+1}^j - u_{i-1}^j \right),
 $$
 
 Для устойчивости явной схемы необходимо выполнение условия Куранта\cite{Turchak2003}:
 \begin{equation}
-	\boxed{\frac{c \Delta t}{2\Delta x} \leq \frac{1}{2}}.
+	\boxed{\frac{v \Delta t}{2\Delta x} \leq \frac{1}{2}}.
 	\label{eq:ust1}
 \end{equation}
 Точность метода O($\tau + h$), где $\tau$ - шаг по времени, $h$ - шаг по пространству.
 \begin{figure}[h]  % Окружение для картинки
 	\centering
 	\includegraphics[height=0.7\textwidth]{imgs/explicit.png}  % Вставка изображения
-	\caption{Результат решения явной схемы. $\Delta x = 0.05, \Delta t = 0.001$.}  % Подпись к изображению
+	\caption{Результат решения явной схемы.$\Delta x = 0.05, \Delta t = 0.001$.}  % Подпись к изображению
 	\label{fig:explicit}  % Метка для ссылки
 \end{figure}
 \newline
@@ -63,14 +63,14 @@ captionpos=t,
 
 В неявной схеме производные аппроксимируются на следующем временном слое, что обеспечивает безусловную устойчивость:
 $$
-	\frac{u_i^{j+1} - u_i^j}{\Delta t} + c\frac{u_{i +1}^j - u_{i-1}^j}{\Delta x^2} =  f_{i}^{j}.
+	\frac{u_i^{j+1} - u_i^j}{\Delta t} + v \frac{u_{i +1}^j - u_{i-1}^j}{\Delta x^2} =  f_{i}^{j}.
 $$
 
 Результирующее уравнение можно переписать в виде линейной системы для каждого временного слоя:
 $$
 	- k u_{i-1}^{j+1} + u_i^{j+1} + k u_{i+1}^{j+1} = u_i^j+ \Delta t \cdot  f_{i}^{j},
 $$
-где $ k = \frac{c \Delta t}{ \Delta x}.$
+где $ k = \frac{v \Delta t}{ \Delta x}.$
 
 Система уравнений имеет трёхдиагональную структуру и может быть решена методом прогонки (TDMA).
 Точность метода O($\tau + h^2$), где $\tau$ - шаг по времени, $h$ - шаг по пространству.
@@ -112,17 +112,17 @@ captionpos=t,
 
 Схема «вверх по потоку» использует одностороннюю аппроксимацию производной по пространству:
 $$
-	\frac{u_i^{j+1} - u_i^j}{\Delta t} + c\frac{u_i^j - u_{i-1}^j}{\Delta x} = f_{i}^j.
+	\frac{u_i^{j+1} - u_i^j}{\Delta t} + v \frac{u_i^j - u_{i-1}^j}{\Delta x} = f_{i}^j.
 $$
 
 Выражая $u_i^{j+1}$:
 $$
-	u_i^{j+1} = u_i^j + \frac{c \Delta t}{\Delta x} \left( u_{i-1}^j - u_i^j \right).
+	u_i^{j+1} = u_i^j + \frac{v \Delta t}{\Delta x} \left( u_{i-1}^j - u_i^j \right).
 $$
 
 Схема стабильна при выполнении условия CFL (Курант-Фридриха-Леви)\cite{Patankar1984}:
 \begin{equation}
-	\boxed{\frac{c \Delta t}{\Delta x} \leq 1}.
+	\boxed{\frac{v \Delta t}{\Delta x} \leq 1}.
 	\label{eq:ust2}
 \end{equation}
 Точность метода O($\tau + h$), где $\tau$ - шаг по времени, $h$ - шаг по пространству.
@@ -149,9 +149,9 @@ captionpos=t,
 	\caption{Результат решения  схемы "вверх по потоку". $\Delta x = 0.05 / 1.5, \Delta t = 0.001$.}  % Подпись к изображению
 	\label{fig:upwind_1.5x}  % Метка для ссылки
 \end{figure}
-Видно (рис \ref{fig:upwind_1.5x}), что пик волны уменьшается медленнее. Форма графика лучше сохраняется.
+Видно (рис \ref{fig:upwind_1.5x}), что пик волны уменьшается медленнее. Форма графика лучше сохраняется
 \newpage
-Уменьшим шаг по времени в два раза.  Условие CFL выполняется: $\frac{0.001}{0.1} = 0.01 < 1$.
+Уменьшим шаг по времени в два раза.  Условие CFL выполняется: $\frac{0.001}{0.1} = 0.01 < 1$
 \begin{figure}[h]  % Окружение для картинки
 	\centering
 	\includegraphics[height=0.7\textwidth]{imgs/upwind_2t.png}  % Вставка изображения

@@ -1,0 +1,63 @@
+%% Преамбула TeX-файла
+
+% 1. Стиль и язык
+\documentclass[utf8x]{G7-32} % Стиль (по умолчанию будет 14pt)
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{rotating}
+% Остальные стандартные настройки убраны в preamble.inc.tex.
+\include{preamble.inc}
+% Настройки листингов.
+\include{listings.inc}
+
+% Полезные макросы листингов.
+\include{macros.inc}
+
+\begin{document}
+	
+	\frontmatter % выключает нумерацию ВСЕГО; здесь начинаются ненумерованные главы: реферат, введение, глоссарий, сокращения и прочее.
+	
+	% Команды \breakingbeforechapters и \nonbreakingbeforechapters
+	% управляют разрывом страницы перед главами.
+	% По-умолчанию страница разрывается.
+	
+	% \nobreakingbeforechapters
+	% \breakingbeforechapters
+	
+	aboba
+	\newpage
+	\pagenumbering{gobble} % Отключаем нумерацию
+	\tableofcontents
+	\pagebreak
+	\pagenumbering{arabic}   % Включаем арабскую нумерацию страниц
+	\setcounter{page}{3}  
+	
+	
+	
+	\include{chapters/12-intro}
+	
+	%\include{13-intro-2}
+	
+	\mainmatter % это включает нумерацию глав и секций в документе ниже
+	
+	
+	
+\include{chapters/50-research}
+%\include{chapters/20-analysis}
+%\include{chapters/40-algo}
+	\backmatter %% Здесь заканчивается нумерованная часть документа и начинаются ссылки и
+%\include{chapters/80-end}
+%\include{chapters/81-biblio}
+	
+	%% заключение
+	
+	
+	%\appendix   % Тут идут приложения
+	%\include{polygonJSON}
+	%\include{polygonJSONresponse}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
