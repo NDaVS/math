@@ -174,7 +174,7 @@ class TerrainInterpolation:
             k=tri.simplices[:, 2],
             intensity=z,
             colorscale='Viridis',
-            colorbar=dict(title='Высота (м)'),
+            colorbar=dict(title='elevation (м)'),
             opacity=1,
             showscale=True
         )])
@@ -255,7 +255,7 @@ plotter = TerrainInterpolation(lons, lats, elevs, len(set(lons)), len(set(lats))
 # plotter.plot_interpolation(plot_type='cubic', is_scaled=1)
 # plotter.plot_interpolation(plot_type='nearest', is_scaled=1)
 plotter.plot_interpolation_with_delaunay(is_scaled=1)
-# plotter.terrain(is_scaled=1)
+plotter.terrain(is_scaled=1)
 # import time
 #
 # # Функция для измерения времени выполнения

@@ -1,45 +1,63 @@
 #include <stdio.h>
+#include <time.h>
 #include "curand.h"
 #include "curand_kernel.h"
 
 #define BLOCKS 10
 #define THREADS 256
-#define SEED 12345
 
 __global__ void rng_init(curandState_t *rng_state) {
     int index = blockIdx.x * blockDim.x + threadIdx.x;
-    curand_init(SEED, index, 0, &rng_state[index]);
+    unsigned long long seed = clock64() + index;
+    curand_init(seed, index, 0, &rng_state[index]);
 }
 
-__global__  void rng_generate(double *vector, curandState *rng_state) {
+__global__ void rng_generate(double *vector, curandState *rng_state) {
     int index = blockIdx.x * blockDim.x + threadIdx.x;
-    vector[index] = 0;
-    curandState* local_rng  = &rng_state[index];
-    for (int i = 0; i < 10; i++) {
-        vector[index] += curand_uniform_double(local_rng);
+    curandState* local_rng = &rng_state[index];
+    double x = curand_uniform_double(local_rng);
+    double y = curand_uniform_double(local_rng);
+    if (x * x + y * y < 1) {
+        vector[index] = 1; 
+    } else {
+        vector[index] = 0; 
     }
-
-}
-
-__global__ void print_res(double * a) {
-    int index = blockIdx.x * blockDim.x + threadIdx.x;
-    printf("vector[%d] = %f\n", index, a[index]);
 }
 
 int main() {
-
     curandState_t *dev_rng_state;
-    double *dev_vec;
+    int numBytes = BLOCKS * THREADS * sizeof(double);
+    double *dev_v;
+    double *v = new double[BLOCKS * THREADS]; 
+    for (int i = 0; i < BLOCKS * THREADS; i++) {
+        v[i] = 0;
+    }
 
-    cudaMalloc(&dev_rng_state, BLOCKS * THREADS * sizeof(curandState_t));
-    cudaMalloc(&dev_vec, BLOCKS * THREADS * sizeof(double));
+    cudaMalloc((void **)&dev_rng_state, BLOCKS * THREADS * sizeof(curandState_t));
+    cudaMalloc((void **)&dev_v, numBytes);
 
+    cudaMemcpy(dev_v, v, numBytes, cudaMemcpyHostToDevice);
+    
     rng_init<<<BLOCKS, THREADS>>>(dev_rng_state);
+    rng_generate<<<BLOCKS, THREADS>>>(dev_v, dev_rng_state);
+    
+    cudaMemcpy(v, dev_v, numBytes, cudaMemcpyDeviceToHost);
 
-    rng_generate<<<BLOCKS, THREADS>>>(dev_vec, dev_rng_state);
-    print_res<<<BLOCKS, THREADS>>>(dev_vec);
+    int count = 0;
+    for (int i = 0; i < BLOCKS * THREADS; i++) {
+        if (v[i] == 1) {
+            count++;
+        }
+    }
+
+    double pi = 4.0 * count / (BLOCKS * THREADS);
+    printf("Estimated value of Pi: %f\n", pi);
+
+    delete[] v;
+    cudaFree(dev_v);
+    cudaFree(dev_rng_state);
+    
     cudaDeviceSynchronize();
-
 
     return 0;
 }
