@@ -178,6 +178,10 @@ cython_debug/
 
 **.mp4
 
+# R 
+**/.RData
+**/.Rhistory
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
