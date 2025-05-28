@@ -1,3 +1,4 @@
+#=============== 
 setwd('/home/ndavs/study/math/DS/r/5_lab_Stats_100')
 # считаем датасет
 data <- read.table('data.dat', sep=' ')
@@ -8,7 +9,7 @@ head(data)
 base_headers <- readLines('headers.txt', n=1)
 cleaned_header <- gsub("\\s*\\([^()]*\\)", "", base_headers)
 
-
+cleaned_header <- gsub("\\.", "", cleaned_header)
 cleaned_header <- gsub("\\s+", " ", cleaned_header)
 cleaned_header <- trimws(cleaned_header)
 cleaned_header <- unlist(strsplit(cleaned_header, " "))
@@ -33,19 +34,21 @@ library(caret)
 set.seed(2004)
 train_index <- caret::createDataPartition(dd$Drinks_per_week, p = 0.7, list = FALSE)
 train_data <- dd[train_index, ]
-temp_data <- dd[-train_index, ]
+test_data <- dd[-train_index, ]
 
-validation_index <- createDataPartition(temp_data$Drinks_per_week, p = 0.5, list = FALSE)
-validation_data <- temp_data[validation_index, ]
-test_data <- temp_data[-validation_index, ]
+dim(train_data)
+dim(test_data)
 
-#софрмируем модели линейной регрессии
+
+#========================== 
+# сформируем модели линейной регрессии
 m1 <- lm("Drinks_per_week ~ Party_Hours_per_week + Gender", data=train_data)
 summary(m1)
 
 m2 <-  lm("Drinks_per_week ~ Party_Hours_per_week + Gender + Home_Town", data=train_data)
 summary(m2)
 
+#===================
 library(ggplot2)
 
 # 1. Диапазон значений по оси X
@@ -109,12 +112,46 @@ ggplot(train_data, aes(x = Party_Hours_per_week, y = Drinks_per_week)) +
   theme_minimal()
 
 
+#=====================
+predictions <- predict(m2, newdata = test_data)
 
+residuals <- test_data$Party_Hours_per_week - predictions
 
-library(ggplot2)
+SST <- sum((test_data$Party_Hours_per_week - mean(test_data$Party_Hours_per_week))^2)
 
+SSE <- sum(residuals^2)
+
+k <- length(coef(m1)) - 1
+n <- nrow(test_data)
+SSR <- SST - SSE
+
+F_statistic <- (SSR / k) / (SSE / (n - k - 1))
+
+F_statistic
+#=====================
+
+x_max <- max(dd$Party_Hours_per_week)
+x_ext <- x_max * c(1.05, 1.10, 1.15)
+new_rows <- expand.grid(
+  Party_Hours_per_week = x_ext,
+  Gender = levels(dd$Gender)
+)
+new_rows <- expand.grid(Party_Hours_per_week = x_ext, Gender = levels(dd$Gender))
+# другие переменные заполним NA или по аналогии
+new_rows$Drinks_per_week <- predict(m1, newdata = new_rows)
+new_rows$Home_Town <- NA 
+
+# Доверительные интервалы
+conf <- predict(m1, newdata = new_rows, interval = "confidence")
+# Предиктивные интервалы
+pred <- predict(m1, newdata = new_rows, interval = "prediction")
+# Объединение с исходными значениями
+results <- cbind(new_rows, conf, pred_Lwr = pred[ , "lwr"], pred_Upr = pred[ , "upr"])
+
+print(results)
+#===================
 # 1. Диапазон оси X с расширением
-range_x <- range(train_data$Party_Hours_per_week)
+range_x <- range(test_data$Party_Hours_per_week)
 x_min <- range_x[1]
 x_max <- range_x[2]
 x_range <- x_max - x_min
@@ -128,7 +165,7 @@ x_ext <- seq(
 # 2. Генерация новых данных для прогноза по уровням Gender
 newdata <- expand.grid(
   Party_Hours_per_week = x_ext,
-  Gender = levels(train_data$Gender)
+  Gender = levels(test_data$Gender)
 )
 
 # 3. Прогноз: доверительный интервал
@@ -141,22 +178,14 @@ pred_pred <- predict(m1, newdata = newdata, interval = "prediction", level = 0.9
 pred_df <- cbind(newdata, pred_pred)
 pred_df$Type <- "Prediction"
 
+
+
 # 5. Объединяем всё
 all_preds <- rbind(conf_df, pred_df)
-x_max <- max(train_data$Party_Hours_per_week)
-x_ext <- x_max * c(1.05, 1.10, 1.15)
-new_rows <- expand.grid(
-  Party_Hours_per_week = x_ext,
-  Gender = levels(train_data$Gender)
-)
-new_rows <- expand.grid(Party_Hours_per_week = x_ext, Gender = levels(train_data$Gender))
-# другие переменные заполним NA или по аналогии
-new_rows$Drinks_per_week <- predict(m1, newdata = new_rows)
-new_rows$Home_Town <- NA 
-train_data_extend <- rbind(train_data, new_rows)
+
 # 6. График
 ggplot() +
-  geom_point(data = train_data, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender), alpha = 1) +
+  geom_point(data = test_data, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender), alpha = 1) +
   geom_point(data = new_rows, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender, ), alpha = 1) +
   
   # Линия предсказания
@@ -225,22 +254,9 @@ ggplot(dd, aes(y = Drinks_per_week, x = Party_Hours_per_week, color = Gender)) +
        x = "Party Hours per Week") +
   theme_minimal()
 
-predictions <- predict(m2, newdata = validation_data)
 
-residuals <- validation_data$Party_Hours_per_week - predictions
 
-SST <- sum((validation_data$Party_Hours_per_week - mean(validation_data$Party_Hours_per_week))^2)
-
-SSE <- sum(residuals^2)
-
-k <- length(coef(m1)) - 1
-n <- nrow(validation_data)
-SSR <- SST - SSE
-
-F_statistic <- (SSR / k) / (SSE / (n - k - 1))
-
-F_statistic
-
+# ==========================
 # Предположим, что m1 - ваша модель регрессии и validation_data - ваши данные
 
 # 1. Получение предсказаний с доверительными и предиктивными интервалами
@@ -280,3 +296,7 @@ ggplot(plot_data, aes(x = Actual)) +
        x = "Фактические значения Party_Hours_per_week",
        y = "Прогнозируемые значения") +
   theme_minimal()
+
+
+#====================
+
