@@ -11,7 +11,7 @@ x_ext <- seq(
 
 newdata <- expand.grid(
   Party_Hours_per_week = x_ext,
-  Gender = levels(test_data$Gender)
+  Gender = levels(dd$Gender)
 )
 
 conf_pred <- predict(m1, newdata = newdata, interval = "confidence", level = 0.95)
@@ -25,7 +25,7 @@ pred_df$Type <- "Prediction"
 all_preds <- rbind(conf_df, pred_df)
 
 ggplot() +
-  geom_point(data = test_data, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender), alpha = 1) +
+  geom_point(data = dd, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender), alpha = 1) +
   geom_point(data = new_rows, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender, ), alpha = 1) +
   
   geom_line(data = all_preds, aes(x = Party_Hours_per_week, y = fit, color = Gender), size = 1) +

@@ -24,6 +24,7 @@ head(data)
 dd <- data[, c("Drinks_per_week", "Party_Hours_per_week", "Gender", "Home_Town")]
 head(dd)
 dim(dd)
+colSums(is.na(dd))
 summary(dd)
 
 dd$Home_Town[dd$Home_Town < 2] <- 0
@@ -47,21 +48,29 @@ summary(m1)
 
 m2 <-  lm("Drinks_per_week ~ Party_Hours_per_week + Gender + Home_Town", data=train_data)
 summary(m2)
+#====================
+predictions_m1 <- predict(m1, newdata=test_data)
+predictions_m2 <- predict(m2, newdata=test_data)
+mse_m1 <- mean((test_data$Drinks_per_week - predictions_m1)^2)
+mse_m2 <- mean((test_data$Drinks_per_week - predictions_m2)^2)
+
+cat("MSE for Model 1 (m1):", mse_m1, "\n")
+cat("MSE for Model 2 (m2):", mse_m2)
 
 #===================
 library(ggplot2)
 
 # 1. Диапазон значений по оси X
 x_seq <- seq(
-  from = min(train_data$Party_Hours_per_week),
-  to = max(train_data$Party_Hours_per_week),
+  from = min(dd$Party_Hours_per_week),
+  to = max(dd$Party_Hours_per_week),
   length.out = 100
 )
 
 # 2. Предсказания модели m1
 newdata_m1 <- expand.grid(
   Party_Hours_per_week = x_seq,
-  Gender = levels(train_data$Gender)
+  Gender = levels(dd$Gender)
 )
 newdata_m1$Home_Town <- NA  # Добавляем для совместимости
 newdata_m1$Pred <- predict(m1, newdata_m1)
@@ -71,7 +80,7 @@ newdata_m1$Group <- newdata_m1$Gender
 # 3. Предсказания модели m2
 newdata_m2 <- expand.grid(
   Party_Hours_per_week = x_seq,
-  Gender = levels(train_data$Gender),
+  Gender = levels(dd$Gender),
   Home_Town = c(0, 1)
 )
 newdata_m2$Pred <- predict(m2, newdata_m2)
@@ -80,9 +89,9 @@ newdata_m2$Group <- interaction(newdata_m2$Gender, newdata_m2$Home_Town, sep = "
 
 # 4. Объединяем предсказания
 pred_all <- rbind(newdata_m1, newdata_m2)
-train_data$Home_Town <- factor(train_data$Home_Town)
+dd$Home_Town <- factor(dd$Home_Town)
 # 5. Общий график
-ggplot(train_data, aes(x = Party_Hours_per_week, y = Drinks_per_week)) +
+ggplot(dd, aes(x = Party_Hours_per_week, y = Drinks_per_week)) +
   geom_point(
     aes(color = Gender, shape = Home_Town),
     alpha = 1
@@ -113,20 +122,25 @@ ggplot(train_data, aes(x = Party_Hours_per_week, y = Drinks_per_week)) +
 
 
 #=====================
-predictions <- predict(m2, newdata = test_data)
+dd$Gender <- factor(dd$Gender)
+predictions <- predict(m2, newdata = dd)
+residuals <- dd$Drinks_per_week - predictions
 
-residuals <- test_data$Party_Hours_per_week - predictions
+# 2. RSS — сумма квадратов ошибок
+RSS <- sum(residuals^2)
 
-SST <- sum((test_data$Party_Hours_per_week - mean(test_data$Party_Hours_per_week))^2)
+# 3. TSS — полная сумма квадратов по y
+TSS <- sum((dd$Drinks_per_week - mean(dd$Drinks_per_week))^2)
 
-SSE <- sum(residuals^2)
+# 4. SSR — регрессионная сумма квадратов
+SSR <- TSS - RSS
 
+# 5. Число параметров (без константы)
 k <- length(coef(m1)) - 1
-n <- nrow(test_data)
-SSR <- SST - SSE
+n <- nrow(dd)
 
-F_statistic <- (SSR / k) / (SSE / (n - k - 1))
-
+# 6. F-статистика
+F_statistic <- (SSR / k) / (RSS / (n - k - 1))
 F_statistic
 #=====================
 
@@ -151,7 +165,7 @@ results <- cbind(new_rows, conf, pred_Lwr = pred[ , "lwr"], pred_Upr = pred[ , "
 print(results)
 #===================
 # 1. Диапазон оси X с расширением
-range_x <- range(test_data$Party_Hours_per_week)
+range_x <- range(dd$Party_Hours_per_week)
 x_min <- range_x[1]
 x_max <- range_x[2]
 x_range <- x_max - x_min
@@ -165,7 +179,7 @@ x_ext <- seq(
 # 2. Генерация новых данных для прогноза по уровням Gender
 newdata <- expand.grid(
   Party_Hours_per_week = x_ext,
-  Gender = levels(test_data$Gender)
+  Gender = levels(dd$Gender)
 )
 
 # 3. Прогноз: доверительный интервал
@@ -185,7 +199,7 @@ all_preds <- rbind(conf_df, pred_df)
 
 # 6. График
 ggplot() +
-  geom_point(data = test_data, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender), alpha = 1) +
+  geom_point(data = dd, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender), alpha = 1) +
   geom_point(data = new_rows, aes(x = Party_Hours_per_week, y = Drinks_per_week, color = Gender, ), alpha = 1) +
   
   # Линия предсказания
@@ -198,7 +212,7 @@ ggplot() +
     alpha = 0.2
   ) +
   
-  facet_wrap(~Type) +  # Разделение графика: confidence vs prediction
+  facet_wrap(~Type) +
   
   labs(
     title = "Доверительный и предиктивный интервалы модели m1",
@@ -207,96 +221,3 @@ ggplot() +
     y = "Drinks per Week"
   ) +
   theme_minimal()
-
-#===================================
-
-#===================================
-
-#Отрисуем модели
-library(ggplot2)
-
-ggplot(dd, aes(y = Drinks_per_week, x = Party_Hours_per_week, color = Gender)) +
-  geom_point() +  
-  scale_color_manual(values = c("blue", "red", "green"), labels = c("male", "female", "other"))+
-  geom_smooth(method = "lm", se = TRUE, color = "blue") +
-  labs(title = "Модель 1: Party Hours per Week vs. Drinks per Week",
-       x = "Drinks per Week",
-       y = "Party Hours per Week") +
-  theme_minimal()
-
-# Получение предсказанных значений и интервалов для модели m1
-pred_m1 <- predict(m1, newdata = dd, interval = "confidence")
-pred_m1_pred <- predict(m1, newdata = dd, interval = "prediction")
-
-# Добавление предсказанных значений и интервалов в датафрейм
-dd$m1_fit <- pred_m1[, "fit"]
-dd$m1_lwr_conf <- pred_m1[, "lwr"]
-dd$m1_upr_conf <- pred_m1[, "upr"]
-dd$m1_lwr_pred <- pred_m1_pred[, "lwr"]
-dd$m1_upr_pred <- pred_m1_pred[, "upr"]
-dd$m2_fit <- predict(m2, newdata = dd)
-
-# Построение графика
-ggplot(dd, aes(y = Drinks_per_week, x = Party_Hours_per_week, color = Gender)) +
-  geom_point() +  
-  scale_color_manual(values = c("blue", "red", "green"), labels = c("male", "female", "other")) +
-  
-  # Линия для модели m1
-  geom_line(aes(y = m1_fit), color = "darkblue", linetype = "solid") + # Основная линия
-  geom_ribbon(aes(ymin = m1_lwr_conf, ymax = m1_upr_conf), fill = "lightblue", alpha = 0.5) + # Доверительный интервал
-  #geom_ribbon(aes(ymin = m1_lwr_pred, ymax = m1_upr_pred), fill = "orange", alpha = 0.3) + # Предиктивный интервал
-  
-  # Линия для модели m2
-  #geom_line(aes(y = m2_fit), color = "green", linetype = "dashed") + # Линия для m2
-  
-  labs(title = "Модель 1: Party Hours per Week vs. Drinks per Week",
-       y = "Drinks per Week",
-       x = "Party Hours per Week") +
-  theme_minimal()
-
-
-
-# ==========================
-# Предположим, что m1 - ваша модель регрессии и validation_data - ваши данные
-
-# 1. Получение предсказаний с доверительными и предиктивными интервалами
-predictions <- predict(m1, newdata = validation_data, interval = "confidence", level = 0.95)
-predictions_pred <- predict(m1, newdata = validation_data, interval = "prediction", level = 0.95)
-
-# 2. Создание новых данных для прогнозирования
-new_data <- validation_data
-new_data$Party_Hours_per_week_5 <- new_data$Party_Hours_per_week * 1.05
-new_data$Party_Hours_per_week_10 <- new_data$Party_Hours_per_week * 1.10
-new_data$Party_Hours_per_week_15 <- new_data$Party_Hours_per_week * 1.15
-
-# 3. Получение предсказаний для новых данных
-predictions_5 <- predict(m1, newdata = new_data, interval = "confidence", level = 0.95)
-predictions_10 <- predict(m1, newdata = new_data, interval = "confidence", level = 0.95)
-predictions_15 <- predict(m1, newdata = new_data, interval = "confidence", level = 0.95)
-
-# 4. Построение графиков
-library(ggplot2)
-
-# Создание основного графика
-plot_data <- data.frame(
-  Actual = validation_data$Party_Hours_per_week,
-  Predicted = predictions[, "fit"],
-  Lower_CI = predictions[, "lwr"],
-  Upper_CI = predictions[, "upr"],
-  Predicted_Pred = predictions_pred[, "fit"],
-  Lower_Pred = predictions_pred[, "lwr"],
-  Upper_Pred = predictions_pred[, "upr"]
-)
-
-ggplot(plot_data, aes(x = Actual)) +
-  geom_point(aes(y = Predicted), color = "blue") +
-  geom_ribbon(aes(ymin = Lower_CI, ymax = Upper_CI), alpha = 0.2, fill = "lightblue") +
-  geom_ribbon(aes(ymin = Lower_Pred, ymax = Upper_Pred), alpha = 0.2, fill = "lightgreen") +
-  labs(title = "Доверительный и предиктивный прогноз",
-       x = "Фактические значения Party_Hours_per_week",
-       y = "Прогнозируемые значения") +
-  theme_minimal()
-
-
-#====================
-

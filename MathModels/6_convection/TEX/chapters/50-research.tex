@@ -145,16 +145,17 @@ $$
 
 Также установим начальные и граничные условия:
 \begin{equation}
-	u(0,0,t) = \psi(t), \ u(x,y,0) = \phi(x)
+	u(0,0,t) = \psi(t), \ u(x,y,0) = \phi(x), \ u(0,y,t) = \psi(y,t) \ u(x,0,t) = \xi(x,t)
 	\label{eq:condit}
 \end{equation}
 
 Таким образом, из (\ref{eq:conduct}) и (\ref{eq:condit}) получаем систему:
 \begin{equation}
 	\begin{cases}
-			\frac{\partial u}{\partial t} + v \frac{\partial u}{\partial x} = f(x,t) \\
+			\frac{\partial u}{\partial t} + v_{x} \frac{\partial u}{\partial x} +v_{y}\frac{\partial u}{\partial y}  = f(x,y,t) \\
 			u(x,y,0) = \phi(x,y) \\
-			u(0,0,t) = \psi(t)
+			u(0,y,t) = \psi(y,t) \\
+			u(x,0,t) = \xi(x,t)
 	\end{cases}
 	\label{eq:sys}
 \end{equation}

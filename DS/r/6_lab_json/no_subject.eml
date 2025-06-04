@@ -1,0 +1,45 @@
+Received: from postback15a.mail.yandex.net (postback15a.mail.yandex.net [2a02:6b8:c0e:500:1:45:d181:da15])
+	by mail-notsolitesrv-production-main-73.vla.yp-c.yandex.net (notsolitesrv/Yandex) with LMTPS id M4WMaxkEgPvK-54lxJBdO
+	for <dostovalov.vn@dvfu.ru>; Thu, 29 May 2025 05:00:38 +0300
+Received: from mail-nwsmtp-mxback-production-main-16.vla.yp-c.yandex.net (mail-nwsmtp-mxback-production-main-16.vla.yp-c.yandex.net [IPv6:2a02:6b8:c0d:220:0:640:e8b0:0])
+	by postback15a.mail.yandex.net (Yandex) with ESMTPS id A78DC6096C
+	for <dostovalov.vn@dvfu.ru>; Thu, 29 May 2025 05:00:38 +0300 (MSK)
+Received: from mail.yandex.ru (2a02:6b8:c2d:4ab8:0:640:8d8a:0 [2a02:6b8:c2d:4ab8:0:640:8d8a:0])
+	by mail-nwsmtp-mxback-production-main-16.vla.yp-c.yandex.net (mxback/Yandex) with HTTPS id Q0LmVw0L4Gk0-4O3aqbxS;
+	Thu, 29 May 2025 05:00:38 +0300
+X-Yandex-Fwd: 1
+Authentication-Results: mail-nwsmtp-mxback-production-main-16.vla.yp-c.yandex.net; dkim=pass
+X-Yandex-Spam: 1
+Received: by ztjdexdusepk5gyp.vla.yp-c.yandex.net with HTTP;
+	Thu, 29 May 2025 05:00:38 +0300
+From: =?utf-8?B?0JLQsNC70LXRgNC40Lkg0JTQvtGB0YLQvtCy0LDQu9C+0LI=?= <dostovalov.vn@dvfu.ru>
+To: =?utf-8?B?0JLQsNC70LXRgNC40Lkg0J3QuNC60L7Qu9Cw0LXQstC40Ycg0JTQvtGB0YLQvtCy0LDQu9C+0LI=?= <dostovalov.vn@dvfu.ru>
+MIME-Version: 1.0
+X-Mailer: Yamail [ http://yandex.ru ] 5.0
+Date: Thu, 29 May 2025 12:00:38 +1000
+Message-Id: <3361748483994@mail.yandex.ru>
+Content-Type: multipart/mixed;
+	boundary="----==--bound.145108.ztjdexdusepk5gyp.vla.yp-c.yandex.net"
+Return-Path: dostovalov.vn@dvfu.ru
+
+
+------==--bound.145108.ztjdexdusepk5gyp.vla.yp-c.yandex.net
+Content-Disposition: attachment;
+	filename="lab27.05.R"
+Content-Transfer-Encoding: base64
+Content-Type: application/octet-stream;
+	name="lab27.05.R"
+
+bGlicmFyeSgiZHBseXIiKSAgIyDQvNCw0L3QuNC/0YPQu9GP0YbQuNC4INGBINC00LDQvdC90YvQ
+vNC4DQpsaWJyYXJ5KCJnZ3Bsb3QyIikgICMg0LPRgNCw0YTQuNC60LgNCmxpYnJhcnkoImpzb25s
+aXRlIikNCg0KZmlsZV9wYXRoIDwtICdEOi9Vc2Vycy9kb3N0b3ZhbG92LnZuL0Rlc2t0b3Av0J/R
+gNC+0LXQutGCINC/0L4g0YHQsdC+0YDRgyDQkNGG0YEvYWRkcmVzcy5qc29uJw0KYWE8LWZyb21K
+U09OKGZpbGVfcGF0aCkNCg0KYWEkYWRkcmVzc2VzW1sxXV0NCmNvbHVtbnMgPC0gc3Ryc3BsaXQo
+YWEkYWRkcmVzc2VzW1sxXV0sICcgJykNCmNvbHVtbnMNCmNvbHVtbnNbWzFdXTwtTlVMTA0KY29s
+dW1uc1tbMV1dDQpjb2x1bW5zW1sxXV1bMV0NCmNvbHVtbnNbWzFdXVsyXQ0KY29sdTwtY29sdW1u
+c1tbMV1dWzRdDQpjb2x1MjwtY29sdW1uc1tbMV1dWzZdDQpjb2x1MTwtY29sdW1uc1tbMV1dWzdd
+DQoNCmNvbHUzPC1jb2x1bW5zW1sxXV1bMTBdDQpjb2x1MzwtJywzMCcNCg0KY29sdTE8LSfRg9C7
+LicNCmFkcjwtcGFzdGUoY29sdSwnLCcsY29sdTEsY29sdTIsIGNvbHUzLHNlcCA9ICcnLCBjb2xs
+YXBzZT1OVUxMKQ0KZGY8LWRhdGEuZnJhbWUoaWQ9ImlkMSIsYWRyZXNzPWFkcikNCmRmDQpjb2x1
+Mw0K
+------==--bound.145108.ztjdexdusepk5gyp.vla.yp-c.yandex.net--

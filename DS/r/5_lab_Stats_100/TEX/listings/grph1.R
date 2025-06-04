@@ -1,14 +1,14 @@
 library(ggplot2)
 
 x_seq <- seq(
-  from = min(train_data$Party_Hours_per_week),
-  to = max(train_data$Party_Hours_per_week),
+  from = min(dd$Party_Hours_per_week),
+  to = max(dd$Party_Hours_per_week),
   length.out = 100
 )
 
 newdata_m1 <- expand.grid(
   Party_Hours_per_week = x_seq,
-  Gender = levels(train_data$Gender)
+  Gender = levels(dd$Gender)
 )
 newdata_m1$Home_Town <- NA  # Добавляем для совместимости
 newdata_m1$Pred <- predict(m1, newdata_m1)
@@ -17,7 +17,7 @@ newdata_m1$Group <- newdata_m1$Gender
 
 newdata_m2 <- expand.grid(
   Party_Hours_per_week = x_seq,
-  Gender = levels(train_data$Gender),
+  Gender = levels(dd$Gender),
   Home_Town = c(0, 1)
 )
 newdata_m2$Pred <- predict(m2, newdata_m2)
@@ -25,9 +25,9 @@ newdata_m2$Model <- "m2"
 newdata_m2$Group <- interaction(newdata_m2$Gender, newdata_m2$Home_Town, sep = "_HT")
 
 pred_all <- rbind(newdata_m1, newdata_m2)
-train_data$Home_Town <- factor(train_data$Home_Town)
+dd$Home_Town <- factor(dd$Home_Town)
 
-ggplot(train_data, aes(x = Party_Hours_per_week, y = Drinks_per_week)) +
+ggplot(dd, aes(x = Party_Hours_per_week, y = Drinks_per_week)) +
   geom_point(
     aes(color = Gender, shape = Home_Town),
     alpha = 1
