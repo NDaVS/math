@@ -105,7 +105,7 @@ class FluidSimulation:
             u = u_new
 
             if step % plot_every == 0 or step == n_steps - 1:
-                print(f"Шаг {step + 1}/{n_steps}, Время: {t + self.dt:.2f}")
+                print(f"Шаг {step + 1}/{n_steps}, Время: {t:.2f}")
 
                 fig, ax = plt.subplots(figsize=(12, 10))
 
@@ -116,10 +116,10 @@ class FluidSimulation:
                 ax.set_ylim(y_min, y_max)
                 ax.set_xlabel('x')
                 ax.set_ylabel('y')
-                ax.set_title(f'{experiment_name}: t = {t + self.dt:.2f}')
+                ax.set_title(f'{experiment_name}: t = {t:.2f}')
 
                 if self.save_frames:
-                    plt.savefig(f'{self.output_dir}/{experiment_name}_t{t + self.dt:.2f}.png', dpi=300,
+                    plt.savefig(f'{self.output_dir}/{experiment_name}_t{t:.2f}.png', dpi=300,
                                 bbox_inches='tight')
                     plt.close()
                 else:
@@ -130,15 +130,17 @@ class FluidSimulation:
 
 class VelocityField:
     @staticmethod
-    def vortex_flow(x, y, t):
-        vx = -0.1 * (y - 5)
-        vy = 0.1 * (x - 5)
+    def spiral_flow(x, y, t):
+        r = np.sqrt((x - 5) ** 2 + (y - 5) ** 2)  # Расстояние от центра (5, 5)
+        theta = np.arctan2(y - 5, x - 5) + 0.1 * t  # Угол с учетом времени
+        vx = -np.sin(theta) / r  # Горизонтальная скорость
+        vy = np.cos(theta) / r   # Вертикальная скорость
         return vx, vy
 
     @staticmethod
-    def shear_flow(x, y, t):
-        vx = 0.7 * (1 + np.sin(y + 0.5))
-        vy = 0.15 * np.cos(x + 0.3)
+    def wave_flow(x, y, t):
+        vx = 0.5 * np.sin(0.5 * (x + t))  # Горизонтальная скорость с волновым эффектом
+        vy = 0.5 * np.cos(0.5 * (y + t))  # Вертикальная скорость с волновым эффектом
         return vx, vy
 
     @staticmethod
@@ -151,24 +153,39 @@ class VelocityField:
 
 class InitialCondition:
     @staticmethod
+    def diagonal_line(x,y):
+        if np.abs(x-y) < 1:
+            return 1
+
+        return 0
+
+    @staticmethod
     def moved_circle(x, y):
         if ((x - 2.5) ** 2 + (y - 5) ** 2) < 4:
             return 1.0
-        else:
-            return 0.0
+
+        return 0.0
 
     @staticmethod
     def circle(x, y):
         if (x - 5) ** 2 + (y - 5) ** 2 < 4:
             return 1.0
-        else:
-            return 0.0
+
+        return 0.0
 
     @staticmethod
-    def gaussian(x, y):
-        source_x, source_y = 3, 5
-        sigma = 1.0
-        return np.exp(-((x - source_x) ** 2 + (y - source_y) ** 2) / (2 * sigma ** 2))
+    def vertical_line(x,y):
+        if np.abs(x-5) < 1:
+            return 1
+
+        return 0
+
+    @staticmethod
+    def horizontal_line(x, y):
+        if np.abs(y-5) < 1:
+            return 1
+
+        return 0
 
 
 class Experiment:
@@ -244,9 +261,9 @@ def main():
 
     # Добавление экспериментов
     experiments = [
-        # ("Эксперимент 1: Вихревое течение", VelocityField.vortex_flow, InitialCondition.moved_circle),
-        # ("Эксперимент 2: Сдвиговое течение", VelocityField.shear_flow, InitialCondition.circle),
-        ("Эксперимент 3: сложные системы", VelocityField.source_sink_flow, InitialCondition.circle),
+        # ("Эксперимент 1: Вихревое течение", VelocityField.spiral_flow, InitialCondition.horizontal_line),
+        ("Эксперимент 2: Сдвиговое течение", VelocityField.wave_flow, InitialCondition.diagonal_line),
+        # ("Эксперимент 3: сложные системы", VelocityField.source_sink_flow, InitialCondition.circle),
     ]
 
     for name, velocity_field, initial_condition in experiments:
@@ -266,10 +283,6 @@ def main():
     # manager.compare_methods()
     # end_time = time.time()
     # print(f"Время сравнения методов: {end_time - start_time:.2f} секунд")
-
-if __name__ == "__main__":
-    main()
-
 
 if __name__ == "__main__":
     main()

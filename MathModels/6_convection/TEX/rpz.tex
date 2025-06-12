@@ -1,5 +1,4 @@
 %% Преамбула TeX-файла
-
 % 1. Стиль и язык
 \documentclass[utf8x]{G7-32} % Стиль (по умолчанию будет 14pt)
 \usepackage[T2A]{fontenc}
@@ -47,13 +46,18 @@
 \include{chapters/40-algo}
 	\backmatter %% Здесь заканчивается нумерованная часть документа и начинаются ссылки и
 \include{chapters/80-end}
-%\include{chapters/81-biblio}
+\include{chapters/81-biblio}
 	
 	%% заключение
 	
 	
-	%\appendix   % Тут идут приложения
-	%\include{polygonJSON}
+\appendix   % Тут идут приложения
+	\include{appendix/vortex_df}
+	\include{appendix/shear_df}
+	\include{appendix/div_df}
+	\include{appendix/vortex_lg}
+	\include{appendix/shear_lg}
+	\include{appendix/div_lg}
 	%\include{polygonJSONresponse}
 \end{document}
 

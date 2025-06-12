@@ -14,6 +14,12 @@ class VelocityField:
         return vx, vy
 
     @staticmethod
+    def wave_flow(x, y, t):
+        vx = 0.5 * np.sin(0.5 * (x + t))  # Горизонтальная скорость с волновым эффектом
+        vy = 0.5 * np.cos(0.5 * (y + t))  # Вертикальная скорость с волновым эффектом
+        return vx, vy
+
+    @staticmethod
     def shear_flow(x, y, t):
         vx = 0.5 * (1 + np.sin(y))
         vy = 0.1 * np.cos(x)
@@ -49,7 +55,29 @@ class ParticleGenerator:
         y_cross = np.concatenate([np.ones(n_particles_line) * 5, y_line])
 
         return np.column_stack((x_cross, y_cross))
+    @staticmethod
+    def diagonal_band_pattern(n_particles, x_min=2, x_max=8, y_min=2, y_max=8, width=1.0):
+        # Генерируем точки вдоль основной диагонали
+        x_center = np.linspace(x_min, x_max, n_particles)
+        y_center = np.linspace(y_min, y_max, n_particles)
 
+        # Вектор диагонали
+        dx = x_max - x_min
+        dy = y_max - y_min
+        length = np.sqrt(dx ** 2 + dy ** 2)
+
+        # Перпендикулярное направление (нормированный вектор)
+        perp_x = -dy / length
+        perp_y = dx / length
+
+        # Случайные отклонения вдоль перпендикуляра шириной width
+        offsets = (np.random.rand(n_particles) - 0.5) * width
+
+        # Добавляем смещения к диагональным координатам
+        x_band = x_center + offsets * perp_x
+        y_band = y_center + offsets * perp_y
+
+        return np.column_stack((x_band, y_band))
     @staticmethod
     def grid_pattern(n_particles, x_min=2, x_max=8, y_min=2, y_max=8):
         n_side = int(np.sqrt(n_particles))
@@ -239,11 +267,11 @@ class LagrangianSimulation:
 
             # Визуализация через определенное количество шагов
             if step % plot_every == 0 or step == n_steps - 1:
-                print(f"Шаг {step + 1}/{n_steps}, Время: {t + self.dt:.2f}")
+                print(f"Шаг {step + 1}/{n_steps}, Время: {t:.2f}")
 
                 self.visualizer.plot_particles(
                     history['x'][step + 1], history['y'][step + 1], history['u'][step + 1],
-                    t + self.dt, domain, experiment_name,
+                    t, domain, experiment_name,
                     show_trajectories=True,
                     trajectories={
                         'x': history['x'][0:step + 1],
@@ -304,21 +332,21 @@ import time
 
 
 def main():
-    simulation = LagrangianSimulation(n_particles=1000, t_max=10.0, dt=0.05, save_frames=True)
+    simulation = LagrangianSimulation(n_particles=1000, t_max=10.0, dt=0.01, save_frames=True)
 
-    # Experiment 1: Вихревое течение
-    experiment1 = Experiment("Эксперимент 1: Вихревое течение", VelocityField.vortex_flow)
-    initial_positions = ParticleGenerator.radial_pattern(simulation.n_particles, x0=2.5, y0=5, r_max=2)[0]
-    u_initial = InitialCondition.gaussian(initial_positions[:, 0], initial_positions[:, 1], 5, 5, 1.0)
-
-    start_time = time.time()  # Start time for experiment 1
-    history1 = experiment1.run(simulation, initial_positions, u_initial)
-    end_time = time.time()  # End time for experiment 1
-    print(f"Время выполнения {experiment1.name}: {end_time - start_time:.2f} секунд")
+    # # Experiment 1: Вихревое течение
+    # experiment1 = Experiment("Эксперимент 1: Вихревое течение", VelocityField.vortex_flow)
+    # initial_positions = ParticleGenerator.radial_pattern(simulation.n_particles, x0=2.5, y0=5, r_max=2)[0]
+    # u_initial = InitialCondition.gaussian(initial_positions[:, 0], initial_positions[:, 1], 5, 5, 1.0)
+    #
+    # start_time = time.time()  # Start time for experiment 1
+    # history1 = experiment1.run(simulation, initial_positions, u_initial)
+    # end_time = time.time()  # End time for experiment 1
+    # print(f"Время выполнения {experiment1.name}: {end_time - start_time:.2f} секунд")
 
     # Experiment 2: Сдвиговое течение
-    experiment2 = Experiment("Эксперимент 2: Сдвиговое течение", VelocityField.shear_flow)
-    initial_positions = ParticleGenerator.grid_pattern(simulation.n_particles)
+    experiment2 = Experiment("Эксперимент 2: Сдвиговое течение", VelocityField.wave_flow)
+    initial_positions = ParticleGenerator.diagonal_band_pattern(simulation.n_particles)
     u_initial = InitialCondition.circle(initial_positions[:, 0], initial_positions[:, 1], 5, 5, 2.0)
 
     start_time = time.time()  # Start time for experiment 2
@@ -326,14 +354,14 @@ def main():
     end_time = time.time()    # End time for experiment 2
     print(f"Время выполнения {experiment2.name}: {end_time - start_time:.2f} секунд")
 
-    # Experiment 3: Течение с источником и стоком
-    experiment3 = Experiment("Эксперимент 3: Течение с источником и стоком", VelocityField.source_sink_flow)
-    initial_positions, u_initial = ParticleGenerator.radial_pattern(simulation.n_particles)
-
-    start_time = time.time()  # Start time for experiment 3
-    history3 = experiment3.run(simulation, initial_positions, u_initial)
-    end_time = time.time()    # End time for experiment 3
-    print(f"Время выполнения {experiment3.name}: {end_time - start_time:.2f} секунд")
+    # # Experiment 3: Течение с источником и стоком
+    # experiment3 = Experiment("Эксперимент 3: Течение с источником и стоком", VelocityField.source_sink_flow)
+    # initial_positions, u_initial = ParticleGenerator.radial_pattern(simulation.n_particles)
+    #
+    # start_time = time.time()  # Start time for experiment 3
+    # history3 = experiment3.run(simulation, initial_positions, u_initial)
+    # end_time = time.time()    # End time for experiment 3
+    # print(f"Время выполнения {experiment3.name}: {end_time - start_time:.2f} секунд")
 
     print("\nВсе эксперименты завершены. Изображения сохранены в директории 'lab6_images'.")
 
