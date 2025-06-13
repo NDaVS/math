@@ -38,7 +38,7 @@
 В качестве языка программирования для рассчётов и
 визуализации был выбран Python с использованием библиотек numpy
 (вычисления) и matplotlib (визуализация).
-\section{Ввех по потоку (upwind)}
+\section{Вверх по потоку (upwind)}
 \subsection{Численная схема конечных разностей}
 
 Пространственная область \(\Omega = [x_{\min}, x_{\max}] \times [y_{\min}, y_{\max}]\) дискретизуется равномерной сеткой с \(n \times n\) узлами. Шаги по пространству:
@@ -81,14 +81,16 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 \begin{itemize}
 	\item \textbf{Вихревое течение (vortex)}:
 	\begin{equation}
-			v_x = -\alpha (y - y_c), \quad v_y = \alpha (x - x_c),
+        v_x = (y-5) / 5,
+		v_y = (-x + y) \sin(x )/5.
 			\label{eq:vortex}
 	\end{equation}
-	где \(\alpha = 0.1\), \(x_c = y_c = 5\).
+
 	
-	\item \textbf{Сдвиговое течение (shear)}:
+	\item \textbf{Модифицированное спиральное течение (shear)}:
 	\begin{equation}
-			v_x = 0.7(1 + \sin(y + 0.5)), \quad v_y = 0.15 \cos(x + 0.3).
+		v_x = (y - 5) / 5, \quad
+		v_y = (-x + y) / 5.
 			\label{eq:shear}
 	\end{equation}
 
@@ -102,7 +104,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 
 \end{itemize}
 
-Начальные условия представлены в виде кругов или гауссовых распределений.
+Начальные условия представлены в виде кругов или полос с шириной 1.
 
 \subsection{Реализация алгоритма на Python}
 
@@ -125,95 +127,203 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\item поле скоростей (стримплот);
 	\item распределение \(u(x,y,t)\) на каждом шаге.
 \end{itemize}
-
+\pagebreak
 \subsection{Вихревое течение}
-\begin{figure}[h]
+\begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_1:_вихревое_течение_fd_velocity_field.png}
-	\caption{Поле скоростей для вихревого течения}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+	\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_fd_velocity_field.png}
+	\caption{Поле скоростей для вихревого течения.}
 	\label{fig:vortex_velocity}
-\end{figure}
-Поле на рис. \ref{fig:vortex_velocity} задаётся уравнением вихря (\ref{eq:vortex}):
-
-В качестве начального распределения, используется круг с центром в точке (2.5 , 5) и радиусом 3 (\ref{fig:vortex_begin}).
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_1:_вихревое_течение_t0.00.png}
-	\caption{Скалярное поле \(u(x,y,t)\) в начальный момент времени ($t=0$) (вихревое течение)}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+	\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_t0.00.png}
+	\caption{Скалярное поле \(u\) в начальный момент времени.}
 	\label{fig:vortex_begin}
+	\end{minipage}
 \end{figure}
 
-Изображения промежуточных ходов представлены в приложении (\ref{app:vortex_df}).
+Поле на рис. \ref{fig:vortex_velocity} задаётся уравнением вихря (\ref{eq:vortex}).
 
-Финальное распределения  представлено на рис. \ref{fig:vortex_final}.
+В качестве начального распределения, используется круг с центром в точке (5 , 5) и радиусом 3 (\ref{fig:vortex_begin}).
+
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp_1_t2} - \ref{fig:exp_1_t8}
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_1:_вихревое_течение_t10.00.png}
-	\caption{Скалярное поле \(u(x,y,t)\) в финальный момент времени ($t=10$) (вихревое течение)}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_t2.00.png}
+		\caption{Скалярное поле в момент времени $t=2$.}
+		\label{fig:exp_1_t2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_t4.00.png}
+		\caption{Скалярное поле в момент времени $t=4$.}
+	\end{minipage}
+	\vspace{0.5cm}
+	
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_t6.00.png}
+		\caption{Скалярное поле в момент времени $t=6$.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_t8.00.png}
+		\caption{Скалярное поле в момент времени $t=8$.}
+		\label{fig:exp_1_t8}
+	\end{minipage}
+\end{figure}
+\newpage
+Финальное распределения  представлено на рис. \ref{fig:vortex_final}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_t10.00.png}
+	\caption{Скалярное поле \(u\) в финальный момент времени ($t=10$).}
 	\label{fig:vortex_final}
 \end{figure}
 
-Как можно видеть, начальное распределение переместилось по направлению поля. Но его границы размылись. Этот эффект вызван особенностью вычислительной схемы.
+Как можно видеть, начальное распределение расширилось по направлению поля. Края размылись из-за особенностей вычислительной схемы.
 \newpage
-\subsection{Cдвиговое течение}
+\subsection{Течение по модифицированной спирали}
 Поле на рис. \ref{fig:shear_velocity} задаётся уравнением поля (\ref{eq:shear})
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_2:_сдвиговое_течение_fd_velocity_field.png}
-	\caption{Поле скоростей для сдвигового течения}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+	\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_fd_velocity_field.png}
+	\caption{Поле скоростей для течения модиф-ой спирали.}
 	\label{fig:shear_velocity}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+	\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_t0.00.png}
+	\caption{Скалярное поле \(u\) в начальный момент времени.}
+	\label{fig:shear_begin}
+	\end{minipage}
 \end{figure}
 
-В качетве начального распределения, используется круг с центром в точке (5 , 5) и радиусом 2 ( рис. \ref{fig:shear_begin}).
+В качетве начального распределения, используется диагональная  полоса  с левого верхнего угла к правому нижнему  и шириной 1 ( рис. \ref{fig:shear_begin}).
+
+
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp_2_t=2} - \ref{fig:exp_2_t=8}.
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_2:_сдвиговое_течение_t0.00.png}
-	\caption{Скалярное поле \(u(x,y,t)\) в начальный момент времени ($t=0$) (вихревое течение)}
-	\label{fig:shear_begin}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_t2.00.png}
+		\caption{Скалярное поле в момент времени $t=2$.}
+		\label{fig:exp_2_t=2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_t4.00.png}
+		\caption{Скалярное поле в момент времени $t=4$.}
+	\end{minipage}
+	\vspace{0.5cm}
+	
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_t6.00.png}
+		\caption{Скалярное поле в момент времени $t=6$.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_t8.00.png}
+		\caption{Скалярное поле в момент времени $t=8$.}
+				\label{fig:exp_2_t=8}
+	\end{minipage}
 \end{figure}
 
-Изображения промежуточных ходов представлены в приложении (приложение \ref{app:shear_df}).
-
+\newpage
 Финальное распределения представлено на рис. \ref{fig:shear_final}.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_2:_сдвиговое_течение_t10.00.png}
-	\caption{Скалярное поле \(u(x,y,t)\) в финальный момент времени ($t=10$) (вихревое течение)}
+	\includegraphics[width=0.7\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_t10.00.png}
+	\caption{Скалярное поле \(u\) в финальный момент времени ($t=10$)}
 	\label{fig:shear_final}
 \end{figure}
-
-\newpage
 В этом эксперименте также наблюдается перенос по направленю поля. Границы всё также размыты.
+Справа снизу появилась аномальная область. Это можно объяснить особенностью вычислительной схемы.
 
 \newpage
 \subsection{Дивергентное течение}
 Поле на рис. \ref{fig:div_velocity} задаётся уравнением поля (\ref{eq:div}).
-\begin{figure}[h]
+
+\begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_3:_сложные_системы_fd_velocity_field.png}
-	\caption{Поле скоростей для Дивергентного течения}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+	\includegraphics[width=\textwidth]{./../lab6_images_fd/epx_3:_divergent_flow_fd_velocity_field.png}
+	\caption{Поле скоростей для дивергентного течения.}
 	\label{fig:div_velocity}
-\end{figure}
-
-В качетве начального распределения, используется круг с центром в точке (5 , 5) и радиусом 2 ( рис. \ref{fig:div_begin}).
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_3:_сложные_системы_t0.00.png}
-	\caption{Скалярное поле \(u(x,y,t)\) в начальный момент времени ($t=0$) (дивиргентное поле)}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+	\includegraphics[width=\textwidth]{./../lab6_images_fd/epx_3:_divergent_flow_t0.00.png}
+	\caption{Скалярное поле \(u\) в начальный момент времени.}
 	\label{fig:div_begin}
+	\end{minipage}
 \end{figure}
 
-Изображения промежуточных ходов представлены в приложении \ref{app:div_df}.
+В качетве начального распределения, используется горизонтальная полоса с координатой $y$ центральной линии равной 5 и шириной 1 ( рис. \ref{fig:div_begin}).
 
-Финального распределение представлено на рис. \ref{fig:div_final}.
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp_3_t2} - \ref{fig:exp_3_t8}.
+
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/эксперимент_3:_сложные_системы_t10.00.png}
-	\caption{Скалярное поле \(u(x,y,t)\) в финальный момент времени ($t=10$) (дивергентное поле)}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_3:_divergent_flow_t2.00.png}
+		\caption{Скалярное поле в момент времени $t=2$.}
+		\label{fig:exp_3_t2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_3:_divergent_flow_t4.00.png}
+		\caption{Скалярное поле в момент времени $t=4$.}
+	\end{minipage}
+	\vspace{0.5cm}
+	
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_3:_divergent_flow_t6.00.png}
+		\caption{Скалярное поле в момент времени $t=6$.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_3:_divergent_flow_t8.00.png}
+		\caption{Скалярное поле в момент времени $t=8$.}
+		\label{fig:exp_3_t8}
+	\end{minipage}
+\end{figure}
+
+\newpage
+Финальное распределение представлено на рис. \ref{fig:div_final}.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{./../lab6_images_fd/epx_3:_divergent_flow_t10.00.png}
+	\caption{Скалярное поле \(u\) в финальный момент времени ($t=10$).}
 	\label{fig:div_final}
 \end{figure}
 
+В этом эксперименте виден недостаток вычислительной схемы - при высокой турбулентности начальное распределение расплывается.
 
 
 \newpage
@@ -261,17 +371,10 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 \end{itemize}
 
 \subsection{Описание экспериментов}
-
-В экспериментах используются те же три стационарных поля скоростей (\ref{eq:vortex}), (\ref{eq:shear}), (\ref{eq:div}). Начальные положения частиц задаются равномерно либо случайно в пределах области \(\Omega = [0, 10]^2\). Начальные значения \( u \) задаются по формуле:
-
-\[
-u(\mathbf{x}_0) =
-\begin{cases}
-	1, & \text{если } \| \mathbf{x}_0 - \mathbf{x}_c \| \leq r, \\
-	0, & \text{иначе},
-\end{cases}
-\]
-где \(\mathbf{x}_c\) — центр круга, \(r\) — радиус.
+В экспериментах используются те же три стационарных поля скоростей (\ref{eq:vortex}), (\ref{eq:shear}), (\ref{eq:div}).
+Количество точек для моделирования - 1000.
+Начальные положения частиц и параметры моделирования задаются аналогично. 
+Все точки инициализируются с $u = 1$.
 
 \subsection{Визуализация результатов}
 
@@ -279,94 +382,193 @@ u(\mathbf{x}_0) =
 \begin{itemize}
 	\item карта начального положения и значений частиц;
 	\item стримплот поля скоростей;
-	\item финальное распределение частиц с учётом перемещения;
-	\item по желанию: реконструированная плотность скалярной величины на сетке.
+	\item Промежуточные распределение частиц с учётом перемещения;
+	\item реконструированная плотность скалярной величины на сетке.
 \end{itemize}
 \newpage
 \subsection{Вихревое течение (Lagrangian)}
 Поле используем то же, что и в эксперименте с разделёнными разностями ( рис. \ref{fig:vortex_velocity},  задаётся уравнением вихря (\ref{eq:vortex}).
 
-В качестве начального распределения, используется круг с центром в точке (2.5 , 5) и радиусом 3 (\ref{fig:lg_vortex_begin}).
+В качестве начального распределения, используется круг с центром в точке (5 , 5) и радиусом 3 (\ref{fig:lg_vortex_begin}).
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_1:_вихревое_течение_t0.00.png}
-	\caption{Начальное распределение частиц (вихревое поле)}
+	\includegraphics[width=0.7\textwidth]{./../lab6_images/exp_1:_spiral_flow_t0.00.png}
+	\caption{Начальное распределение частиц (вихревое поле).}
 	\label{fig:lg_vortex_begin}
 \end{figure}
 
-Изображения промежуточных ходов представлены в приложении \ref{app:vortex_lg}.
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp_1l_t2} - \ref{fig:exp_1l_t8}.
 
-Финального распределение представлено на рис. \ref{fig:lg_vortex_finall}.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_1:_вихревое_течение_t10.00.png}
-	\caption{Финальное распределение частиц (вихревое поле)}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_1:_spiral_flow_t2.00.png}
+		\caption{Скалярное поле в момент времени $t=2$.}
+		\label{fig:exp_1l_t2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_1:_spiral_flow_t4.00.png}
+		\caption{Скалярное поле в момент времени $t=4$.}
+	\end{minipage}
+	\vspace{0.5cm}
+	
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_1:_spiral_flow_t6.00.png}
+		\caption{Скалярное поле в момент времени $t=6$.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_1:_spiral_flow_t8.00.png}
+		\caption{Скалярное поле в момент времени $t=8$.}
+		\label{fig:exp_1l_t8}
+	\end{minipage}
+\end{figure}
+
+\newpage
+Финальное распределение представлено на рис. \ref{fig:lg_vortex_finall}. Также изображены траектории 50 точек.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\textwidth]{./../lab6_images/exp_1:_spiral_flow_t10.00.png}
+	\caption{Финальное распределение частиц.}
 	\label{fig:lg_vortex_finall}
 \end{figure}
-Траектории 1000 точек представлены на рис. \ref{fig:lg_vortex_tr}
-\begin{figure}
+
+Траектории всех точек представлены на рис. \ref{fig:lg_vortex_tr}. 
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_1:_вихревое_течение_trajectories.png}
-	\caption{Траектория частиц (вихревое поле)}
+	\includegraphics[width=0.65\textwidth]{./../lab6_images/exp_1:_spiral_flow_trajectories.png}
+	\caption{Траектория частиц.}
 	\label{fig:lg_vortex_tr}
 \end{figure}
 
 \newpage
-\subsection{Сдвиговое течение (Lagrangian)}
+\subsection{Течение модифицироанной спирали (Lagrangian)}
 
-Поле используем то же, что и в эксперименте с разделёнными разностями (рис. \ref{fig:shear_velocity},  задаётся уравнением вихря (\ref{eq:shear}).
+Поле используем то же, что и в эксперименте с разделёнными разностями (рис. \ref{fig:shear_velocity},  задаётся уравнением (\ref{eq:shear}).
 
-В качестве начального распределения, используется круг с центром в точке (5 , 5) и радиусом 2 (\ref{fig:lg_shaer_begin}). Дополнительно добавлена область вокруг распределения в виде квадрата для отрисовки поведения среды.
+В качестве начального распределения, используется диагональная  полоса из левого верхнего угла в правый нижний  с шириной 1 (рис. \ref{fig:lg_shaer_begin}). 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_2:_сдвиговое_течение_t0.00.png}
-	\caption{Начальное распределение частиц (сдвиговое поле)}
+	\includegraphics[width=0.7\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_t0.00.png}
+	\caption{Начальное распределение частиц.}
 	\label{fig:lg_shaer_begin}
 \end{figure}
 
-Изображения промежуточных ходов представлены в приложении \ref{app:shear_lg}.
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp2_t2} - \ref{fig:exp2_t8}.
 
-Финального распределение представлено на рис. \ref{fig:lg_shaer_finall}.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_2:_сдвиговое_течение_t10.00.png}
-	\caption{Финальное распределение частиц (сдвиговое поле)}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_t2.00.png}
+		\caption{Скалярное поле в момент времени $t=2$.}
+		\label{fig:exp2_t2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_t4.00.png}
+		\caption{Скалярное поле в момент времени $t=4$.}
+	\end{minipage}
+	\vspace{0.5cm}
+	
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_t6.00.png}
+		\caption{Скалярное поле в момент времени $t=6$.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_t8.00.png}
+		\caption{Скалярное поле в момент времени $t=8$.}
+				\label{fig:exp2_t8}
+	\end{minipage}
+\end{figure}
+
+\newpage
+Финальное распределение представлено на рис. \ref{fig:lg_shaer_finall}. Также изображены траектории 50 точек.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_t10.00.png}
+	\caption{Финальное распределение частиц (сдвиговое поле).}
 	\label{fig:lg_shaer_finall}
 \end{figure}
-Траектории 1000 точек представлены на рис. \ref{fig:lg_shaer_tr}
-\begin{figure}
+
+Траектории всех точек представлены на рис. \ref{fig:lg_shaer_tr}.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_2:_сдвиговое_течение_trajectories.png}
-	\caption{Траектории частиц (сдвиговое поле)}
+	\includegraphics[width=0.65\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_trajectories.png}
+	\caption{Траектории частиц.}
 	\label{fig:lg_shaer_tr}
 \end{figure}
 
 \newpage
 \subsection{Дивергентное течение (Lagrangian)}
-Поле используем то же, что и в эксперименте с разделёнными разностями (рис. \ref{fig:div_velocity},  задаётся уравнением вихря (\ref{eq:div}).
+Поле используем то же, что и в эксперименте с разделёнными разностями (рис. \ref{fig:div_velocity},  задаётся уравнением (\ref{eq:div}).
 
-В качестве начального распределения, используется круг с центром в точке (5 , 5) и радиусом 2 (\ref{fig:lg_div_begin}). Дополнительно добавлена область вокруг распределения в виде квадрата для отрисовки поведения среды.
+В качестве начального распределения, используется горизонтальная полоса с центральной линией на координате $y=5$ и шириной 1 (рис. \ref{fig:lg_div_begin}). 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_3:_течение_с_источником_и_стоком_t0.00.png}
-	\caption{Начальное распределение частиц (дивергентное поле)}
+	\includegraphics[width=0.7\textwidth]{./../lab6_images/exp_3:_divergent_flow_t0.00.png}
+	\caption{Начальное распределение частиц.}
 	\label{fig:lg_div_begin}
 \end{figure}
 
-Изображения промежуточных ходов представлены в приложении \ref{app:div_lg}.
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp3_2} - \ref{fig:exp3_8}.
 
-Финального распределение представлено на рис. \ref{fig:lg_div_finall}.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_3:_течение_с_источником_и_стоком_t10.00.png}
-	\caption{Финальное распределение частиц (дивергентное поле)}
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_3:_divergent_flow_t2.00.png}
+		\caption{Скалярное поле в момент времени $t=2$.}
+		\label{fig:exp3_2}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_3:_divergent_flow_t4.00.png}
+		\caption{Скалярное поле в момент времени $t=4$.}
+	\end{minipage}
+	\vspace{0.5cm}
+	
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_3:_divergent_flow_t6.00.png}
+		\caption{Скалярное поле в момент времени $t=6$.}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[b]{0.48\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{./../lab6_images/exp_3:_divergent_flow_t8.00.png}
+		\caption{Скалярное поле в момент времени $t=8$.}
+				\label{fig:exp3_8}
+	\end{minipage}
+\end{figure}
+
+\newpage
+Финальное распределение представлено на рис. \ref{fig:lg_div_finall}.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{./../lab6_images/exp_3:_divergent_flow_t10.00.png}
+	\caption{Финальное распределение частиц.}
 	\label{fig:lg_div_finall}
 \end{figure}
-Траектории 1000 точек представлены на рис. \ref{fig:lg_div_tr}
-\begin{figure}
+
+Траектории 1000 точек представлены на рис. \ref{fig:lg_div_tr}.
+
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{imgs/lg/эксперимент_3:_течение_с_источником_и_стоком_trajectories.png}
-	\caption{Траектории частиц (дивергентное поле)}
+	\includegraphics[width=0.7\textwidth]{./../lab6_images/exp_3:_divergent_flow_trajectories.png}
+	\caption{Траектории частиц.}
 	\label{fig:lg_div_tr}
 \end{figure}
 

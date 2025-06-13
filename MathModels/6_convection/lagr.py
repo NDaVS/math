@@ -3,11 +3,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib import cm
-from scipy.interpolate import griddata
-from shapely.geometry import Polygon, MultiPoint
-from shapely.ops import unary_union, polygonize
-from scipy.spatial import Delaunay
-import matplotlib.patches as patches
+from scipy.spatial import cKDTree
 
 
 class VelocityField:
@@ -94,6 +90,20 @@ class ParticleGenerator:
         y_band = y_center + offsets * perp_y
 
         return np.column_stack((x_band, y_band))
+
+    @staticmethod
+    def horizontal_band_pattern(n_particles, x_min=0, x_max=10, y_min=0, y_max=10, width=1.0):
+        # Центр по y — линия проходит горизонтально по центру области
+        y_center = (y_min + y_max) / 2.0
+
+        # Генерируем равномерные x-координаты
+        x = np.linspace(x_min, x_max, n_particles)
+
+        # Генерируем случайные отклонения по вертикали в пределах ширины
+        y_offsets = (np.random.rand(n_particles) - 0.5) * width
+        y = y_center + y_offsets
+
+        return np.column_stack((x, y))
 
     @staticmethod
     def antidiagonal_band_pattern(n_particles, x_min=0, x_max=10, y_min=0, y_max=10, width=1.0):
@@ -196,37 +206,20 @@ class Visualizer:
         else:
             plt.show()
 
-    def alpha_shape(self, points, alpha):
-        if len(points) < 4:
-            return MultiPoint(points).convex_hull
+    def compute_concentration(self, grid_x, grid_y, points, radius):
 
-        tri = Delaunay(points)
-        edges = set()
-        for ia, ib, ic in tri.simplices:
-            pa, pb, pc = points[ia], points[ib], points[ic]
-            a = np.linalg.norm(pb - pc)
-            b = np.linalg.norm(pa - pc)
-            c = np.linalg.norm(pa - pb)
-            s = (a + b + c) / 2.0
-            area = max(s * (s - a) * (s - b) * (s - c), 0.0)
-            if area == 0.0:
-                continue
-            area = np.sqrt(area)
-            circum_r = a * b * c / (4.0 * area)
-            if circum_r < 1.0 / alpha:
-                edges.update([(ia, ib), (ib, ic), (ic, ia)])
+        tree = cKDTree(points)
+        grid_points = np.column_stack((grid_x.ravel(), grid_y.ravel()))
+        counts = tree.query_ball_point(grid_points, r=radius)
+        concentration = np.array([len(c) for c in counts]).reshape(grid_x.shape)
+        return concentration
 
-        edge_points = []
-        for i, j in edges:
-            edge_points.append((tuple(points[i]), tuple(points[j])))
-
-        m = polygonize(edge_points)
-        return unary_union(list(m))
-
-    def plot_particles(self, x, y, u, t, domain, experiment_name, show_trajectories=False, trajectories=None,
+    def plot_particles(self, x, y, u, t, domain, experiment_name,
+                       show_trajectories=False, trajectories=None,
                        save=False):
         x_min, x_max, y_min, y_max = domain
-        mask = (x >= x_min) & (x <= x_max) & (y >= y_min) & (y <= y_max)
+        border_epsilon = 1e-5
+        mask = (x >= x_min + border_epsilon) & (x <= x_max - border_epsilon) & (y >= y_min + border_epsilon) & (y <= y_max - border_epsilon)
         x = x[mask]
         y = y[mask]
         u = u[mask]
@@ -234,29 +227,28 @@ class Visualizer:
         grid_x, grid_y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
 
         points = np.column_stack((x, y))
-        grid_u = griddata(points, u, (grid_x, grid_y), method='cubic', fill_value=0)
+
+        # Вычисляем концентрацию в узлах сетки
+        radius = 0.05 * max(x_max - x_min, y_max - y_min)  # радиус поиска соседей
+        concentration = self.compute_concentration(grid_x, grid_y, points, radius)
 
         fig, ax = plt.subplots(figsize=(12, 10))
 
-        ax.scatter(x, y, color='blue', s=30, edgecolor='k', linewidth=0.5, alpha=0.9)
+        # Отображаем поле концентрации
+        c = ax.pcolormesh(grid_x, grid_y, concentration, shading='auto', cmap='hot', alpha=0.6)
+        plt.colorbar(c, ax=ax, label='Концентрация')
 
+        # Отображаем сами частицы
+        ax.scatter(x, y, color='blue', s=20, edgecolor='k', linewidth=0.3, alpha=0.9, label='Частицы')
+
+        # Отображаем траектории, если нужно
         if show_trajectories and trajectories is not None:
             n_particles = len(x)
             n_trajectories = min(50, n_particles)
             current_step = trajectories['t'].shape[0] - 1
-            for i in range(0, n_particles, n_particles // n_trajectories):
+            for i in range(0, n_particles, max(1, n_particles // n_trajectories)):
                 ax.plot(trajectories['x'][:current_step + 1, i], trajectories['y'][:current_step + 1, i],
                         'k-', linewidth=0.5, alpha=0.3)
-
-        # >>> ДОБАВЛЕНИЕ: построение контура альфа-оболочки
-        alpha = 1.5  # Чем меньше значение, тем точнее контур
-        outline = self.alpha_shape(points, alpha)
-
-        if outline.geom_type == 'Polygon':
-            ax.fill(*outline.exterior.xy, facecolor='orange', alpha=0.4, label='Alpha shape')
-        elif outline.geom_type == 'MultiPolygon':
-            for poly in outline.geoms:
-                ax.fill(*poly.exterior.xy, facecolor='orange', alpha=0.2)
 
         ax.set_xlim(x_min, x_max)
         ax.set_ylim(y_min, y_max)
@@ -264,6 +256,7 @@ class Visualizer:
         ax.set_ylabel('y')
         ax.set_title(f'{experiment_name}: t = {t:.2f}')
         ax.grid(True)
+        ax.legend()
 
         if save:
             full_path = f"{self.output_dir}/{experiment_name}_t{t:.2f}.png"
@@ -408,42 +401,98 @@ class Experiment:
 
 
 import time
+from matplotlib.animation import FuncAnimation, PillowWriter
+
+def compute_concentration(x, y, grid_x, grid_y, radius):
+    points = np.column_stack((x, y))
+    tree = cKDTree(points)
+    grid_points = np.column_stack((grid_x.ravel(), grid_y.ravel()))
+    counts = tree.query_ball_point(grid_points, r=radius)
+    concentration = np.array([len(c) for c in counts]).reshape(grid_x.shape)
+    return concentration
+
+def generate_gif_from_simulation(x_data, y_data, filename='animation.gif', interval=50, radius=10.0):
+    """
+    Генерирует GIF-анимацию с тепловой картой концентрации частиц.
+
+    Parameters:
+    - x_data: список или np-массив, где каждый элемент — массив X-координат частиц в кадре
+    - y_data: список или np-массив, где каждый элемент — массив Y-координат частиц в кадре
+    - filename: имя gif-файла
+    - interval: задержка между кадрами в мс
+    - radius: радиус для подсчета концентрации частиц
+    """
+    # Параметры сетки
+    grid_size = 100
+    x_grid = np.linspace(0, 10, grid_size)
+    y_grid = np.linspace(0, 10, grid_size)
+    grid_x, grid_y = np.meshgrid(x_grid, y_grid)
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    conc = compute_concentration(x_data[0], y_data[0], grid_x, grid_y, radius=radius)
+    img = ax.pcolormesh(grid_x, grid_y, conc, shading='auto', cmap='hot', alpha=0.6)
+    ax.set_title("Concentration of Particles")
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    cbar = fig.colorbar(img, ax=ax, label="Particle Density")
+    scatter = ax.scatter([], [], s=1, c='blue')
+
+    def init():
+        scatter.set_offsets(np.empty((0, 2)))
+        return scatter,
+
+    def update(frame):
+        x = x_data[frame]
+        y = y_data[frame]
+        conc = compute_concentration(x, y, grid_x, grid_y, radius=radius)
+        img.set_array(conc.ravel())  # Correctly update the heatmap data
+        coords = np.column_stack((x, y))
+        scatter.set_offsets(coords)
+        return [img, scatter]
+
+    anim = FuncAnimation(fig, update, frames=len(x_data), init_func=init, blit=True, interval=interval)
+
+    writer = PillowWriter(fps=1000 // interval)
+    anim.save(filename, writer=writer)
+    plt.close(fig)
 
 
 def main():
     simulation = LagrangianSimulation(n_particles=1000, t_max=10.0, dt=0.01, save_frames=True)
 
-    # # Experiment 1: Вихревое течение
-    # experiment1 = Experiment("Exp 1: laminar flow", VelocityField.vortex_flow2)
-    # initial_positions = ParticleGenerator.radial_pattern(simulation.n_particles, x0=5, y0=5, r_max=2.5)[0]
-    # u_initial = InitialCondition.all(initial_positions[:, 0], initial_positions[:, 1])
-    #
-    # start_time = time.time()  # Start time for experiment 1
-    # history1 = experiment1.run(simulation, initial_positions, u_initial)
-    # end_time = time.time()  # End time for experiment 1
-    # print(f"Время выполнения {experiment1.name}: {end_time - start_time:.2f} секунд")
+    # Experiment 1: Вихревое течение
+    experiment1 = Experiment("Exp 1: spiral flow", VelocityField.vortex_flow2)
+    initial_positions = ParticleGenerator.radial_pattern(simulation.n_particles, x0=5, y0=5, r_max=3)[0]
+    u_initial = InitialCondition.all(initial_positions[:, 0], initial_positions[:, 1])
+
+    start_time = time.time()  # Start time for experiment 1
+    history1 = experiment1.run(simulation, initial_positions, u_initial)
+    end_time = time.time()  # End time for experiment 1
+    print(f"Время выполнения {experiment1.name}: {end_time - start_time:.2f} секунд")
+    generate_gif_from_simulation(history1['x'], history1['y'], filename=f'lab6_images/{experiment1.name}.gif')
 
     # Experiment 2: Сдвиговое течение
-    # experiment2 = Experiment("Exp 2: shift flow", VelocityField.vortex_flow)
-    # initial_positions = ParticleGenerator.antidiagonal_band_pattern(simulation.n_particles)
-    # u_initial = InitialCondition.all(initial_positions[:, 0], initial_positions[:, 1])
-    #
-    # start_time = time.time()  # Start time for experiment 2
-    # history2 = experiment2.run(simulation, initial_positions, u_initial)
-    # end_time = time.time()  # End time for experiment 2
-    # print(f"Время выполнения {experiment2.name}: {end_time - start_time:.2f} секунд")
+    experiment2 = Experiment("Exp 2: sin-spiral flow", VelocityField.vortex_flow)
+    initial_positions = ParticleGenerator.antidiagonal_band_pattern(simulation.n_particles)
+    u_initial = InitialCondition.all(initial_positions[:, 0], initial_positions[:, 1])
 
-    # Experiment 3: Течение с источником и стоком
-    experiment3 = Experiment("exp 3: divergent flow", VelocityField.source_sink_flow)
-    initial_positions, u_initial = ParticleGenerator.radial_pattern(simulation.n_particles)
+    start_time = time.time()  # Start time for experiment 2
+    history2 = experiment2.run(simulation, initial_positions, u_initial)
+    end_time = time.time()  # End time for experiment 2
+    print(f"Время выполнения {experiment2.name}: {end_time - start_time:.2f} секунд")
+    generate_gif_from_simulation(history2['x'], history2['y'], filename=f'lab6_images/{experiment2.name}.gif')
+
+    experiment3 = Experiment("Exp 3: divergent flow", VelocityField.source_sink_flow)
+    initial_positions = ParticleGenerator.horizontal_band_pattern(simulation.n_particles)
+    u_initial = InitialCondition.all(initial_positions[:, 0], initial_positions[:, 1])
 
     start_time = time.time()  # Start time for experiment 3
     history3 = experiment3.run(simulation, initial_positions, u_initial)
-    end_time = time.time()    # End time for experiment 3
+    end_time = time.time()  # End time for experiment 3
     print(f"Время выполнения {experiment3.name}: {end_time - start_time:.2f} секунд")
+    generate_gif_from_simulation(history3['x'], history3['y'], filename=f'lab6_images/{experiment3.name}.gif')
 
-    print("\nВсе эксперименты завершены. Изображения сохранены в директории 'lab6_images'.")
-
+    print("\nВсе эксперименты завершены. Изображения и данные сохранены в директории 'lab6_images'.")
 
 if __name__ == "__main__":
     main()

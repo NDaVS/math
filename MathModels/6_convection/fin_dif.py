@@ -5,7 +5,7 @@ import os
 
 
 class FluidSimulation:
-    def __init__(self, n=100, t_max=10.0, dt=0.01, save_frames=True):
+    def __init__(self, n=101, t_max=10.0, dt=0.01, save_frames=True):
         self.n = n
         self.t_max = t_max
         self.dt = dt
@@ -63,7 +63,7 @@ class FluidSimulation:
             for j in range(n):
                 u[j, i] = initial_condition(x[i], y[j])
 
-        n_steps = int(self.t_max / self.dt)
+        n_steps = int(self.t_max / self.dt) + 1
 
         for step in range(n_steps):
             t = step * self.dt
@@ -104,7 +104,7 @@ class FluidSimulation:
 
             u = u_new
 
-            if step % plot_every == 0 or step == n_steps - 1:
+            if step % plot_every == 0 or step == n_steps-1:
                 print(f"Шаг {step + 1}/{n_steps}, Время: {t:.2f}")
 
                 fig, ax = plt.subplots(figsize=(12, 10))
@@ -144,10 +144,20 @@ class VelocityField:
         return vx, vy
 
     @staticmethod
-    def source_sink_flow(x, y, t):
+    def divergent_flow(x, y, t):
         vx = - np.pi * np.sin(2 * np.pi * x/10) * np.cos(np.pi * y/10)
         vy = 2* np.pi * np.sin( np.pi * y/10) * np.cos(2 * np.pi * x/10)
 
+        return vx, vy
+    @staticmethod
+    def vortex_flow(x, y, t):
+        vx = (y-5) / 5
+        vy = (-x + y)/ 5 * np.sin(x )
+        return vx, vy
+    @staticmethod
+    def vortex_flow2(x, y, t):
+        vx = (y-5) / 5
+        vy = (-x + y)/ 5
         return vx, vy
 
 
@@ -155,6 +165,13 @@ class InitialCondition:
     @staticmethod
     def diagonal_line(x,y):
         if np.abs(x-y) < 1:
+            return 1
+
+        return 0
+
+    @staticmethod
+    def antidiagonal_line(x,y):
+        if np.abs(-x -y + 10) < 1:
             return 1
 
         return 0
@@ -168,7 +185,7 @@ class InitialCondition:
 
     @staticmethod
     def circle(x, y):
-        if (x - 5) ** 2 + (y - 5) ** 2 < 4:
+        if (x - 5) ** 2 + (y - 5) ** 2 < 3 ** 2:
             return 1.0
 
         return 0.0
@@ -182,7 +199,7 @@ class InitialCondition:
 
     @staticmethod
     def horizontal_line(x, y):
-        if np.abs(y-5) < 1:
+        if np.abs(y-5) < 0.5:
             return 1
 
         return 0
@@ -261,9 +278,9 @@ def main():
 
     # Добавление экспериментов
     experiments = [
-        # ("Эксперимент 1: Вихревое течение", VelocityField.spiral_flow, InitialCondition.horizontal_line),
-        ("Эксперимент 2: Сдвиговое течение", VelocityField.wave_flow, InitialCondition.diagonal_line),
-        # ("Эксперимент 3: сложные системы", VelocityField.source_sink_flow, InitialCondition.circle),
+        # ("Exp 1: spiral flow", VelocityField.vortex_flow2, InitialCondition.circle),
+        # ("Exp 2: sin-spiral flow", VelocityField.vortex_flow, InitialCondition.antidiagonal_line),
+        ("Exp 3: divergent flow", VelocityField.divergent_flow, InitialCondition.horizontal_line),
     ]
 
     for name, velocity_field, initial_condition in experiments:
