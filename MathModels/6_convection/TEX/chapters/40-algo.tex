@@ -11,11 +11,11 @@
 
 Для экспериментов зададим следующие условия:
 \begin{enumerate}
-	\item Векторное поле $\Omega$ задано Декартовым произведением $[0,10] \times [0,10]$
+	\item Векторное поле $\Omega$ задано Декартовым произведением $[0,10] \times [0,10];$
 	\item Временной интервал $t\in [0, 10]$;
 	\item Шаг по времени $\Delta t = 0.01$;
 	\item Все поля стационарные (не зависят от веремни);
-	\item В случае, если точка в методе лагранжевых частиц выходит за пределы поля, более мы её не перемещаем.
+	\item В случае, если точка в методе лагранжевых частиц выходит за пределы поля, более мы её не рассматриваем.
 \end{enumerate}
 
 \section{Аналитическое решение}
@@ -68,7 +68,7 @@ dx = \frac{x_{\max} - x_{\min}}{n - 1}, \quad dy = \frac{y_{\max} - y_{\min}}{n 
 u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} + v_y \frac{\partial u}{\partial y} \right).
 \]
 
-Стабильность обеспечивается условием Куранта–Фридрихса–Леви (CFL):
+Стабильность обеспечивается условием Куранта–Фридрихса–Леви (CFL) \cite{1964calculus}:
 
 \begin{equation}
 	\max \left( \frac{|v_x| \Delta t}{dx}, \frac{|v_y| \Delta t}{dy} \right) \leq 1.
@@ -79,18 +79,18 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 
 В ходе экспериментов используются различные поля скоростей:
 \begin{itemize}
-	\item \textbf{Вихревое течение (vortex)}:
+	\item \textbf{Спиральное течение (spiral)}:
 	\begin{equation}
         v_x = (y-5) / 5,
-		v_y = (-x + y) \sin(x )/5.
+		v_y = (-x + y) /5.
 			\label{eq:vortex}
 	\end{equation}
 
 	
-	\item \textbf{Модифицированное спиральное течение (shear)}:
+	\item \textbf{Модифицированное спиральное течение (sin-spiral)}:
 	\begin{equation}
 		v_x = (y - 5) / 5, \quad
-		v_y = (-x + y) / 5.
+		v_y = (-x + y) \sin(x )/ 5.
 			\label{eq:shear}
 	\end{equation}
 
@@ -114,7 +114,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\item \texttt{VelocityField} — статические методы для задания различных полей скоростей;
 	\item \texttt{InitialCondition} — начальные условия;
 	\item \texttt{Experiment}, \texttt{ExperimentManager} — система организации и запуска экспериментов;
-	\item визуализация полей скоростей и решений.
+	\item визуализацию полей скоростей и решений.
 \end{itemize}
 
 
@@ -134,7 +134,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\begin{minipage}[b]{0.48\textwidth}
 		\centering
 	\includegraphics[width=\textwidth]{./../lab6_images_fd/exp_1:_spiral_flow_fd_velocity_field.png}
-	\caption{Поле скоростей для вихревого течения.}
+	\caption{Поле скоростей для спирального течения.}
 	\label{fig:vortex_velocity}
 	\end{minipage}
 	\hfill
@@ -212,7 +212,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\end{minipage}
 \end{figure}
 
-В качетве начального распределения, используется диагональная  полоса  с левого верхнего угла к правому нижнему  и шириной 1 ( рис. \ref{fig:shear_begin}).
+В качетве начального распределения, используется диагональная  полоса  с левого верхнего угла к правому нижнему  и шириной 1 (рис. \ref{fig:shear_begin}).
 
 
 Изображения промежуточных ходов представлены на рис. \ref{fig:exp_2_t=2} - \ref{fig:exp_2_t=8}.
@@ -253,7 +253,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\textwidth]{./../lab6_images_fd/exp_2:_sin-spiral_flow_t10.00.png}
-	\caption{Скалярное поле \(u\) в финальный момент времени ($t=10$)}
+	\caption{Скалярное поле \(u\) в финальный момент времени ($t=10$).}
 	\label{fig:shear_final}
 \end{figure}
 В этом эксперименте также наблюдается перенос по направленю поля. Границы всё также размыты.
@@ -280,7 +280,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\end{minipage}
 \end{figure}
 
-В качетве начального распределения, используется горизонтальная полоса с координатой $y$ центральной линии равной 5 и шириной 1 ( рис. \ref{fig:div_begin}).
+В качетве начального распределения, используется горизонтальная полоса с координатой $y$ центральной линии равной 5 и шириной 1 (рис. \ref{fig:div_begin}).
 
 Изображения промежуточных ходов представлены на рис. \ref{fig:exp_3_t2} - \ref{fig:exp_3_t8}.
 
@@ -328,7 +328,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 
 \newpage
 
-\section{Метод Лагранжевых точек}
+\section{Метод Лагранжевых частиц}
 \subsection{Описание численного метода}
 
 В отличие от метода конечных разностей, лагранжев подход отслеживает движение частиц, несущих скалярную величину \( u \), по траекториям, определяемым полем скоростей. Основная идея заключается в решении задачи Коши для системы ОДУ:
@@ -365,7 +365,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 \begin{itemize}
 	\item \texttt{ParticleSet} — класс, отвечающий за координаты и значения частиц;
 	\item \texttt{VelocityField} — статические методы для различных полей скоростей;
-	\item \texttt{Integrator} — численные методы интегрирования траекторий (Euler, RK4);
+	\item \texttt{Integrator} — численные методы интегрирования траекторий (RK4);
 	\item визуализацию движения частиц и их распределений;
 	\item построение плотности \( u(x, y, t) \) через биннинг в сетку.
 \end{itemize}
@@ -380,24 +380,24 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 
 Для каждого эксперимента строятся:
 \begin{itemize}
-	\item карта начального положения и значений частиц;
-	\item стримплот поля скоростей;
+	\item Карта начального положения и значений частиц;
+	\item График поля скоростей;
 	\item Промежуточные распределение частиц с учётом перемещения;
-	\item реконструированная плотность скалярной величины на сетке.
+	\item Реконструированная плотность скалярной величины на сетке.
 \end{itemize}
 \newpage
-\subsection{Вихревое течение (Lagrangian)}
-Поле используем то же, что и в эксперименте с разделёнными разностями ( рис. \ref{fig:vortex_velocity},  задаётся уравнением вихря (\ref{eq:vortex}).
+\subsection{Спиральное течение (Lagrangian)}
+Поле используем то же, что и в эксперименте с разделёнными разностями (рис. \ref{fig:vortex_velocity},  задаётся уравнением спирального течения (\ref{eq:vortex}).
 
 В качестве начального распределения, используется круг с центром в точке (5 , 5) и радиусом 3 (\ref{fig:lg_vortex_begin}).
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\textwidth]{./../lab6_images/exp_1:_spiral_flow_t0.00.png}
-	\caption{Начальное распределение частиц (вихревое поле).}
+	\caption{Начальное распределение частиц (спиральное поле).}
 	\label{fig:lg_vortex_begin}
 \end{figure}
 
-Изображения промежуточных ходов представлены на рис. \ref{fig:exp_1l_t2} - \ref{fig:exp_1l_t8}.
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp_1l_t2} - \ref{fig:exp_1l_t8}. Также добавлены траектории 50 случайных точек.
 
 \begin{figure}
 	\centering
@@ -430,7 +430,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 \end{figure}
 
 \newpage
-Финальное распределение представлено на рис. \ref{fig:lg_vortex_finall}. Также изображены траектории 50 точек.
+Финальное распределение представлено на рис. \ref{fig:lg_vortex_finall}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.65\textwidth]{./../lab6_images/exp_1:_spiral_flow_t10.00.png}
@@ -460,7 +460,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\label{fig:lg_shaer_begin}
 \end{figure}
 
-Изображения промежуточных ходов представлены на рис. \ref{fig:exp2_t2} - \ref{fig:exp2_t8}.
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp2_t2} - \ref{fig:exp2_t8}.  Также добавлены траектории 50 случайных точек.
 
 \begin{figure}
 	\centering
@@ -493,11 +493,11 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 \end{figure}
 
 \newpage
-Финальное распределение представлено на рис. \ref{fig:lg_shaer_finall}. Также изображены траектории 50 точек.
+Финальное распределение представлено на рис. \ref{fig:lg_shaer_finall}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.65\textwidth]{./../lab6_images/exp_2:_sin-spiral_flow_t10.00.png}
-	\caption{Финальное распределение частиц (сдвиговое поле).}
+	\caption{Финальное распределение частиц.}
 	\label{fig:lg_shaer_finall}
 \end{figure}
 
@@ -522,7 +522,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\label{fig:lg_div_begin}
 \end{figure}
 
-Изображения промежуточных ходов представлены на рис. \ref{fig:exp3_2} - \ref{fig:exp3_8}.
+Изображения промежуточных ходов представлены на рис. \ref{fig:exp3_2} - \ref{fig:exp3_8}. Также добавлены траектории 50 случайных точек.
 
 \begin{figure}
 	\centering
@@ -563,7 +563,7 @@ u_{i,j}^{n+1} = u_{i,j}^{n} - \Delta t \left( v_x \frac{\partial u}{\partial x} 
 	\label{fig:lg_div_finall}
 \end{figure}
 
-Траектории 1000 точек представлены на рис. \ref{fig:lg_div_tr}.
+Траектории всех точек представлены на рис. \ref{fig:lg_div_tr}.
 
 \begin{figure}[H]
 	\centering
