@@ -1,0 +1,62 @@
+\chapter{Выполнение работы}
+\section{Код программы}
+Для выполнения лабораторной работы был выбран ЯП Java \cite{сьерра2012изучаем}.
+
+\begin{lstlisting}
+	package ru.happines;
+	
+	import java.util.function.Function;
+	
+	@FunctionalInterface
+	interface Delegate {
+		void invoke(Function<Double, Double> f, double a, double b);
+	}
+	
+	public class aboba {
+		public static void sum(Function<Double, Double> f, double a, double b) {
+			System.out.println("Sum = " + (f.apply(a) + b));
+		}
+		
+		public static void multiply(Function<Double, Double> f, double a, double b) {
+			System.out.println("Multiply = " + (f.apply(a) * b));
+		}
+		
+		public static void main(String[] args) {
+			Delegate del;
+			
+			del = aboba::sum;
+			del.invoke(x -> x * x, 3, 4);
+			
+			del = aboba::multiply;
+			del.invoke(x -> x + 2, 3, 4);
+		}
+	}
+\end{lstlisting}
+
+\section{Описание работы программы}
+
+\begin{itemize}
+	\item Создан функциональный интерфейс \texttt{Delegate} с методом \texttt{invoke}, принимающим функцию и два параметра типа \texttt{double}.
+	\item Методы \texttt{sum} и \texttt{multiply} принимают функцию и два числа, выполняют соответствующую операцию и выводят результат.
+	\item В методе \texttt{main} создается делегат \texttt{del}, которому присваиваются ссылки на методы \texttt{sum} и \texttt{multiply}.
+	\item Вызов \texttt{del.invoke} выполняет соответствующую операцию с функцией, переданной в качестве аргумента.
+\end{itemize}
+
+\section{Результаты работы программы}
+
+При запуске программы на консоли выводится:
+
+\begin{verbatim}
+	Sum = 13.0
+	Multiply = 20.0
+\end{verbatim}
+
+\section*{Выводы}
+
+В ходе лабораторной работы были изучены следующие аспекты работы с делегатами в Java:
+
+\begin{itemize}
+	\item Делегаты позволяют ссылаться на методы и вызывать их динамически.
+	\item Функциональные интерфейсы в Java предоставляют удобный способ реализации делегатов.
+	\item Применение делегатов повышает гибкость и расширяемость кода.
+\end{itemize}
