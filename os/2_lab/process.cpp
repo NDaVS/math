@@ -4,6 +4,7 @@
 
 #ifdef _WIN32
 #include <windows.h>
+
 #else
 #include <cstring>
 #include <errno.h>
@@ -20,6 +21,35 @@ ProcessResult run_process(const std::string &path,
     throw ProcessError("Path is empty");
 
 #ifdef _WIN32
+  str::ostringstream cmdline;
+  cmdline << "\"" << path << "\"";
+
+  for (const auto &arg : args)
+    cmdline << " " << arg;
+
+  STARTUPINFOA si{};
+  PROCESS_INFORMATION pi{};
+  si.cb = sizeof(si);
+
+  std::string cmd = cmdline.str();
+  char *cmd_mutable = cmd.data();
+
+  if (!CreateProcessA(nullptr, cmd_mutable, nullptr, nullptr, FLASE, 0, nullptr,
+                      nullptr, &si, &pi)) {
+    throw std::runtime_error("CreateProcessA failed");
+  }
+
+  int exit_code = 0;
+  if (wait) {
+    WaitForSingleObject(pi.hProcess, INFINITE);
+    DWORD code;
+    GetExitCodeProcess(pid.hProcess, &code);
+    exit_code = static_cast<int>(code);
+  }
+
+  CloseHandle(pi.hProcess);
+  CloseHandle(pi.hThread);
+  return {exit_code, true};
 #else
   pid_t pid = fork();
 
