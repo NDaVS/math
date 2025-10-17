@@ -19,13 +19,12 @@ ProcessResult run_process(const std::string &path,
                           const std::vector<std::string> &args, bool wait) {
   if (path.empty())
     throw ProcessError("Path is empty");
-
 #ifdef _WIN32
-  str::ostringstream cmdline;
+  std::ostringstream cmdline;
   cmdline << "\"" << path << "\"";
-
-  for (const auto &arg : args)
+  for (const auto &arg : args) {
     cmdline << " " << arg;
+  }
 
   STARTUPINFOA si{};
   PROCESS_INFORMATION pi{};
@@ -34,21 +33,26 @@ ProcessResult run_process(const std::string &path,
   std::string cmd = cmdline.str();
   char *cmd_mutable = cmd.data();
 
-  if (!CreateProcessA(nullptr, cmd_mutable, nullptr, nullptr, FLASE, 0, nullptr,
+  if (!CreateProcessA(nullptr, cmd_mutable, nullptr, nullptr, FALSE, 0, nullptr,
                       nullptr, &si, &pi)) {
-    throw std::runtime_error("CreateProcessA failed");
+    DWORD err = GetLastError();
+    std::ostringstream oss;
+    oss << "CreateProcess failed, error code " << err;
+    throw ProcessError(oss.str());
   }
 
   int exit_code = 0;
+
   if (wait) {
     WaitForSingleObject(pi.hProcess, INFINITE);
     DWORD code;
-    GetExitCodeProcess(pid.hProcess, &code);
+    GetExitCodeProcess(pi.hProcess, &code);
     exit_code = static_cast<int>(code);
   }
 
   CloseHandle(pi.hProcess);
   CloseHandle(pi.hThread);
+
   return {exit_code, true};
 #else
   pid_t pid = fork();
