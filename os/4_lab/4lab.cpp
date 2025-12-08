@@ -1,6 +1,6 @@
 #include "my_serial.hpp"
-#include <sstream>              // std::stringstream
-#include <iostream>             // std::cout
+#include <sstream>
+#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -10,8 +10,8 @@
 #include <algorithm>
 
 #if !defined (WIN32)
-#	include <unistd.h>          // pause()
-#	include <time.h>            // nanosleep()
+#	include <unistd.h>
+#	include <time.h>
 #endif
 
 struct Measurement {
