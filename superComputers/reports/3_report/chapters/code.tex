@@ -1,0 +1,107 @@
+\chapter{JAVA код}
+\section{Описание работы программы}
+
+
+Данная программа демонстрирует использование \texttt{ExecutorService} и \texttt{ScheduledExecutorService} в языке Java для выполнения задачи с возможностью отмены по таймеру.  
+Цель программы — сгенерировать массив случайных чисел, проверить наличие заданного числа и прервать выполнение задачи, если оно занимает слишком много времени.
+
+\subsection{Основные параметры}
+\begin{itemize}
+	\item \texttt{size = 100} — размер массива случайных чисел;
+	\item \texttt{target = 42} — целевое число, поиск которого выполняется;
+	\item \texttt{timeout = 1\,s} — время ожидания до отмены задачи.
+\end{itemize}
+
+\subsection{Описание функционала}
+\begin{enumerate}
+	\item Определяется функциональный объект \texttt{containsNumber} типа \texttt{BiPredicate<Integer, Integer>}\cite{сьерра2012изучаем}, принимающий два аргумента:
+	\begin{itemize}
+		\item \texttt{n} — размер массива;
+		\item \texttt{x} — искомое число.
+	\end{itemize}
+	Внутри создаётся массив случайных чисел, каждый элемент которого выбирается равномерно из диапазона $[0,100)$.  
+	После генерации массив выводится на экран, и выполняется проверка:
+	\[
+	\text{result} = \exists i \in arr : i = x
+	\]
+	с использованием \texttt{Arrays.stream(arr).anyMatch(i -> i == x)}.
+	
+	\item Создаётся пул потоков:
+	\begin{itemize}
+		\item \texttt{ExecutorService executor} — выполняет основную задачу в отдельном потоке;
+		\item \texttt{ScheduledExecutorService scheduler} — отвечает за планирование отмены по таймеру.
+	\end{itemize}
+	
+	\item Определяется задача типа \texttt{Callable<Boolean>}, которая при вызове выполняет \texttt{containsNumber.test(size, target)} и возвращает булево значение.
+	
+	\item С помощью \texttt{executor.submit(task)} задача помещается в очередь на выполнение, а возвращаемое значение \texttt{Future<Boolean>} позволяет контролировать процесс.
+	
+	\item Планировщик \texttt{scheduler.schedule(...)} создаёт задачу, которая через одну секунду проверяет:
+	\[
+	\text{if (!future.isDone())} \Rightarrow \text{future.cancel(true)}
+	\]
+	Если основная задача не завершена — происходит её отмена.
+	
+	\item Основной поток вызывает \texttt{future.get()}, ожидая результат вычисления. Возможны три исхода:
+	\begin{itemize}
+		\item Если задача завершена успешно, выводится сообщение о наличии (или отсутствии) числа \texttt{target} в массиве;
+		\item Если задача была отменена, возбуждается \texttt{CancellationException}, и выводится сообщение \texttt{"Задача была отменена"};
+		\item При любых завершениях выполняется освобождение ресурсов: \texttt{executor.shutdown()} и \texttt{scheduler.shutdownNow()}.
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Код асинхронных методов и обрабочик}
+\begin{verbatim}
+	BiPredicate<Integer, Integer> containsNumber = (n, x) -> {
+		Random rand = new Random();
+		int[] arr = new int[n];
+		
+		for (int i = 0; i < n; i++) {
+			arr[i] = rand.nextInt(100);
+		}
+		System.out.println("Сгенерированный массив: " 
+		+ Arrays.toString(arr));
+		return Arrays.stream(arr).anyMatch(i -> i == x);
+	};
+	
+	ExecutorService executor = Executors.newSingleThreadExecutor();
+	ScheduledExecutorService scheduler = 
+		Executors.newSingleThreadScheduledExecutor();
+	
+	Callable<Boolean> task = () -> {
+		//            Thread.sleep(3000);
+		return containsNumber.test(size, target);
+	};
+	Future<Boolean> future = executor.submit(task);
+	
+	scheduler.schedule(() -> {
+		if (!future.isDone()) {
+			System.out.println("Отмена по таймеру");
+			future.cancel(true);
+		}
+	}, 1, TimeUnit.SECONDS);
+\end{verbatim}
+
+\subsection{Результат работы}
+На экране выводятся:
+\begin{enumerate}
+	\item Сгенерированный массив случайных чисел;
+	\item Результат поиска:
+	\[
+	\text{``Число 42 найдено в массиве''} \quad \text{или} \quad \text{``не найдено''}
+	\]
+	\item При превышении времени ожидания (1 секунда) — сообщение:
+	\[
+	\text{``Отмена по таймеру'' и ``Задача была отменена''}
+	\]
+\end{enumerate}
+
+\subsection{Ключевые концепции}
+\begin{itemize}
+	\item \textbf{Пул потоков (ExecutorService)} — средство управления асинхронными задачами;
+	\item \textbf{Планировщик (ScheduledExecutorService)} — позволяет выполнять действия по таймеру;
+	\item \textbf{Future} — объект, инкапсулирующий результат асинхронных вычислений и методы управления задачей (\texttt{cancel()}, \texttt{isDone()}, \texttt{get()}).
+\end{itemize}
+
+
+

@@ -1,0 +1,111 @@
+\chapter{JAVA код}
+\section{Описание работы программы}
+
+Данная программа демонстрирует использование класса \texttt{CompletableFuture} в языке Java для асинхронного выполнения задачи — подсчёта количества вхождений заданного символа в строке.  
+Код иллюстрирует основы реактивного подхода: запуск вычисления в отдельном потоке и обработку результата после его завершения без блокировки основного потока.
+
+\section{Основные параметры}
+\begin{itemize}
+	\item \texttt{input} — входная строка:
+	\begin{quote}
+		\texttt{"Вели медведя на ратное поле. Нет не на цепи - по собственной воле. За чужую свободу рвать убивать."}
+	\end{quote}
+	\item \texttt{target\_char = 'е'} — символ, количество вхождений которого требуется подсчитать.
+\end{itemize}
+
+\section{Описание функций}
+\paragraph{Метод \texttt{countLetters(String str, char ch)}}  
+Этот метод последовательно проходит по всем символам строки, считая количество совпадений с указанным символом.  
+Алгоритм:
+\[
+\text{count} = |\{ c \in \text{str} \; | \; c = ch \}|
+\]
+Реализован через цикл \texttt{for-each} по массиву символов:
+\begin{verbatim}
+	int i = 0;
+	for (char c : str.toCharArray()) {
+		if (c == ch) i++;
+	}
+	return i;
+\end{verbatim}
+
+\section{Асинхронное выполнение}
+\begin{enumerate}
+	\item Объявляется объект \texttt{CompletableFuture<Integer>}:
+	\[
+	\texttt{future = CompletableFuture.supplyAsync(() -> countLetters(input, target\_char));}
+	\]
+	Здесь \texttt{supplyAsync()} запускает задачу в отдельном потоке (используя общий \texttt{ForkJoinPool.commonPool()}).
+	
+	\item После запуска вычисления регистрируется обработчик завершения:
+	\begin{verbatim}
+		future.whenComplete((result, exception) -> {
+			if (exception != null)
+			System.out.println("Ошибка при работе: " + exception.getMessage());
+			else
+			System.out.println("Количество вхождений символа: " + result);
+		});
+	\end{verbatim}
+	Этот метод выполняется, когда будущее (\texttt{future}) завершается:
+	\begin{itemize}
+		\item если задача выполнена без ошибок — печатается количество вхождений символа;
+		\item если произошла ошибка — выводится сообщение об исключении.
+	\end{itemize}
+	
+	\item Основной поток программы приостанавливается вызовом:
+	\[
+	\texttt{Thread.sleep(1000);}
+	\]
+	чтобы дать асинхронной задаче время завершиться до завершения метода \texttt{main()}.
+\end{enumerate}
+
+\section{Код методов класса на java}
+\begin{verbatim}
+	public static int countLetters(String str, char ch) {
+		int i = 0;
+		for (char c : str.toCharArray()){
+			if (c == ch) i++;
+		}
+		
+		return i;
+	}
+	
+	public static void main(String[] args) {
+		String input = "Вели медведя на ратное поле. 
+		Нет не на цепи - по собственной воле. 
+		За чужую свободу рвать убивать.";
+		char target\_char = 'е';
+		
+		CompletableFuture<Integer> future = 
+		CompletableFuture.supplyAsync(() -> countLetters(input, target\_char));
+		
+		future.whenComplete((result, exception) -> {
+			if (exception != null) {
+				System.out.println("Ошибка при работе: " + exception.getMessage());
+			} else {
+				System.out.println("Количество вхождений символа: " + result);
+			}
+		});
+		
+		try {
+			Thread.sleep(1000);
+		}catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+\end{verbatim}
+
+\section{Вывод программы}
+При запуске на стандартной JVM выводится сообщение вида:
+\begin{verbatim}
+	Количество вхождений символа: 14
+\end{verbatim}
+(число может меняться в зависимости от регистра и текста входной строки).
+
+\section{Ключевые концепции}
+\begin{itemize}
+	\item \textbf{CompletableFuture} — класс, предоставляющий средства асинхронных вычислений с возможностью обработки результата по завершении;
+	\item \textbf{Метод supplyAsync()} — запускает задачу в пуле потоков без блокировки основного потока;
+	\item \textbf{Метод whenComplete()} — задаёт колбэк, который вызывается автоматически при завершении задачи;
+	\item \textbf{Асинхронное программирование} — модель исполнения, при которой операции выполняются параллельно, а результат обрабатывается по готовности.
+\end{itemize}

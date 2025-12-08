@@ -1,0 +1,75 @@
+\chapter{JAVA код}
+\section{Описание программы}
+
+Программа реализует следующий алгоритм:
+
+\begin{enumerate}
+	\item Задаются размер массива \texttt{size} и искомое значение \texttt{target}.
+	\item Определяется функциональный объект \texttt{BiPredicate}, который принимает на вход размер массива и число, а возвращает логическое значение, показывающее, содержится ли данное число в массиве.
+	\item Внутри предиката создаётся массив случайных чисел от 0 до 99.
+	\item С помощью стримов Java производится проверка наличия числа \texttt{target}.
+	\item Задача (в виде \texttt{Callable}) передаётся в \texttt{ExecutorService}, который создаёт отдельный поток для выполнения проверки.
+	\item Основной поток ожидает завершения задачи, периодически выводя символ \texttt{.}, имитируя «ожидание» результата.
+	\item После завершения задачи результат извлекается через объект \texttt{Future} и выводится в консоль.
+\end{enumerate}
+
+\section{Текст программы}
+
+\begin{lstlisting}
+	public class second_lab {
+		public static void main(String[] args) throws Exception {
+			int size = 100;
+			int target = 42;
+			
+			BiPredicate<Integer, Integer> containsNumber = (n, x) -> {
+				Random rand = new Random();
+				int[] arr = new int[n];
+				
+				for (int i = 0; i < n; i++) {
+					arr[i] = rand.nextInt(100);
+				}
+				
+				System.out.println("Generated array: " + Arrays.toString(arr));
+				return Arrays.stream(arr).anyMatch(i -> i == x);
+			};
+			
+			ExecutorService executor = Executors.newSingleThreadExecutor();
+			
+			Callable<Boolean> task = () -> containsNumber.test(size, target);
+			Future<Boolean> future = executor.submit(task);
+			
+			while (!future.isDone()) {
+				System.out.println('.');
+				Thread.sleep(100);
+			}
+			
+			boolean result = future.get();
+			
+			executor.shutdown();
+			
+			System.out.println("\nNumber " + target+ (result ? " is in" : " is not in") + " in array");
+		}
+	}
+\end{lstlisting}
+
+\section{Результаты выполнения}
+
+При запуске программы создаётся отдельный поток, который выполняет задачу генерации массива и поиска числа.  
+Основной поток при этом остаётся активным и может выполнять другие действия — в примере он выводит в консоль точки, показывая процесс ожидания результата.
+
+Пример вывода:
+
+\begin{verbatim}
+	Сгенерированный массив: [13, 42, 56, 7, 88, ...]
+	...
+	Число 42 найдено в массиве
+\end{verbatim}
+
+\section{Преимущества подобного подхода}
+
+\begin{itemize}
+	\item \textbf{Асинхронность:} выполнение длительных операций без блокировки основного потока.
+	\item \textbf{Масштабируемость:} возможность использовать несколько потоков и пул задач.
+	\item \textbf{Безопасность:} контроль за завершением задач и корректным освобождением ресурсов.
+	\item \textbf{Гибкость:} возможность интеграции с другими потоковыми и реактивными моделями (например, \texttt{CompletableFuture} или \texttt{Reactive Streams}).
+\end{itemize}

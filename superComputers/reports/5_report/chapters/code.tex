@@ -1,0 +1,163 @@
+\chapter{JAVA код}
+\section{Общее назначение}
+Программа демонстрирует применение многопоточности в Java для параллельной обработки двумерного массива (матрицы).  
+Задача заключается в заполнении матрицы случайными значениями и применении функции косинуса ко всем элементам с разделением вычислений между несколькими потоками.
+
+\section{Основные параметры}
+\begin{itemize}
+	\item \texttt{rows = 5000} — количество строк матрицы;
+	\item \texttt{cols = 5000} — количество столбцов матрицы;
+	\item \texttt{numThreads = 100} — количество потоков, между которыми распределяется работа.
+\end{itemize}
+
+\section{Описание метода \texttt{coolMatrix()}}
+Метод \texttt{coolMatrix(int rows, int cols, int numThreads)} выполняет три основные операции:
+\begin{enumerate}
+	\item Инициализация матрицы случайными числами;
+	\item Параллельное вычисление значений \(\cos(x)\) для каждого элемента;
+	\item Ожидание завершения всех потоков.
+\end{enumerate}
+
+\section{Шаг 1. Генерация матрицы}
+Создаётся матрица типа \texttt{double[rows][cols]} и заполняется случайными числами в диапазоне \([0, 10)\):
+\[
+M_{ij} = \text{rand}() \times 10
+\]
+где \(\text{rand}()\) возвращает псевдослучайное число с плавающей запятой в диапазоне \([0, 1)\).
+
+\section{Шаг 2. Разделение работы на потоки}
+Создаётся массив потоков:
+\[
+\texttt{Thread[] threads = new Thread[numThreads];}
+\]
+Количество строк, обрабатываемых каждым потоком:
+\[
+\texttt{rowsPerThread} = \frac{\texttt{rows}}{\texttt{numThreads}}
+\]
+
+Для каждого потока \(t\):
+\[
+\texttt{startRow} = t \cdot \texttt{rowsPerThread}, \quad
+\texttt{endRow} =
+\begin{cases}
+	\texttt{rows}, t = \texttt{numThreads} - 1 \\
+	\texttt{startRow} + \texttt{rowsPerThread},  \text{иначе}
+\end{cases}
+\]
+
+\section{Шаг 3. Обработка данных}
+Каждый поток выполняет следующий фрагмент:
+\begin{verbatim}
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < cols; j++) {
+			matrix[i][j] = Math.cos(matrix[i][j]);
+		}
+	}
+\end{verbatim}
+
+\textbf{Примечание:}  
+в текущей реализации присутствует ошибка — цикл по \texttt{i} должен выполняться в диапазоне \texttt{[startRow, endRow)}, чтобы каждый поток обрабатывал только свой участок данных.  
+Иначе все потоки одновременно вычисляют косинус для всех строк, что не даёт прироста производительности и создаёт избыточные вычисления.  
+Корректная версия:
+\begin{verbatim}
+	for (int i = startRow; i < endRow; i++) {
+		for (int j = 0; j < cols; j++) {
+			matrix[i][j] = Math.cos(matrix[i][j]);
+		}
+	}
+\end{verbatim}
+
+\section{Шаг 4. Синхронизация потоков}
+После запуска всех потоков вызывается метод \texttt{join()} для ожидания их завершения:
+\[
+\forall t \in [0, numThreads-1]: \texttt{threads[t].join()}
+\]
+Это гарантирует, что матрица будет полностью преобразована до перехода к следующему этапу программы.
+
+\section{Измерение времени выполнения}
+В методе \texttt{main()} измеряется время выполнения вычислений:
+\[
+\texttt{duration} = \texttt{endTime} - \texttt{startTime}
+\]
+Результат выводится в миллисекундах:
+\[
+\texttt{milliseconds} = \frac{\texttt{duration}}{10^6}
+\]
+и отображается командой:
+\begin{verbatim}
+	System.out.printf("Время выполнения: %.3f мс%n", milliseconds);
+\end{verbatim}
+
+\section{Java код методов нашего класса}
+\begin{verbatim}
+public static void coolMatrix(int rows, int cols, int numThread) {
+	double [][] matrix = new double[rows][cols];
+	Random random = new Random();
+	
+	for (int i = 0 ; i < rows; i ++) {
+		for (int j =0; j < cols ;j++) {
+			matrix[i][j] = random.nextDouble() * 10;
+		}
+	}
+	
+	Thread[] threads = new Thread[numThread];
+	
+	int rowsPerThread = rows / numThread;
+	
+	for (int t = 0; t < numThread; t ++) {
+		final int startRow = t * rowsPerThread;
+		final int endRow = (t == numThread - 1) ? 
+		rows: startRow + rowsPerThread;
+		
+		threads[t] = new Thread(() -> {
+			for (int i = 0 ; i < rows; i ++) {
+				for (int j = 0; j < cols; j++) {
+					matrix[i][j] = Math.cos(matrix[i][j]);
+				}
+			}
+		});
+		threads[t].start();
+	}
+	
+	for (Thread thread: threads) {
+		try{
+			thread.join();
+		} catch (InterruptedException e){
+			e.printStackTrace();
+		}
+	}
+
+}
+
+public static void main(String[] args) {
+	int rows = 5000;
+	int cols = 5000;
+	
+	int numThreads = 100;
+	long startTime = System.nanoTime();
+	
+	coolMatrix(rows, cols, numThreads);
+	
+	long endTime = System.nanoTime();
+	
+	long duration = endTime - startTime;
+	double milliseconds = duration / 1_000_000.0;
+	
+	System.out.printf("Время выполнения: %.3f мс%n", milliseconds);
+}
+\end{verbatim}
+
+\section{Результат выполнения}
+На выходе программа печатает только время выполнения в миллисекундах, например:
+\begin{verbatim}
+	Время выполнения: 154.382 мс
+\end{verbatim}
+
+\section{Ключевые концепции}
+\begin{itemize}
+	\item \textbf{Параллельная обработка данных} — распределение вычислений по нескольким потокам для ускорения работы;
+	\item \textbf{Разделение данных (Data Partitioning)} — разделение матрицы на участки по строкам между потоками;
+	\item \textbf{Синхронизация потоков} с помощью метода \texttt{join()};
+	\item \textbf{Потокобезопасность} — отсутствует взаимодействие между потоками, так как каждый работает со своей областью памяти (при исправленной версии кода);
+	\item \textbf{Функция \texttt{Math.cos()}} — пример вычислительной нагрузки для моделирования CPU-интенсивных задач.
+\end{itemize}
