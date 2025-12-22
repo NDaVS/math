@@ -1,4 +1,5 @@
 #include "my_serial.hpp"
+
 #include <sstream>
 #include <iostream>
 #include <fstream>
@@ -6,29 +7,35 @@
 #include <vector>
 #include <ctime>
 #include <chrono>
-#include <cstring>
-#include <algorithm>
+#include <iomanip>
+#include <cstdio>
 
-#if !defined (WIN32)
-#	include <unistd.h>
-#	include <time.h>
+#if !defined(WIN32)
+#include <unistd.h>
+#include <time.h>
 #endif
 
-struct Measurement {
+struct Measurement
+{
     std::time_t tm;
     double value;
 };
 
 static const std::string LOG_MEASURE = "measurements.log";
-static const std::string LOG_HOURLY  = "hourly.log";
-static const std::string LOG_DAILY   = "daily.log";
+static const std::string LOG_HOURLY = "hourly.log";
+static const std::string LOG_DAILY = "daily.log";
 
+static const int max_measurements_log = 24 * 60 * 60;
+static const int max_hourly_log = 24 * 30;
+static const int max_daily_log = 365;
 
-std::time_t now_ts() {
+std::time_t now_ts()
+{
     return std::time(nullptr);
 }
 
-std::tm local_tm(std::time_t t) {
+std::tm local_tm(std::time_t t)
+{
     std::tm tm{};
 #ifdef _WIN32
     localtime_s(&tm, &t);
@@ -38,165 +45,190 @@ std::tm local_tm(std::time_t t) {
     return tm;
 }
 
-// Сконвертировать любой базовый тип в строку
-template<class T> std::string to_string(const T& v)
+double compute_avg(const std::vector<double> &vals)
 {
-    std::ostringstream ss;
-    ss << v;
-    return ss.str();
+    if (vals.empty())
+        return 0.0;
+    double sum = 0.0;
+    for (double v : vals)
+        sum += v;
+    return sum / vals.size();
 }
 
-bool parse_measurement(const std::string& s, double& outVal) {
-    std::stringstream ss(s);
-    double v;
-    if (ss >> v) {
-        outVal = v;
-        return true;
+std::size_t count_lines(const std::string &file)
+{
+    std::ifstream f(file);
+    if (!f.is_open())
+        return 0;
+
+    std::size_t count = 0;
+    std::string line;
+    while (std::getline(f, line))
+        ++count;
+
+    return count;
+}
+void reset_if_oversize(const std::string &file, int type)
+{
+    int limit = 0;
+
+    switch (type)
+    {
+    case 0:
+        limit = max_measurements_log;
+        break;
+    case 1:
+        limit = max_hourly_log;
+        break;
+    case 2:
+        limit = max_daily_log;
+        break;
+    default:
+        return;
     }
-    return false;
+
+    std::size_t lines = count_lines(file);
+
+    if (lines >= static_cast<std::size_t>(limit))
+    {
+        std::remove(file.c_str());
+    }
 }
 
-void append_line(const std::string& file, const std::string& msg) {
+void append_line(const std::string &file,
+                 const std::string &msg,
+                 int type)
+{
+    reset_if_oversize(file, type);
+
     std::ofstream f(file, std::ios::app);
     f << msg << "\n";
 }
 
-void save_measurements(const std::string& file, const std::vector<Measurement>& v) {
-    std::ofstream f(file, std::ios::trunc);
-    for (auto& m : v) {
-        f << std::to_string(m.tm) << " " << m.value << "\n";
-    }
-}
-
-
-
-std::vector<Measurement> load_measurements(const std::string& file) {
-    std::vector<Measurement> v;
-    std::ifstream f(file);
-    if (!f.is_open()) return v;
-
-    std::string line;
-    while (std::getline(f, line)) {
-        std::stringstream ss(line);
-        std::time_t t;
-        double val;
-        if (ss >> t >> val) {
-            v.push_back({t, val});
-        }
-    }
-    return v;
-}
-
-void trim_file_last_seconds(const std::string& file, int seconds) {
-    auto v = load_measurements(file);
-    std::time_t cutoff = now_ts() - seconds;
-    std::vector<Measurement> out;
-
-    for (auto& m : v) {
-        if (m.tm >= cutoff)
-            out.push_back(m);
-    }
-    save_measurements(file, out);
-}
-
-void trim_file_last_days(const std::string& file, int days) {
-    auto v = load_measurements(file);
-    std::time_t cutoff = now_ts() - days * 86400;
-    std::vector<Measurement> out;
-
-    for (auto& m : v) {
-        if (m.tm >= cutoff)
-            out.push_back(m);
-    }
-    save_measurements(file, out);
-}
-
-double compute_avg(const std::vector<double>& vals) {
-    if (vals.empty()) return 0;
-    double sum = 0;
-    for (double v : vals) sum += v;
-    return sum / vals.size();
-}
-
-void csleep(double timeout) {
-#if defined (WIN32)
-	if (timeout <= 0.0)
-        ::Sleep(INFINITE);
-    else
-        ::Sleep((DWORD)(timeout * 1e3));
-#else
-    if (timeout <= 0.0)
-        pause();
-    else {
-        struct timespec t;
-        t.tv_sec = (int)timeout;
-        t.tv_nsec = (int)((timeout - t.tv_sec)*1e9);
-        nanosleep(&t, NULL);
-    }
-#endif
-}
-
-int main(int argc, char** argv)
+std::string hash_of_string(const std::string &s)
 {
-	if (argc < 2) {
-		std::cout << "Usage: prog_name [port]" << std::endl;
-		return -1;
-	}
-	
-	cplib::SerialPort smport(std::string(argv[1]),cplib::SerialPort::BAUDRATE_115200);
-	if (!smport.IsOpen()) {
-		std::cout << "Failed to open port '" << argv[1] << "'! Terminating..." << std::endl;
-		return -2;
-	}
-	std::string mystr;
+    std::stringstream hex_stream;
+
+    for (char c : s)
+    {
+        hex_stream << std::hex << std::setw(2) << std::setfill('0')
+                   << static_cast<int>(static_cast<unsigned char>(c));
+    }
+
+    std::string result = hex_stream.str();
+    for (char &c : result)
+    {
+        c = std::toupper(static_cast<unsigned char>(c));
+    }
+
+    return result;
+}
+
+bool parse_packet(const std::string &s, double &value, std::string &checksum)
+{
+    std::stringstream ss(s);
+
+    ss >> value >> checksum;
+
+    return !ss.fail();
+}
+
+int main(int argc, char **argv)
+{
+    if (argc < 2)
+    {
+        std::cout << "Usage: [progname] [port]\n";
+        return -1;
+    }
+
+    cplib::SerialPort smport(argv[1], cplib::SerialPort::BAUDRATE_115200);
+    if (!smport.IsOpen())
+    {
+        std::cout << "Failed to open port\n";
+        return -2;
+    }
+
     smport.SetTimeout(1.0);
 
     std::vector<double> hour_vals;
     std::vector<double> day_vals;
+    std::vector<std::pair<std::time_t, double>> measurement_buffer;
 
     std::tm last_tm = local_tm(now_ts());
-    int last_hour = last_tm.tm_min;
+    int last_hour = last_tm.tm_hour;
     int last_mday = last_tm.tm_mday;
 
-    for (;;) {
-        smport >> mystr;
-        if (!mystr.empty()) {
-            double temp;
-            if (parse_measurement(mystr, temp)){
-                std::time_t ts = now_ts();
+    std::string line;
+
+    for (;;)
+    {
+        smport >> line;
+        if (!line.empty())
+        {
+            double value;
+            std::string checksum;
+
+            if (parse_packet(line, value, checksum))
+            {
+                bool value_ok = (value >= -60.0 && value <= 60.0);
+
+                if (!measurement_buffer.empty())
                 {
-                    std::ofstream f(LOG_MEASURE, std::ios::app);
-                    f << ts << " " << temp << "\n";
+                    value_ok = value_ok &&
+                               (std::abs(value - measurement_buffer.back().second) < 1.0);
                 }
 
-                hour_vals.push_back(temp);
-                day_vals.push_back(temp);
+                if (value_ok)
+                {
+                    std::string calc = hash_of_string(std::to_string(value));
+                    if (calc == checksum)
+                    {
+                        std::cout << "New value -> " << value << std::endl;
+                        std::time_t ts = now_ts();
+
+                        measurement_buffer.emplace_back(ts, value);
+
+                        if (measurement_buffer.size() >= 10)
+                        {
+                            for (const auto &measurement : measurement_buffer)
+                            {
+                                append_line(
+                                    LOG_MEASURE,
+                                    std::to_string(measurement.first) + " " +
+                                        std::to_string(measurement.second),
+                                    0);
+                            }
+                            measurement_buffer.clear();
+
+                            hour_vals.push_back(value);
+                            day_vals.push_back(value);
+                        }
+                    }
+                }
             }
 
-            trim_file_last_seconds(LOG_MEASURE, 60);
-        }
+            std::tm cur_tm = local_tm(now_ts());
 
-        std::tm cur_tm = local_tm(now_ts());
-        if (cur_tm.tm_min != last_hour){
-            double avg = compute_avg(hour_vals);
-            append_line(LOG_HOURLY, std::to_string(now_ts()) + " " + std::to_string(avg));
-            hour_vals.clear();
-            last_hour = cur_tm.tm_min;
+            if (cur_tm.tm_hour != last_hour)
+            {
+                append_line(
+                    LOG_HOURLY,
+                    std::to_string(now_ts()) + " " +
+                        std::to_string(compute_avg(hour_vals)),
+                    1);
 
-            trim_file_last_days(LOG_HOURLY, 30);
-        }
+                hour_vals.clear();
+                last_hour = cur_tm.tm_hour;
+            }
 
-        if (cur_tm.tm_mday != last_mday) {
-            double avg = compute_avg(day_vals);
-            append_line(LOG_DAILY, std::to_string(now_ts()) + " " + std::to_string(avg));
-
-            day_vals.clear();
-            last_mday = cur_tm.tm_mday;
-
-            trim_file_last_days(LOG_DAILY, 365);
-
+            if (cur_tm.tm_mday != last_mday)
+            {
+                append_line(
+                    LOG_DAILY,
+                    std::to_string(now_ts()) + " " +
+                        std::to_string(compute_avg(day_vals)),
+                    2);
+            }
         }
     }
-
-    return 0;
 }
