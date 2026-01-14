@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Temperature Monitor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #eee;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        canvas {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .controls {
+            margin-top: 10px;
+        }
+
+        input,
+        button {
+            padding: 6px;
+            margin-right: 6px;
+            background: #222;
+            color: #eee;
+            border: 1px solid #444;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #333;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Мониторинг температуры</h1>
+    <h2>Текущая температура</h2>
+    <canvas id="currentChart" width="900" height="300"></canvas>
+    <h2>Температура за период</h2>
+
+    <div class="controls">
+        <label>from:</label>
+        <input type="datetime-local" id="fromInput">
+        <label>to:</label>
+        <input type="datetime-local" id="toInput">
+        <button onclick="loadStats()">Загрузить</button>
+    </div>
+
+    <canvas id="statsChart" width="900" height="300"></canvas>
+
+    <script>
+        const currentCtx = document.getElementById('currentChart').getContext('2d');
+
+        const currentChart = new Chart(currentCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Температура (°C)',
+                    data: [],
+                    borderColor: 'rgb(255, 99, 132)',
+                    tension: 0.3
+                }]
+            },
+            options: {
+                animation: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Время' }
+                    },
+                    y: {
+                        title: { display: true, text: '°C' }
+                    }
+                }
+            }
+        });
+
+        async function fetchCurrentTemperature() {
+            try {
+                const response = await fetch('http://localhost:8000/current');
+                const data = await response.json();
+
+                const now = new Date().toLocaleTimeString();
+                currentChart.data.labels.push(now);
+                currentChart.data.datasets[0].data.push(data.temperature);
+
+                if (currentChart.data.labels.length > 50) {
+                    currentChart.data.labels.shift();
+                    currentChart.data.datasets[0].data.shift();
+                }
+
+                currentChart.update();
+            } catch (error) {
+                console.error('Ошибка получения текущей температуры:', error);
+            }
+        }
+
+        /* опрос раз в 2 секунды */
+        setInterval(fetchCurrentTemperature, 2000);
+
+        const statsCtx = document.getElementById('statsChart').getContext('2d');
+
+        const statsChart = new Chart(statsCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Температура (°C)',
+                    data: [],
+                    borderColor: 'rgb(54, 162, 235)',
+                    tension: 0.2
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Время' }
+                    },
+                    y: {
+                        title: { display: true, text: '°C' }
+                    }
+                }
+            }
+        });
+
+        async function loadStats() {
+            const fromInput = document.getElementById('fromInput').value;
+            const toInput = document.getElementById('toInput').value;
+
+            const from = Math.floor(new Date(fromInput).getTime() / 1000);
+            const to = Math.floor(new Date(toInput).getTime() / 1000);
+
+            try {
+                const response = await fetch(
+                    `http://localhost:8000/stats?from=${from}&to=${to}`
+                );
+                const data = await response.json();
+
+                const labels = data.values.map(v =>
+                    new Date(v.timestamp * 1000).toLocaleString()
+                );
+                const values = data.values.map(v => v.value);
+
+                statsChart.data.labels = labels;
+                statsChart.data.datasets[0].data = values;
+                statsChart.update();
+            } catch (error) {
+                console.error('Ошибка получения статистики:', error);
+            }
+        }
+    </script>
+</body>
+</html>
